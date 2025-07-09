@@ -1,4 +1,11 @@
-[Test]
-RollInputDown>Roll
+[Idle]
+MovementInput>Move
+RollInput>Roll
+BackStepInput>BackStep
 [Roll]
 InteractingDown>Default
+[BackStep]
+InteractingDown>Default
+[Move]
+NoMovementInput>Default
+RollInput>Roll

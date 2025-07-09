@@ -90,7 +90,7 @@ namespace AI.FSM.Framework
                 stateId == FSMStateID.Default ?
                 defulatState :
                 states.Find(s => s.StateID == stateId);
-            print(Time.frameCount + currentState.ToString() + "=>" + stateId.ToString());
+            print(Time.frameCount + CurrentStateName.ToString() + "=>" + stateId.ToString());
             //当前状态退出
             currentState.ExitState(this);
             currentState = state;

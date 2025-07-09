@@ -33,7 +33,6 @@ namespace AI.FSM
 
         protected override void Start()
         {
-            base.Start();
             //获取组件
             playerInfo = GetComponent<PlayerInfo>();
             playerInput = GetComponent<PlayerInput>();
@@ -41,6 +40,7 @@ namespace AI.FSM
             animator = GetComponentInChildren<Animator>(true);
             cameraHandler = FindAnyObjectByType<CameraHandler>();
             playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
+            base.Start();
         }
     }
 }

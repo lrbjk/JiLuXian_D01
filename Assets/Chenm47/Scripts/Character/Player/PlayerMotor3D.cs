@@ -33,6 +33,13 @@ namespace ns.Character.Player
             rb.velocity = dir * MoveSpeed;
             //transform.Translate(MoveSpeed * Time.deltaTime * dir, Space.World);
         }
+
+        public void LookAndMove(Vector3 lookDir, Vector3 moveDir, float MoveSpeed)
+        {
+            LookAtVector(lookDir);
+            rb.velocity = moveDir * MoveSpeed;
+        }
+
         public void MoveKeepVy(Vector3 dir, float MoveSpeed)
         {
             LookAtVector(dir);

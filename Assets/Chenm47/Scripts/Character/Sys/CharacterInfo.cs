@@ -46,5 +46,11 @@ namespace ns.Character
         public float SpeedRatio;
         /// <summary>buff持续时间变化值 </summary>
         public float BuffTimeDelta;
+
+        /// <summary>角色被锁定Transform </summary>
+        public Transform LockedTF;
+        [HideInInspector]
+        /// <summary>角色锁定的Transform </summary>
+        public Transform LockedTargetTF;
     }
 }

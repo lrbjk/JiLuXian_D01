@@ -26,12 +26,18 @@ namespace AI.FSM
             float moveY = fSMBase.playerInput.VerticalMove;
             float movement = Mathf.Clamp01(Mathf.Abs(moveX) + Mathf.Abs(moveY));
             float moveSpeed = fSMBase.playerInfo.MoveBaseSpeed;
+            if (fSMBase.playerInput.RollHoldTrigger) //如果是长按
+            {
+                moveSpeed = fSMBase.playerInfo.SprintSpeed;//冲刺状态
+                movement = 2f;
+            }
+
             Vector3 moveDir = fSMBase.cameraHandler.transform.right * moveX +
                 fSMBase.cameraHandler.transform.forward * moveY;
             moveDir.y = 0;
             moveDir.Normalize();
             fSMBase.playerAction.Move(moveDir, moveSpeed);
-            fSMBase.animator.SetFloat("Vertical", movement, 0.05f, Time.deltaTime);
+            fSMBase.animator.SetFloat("Vertical", movement, 0.1f, Time.deltaTime);
         }
 
     }

@@ -9,6 +9,9 @@ namespace AI.FSM.Framework
     public abstract class FSMState
     {
         public FSMStateID StateID { get; protected set; }
+        /// <summary>
+        /// 当前状态的转换条件=>下一状态
+        /// </summary>
 
         private Dictionary<FSMTriggerID, FSMStateID> map;
 

@@ -1,5 +1,7 @@
 using Common;
+using ns.Camera;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -15,8 +17,8 @@ namespace ns.Character.Player
         private Rigidbody rb;
         private Transform groundRayPoint;
         private PlayerInfo playerInfo;
-        public PlayerInfo PlayerInfo { get => playerInfo; }
-
+        [SerializeField]
+        CameraHandler cameraHandler;
         protected override void Init()
         {
             base.Init();
@@ -36,6 +38,10 @@ namespace ns.Character.Player
         public void Move(Vector3 dir, float speed)
         {
             playerMotor3D.Move(dir, speed);
+        }
+        public void LookAndMove(Vector3 lookDir, Vector3 moveDir, float moveSpeed)
+        {
+            playerMotor3D.LookAndMove(lookDir, moveDir, moveSpeed);
         }
 
         /// <summary>
@@ -129,5 +135,36 @@ namespace ns.Character.Player
             bool res = rb.velocity.y < 0;
             return rb.velocity.y < 0;
         }
+        /// <summary>
+        /// 获取锁定目标
+        /// </summary>
+        /// <returns></returns>
+        public Collider[] GetLockTargets()
+        {
+            var colliders =
+                Physics.OverlapSphere(playerInfo.LockedTF.position, 20f, playerInfo.EnemyLayer);
+            List<Collider> targets = new List<Collider>();
+            Transform closetTarget = null;
+            float tempDistance = float.MaxValue;
+            foreach (var collider in colliders)
+            {
+                Transform targetLockedTF = collider.GetComponent<CharacterInfo>().LockedTF;
+                var enemyPos = targetLockedTF.position;
+                Vector3 dir = enemyPos - playerInfo.LockedTF.position;
+                float distance = dir.magnitude;
+                if (distance < tempDistance)
+                {
+                    tempDistance = distance;
+                    closetTarget = targetLockedTF;
+                }
+                float viewableAngle = Vector3.Angle(dir, cameraHandler.transform.forward);
+                if (viewableAngle < 50f && viewableAngle > -50f && distance < playerInfo.MaxLockDistance)
+                    targets.Add(collider);
+            }
+            //设定当前锁定目标为最近
+            playerInfo.LockedTargetTF = closetTarget;
+            return colliders;
+        }
+
     }
 }

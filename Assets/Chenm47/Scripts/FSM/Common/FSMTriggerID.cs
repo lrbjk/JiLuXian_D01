@@ -5,8 +5,10 @@ namespace AI.FSM
     /// </summary>
     public enum FSMTriggerID
     {
-        RollInputDown,
+        RollInput,
+        MovementInput,
+        NoMovementInput,
         InteractingDown,
-
+        BackStepInput,
     }
 }

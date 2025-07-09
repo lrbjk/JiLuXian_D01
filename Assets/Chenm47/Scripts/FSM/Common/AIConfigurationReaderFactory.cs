@@ -16,6 +16,8 @@ namespace AI.FSM
 
         public static AIConfigurationReader GetStatesMap(string fileName)
         {
+            if (fileName == null)
+                return null;
             if (!cache.ContainsKey(fileName))
             {
                 cache.Add(fileName, new AIConfigurationReader(fileName));
