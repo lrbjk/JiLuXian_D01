@@ -85,9 +85,9 @@ namespace ns.Camera
             direction, out hit, targetDistance, CameraCollisonLayers))
             {
                 float dis = Vector3.Distance(CameraPivotTF.position, hit.point);
-                print("dis:" + dis);
+                //print("dis:" + dis);
                 targetDistance = (dis - CameraCollisionOffSet);
-                print("targetDistance:" + targetDistance);
+                //print("targetDistance:" + targetDistance);
             }
             if (targetDistance < MinimumCollisionOffset)
             {

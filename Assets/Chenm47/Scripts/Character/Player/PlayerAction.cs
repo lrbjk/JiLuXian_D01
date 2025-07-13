@@ -112,6 +112,7 @@ namespace ns.Character.Player
             }
             return false;
         }
+
         /// <summary>
         /// 发送射线获取是否为下落平台
         /// </summary>
@@ -145,7 +146,7 @@ namespace ns.Character.Player
                 Physics.OverlapSphere(playerInfo.LockedTF.position, 20f, playerInfo.EnemyLayer);
             List<Collider> targets = new List<Collider>();
             Transform closetTarget = null;
-            float tempDistance = float.MaxValue;
+            float tempDistance = float.PositiveInfinity;
             foreach (var collider in colliders)
             {
                 Transform targetLockedTF = collider.GetComponent<CharacterInfo>().LockedTF;
@@ -164,6 +165,59 @@ namespace ns.Character.Player
             //设定当前锁定目标为最近
             playerInfo.LockedTargetTF = closetTarget;
             return colliders;
+        }
+
+        public void SwitchLockTarget(float switchDir)
+        {
+            var colliders =
+                Physics.OverlapSphere(playerInfo.LockedTargetTF.position, 10f, playerInfo.EnemyLayer);
+
+            float tempClosestDistanceLeft = float.PositiveInfinity;
+            float tempClosestDistanceRight = float.PositiveInfinity;
+
+            Transform closestTransformLeft = playerInfo.LockedTargetTF;
+            Transform closestTransformRight = playerInfo.LockedTargetTF;
+
+            foreach (var collider in colliders)
+            {
+                var currentColliderTF = collider.GetComponent<CharacterInfo>().LockedTF;
+
+                if (currentColliderTF == playerInfo.LockedTargetTF)
+                {
+                    continue;
+                }
+
+                Vector3 relativeEnemyPosition = cameraHandler.transform.InverseTransformPoint(currentColliderTF.position);
+                print(relativeEnemyPosition);
+
+                float distance = Mathf.Abs(relativeEnemyPosition.x);
+
+                //print(collider.name + "distance" + distance);
+
+                if (relativeEnemyPosition.x < 0f && distance < tempClosestDistanceLeft)
+                {
+                    //左边    应该是相对于玩家镜头，而不是相对于锁定目标
+                    closestTransformLeft = collider.GetComponent<CharacterInfo>().LockedTF;
+                    tempClosestDistanceLeft = distance;
+                }
+                else if (relativeEnemyPosition.x > 0f && distance < tempClosestDistanceRight)
+                {
+                    //右边
+                    closestTransformRight = collider.GetComponent<CharacterInfo>().LockedTF;
+                    tempClosestDistanceRight = distance;
+                }
+            }
+
+            if (switchDir < 0)
+            {
+                playerInfo.LockedTargetTF = closestTransformLeft;
+                print("切换锁定目标到左边: " + closestTransformLeft.parent.name);
+            }
+            else
+            {
+                playerInfo.LockedTargetTF = closestTransformRight;
+                //print("切换锁定目标到右边: " + closestTransformRight.parent.name);
+            }
         }
 
     }

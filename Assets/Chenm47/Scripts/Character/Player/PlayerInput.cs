@@ -40,7 +40,9 @@ namespace ns.Character.Player
         /// 是否处于锁定视角状态
         /// </summary>
         public bool LockViewTrigger { get; protected set; }
-
+        /// <summary>
+        /// 切换锁定目标输入，正数为右目标，负数为左目标
+        /// </summary>
         public float SwitchLockedTarget { get; protected set; }
 
         #region 按键配置
@@ -67,6 +69,12 @@ namespace ns.Character.Player
             LockViewInput();
 
             SwitchLockedTarget = SwitchLockedTargetInput();
+            if (SwitchLockedTarget != 0 && LockViewTrigger)
+            {
+                print("swlt" + SwitchLockedTarget);
+                //切换锁定目标
+                PlayerAction.Instance.SwitchLockTarget(SwitchLockedTarget);
+            }
 
         }
         //常用输入
@@ -194,7 +202,7 @@ namespace ns.Character.Player
         /// <returns></returns>
         protected virtual float SwitchLockedTargetInput()
         {
-            return Input.GetAxisRaw("Mouse ScrollWheel");
+            return -Input.GetAxisRaw("Mouse ScrollWheel");
         }
 
     }
