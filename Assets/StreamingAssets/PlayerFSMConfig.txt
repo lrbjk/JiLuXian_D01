@@ -2,6 +2,7 @@
 MovementInput>Move
 RollInput>Roll
 BackStepInput>BackStep
+AttackInput>Attack
 [Roll]
 InteractingDown>Default
 [BackStep]
@@ -10,3 +11,6 @@ InteractingDown>Default
 NoMovementInput>Default
 RollInput>Roll
 BackStepInput>BackStep
+AttackInput>Attack
+[Attack]
+InteractingDown>Default

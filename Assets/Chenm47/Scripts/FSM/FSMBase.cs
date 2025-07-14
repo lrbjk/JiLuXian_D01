@@ -1,5 +1,3 @@
-using ns.Camera;
-using ns.Character.Player;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

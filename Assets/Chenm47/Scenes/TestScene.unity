@@ -437,9 +437,10 @@ GameObject:
   - component: {fileID: 1151624547}
   - component: {fileID: 1151624554}
   - component: {fileID: 1151624555}
+  - component: {fileID: 1151624556}
   m_Layer: 9
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -483,6 +484,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   cameraHandler: {fileID: 0}
   playerAnimationHandler: {fileID: 0}
+  animationEventBehaviour: {fileID: 0}
+  playerInventory: {fileID: 0}
+  characterSkillManager: {fileID: 0}
 --- !u!54 &1151624548
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -638,6 +642,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LeftWeapon: {fileID: 11400000, guid: 36c56a809d9d36846b0212529dd4d224, type: 2}
   RightWeapon: {fileID: 11400000, guid: 36c56a809d9d36846b0212529dd4d224, type: 2}
+--- !u!114 &1151624556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151624545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be612a0f2390c9744806846a6a9c5140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skills: []
+  skillInfos:
+  - {fileID: 11400000, guid: 406acd38309994d42a5cf0cece040484, type: 2}
+  - {fileID: 11400000, guid: c230f5ce899d6a94698baf5fe4022a92, type: 2}
+  - {fileID: 11400000, guid: c495183099c9e3743b19d8f176840cee, type: 2}
+  - {fileID: 11400000, guid: 8443a661ec08d5a4dba81cbb8559362c, type: 2}
+  - {fileID: 11400000, guid: 8d65aff81dc538e41b4a30edec70b9ef, type: 2}
 --- !u!1 &1158677567
 GameObject:
   m_ObjectHideFlags: 0
@@ -1058,7 +1081,7 @@ GameObject:
   - component: {fileID: 1664883028}
   m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1168,7 +1191,7 @@ GameObject:
   - component: {fileID: 1724159196}
   m_Layer: 8
   m_Name: Enemy (1)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1247,7 +1270,7 @@ GameObject:
   - component: {fileID: 1784344033}
   m_Layer: 8
   m_Name: Enemy (2)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4056,6 +4079,7 @@ GameObject:
   - component: {fileID: 7019920668888977418}
   - component: {fileID: 7413344839524345168}
   - component: {fileID: 7647134205393799857}
+  - component: {fileID: 7647134205393799858}
   m_Layer: 0
   m_Name: FemaleCharacterPBR
   m_TagString: Untagged
@@ -4073,6 +4097,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee42e17821299224b9d597cd6cc86245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7647134205393799858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7647134205393799856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27588be9f78dc8e44abbecb01faa6633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7667767698080739961

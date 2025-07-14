@@ -10,6 +10,7 @@ namespace AI.FSM
         Move,
         Test,
         Roll,
-        BackStep
+        BackStep,
+        Attack
     }
 }

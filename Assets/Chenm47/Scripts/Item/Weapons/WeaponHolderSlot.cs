@@ -45,6 +45,7 @@ namespace ns.Item.Weapons
             go.transform.localPosition = Vector3.zero;
             go.transform.localRotation = Quaternion.identity;
             go.transform.localScale = Vector3.one;
+            weaponInfo.ModleGO = go;
             currentWeapon = go;
         }
 

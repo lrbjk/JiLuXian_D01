@@ -31,8 +31,20 @@ namespace ns.Character.Player
         public bool RollUp { get; protected set; }
         /// <summary>翻滚键是否为长按</summary>
         public bool RollHoldTrigger { get; protected set; }
+        /// <summary>
+        /// 攻击输入
+        /// </summary>
+        public bool IsLeftAttackTrigger { get; protected set; }
+        public bool IsLightAttackTrigger { get; protected set; }
+        public bool IsHeavyAttackTrigger { get; protected set; }
+        public bool IsSkillAttackTrigger { get; protected set; }
+        public bool LightAttackL { get; protected set; }
+        public bool HeavyAttackL { get; protected set; }
+        public bool SkillAttackL { get; protected set; }
+        public bool LightAttackR { get; protected set; }
+        public bool HeavyAttackR { get; protected set; }
+        public bool SkillAttackR { get; protected set; }
 
-        public bool Attack { get; protected set; }
         public bool Jump { get; protected set; }
 
         public bool LockView { get; protected set; }
@@ -63,20 +75,15 @@ namespace ns.Character.Player
 
             RollInput();
 
-            Attack = AttackInput();
+            AttackInput();
+
             Jump = JumpInput();
 
             LockViewInput();
-
-            SwitchLockedTarget = SwitchLockedTargetInput();
-            if (SwitchLockedTarget != 0 && LockViewTrigger)
-            {
-                print("swlt" + SwitchLockedTarget);
-                //切换锁定目标
-                PlayerAction.Instance.SwitchLockTarget(SwitchLockedTarget);
-            }
+            SwitchLockedTargetInput();
 
         }
+
         //常用输入
         /// <summary>
         /// 移动输入
@@ -153,12 +160,76 @@ namespace ns.Character.Player
         }
 
         /// <summary>
-        /// 普攻输入
+        /// 攻击输入
+        /// </summary>
+        private void AttackInput()
+        {
+            LightAttackL = LightAttackInputL();
+            HeavyAttackL = HeavyAttackInputL();
+            LightAttackR = LightAttackInputR();
+            HeavyAttackR = HeavyAttackInputR();
+            SkillAttackL = SkillAttackInputL();
+            SkillAttackR = SkillAttackInputR();
+            IsLeftAttackTrigger = LightAttackL || HeavyAttackL || SkillAttackL;
+            //输入优先级：轻击 > 重击 > 技能
+            IsLightAttackTrigger = LightAttackL || LightAttackR;
+            if (IsLightAttackTrigger)
+            {
+                IsHeavyAttackTrigger = false;
+                IsSkillAttackTrigger = false;
+                return;
+            }
+            IsHeavyAttackTrigger = HeavyAttackL || HeavyAttackR;
+            if (IsHeavyAttackTrigger)
+            {
+                IsSkillAttackTrigger = false;
+                return;
+            }
+            IsSkillAttackTrigger = SkillAttackL || SkillAttackR;
+        }
+
+        /// <summary>
+        /// 轻击L输入
         /// </summary>
         /// <returns></returns>
-        protected virtual bool AttackInput()
+        protected virtual bool LightAttackInputL()
         {
-            return Input.GetMouseButtonDown(0);
+            return Input.GetKeyDown(KeyCode.J);
+        }
+        /// <summary>
+        /// 重击L输入
+        /// </summary>
+        /// <returns></returns>
+        protected virtual bool HeavyAttackInputL()
+        {
+            return Input.GetKeyDown(KeyCode.U);
+        }
+
+        protected virtual bool SkillAttackInputL()
+        {
+            return Input.GetKeyDown(KeyCode.M);
+        }
+
+        /// <summary>
+        /// 轻击R输入
+        /// </summary>
+        /// <returns></returns>
+        protected virtual bool LightAttackInputR()
+        {
+            return Input.GetKeyDown(KeyCode.K);
+        }
+        /// <summary>
+        /// 重击R输入
+        /// </summary>
+        /// <returns></returns>
+        protected virtual bool HeavyAttackInputR()
+        {
+            return Input.GetKeyDown(KeyCode.I);
+        }
+
+        protected virtual bool SkillAttackInputR()
+        {
+            return Input.GetKeyDown(KeyCode.Comma);
         }
 
         /// <summary>
@@ -200,9 +271,20 @@ namespace ns.Character.Player
         /// 切换锁定目标输入
         /// </summary>
         /// <returns></returns>
-        protected virtual float SwitchLockedTargetInput()
+        protected virtual float SwitchLockedKeyInput()
         {
             return -Input.GetAxisRaw("Mouse ScrollWheel");
+        }
+
+        private void SwitchLockedTargetInput()
+        {
+            SwitchLockedTarget = SwitchLockedKeyInput();
+            if (SwitchLockedTarget != 0 && LockViewTrigger)
+            {
+                print("swlt" + SwitchLockedTarget);
+                //切换锁定目标
+                PlayerAction.Instance.SwitchLockTarget(SwitchLockedTarget);
+            }
         }
 
     }

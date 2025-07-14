@@ -1,6 +1,8 @@
 using AI.FSM.Framework;
+using Common;
 using ns.Camera;
 using ns.Character.Player;
+using ns.Skill;
 using UnityEngine;
 
 namespace AI.FSM
@@ -29,6 +31,12 @@ namespace AI.FSM
         public CameraHandler cameraHandler;
         [HideInInspector]
         public PlayerAnimationHandler playerAnimationHandler;
+        [HideInInspector]
+        public AnimationEventBehaviour animationEventBehaviour;
+        [HideInInspector]
+        public PlayerInventory playerInventory;
+        [HideInInspector]
+        public CharacterSkillManager characterSkillManager;
         #endregion
 
         protected override void Start()
@@ -40,6 +48,9 @@ namespace AI.FSM
             animator = GetComponentInChildren<Animator>(true);
             cameraHandler = FindAnyObjectByType<CameraHandler>();
             playerAnimationHandler = GetComponent<PlayerAnimationHandler>();
+            animationEventBehaviour = GetComponentInChildren<AnimationEventBehaviour>(true);
+            playerInventory = GetComponent<PlayerInventory>();
+            characterSkillManager = GetComponent<CharacterSkillManager>();
             base.Start();
         }
     }

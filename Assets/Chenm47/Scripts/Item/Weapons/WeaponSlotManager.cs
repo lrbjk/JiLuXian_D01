@@ -38,6 +38,5 @@ namespace ns.Item.Weapons
             else
                 rightHandSlot.LoadWeaponModel(weaponInfo, isLeft);
         }
-
     }
 }
