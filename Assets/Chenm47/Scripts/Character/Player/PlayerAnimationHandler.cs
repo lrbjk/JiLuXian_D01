@@ -1,10 +1,6 @@
-using Common;
 using ns.Skill;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using UnityEditor.Animations;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 namespace ns.Character.Player
@@ -50,14 +46,16 @@ namespace ns.Character.Player
             animEvent.time = time;
 
             clip.AddEvent(animEvent);
-            Debug.Log($"PreAttackEndFired事件添加成功，在第 {frameCount} 帧（{time} 秒）调用 {functionName}");
+            Debug.Log($"{functionName}事件添加成功，在第 {frameCount} 帧（{time} 秒）调用 {functionName}");
         }
 
         public void PlayTargetAnimation(string targetAnima, bool isInteracting)
         {
+            Debug.Log($"播放动画：{targetAnima}，是否交互：{isInteracting}");
             anim.applyRootMotion = isInteracting;
             anim.SetBool("IsInteracting", isInteracting);
             anim.CrossFade(targetAnima, 0.2f);
+            //anim.Play(targetAnima);//直接播放动画，没有过度
         }
 
     }

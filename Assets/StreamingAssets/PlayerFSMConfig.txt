@@ -13,4 +13,8 @@ RollInput>Roll
 BackStepInput>BackStep
 AttackInput>Attack
 [Attack]
+ComboAtk>ComboAttack
 InteractingDown>Default
+[ComboAttack]
+ComboAtk>ComboAttack
+ComboAtkDown>Default

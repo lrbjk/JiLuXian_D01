@@ -1,5 +1,6 @@
 using AI.FSM.Framework;
 using ns.Item.Weapons;
+using ns.Skill;
 using UnityEngine;
 
 namespace AI.FSM
@@ -11,6 +12,7 @@ namespace AI.FSM
     {
         private string animationName;
         private GameObject currentWeaponGO;
+        protected PlayerFSMBase playerFSMBase;
 
         public override void Init()
         {
@@ -20,78 +22,100 @@ namespace AI.FSM
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
-            var playerFSM = fSMBase as PlayerFSMBase;
+            playerFSMBase = fSMBase as PlayerFSMBase;
             //停止移动
-            playerFSM.playerAction.StopMove();
+            playerFSMBase.playerAction.StopMove();
             //获取当前武器信息
             //左手？右手？
-            bool isLeft = playerFSM.playerInput.IsLeftAttackTrigger;
-            var lweapon = playerFSM.playerInventory.LeftWeapon;
-            var rweapon = playerFSM.playerInventory.RightWeapon;
+            bool isLeft = playerFSMBase.playerInput.IsLeftAttackTrigger;
+            var lweapon = playerFSMBase.playerInventory.LeftWeapon;
+            var rweapon = playerFSMBase.playerInventory.RightWeapon;
             WeaponInfo currentWeponInfo = isLeft ? lweapon : rweapon;
+            currentWeaponGO = currentWeponInfo.ModleGO;
 
             //获取技能信息
+            SkillInfo skillInfo = GetSkillInfo(isLeft, currentWeponInfo);
+            //更新玩家信息技能ID
+            playerFSMBase.playerInfo.LastAttackType = playerFSMBase.playerInput.AtkInputType;
+            playerFSMBase.playerInfo.CurrentSkillID = skillInfo.SkillID;
+            playerFSMBase.playerInfo.ComboSkillID = skillInfo.ComboSkillID;
+
+            //订阅事件
+            playerFSMBase.animationEventBehaviour.OnPreAttackEnd += OnPreAttackEnd;
+            playerFSMBase.animationEventBehaviour.OnAttackStart += OnAttackStart;
+            playerFSMBase.animationEventBehaviour.OnAttackEnd += OnAttackEnd;
+            playerFSMBase.animationEventBehaviour.OnAttackRecovery += OnAttackRecovery;
+
+            //播放相应动画
+            animationName = skillInfo.AnimationName;
+            Debug.Log("技能名称：" + skillInfo.SkillName + "播放动画状态：" + animationName);
+            playerFSMBase.playerAnimationHandler.PlayTargetAnimation(animationName, true);
+        }
+
+        protected virtual SkillInfo GetSkillInfo(bool isLeft, WeaponInfo currentWeponInfo)
+        {
+            //根据手中的武器和输入来决定使用哪个技能
             int skillID = 0;//技能ID
-            if (playerFSM.playerInput.IsLightAttackTrigger)
+            if (playerFSMBase.playerInput.IsLightAttackTrigger)
             {
                 if (isLeft)
                     skillID = currentWeponInfo.LightAtkIDL;
                 else
                     skillID = currentWeponInfo.LightAtkIDR;
             }
-            else if (playerFSM.playerInput.IsHeavyAttackTrigger)
+            else if (playerFSMBase.playerInput.IsHeavyAttackTrigger)
             {
                 if (isLeft)
                     skillID = currentWeponInfo.HeavyAtkIDL;
                 else
                     skillID = currentWeponInfo.HeavyAtkIDR;
             }
-            else if (playerFSM.playerInput.IsSkillAttackTrigger)
+            else if (playerFSMBase.playerInput.IsSkillAttackTrigger)
             {
                 skillID = currentWeponInfo.SkillAtkIDL;
             }
-
-            var skillInfo = playerFSM.characterSkillManager.GetSkillInfo(skillID);
-            currentWeaponGO = currentWeponInfo.ModleGO;
-
-            //订阅事件
-            playerFSM.animationEventBehaviour.OnPreAttackEnd += OnPreAttackEnd;
-            playerFSM.animationEventBehaviour.OnAttackStart += OnAttackStart;
-            playerFSM.animationEventBehaviour.OnAttackEnd += OnAttackEnd;
-            Debug.Log("订阅事件");
-            //播放相应动画
-            animationName = skillInfo.AnimationName;
-            playerFSM.playerAnimationHandler.PlayTargetAnimation(animationName, true);
+            var skillInfo = playerFSMBase.characterSkillManager.GetSkillInfo(skillID);
+            return skillInfo;
         }
+
         public override void ExitState(FSMBase fSMBase)
         {
             base.ExitState(fSMBase);
-            var playerFSM = fSMBase as PlayerFSMBase;
             //取消订阅
-            playerFSM.animationEventBehaviour.OnPreAttackEnd -= OnPreAttackEnd;
-            playerFSM.animationEventBehaviour.OnAttackStart -= OnAttackStart;
-            playerFSM.animationEventBehaviour.OnAttackEnd -= OnAttackEnd;
+            playerFSMBase.animationEventBehaviour.OnPreAttackEnd -= OnPreAttackEnd;
+            playerFSMBase.animationEventBehaviour.OnAttackStart -= OnAttackStart;
+            playerFSMBase.animationEventBehaviour.OnAttackEnd -= OnAttackEnd;
+            playerFSMBase.animationEventBehaviour.OnAttackRecovery -= OnAttackRecovery;
             Debug.Log("取消订阅");
             //清空临时变量
             currentWeaponGO = null;
             animationName = null;
+            //后摇结束
+            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = false;
+        }
+
+        private void OnPreAttackEnd(object sender, Common.AnimationEventArgs e)
+        {
+            Debug.Log("动画事件PreAttackEnd");
         }
 
         private void OnAttackStart(object sender, Common.AnimationEventArgs e)
         {
-            Debug.Log(animationName + "AttackStart");
+            Debug.Log("动画事件AttackStart");
             //激活碰撞体
             currentWeaponGO.GetComponentInChildren<WeaponCollderHandle>(true).SetCollider(true);
         }
         private void OnAttackEnd(object sender, Common.AnimationEventArgs e)
         {
-            Debug.Log(animationName + "AttackEnd");
+            Debug.Log("动画事件AttackEnd");
             //禁用碰撞体
             currentWeaponGO.GetComponentInChildren<WeaponCollderHandle>(true).SetCollider(false);
         }
-        private void OnPreAttackEnd(object sender, Common.AnimationEventArgs e)
+        private void OnAttackRecovery(object sender, Common.AnimationEventArgs e)
         {
-            Debug.Log(animationName + "PreAttackEnd");
+            Debug.Log("动画事件AttackRecovery");
+            //后摇开始
+            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = true;
         }
     }
 }

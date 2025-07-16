@@ -3,6 +3,18 @@ using UnityEngine;
 
 namespace ns.Character.Player
 {
+
+    public enum AttackInputType
+    {
+        LeftLight,
+        LeftHeavy,
+        LeftSkill,
+        RightLight,
+        RightHeavy,
+        RightSkill,
+        None
+    }
+
     /// <summary>
     /// 描述：
     /// </summary>
@@ -38,6 +50,7 @@ namespace ns.Character.Player
         public bool IsLightAttackTrigger { get; protected set; }
         public bool IsHeavyAttackTrigger { get; protected set; }
         public bool IsSkillAttackTrigger { get; protected set; }
+        public AttackInputType AtkInputType { get; protected set; }
         public bool LightAttackL { get; protected set; }
         public bool HeavyAttackL { get; protected set; }
         public bool SkillAttackL { get; protected set; }
@@ -177,15 +190,32 @@ namespace ns.Character.Player
             {
                 IsHeavyAttackTrigger = false;
                 IsSkillAttackTrigger = false;
+                if (IsLeftAttackTrigger)
+                    AtkInputType = AttackInputType.LeftLight;
+                else
+                    AtkInputType = AttackInputType.RightLight;
                 return;
             }
             IsHeavyAttackTrigger = HeavyAttackL || HeavyAttackR;
             if (IsHeavyAttackTrigger)
             {
                 IsSkillAttackTrigger = false;
+                if (IsLeftAttackTrigger)
+                    AtkInputType = AttackInputType.LeftHeavy;
+                else
+                    AtkInputType = AttackInputType.RightHeavy;
                 return;
             }
             IsSkillAttackTrigger = SkillAttackL || SkillAttackR;
+            if (IsSkillAttackTrigger)
+            {
+                if (IsLeftAttackTrigger)
+                    AtkInputType = AttackInputType.LeftSkill;
+                else
+                    AtkInputType = AttackInputType.RightSkill;
+                return;
+            }
+            AtkInputType = AttackInputType.None;
         }
 
         /// <summary>

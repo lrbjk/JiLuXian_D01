@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 524b9d4c4de76b84f825a14aaeb2531f, type: 3}
-  m_Name: Sword_Heavy_Attack1
+  m_Name: Motion_Roll
   m_EditorClassIdentifier: 
-  SkillID: 2
-  SkillName: "\u5251\u91CD\u51FB1"
-  ComboSkillID: 3
-  AnimationName: Sword_Heavy_Attack01
-  PreAttackEndFrame: 3
-  AttackStartFrame: 5
-  AttackEndFrame: 8
+  SkillID: 7
+  SkillName: "\u7FFB\u6EDA"
+  ComboSkillID: 0
+  AnimationName: Roll
+  PreAttackEndFrame: 1
+  AttackStartFrame: 2
+  AttackEndFrame: 5
   AttackRecoveryFrame: 10
   HoldingTime: 0
   AtkValue: 0

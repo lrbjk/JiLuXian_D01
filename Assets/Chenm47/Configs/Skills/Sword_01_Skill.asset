@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Sword_01_Skill
   m_EditorClassIdentifier: 
   SkillID: 1
-  SkillName: Sword_01_Skill
-  NextSkillID: 0
+  SkillName: "\u525101\u6218\u6280"
+  ComboSkillID: 0
   AnimationName: Sword_01_Skill
   PreAttackEndFrame: 2
   AttackStartFrame: 3
   AttackEndFrame: 4
   AttackRecoveryFrame: 5
+  HoldingTime: 0
+  AtkValue: 0

@@ -10,6 +10,9 @@ namespace AI.FSM
         NoMovementInput,
         InteractingDown,
         BackStepInput,
-        AttackInput
+        AttackInput,
+        AtkRecoverAtkInput,
+        ComboAtk,
+        ComboAtkDown
     }
 }

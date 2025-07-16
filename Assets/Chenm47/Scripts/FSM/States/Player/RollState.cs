@@ -1,4 +1,6 @@
 using AI.FSM.Framework;
+using Common;
+using System;
 using UnityEngine;
 
 namespace AI.FSM
@@ -8,6 +10,8 @@ namespace AI.FSM
     /// </summary>
     public class RollState : FSMState
     {
+        private PlayerFSMBase playerFSMBase;
+
         public override void Init()
         {
             StateID = FSMStateID.Roll;
@@ -16,16 +20,35 @@ namespace AI.FSM
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
-            var playerFSM = fSMBase as PlayerFSMBase;
-            float moveX = playerFSM.playerInput.HorizontalMove;
-            float moveY = playerFSM.playerInput.VerticalMove;
-            Vector3 moveDir = playerFSM.cameraHandler.transform.right * moveX +
-                            playerFSM.cameraHandler.transform.forward * moveY;
+           playerFSMBase = fSMBase as PlayerFSMBase;
+            float moveX = playerFSMBase.playerInput.HorizontalMove;
+            float moveY = playerFSMBase.playerInput.VerticalMove;
+            Vector3 moveDir = playerFSMBase.cameraHandler.transform.right * moveX +
+                            playerFSMBase.cameraHandler.transform.forward * moveY;
             moveDir.y = 0;
             moveDir.Normalize();
+            //订阅事件
+            playerFSMBase.animationEventBehaviour.OnAttackRecovery += OnAttackRecovery;
 
-            playerFSM.playerAction.Move(moveDir, playerFSM.playerInfo.RollSpeed);
-            playerFSM.playerAnimationHandler.PlayTargetAnimation("Roll", true);
+            playerFSMBase.playerAction.Move(moveDir, playerFSMBase.playerInfo.RollSpeed);
+            playerFSMBase.playerAnimationHandler.PlayTargetAnimation("Roll", true);
+        }
+
+        public override void ExitState(FSMBase fSMBase)
+        {
+            base.ExitState(fSMBase);
+            //取消订阅
+            playerFSMBase.animationEventBehaviour.OnAttackRecovery -= OnAttackRecovery;
+
+            //后摇结束
+            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = false;
+        }
+
+        private void OnAttackRecovery(object sender, AnimationEventArgs e)
+        {
+            Debug.Log("动画事件AttackRecovery");
+            //后摇开始
+            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = true;
         }
 
         public override void ActionState(FSMBase fSMBase)

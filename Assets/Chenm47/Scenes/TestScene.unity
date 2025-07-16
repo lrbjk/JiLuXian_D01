@@ -591,6 +591,10 @@ MonoBehaviour:
     m_Bits: 256
   CurrentJumpCount: 0
   IsDownStair: 0
+  IsInAttackRecoveryTrigger: 0
+  LastAttackType: 6
+  CurrentSkillID: 0
+  ComboSkillID: 0
 --- !u!114 &1151624553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,6 +665,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c495183099c9e3743b19d8f176840cee, type: 2}
   - {fileID: 11400000, guid: 8443a661ec08d5a4dba81cbb8559362c, type: 2}
   - {fileID: 11400000, guid: 8d65aff81dc538e41b4a30edec70b9ef, type: 2}
+  - {fileID: 11400000, guid: 5f4e8eb61156729439ce6db0ccdf3a85, type: 2}
+  - {fileID: 11400000, guid: 94582df1f56f61a4683bf1f3c051602c, type: 2}
+  - {fileID: 11400000, guid: 9c587eb0a62bc554c8d4bbab8eb77ef8, type: 2}
 --- !u!1 &1158677567
 GameObject:
   m_ObjectHideFlags: 0

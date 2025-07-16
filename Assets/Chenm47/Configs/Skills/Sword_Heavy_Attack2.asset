@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Sword_Heavy_Attack2
   m_EditorClassIdentifier: 
   SkillID: 3
-  SkillName: Sword_Heavy_Attack2
-  NextSkillID: 2
+  SkillName: "\u5251\u91CD\u51FB2"
+  ComboSkillID: 2
   AnimationName: Sword_Heavy_Attack02
   PreAttackEndFrame: 4
   AttackStartFrame: 5
   AttackEndFrame: 8
   AttackRecoveryFrame: 10
+  HoldingTime: 0
+  AtkValue: 0

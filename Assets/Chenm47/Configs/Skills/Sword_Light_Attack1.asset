@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: Sword_Light_Attack1
   m_EditorClassIdentifier: 
   SkillID: 4
-  SkillName: Sword_Light_Attack1
-  NextSkillID: 5
+  SkillName: "\u5251\u8F7B\u51FB1"
+  ComboSkillID: 5
   AnimationName: Sword_Light_Attack01
-  PreAttackEndFrame: 1
+  PreAttackEndFrame: 4
   AttackStartFrame: 5
-  AttackEndFrame: 8
+  AttackEndFrame: 9
   AttackRecoveryFrame: 10
+  HoldingTime: 0
+  AtkValue: 0

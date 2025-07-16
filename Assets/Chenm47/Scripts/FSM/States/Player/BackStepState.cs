@@ -1,4 +1,5 @@
 using AI.FSM.Framework;
+using Common;
 using UnityEngine;
 
 /*
@@ -11,6 +12,8 @@ namespace AI.FSM
     /// </summary>
     public class BackStepState : FSMState
     {
+        private PlayerFSMBase playerFSMBase;
+
         public override void Init()
         {
             StateID = FSMStateID.BackStep;
@@ -20,15 +23,36 @@ namespace AI.FSM
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
-            var playerFSM = fSMBase as PlayerFSMBase;
+            playerFSMBase = fSMBase as PlayerFSMBase;
 
-            Vector3 moveDir = -playerFSM.transform.forward;
+            Vector3 moveDir = -playerFSMBase.transform.forward;
             moveDir.y = 0;
             moveDir.Normalize();
             //无需转向
-            playerFSM.playerAction.LookAndMove(Vector3.zero, moveDir, playerFSM.playerInfo.BackStepSpeed);
+            playerFSMBase.playerAction.LookAndMove(Vector3.zero, moveDir, playerFSMBase.playerInfo.BackStepSpeed);
 
-            playerFSM.playerAnimationHandler.PlayTargetAnimation("BackStep", true);
+            //订阅事件
+            playerFSMBase.animationEventBehaviour.OnAttackRecovery += OnAttackRecovery;
+
+            playerFSMBase.playerAnimationHandler.PlayTargetAnimation("BackStep", true);
         }
+
+        public override void ExitState(FSMBase fSMBase)
+        {
+            base.ExitState(fSMBase);
+            //取消订阅
+            playerFSMBase.animationEventBehaviour.OnAttackRecovery -= OnAttackRecovery;
+
+            //后摇结束
+            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = false;
+        }
+
+        private void OnAttackRecovery(object sender, AnimationEventArgs e)
+        {
+            Debug.Log("动画事件AttackRecovery");
+            //后摇开始
+            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = true;
+        }
+
     }
 }

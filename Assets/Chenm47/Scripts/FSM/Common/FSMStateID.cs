@@ -11,6 +11,7 @@ namespace AI.FSM
         Test,
         Roll,
         BackStep,
-        Attack
+        Attack,
+        ComboAttack
     }
 }

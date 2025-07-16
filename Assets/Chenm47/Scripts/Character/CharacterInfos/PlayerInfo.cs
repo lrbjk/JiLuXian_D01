@@ -38,5 +38,11 @@ namespace ns.Character.Player
         public int CurrentJumpCount = 0;
         [HideInInspector]
         public bool IsDownStair = false;
+        /// <summary>是否处于后摇阶段 </summary>
+        [HideInInspector]
+        public bool IsInAttackRecoveryFlag = false;
+        public AttackInputType LastAttackType = AttackInputType.None;
+        public int CurrentSkillID = 0;
+        public int ComboSkillID = 0;
     }
 }
