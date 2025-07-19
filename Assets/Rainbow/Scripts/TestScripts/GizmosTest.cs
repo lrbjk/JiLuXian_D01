@@ -12,7 +12,7 @@ public class GizmosTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        cube.openGizmos = false;
     }
 
     // Update is called once per frame
@@ -26,10 +26,12 @@ public class GizmosTest : MonoBehaviour
     }
     public virtual void OpenHit()
     {
+        cube.openGizmos = true;
         hitboxEvent += hitEvent;
     }
     public virtual void CloseHit()
     {
+        cube.openGizmos = false;
         hitboxEvent -= hitEvent;
     }
     private void hitEvent()
@@ -40,9 +42,17 @@ public class GizmosTest : MonoBehaviour
             if(enemy != null)
             {
                 Debug.Log("Hit Enemy" + enemy.ToString());
+                StartCoroutine(FreezingAnimation(0.05f));
             }
         }
         //cube.ClearDetectedColliders();
         
+    }
+
+    private IEnumerator FreezingAnimation(float time)
+    {
+        GetComponent<Animator>().speed = 0f;
+        yield return new WaitForSecondsRealtime(time);
+        GetComponent<Animator>().speed = 1f;
     }
 }
