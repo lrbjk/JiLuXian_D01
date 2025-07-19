@@ -93,18 +93,20 @@ namespace ns.Character.Player
             playerMotor3D.Jump(playerInfo.JumpSpeed);
         }
 
-        public RaycastHit2D GroundCastHit()
+        public bool GroundCastHit(out RaycastHit hitInfo)
         {
             //射线检测
-            var hit = Physics2D.Raycast(groundRayPoint.position, Vector2.down,
-                playerInfo.GroundDistance, playerInfo.GroundLayer);
-            return hit;
+            bool isHit = Physics.Raycast
+                 (groundRayPoint.position, Vector3.down, out var res, playerInfo.GroundDistance, playerInfo.GroundLayer);
+            hitInfo = res;
+            //Debug.DrawRay(groundRayPoint.position, Vector3.down * playerInfo.GroundDistance, Color.red);
+            return isHit;
         }
 
         public bool IsOnGround()
         {
-            var hit = GroundCastHit();
-            if (hit && rb.velocity.y <= 0)//防止还未起跳已经检测为地面
+            //if (hit && rb.velocity.y <= 0)//防止还未起跳已经检测为地面
+            if (GroundCastHit(out var hit))//防止还未起跳已经检测为地面
             {
                 //刷新跳跃次数
                 playerInfo.CurrentJumpCount = 0;
@@ -113,29 +115,17 @@ namespace ns.Character.Player
             return false;
         }
 
-        /// <summary>
-        /// 发送射线获取是否为下落平台
-        /// </summary>
-        /// <returns>不是为空</returns>
-        public PlatformEffector2D IsDownStair()
-        {
-            //射线检测
-            var hit = GroundCastHit();
-            if (hit)//防止还未起跳已经检测为地面
-            {
-                //获取DownStari
-                PlatformEffector2D p = hit.collider.GetComponent<PlatformEffector2D>();
-                if (p != null)
-                    return p;
-            }
-            return null;
-        }
-
         public bool IsFall()
         {
             bool res = rb.velocity.y < 0;
             return rb.velocity.y < 0;
         }
+
+        public Vector2 GetVelocity()
+        {
+            return rb.velocity;
+        }
+
         /// <summary>
         /// 获取锁定目标
         /// </summary>

@@ -1,6 +1,10 @@
+using Common;
+using ns.Character;
+using ns.Movtion;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using CharacterInfo = ns.Character.CharacterInfo;
 
 
 namespace AI.FSM.Framework
@@ -16,7 +20,18 @@ namespace AI.FSM.Framework
         public bool TestMode = false; //测试模式，是否使用配置文件
 
         #region 为状态类提供的成员
-
+        [HideInInspector]
+        public Animator animator;
+        [HideInInspector]
+        public CharacterEquipmentManager equipmentManager;
+        [HideInInspector]
+        public AnimationEventBehaviour animationEventBehaviour;
+        [HideInInspector]
+        public CharacterMovtionManager movtionManager;
+        [HideInInspector]
+        public CharacterAnimationHandler animationHandler;
+        [HideInInspector]
+        public CharacterInfo characterInfo;
         #endregion
 
         private List<FSMState> states;
@@ -26,6 +41,14 @@ namespace AI.FSM.Framework
 
         protected virtual void Start()
         {
+            //获取组件
+            equipmentManager = GetComponent<CharacterEquipmentManager>();
+            animator = GetComponentInChildren<Animator>(true);
+            animationEventBehaviour = GetComponentInChildren<AnimationEventBehaviour>(true);
+            movtionManager = GetComponent<CharacterMovtionManager>();
+            animationHandler = GetComponent<CharacterAnimationHandler>();
+            characterInfo = GetComponent<CharacterInfo>();
+
             if (!TestMode)
                 FSMConfig();
             else

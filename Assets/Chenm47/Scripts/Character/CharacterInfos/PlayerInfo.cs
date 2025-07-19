@@ -30,6 +30,11 @@ namespace ns.Character.Player
         [Header("最大锁定距离")]
         public float MaxLockDistance = 2f;
         public LayerMask EnemyLayer;
+        [Header("玩家动作信息ID")]
+        [Tooltip("玩家角色的翻滚动作信息ID")]
+        public int RollMovtionID;
+        public int BackStepMovtionID;
+        public int JumpMovtionID;
 
         /*为状态机以及动画事件提供*/
         [HideInInspector]
@@ -38,11 +43,9 @@ namespace ns.Character.Player
         public int CurrentJumpCount = 0;
         [HideInInspector]
         public bool IsDownStair = false;
-        /// <summary>是否处于后摇阶段 </summary>
-        [HideInInspector]
-        public bool IsInAttackRecoveryFlag = false;
         public AttackInputType LastAttackType = AttackInputType.None;
-        public int CurrentSkillID = 0;
-        public int ComboSkillID = 0;
+        public int CurrentMovtionID = 0;
+        public int ComboMovtionlID = 0;
+        public float FallTimer;
     }
 }

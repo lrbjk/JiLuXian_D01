@@ -12,6 +12,11 @@ namespace AI.FSM
         Roll,
         BackStep,
         Attack,
-        ComboAttack
+        ComboAttack,
+        MovtionState,
+        JumpStart,
+        JumpInAir,
+        Fall,
+        FallEnd
     }
 }

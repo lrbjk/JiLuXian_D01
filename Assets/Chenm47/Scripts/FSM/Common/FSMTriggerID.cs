@@ -13,6 +13,10 @@ namespace AI.FSM
         AttackInput,
         AtkRecoverAtkInput,
         ComboAtk,
-        ComboAtkDown
+        ComboAtkDown,
+        JumpInput,
+        VyNegatived,
+        OnGround,
+        ToFallEndTimerAndOnGround
     }
 }

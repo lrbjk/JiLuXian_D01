@@ -17,3 +17,11 @@ MonoBehaviour:
   ModlePrefab: {fileID: 3625775846750061088, guid: 779d1dbbf09b7944299db714fe0931fd,
     type: 3}
   IsUnarmed: 0
+  Type: 0
+  LightAtkIDL: 5
+  HeavyAtkIDL: 3
+  SkillAtkIDL: 8
+  LightAtkIDR: 5
+  HeavyAtkIDR: 3
+  SkillAtkIDR: 8
+  ModleGO: {fileID: 0}

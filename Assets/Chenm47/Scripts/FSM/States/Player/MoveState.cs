@@ -1,4 +1,5 @@
 using AI.FSM.Framework;
+using ns.Character.Player;
 using UnityEngine;
 
 
@@ -41,14 +42,16 @@ namespace AI.FSM
 
         private void MovementHandle(PlayerFSMBase playerFSM)
         {
+            PlayerInfo playerInfo = playerFSM.characterInfo as PlayerInfo;
+
             float moveX = playerFSM.playerInput.HorizontalMove;
             float moveY = playerFSM.playerInput.VerticalMove;
             movement = Mathf.Clamp01(Mathf.Abs(moveX) + Mathf.Abs(moveY));
-            float moveSpeed = playerFSM.playerInfo.MoveBaseSpeed;
+            float moveSpeed = playerInfo.MoveBaseSpeed;
 
             if (playerFSM.playerInput.RollHoldTrigger && playerFSM.playerInput.MovementHoldTrigger)
             {
-                moveSpeed = playerFSM.playerInfo.SprintSpeed;//冲刺状态
+                moveSpeed = playerInfo.SprintSpeed;//冲刺状态
                 movement = 2f;
             }
 
@@ -64,7 +67,7 @@ namespace AI.FSM
             else
             {//锁定视角情况
                 Vector3 lookDir =
-                    playerFSM.playerInfo.LockedTargetTF.position - playerFSM.playerInfo.LockedTF.position;
+                   playerInfo.LockedTargetTF.position - playerInfo.LockedTF.position;
                 playerFSM.playerAction.LookAndMove(lookDir, moveDir, moveSpeed);
             }
         }

@@ -1,4 +1,7 @@
+using AI.FSM.Framework;
+using ns.Movtion;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Common
@@ -6,8 +9,10 @@ namespace Common
 
     public class AnimationEventArgs : EventArgs
     {
+        public FSMBase fSMBase { get; set; }
         public AnimationEventArgs()
         {
+
         }
     }
 
@@ -16,42 +21,38 @@ namespace Common
     /// </summary>
     public class AnimationEventBehaviour : MonoBehaviour
     {
-        /// <summary>攻击帧开始事件</summary>
-        public event EventHandler<AnimationEventArgs> OnPreAttackEnd;
-        public event EventHandler<AnimationEventArgs> OnAttackStart;
-        public event EventHandler<AnimationEventArgs> OnAttackEnd;
-        public event EventHandler<AnimationEventArgs> OnAttackRecovery;
-        private Animator animator;
+        private Dictionary<MovtionEventType, EventHandler<AnimationEventArgs>> _eventHandlers;
 
-        private void Start()
+
+        private void Awake()
         {
-            animator = GetComponent<Animator>();
-
+            _eventHandlers = new Dictionary<MovtionEventType, EventHandler<AnimationEventArgs>>();
+            //创建mon脚本供unity调用
+            foreach (MovtionEventType t in Enum.GetValues(typeof(MovtionEventType)))
+            {
+                Type monoType = Type.GetType("ns.Movtion." + t.ToString() + "Event");
+                gameObject.AddComponent(monoType);
+                _eventHandlers.Add(t, null);
+            }
         }
 
-        private void PreAttackEndFired()
+        public void RegisterEvent(MovtionEventType eventType, EventHandler<AnimationEventArgs> handler)
         {
-            print("前摇结束帧事件触发");
-            OnPreAttackEnd?.Invoke(this, new AnimationEventArgs());
+            _eventHandlers[eventType] += handler;
         }
 
-        private void AttackStartFired()
+        public void UnRegisterEvent(MovtionEventType eventType, EventHandler<AnimationEventArgs> handler)
         {
-            print("攻击开始事件触发");
-            OnAttackStart?.Invoke(this, new AnimationEventArgs());
+            _eventHandlers[eventType] -= handler;
         }
 
-        private void AttackEndFired()
+        public EventHandler<AnimationEventArgs> GetEventHandler(MovtionEventType eventType)
         {
-            print("攻击结束事件触发");
-            OnAttackEnd?.Invoke(this, new AnimationEventArgs());
+            if (_eventHandlers.TryGetValue(eventType, out var handler))
+            {
+                return handler;
+            }
+            return null;
         }
-
-        private void AttackRecoveryFired()
-        {
-            print("后摇开始事件触发");
-            OnAttackRecovery?.Invoke(this, new AnimationEventArgs());
-        }
-
     }
 }

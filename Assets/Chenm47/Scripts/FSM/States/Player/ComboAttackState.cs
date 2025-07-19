@@ -1,5 +1,7 @@
 using AI.FSM.Framework;
+using ns.Character.Player;
 using ns.Item.Weapons;
+using ns.Movtion;
 using ns.Skill;
 using UnityEngine;
 
@@ -20,15 +22,15 @@ namespace AI.FSM
             Debug.Log(Time.frameCount + "进入ComboAttackState状态");
             base.EnterState(fSMBase);
             //后摇结束
-            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = false;
+            playerFSMBase.characterInfo.IsInMovtionRecoveryFlag = false;
         }
-
-        protected override SkillInfo GetSkillInfo(bool isLeft, WeaponInfo currentWeponInfo)
+        protected override MovtionInfo GetMovtionInfo(bool isLeft, WeaponInfo currentWeponInfo)
         {
-            //直接获取玩家信息中的ComboSkillID，并更新
-            int skillID = playerFSMBase.playerInfo.ComboSkillID;
-            var skillInfo = playerFSMBase.characterSkillManager.GetSkillInfo(skillID);
-            return skillInfo;
+            //直接获取玩家信息中的ComboSkillID
+            PlayerInfo playerInfo = playerFSMBase.characterInfo as PlayerInfo;
+            int movtionID = playerInfo.ComboMovtionlID;
+            var info = playerFSMBase.movtionManager.GetMovtionInfo(movtionID);
+            return info;
         }
 
     }

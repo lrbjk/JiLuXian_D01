@@ -18,10 +18,10 @@ MonoBehaviour:
     type: 3}
   IsUnarmed: 0
   Type: 0
-  LightAtkIDL: 4
-  HeavyAtkIDL: 2
-  SkillAtkIDL: 1
-  LightAtkIDR: 4
-  HeavyAtkIDR: 2
-  SkillAtkIDR: 1
+  LightAtkIDL: 5
+  HeavyAtkIDL: 3
+  SkillAtkIDL: 8
+  LightAtkIDR: 5
+  HeavyAtkIDR: 3
+  SkillAtkIDR: 8
   ModleGO: {fileID: 0}

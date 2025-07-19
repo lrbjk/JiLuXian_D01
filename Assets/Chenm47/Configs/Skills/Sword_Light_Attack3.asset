@@ -17,7 +17,7 @@ MonoBehaviour:
   ComboSkillID: 4
   AnimationName: Sword_Heavy_Attack01
   PreAttackEndFrame: 4
-  AttackStartFrame: 2
+  AttackStartFrame: 5
   AttackEndFrame: 9
   AttackRecoveryFrame: 10
   HoldingTime: 0

@@ -438,6 +438,7 @@ GameObject:
   - component: {fileID: 1151624554}
   - component: {fileID: 1151624555}
   - component: {fileID: 1151624556}
+  - component: {fileID: 1151624557}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -460,6 +461,7 @@ Transform:
   m_Children:
   - {fileID: 7019920668888977418}
   - {fileID: 679651866}
+  - {fileID: 1333206652}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1151624547
@@ -477,16 +479,17 @@ MonoBehaviour:
   defaultStateID: 1
   ConfigFullFileName: PlayerFSMConfig.txt
   TestMode: 0
+  animator: {fileID: 0}
+  equipmentManager: {fileID: 0}
+  animationEventBehaviour: {fileID: 0}
+  movtionManager: {fileID: 0}
+  animationHandler: {fileID: 0}
+  characterInfo: {fileID: 0}
   CurrentStateName: 
-  playerInfo: {fileID: 0}
   playerInput: {fileID: 0}
   playerAction: {fileID: 0}
-  animator: {fileID: 0}
   cameraHandler: {fileID: 0}
-  playerAnimationHandler: {fileID: 0}
-  animationEventBehaviour: {fileID: 0}
   playerInventory: {fileID: 0}
-  characterSkillManager: {fileID: 0}
 --- !u!54 &1151624548
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -509,7 +512,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 112
@@ -573,28 +576,32 @@ MonoBehaviour:
   BuffTimeDelta: 0
   LockedTF: {fileID: 679651866}
   LockedTargetTF: {fileID: 0}
+  IsInMovtionRecoveryFlag: 0
   MaxMoodValue: 10
   MoveBaseSpeed: 3
   SprintSpeed: 6
   RollSpeed: 10
   BackStepSpeed: 6
-  JumpSpeed: 18
-  GroundDistance: 0.05
+  JumpSpeed: 5
+  GroundDistance: 0.1
   DownStairRecoverTime: 0.25
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1
   MaxJumpCount: 2
   MaxLockDistance: 20
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  RollMovtionID: 2
+  BackStepMovtionID: 1
+  JumpMovtionID: 9
   CurrentJumpCount: 0
   IsDownStair: 0
-  IsInAttackRecoveryTrigger: 0
   LastAttackType: 6
-  CurrentSkillID: 0
-  ComboSkillID: 0
+  CurrentMovtionID: 0
+  ComboMovtionlID: 0
+  FallTimer: 0
 --- !u!114 &1151624553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -628,10 +635,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.39587456
-  m_Height: 1.25
+  m_Radius: 0.31920287
+  m_Height: 1.4519196
   m_Direction: 1
-  m_Center: {x: 0, y: 0.75, z: 0.08587456}
+  m_Center: {x: 0, y: 0.71375275, z: 0.08587456}
 --- !u!114 &1151624555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,19 +662,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 1151624545}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be612a0f2390c9744806846a6a9c5140, type: 3}
+  m_Script: {fileID: 11500000, guid: 331e95bc507762840a8f1f1391f5c964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skills: []
-  skillInfos:
-  - {fileID: 11400000, guid: 406acd38309994d42a5cf0cece040484, type: 2}
-  - {fileID: 11400000, guid: c230f5ce899d6a94698baf5fe4022a92, type: 2}
-  - {fileID: 11400000, guid: c495183099c9e3743b19d8f176840cee, type: 2}
-  - {fileID: 11400000, guid: 8443a661ec08d5a4dba81cbb8559362c, type: 2}
-  - {fileID: 11400000, guid: 8d65aff81dc538e41b4a30edec70b9ef, type: 2}
-  - {fileID: 11400000, guid: 5f4e8eb61156729439ce6db0ccdf3a85, type: 2}
-  - {fileID: 11400000, guid: 94582df1f56f61a4683bf1f3c051602c, type: 2}
-  - {fileID: 11400000, guid: 9c587eb0a62bc554c8d4bbab8eb77ef8, type: 2}
+  Movtions:
+  - {fileID: 11400000, guid: 3031e861e5233a34f90dbee0acd083a9, type: 2}
+  - {fileID: 11400000, guid: 26c9da9fbae15064b8528b1b2b512a1a, type: 2}
+  - {fileID: 11400000, guid: 8f8e2dcd75003d84c8f0dc53088095b0, type: 2}
+  - {fileID: 11400000, guid: 262edbc6183171b458ca8d546a19e1f8, type: 2}
+  - {fileID: 11400000, guid: 98a953544e1f18f43b60c20fb45e322f, type: 2}
+  - {fileID: 11400000, guid: 1bb2ec32f6cc08442b4c1767083199d6, type: 2}
+  - {fileID: 11400000, guid: e8004f64b159460448cc2aa641d8cbb1, type: 2}
+  - {fileID: 11400000, guid: d30e82fdb4198ee42850ca40a415a85f, type: 2}
+--- !u!114 &1151624557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1151624545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 109b2619eb943d84a9e688613875915f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1158677567
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,6 +910,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308583725}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1333206651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1333206652}
+  m_Layer: 9
+  m_Name: GroundRayPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1333206652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333206651}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.033, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1151624546}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1502205466
 GameObject:
   m_ObjectHideFlags: 0
@@ -1131,6 +1180,7 @@ MonoBehaviour:
   BuffTimeDelta: 0
   LockedTF: {fileID: 1850894866}
   LockedTargetTF: {fileID: 0}
+  IsInMovtionRecoveryFlag: 0
 --- !u!136 &1664883028
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1247,6 +1297,7 @@ MonoBehaviour:
   BuffTimeDelta: 0
   LockedTF: {fileID: 1545873771}
   LockedTargetTF: {fileID: 0}
+  IsInMovtionRecoveryFlag: 0
 --- !u!4 &1724159198
 Transform:
   m_ObjectHideFlags: 0
@@ -1326,6 +1377,7 @@ MonoBehaviour:
   BuffTimeDelta: 0
   LockedTF: {fileID: 1695744396}
   LockedTargetTF: {fileID: 0}
+  IsInMovtionRecoveryFlag: 0
 --- !u!4 &1784344035
 Transform:
   m_ObjectHideFlags: 0

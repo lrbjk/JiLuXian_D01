@@ -1,4 +1,5 @@
-using AI.FSM;
+﻿using AI.FSM;
+using AI.FSM.Framework;
 using UnityEngine;
 
 public class ResetAnimatorParam : StateMachineBehaviour
@@ -16,16 +17,24 @@ public class ResetAnimatorParam : StateMachineBehaviour
     //}
     public string ParamName = "IsInteracting";
     public bool ParamValue = false;
+    [Tooltip("是否需要在后摇阶段才触发重置参数")]
+    public bool ShouldMovtionRecoveryTrigger = true;
     //OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //�������ں�ҡ�׶β��п��ܶ�������
-        var isInAtkRecoveryTrigger =
-             animator.GetComponentInParent<PlayerFSMBase>().playerInfo.IsInAttackRecoveryFlag;
-        if (isInAtkRecoveryTrigger)
+        if (!ShouldMovtionRecoveryTrigger)
         {
             animator.SetBool(ParamName, ParamValue);
-            Debug.Log(Time.frameCount + "Animator�˳�״̬�Ҵ��ں�ҡ�׶Σ����ò�����" + ParamName + " Ϊ " + ParamValue);
+            Debug.Log(Time.frameCount + "Animator退出状态且处于后摇阶段，重置参数：" + ParamName + " 为 " + ParamValue);
+            return;
+        }
+        //仅当处于后摇阶段动画结束
+        var isInMovtionRecoveryTrigger =
+             animator.GetComponentInParent<FSMBase>().characterInfo.IsInMovtionRecoveryFlag;
+        if (isInMovtionRecoveryTrigger)
+        {
+            animator.SetBool(ParamName, ParamValue);
+            Debug.Log(Time.frameCount + "Animator退出状态且处于后摇阶段，重置参数：" + ParamName + " 为 " + ParamValue);
         }
     }
 

@@ -1,4 +1,5 @@
 using AI.FSM.Framework;
+using ns.Character.Player;
 using UnityEngine;
 
 namespace AI.FSM
@@ -16,12 +17,15 @@ namespace AI.FSM
         {
             //处于后摇期间，有攻击输入，并且与上次攻击输入相同，连击SkillID不为0
             var playerFSMBase = fSMBase as PlayerFSMBase;
-            Debug.Log($"IsInAttackRecoveryTrigger:{playerFSMBase.playerInfo.IsInAttackRecoveryFlag};AtkInput:{base.HandleTrigger(fSMBase)}" +
-                $"equal:{playerFSMBase.playerInfo.LastAttackType == playerFSMBase.playerInput.AtkInputType};ComboSkillID:{playerFSMBase.playerInfo.ComboSkillID}");
-            return playerFSMBase.playerInfo.IsInAttackRecoveryFlag &&
+            var playerInfo = playerFSMBase.characterInfo as PlayerInfo;
+
+
+            //Debug.Log($"处于后摇阶段:{playerFSMBase.characterInfo.IsInMovtionRecoveryFlag};攻击输入:{base.HandleTrigger(fSMBase)}" +
+            //    $"上次攻击输入与本次是否一致:{playerInfo.LastAttackType == playerFSMBase.playerInput.AtkInputType};下一连击动作ID:{playerInfo.ComboMovtionlID}");
+            return playerInfo.IsInMovtionRecoveryFlag &&
                 base.HandleTrigger(fSMBase) &&
-                playerFSMBase.playerInfo.LastAttackType == playerFSMBase.playerInput.AtkInputType &&
-                playerFSMBase.playerInfo.ComboSkillID != 0;
+                playerInfo.LastAttackType == playerFSMBase.playerInput.AtkInputType &&
+                playerInfo.ComboMovtionlID != 0;
         }
 
     }

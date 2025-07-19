@@ -32,7 +32,7 @@ namespace AI.FSM
             if (playerFSM.playerInput.LockViewTrigger)
             {//转向
                 Vector3 lookDir =
-                    playerFSM.playerInfo.LockedTargetTF.position - playerFSM.playerInfo.LockedTF.position;
+                    playerFSM.characterInfo.LockedTargetTF.position - playerFSM.characterInfo.LockedTF.position;
                 playerFSM.playerAction.LookAndMove(lookDir, Vector3.zero, 0);
             }
         }

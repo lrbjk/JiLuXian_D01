@@ -18,13 +18,16 @@ namespace ns.Item.Weapons
         public GameObject ModlePrefab;
         public bool IsUnarmed;
         public WeaponType Type;
-        [Header("对应攻击/技能起始ID")]
+        [Header("对应起始动作ID")]
         public int LightAtkIDL;
         public int HeavyAtkIDL;
         public int SkillAtkIDL;//左手战技ID
         public int LightAtkIDR;
         public int HeavyAtkIDR;
         public int SkillAtkIDR;//战技
+        /// <summary>
+        /// 当前实例化的武器GameObject
+        /// </summary>
         [HideInInspector]
         public GameObject ModleGO;
     }

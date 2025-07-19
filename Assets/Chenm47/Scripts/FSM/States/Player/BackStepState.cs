@@ -1,5 +1,7 @@
 using AI.FSM.Framework;
 using Common;
+using ns.Character.Player;
+using ns.Movtion;
 using UnityEngine;
 
 /*
@@ -10,7 +12,7 @@ namespace AI.FSM
     /// <summary>
     /// 描述：
     /// </summary>
-    public class BackStepState : FSMState
+    public class BackStepState : MovtionState
     {
         private PlayerFSMBase playerFSMBase;
 
@@ -18,40 +20,23 @@ namespace AI.FSM
         {
             StateID = FSMStateID.BackStep;
         }
+        protected override MovtionInfo InitMovtionInfo(FSMBase fSMBase)
+        {
+            return fSMBase.movtionManager.GetMovtionInfo((fSMBase.characterInfo as PlayerInfo).BackStepMovtionID);
+        }
 
 
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
             playerFSMBase = fSMBase as PlayerFSMBase;
+            PlayerInfo playerInfo = playerFSMBase.characterInfo as PlayerInfo;
 
             Vector3 moveDir = -playerFSMBase.transform.forward;
             moveDir.y = 0;
             moveDir.Normalize();
             //无需转向
-            playerFSMBase.playerAction.LookAndMove(Vector3.zero, moveDir, playerFSMBase.playerInfo.BackStepSpeed);
-
-            //订阅事件
-            playerFSMBase.animationEventBehaviour.OnAttackRecovery += OnAttackRecovery;
-
-            playerFSMBase.playerAnimationHandler.PlayTargetAnimation("BackStep", true);
-        }
-
-        public override void ExitState(FSMBase fSMBase)
-        {
-            base.ExitState(fSMBase);
-            //取消订阅
-            playerFSMBase.animationEventBehaviour.OnAttackRecovery -= OnAttackRecovery;
-
-            //后摇结束
-            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = false;
-        }
-
-        private void OnAttackRecovery(object sender, AnimationEventArgs e)
-        {
-            Debug.Log("动画事件AttackRecovery");
-            //后摇开始
-            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = true;
+            playerFSMBase.playerAction.LookAndMove(Vector3.zero, moveDir, playerInfo.BackStepSpeed);
         }
 
     }

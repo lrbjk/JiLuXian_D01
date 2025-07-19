@@ -47,10 +47,16 @@ namespace ns.Character
         /// <summary>buff持续时间变化值 </summary>
         public float BuffTimeDelta;
 
-        /// <summary>角色被锁定Transform </summary>
+        /// <summary>角色被他人锁定的Transform </summary>
         public Transform LockedTF;
         [HideInInspector]
-        /// <summary>角色锁定的Transform </summary>
+        /// <summary>角色锁定的他人Transform </summary>
         public Transform LockedTargetTF;
+
+        //为动作状态机提供的成员
+        [Tooltip("是否处于后摇阶段")]
+        /// <summary>是否处于后摇阶段</summary>
+        public bool IsInMovtionRecoveryFlag;
+
     }
 }

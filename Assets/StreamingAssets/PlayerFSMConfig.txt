@@ -3,6 +3,7 @@ MovementInput>Move
 RollInput>Roll
 BackStepInput>BackStep
 AttackInput>Attack
+JumpInput>JumpStart
 [Roll]
 InteractingDown>Default
 [BackStep]
@@ -12,9 +13,19 @@ NoMovementInput>Default
 RollInput>Roll
 BackStepInput>BackStep
 AttackInput>Attack
+JumpInput>JumpStart
 [Attack]
 ComboAtk>ComboAttack
 InteractingDown>Default
 [ComboAttack]
 ComboAtk>ComboAttack
 ComboAtkDown>Default
+[JumpStart]
+InteractingDown>JumpInAir
+[JumpInAir]
+VyNegatived>Fall
+[Fall]
+ToFallEndTimerAndOnGround>FallEnd
+OnGround>Default
+[FallEnd]
+InteractingDown>Default

@@ -1,6 +1,8 @@
 using AI.FSM.Framework;
+using Common;
+using ns.Character.Player;
 using ns.Item.Weapons;
-using ns.Skill;
+using ns.Movtion;
 using UnityEngine;
 
 namespace AI.FSM
@@ -8,9 +10,8 @@ namespace AI.FSM
     /// <summary>
     /// 描述：
     /// </summary>
-    public class AttackState : FSMState
+    public class AttackState : MovtionState
     {
-        private string animationName;
         private GameObject currentWeaponGO;
         protected PlayerFSMBase playerFSMBase;
 
@@ -18,104 +19,76 @@ namespace AI.FSM
         {
             StateID = FSMStateID.Attack;
         }
-
-        public override void EnterState(FSMBase fSMBase)
+        protected override MovtionInfo InitMovtionInfo(FSMBase fSMBase)
         {
-            base.EnterState(fSMBase);
             playerFSMBase = fSMBase as PlayerFSMBase;
-            //停止移动
-            playerFSMBase.playerAction.StopMove();
             //获取当前武器信息
+            WeaponInfo currentWeponInfo = fSMBase.equipmentManager.GetCurrentAtkWeapon(fSMBase);
             //左手？右手？
             bool isLeft = playerFSMBase.playerInput.IsLeftAttackTrigger;
             var lweapon = playerFSMBase.playerInventory.LeftWeapon;
             var rweapon = playerFSMBase.playerInventory.RightWeapon;
-            WeaponInfo currentWeponInfo = isLeft ? lweapon : rweapon;
             currentWeaponGO = currentWeponInfo.ModleGO;
-
             //获取技能信息
-            SkillInfo skillInfo = GetSkillInfo(isLeft, currentWeponInfo);
-            //更新玩家信息技能ID
-            playerFSMBase.playerInfo.LastAttackType = playerFSMBase.playerInput.AtkInputType;
-            playerFSMBase.playerInfo.CurrentSkillID = skillInfo.SkillID;
-            playerFSMBase.playerInfo.ComboSkillID = skillInfo.ComboSkillID;
-
-            //订阅事件
-            playerFSMBase.animationEventBehaviour.OnPreAttackEnd += OnPreAttackEnd;
-            playerFSMBase.animationEventBehaviour.OnAttackStart += OnAttackStart;
-            playerFSMBase.animationEventBehaviour.OnAttackEnd += OnAttackEnd;
-            playerFSMBase.animationEventBehaviour.OnAttackRecovery += OnAttackRecovery;
-
-            //播放相应动画
-            animationName = skillInfo.AnimationName;
-            Debug.Log("技能名称：" + skillInfo.SkillName + "播放动画状态：" + animationName);
-            playerFSMBase.playerAnimationHandler.PlayTargetAnimation(animationName, true);
+            MovtionInfo movtionInfo = GetMovtionInfo(isLeft, currentWeponInfo);
+            return movtionInfo;
         }
-
-        protected virtual SkillInfo GetSkillInfo(bool isLeft, WeaponInfo currentWeponInfo)
+        protected virtual MovtionInfo GetMovtionInfo(bool isLeft, WeaponInfo currentWeponInfo)
         {
-            //根据手中的武器和输入来决定使用哪个技能
-            int skillID = 0;//技能ID
+            //根据手中的武器和输入来决定使用哪个动作
+            int movtionID = 0;//动作ID
             if (playerFSMBase.playerInput.IsLightAttackTrigger)
             {
                 if (isLeft)
-                    skillID = currentWeponInfo.LightAtkIDL;
+                    movtionID = currentWeponInfo.LightAtkIDL;
                 else
-                    skillID = currentWeponInfo.LightAtkIDR;
+                    movtionID = currentWeponInfo.LightAtkIDR;
             }
             else if (playerFSMBase.playerInput.IsHeavyAttackTrigger)
             {
                 if (isLeft)
-                    skillID = currentWeponInfo.HeavyAtkIDL;
+                    movtionID = currentWeponInfo.HeavyAtkIDL;
                 else
-                    skillID = currentWeponInfo.HeavyAtkIDR;
+                    movtionID = currentWeponInfo.HeavyAtkIDR;
             }
             else if (playerFSMBase.playerInput.IsSkillAttackTrigger)
             {
-                skillID = currentWeponInfo.SkillAtkIDL;
+                movtionID = currentWeponInfo.SkillAtkIDL;
             }
-            var skillInfo = playerFSMBase.characterSkillManager.GetSkillInfo(skillID);
+            var skillInfo = playerFSMBase.movtionManager.GetMovtionInfo(movtionID);
             return skillInfo;
+        }
+
+        public override void EnterState(FSMBase fSMBase)
+        {
+            base.EnterState(fSMBase);
+            //停止移动
+            playerFSMBase.playerAction.StopMove();
+            PlayerInfo playerInfo = playerFSMBase.characterInfo as PlayerInfo;
+            //更新玩家信息技能ID
+            playerInfo.LastAttackType = playerFSMBase.playerInput.AtkInputType;
+            playerInfo.CurrentMovtionID = movtionInfo.MovtionID;
+            playerInfo.ComboMovtionlID = movtionInfo.ComboMovtionID;
         }
 
         public override void ExitState(FSMBase fSMBase)
         {
             base.ExitState(fSMBase);
-            //取消订阅
-            playerFSMBase.animationEventBehaviour.OnPreAttackEnd -= OnPreAttackEnd;
-            playerFSMBase.animationEventBehaviour.OnAttackStart -= OnAttackStart;
-            playerFSMBase.animationEventBehaviour.OnAttackEnd -= OnAttackEnd;
-            playerFSMBase.animationEventBehaviour.OnAttackRecovery -= OnAttackRecovery;
-            Debug.Log("取消订阅");
             //清空临时变量
             currentWeaponGO = null;
-            animationName = null;
-            //后摇结束
-            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = false;
         }
 
-        private void OnPreAttackEnd(object sender, Common.AnimationEventArgs e)
+        protected override void OnMovtionStart(object sender, AnimationEventArgs e)
         {
-            Debug.Log("动画事件PreAttackEnd");
-        }
-
-        private void OnAttackStart(object sender, Common.AnimationEventArgs e)
-        {
-            Debug.Log("动画事件AttackStart");
+            base.OnMovtionStart(sender, e);
             //激活碰撞体
             currentWeaponGO.GetComponentInChildren<WeaponCollderHandle>(true).SetCollider(true);
         }
-        private void OnAttackEnd(object sender, Common.AnimationEventArgs e)
+        protected override void OnMovtionEnd(object sender, AnimationEventArgs e)
         {
-            Debug.Log("动画事件AttackEnd");
+            base.OnMovtionEnd(sender, e);
             //禁用碰撞体
             currentWeaponGO.GetComponentInChildren<WeaponCollderHandle>(true).SetCollider(false);
-        }
-        private void OnAttackRecovery(object sender, Common.AnimationEventArgs e)
-        {
-            Debug.Log("动画事件AttackRecovery");
-            //后摇开始
-            playerFSMBase.playerInfo.IsInAttackRecoveryFlag = true;
         }
     }
 }

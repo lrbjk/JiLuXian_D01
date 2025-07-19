@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc40a8649f0b0d7429d87eb923de70ff, type: 3}
+  m_Name: Sword_01_Skill
+  m_EditorClassIdentifier: 
+  MovtionID: 8
+  MovtionName: "\u525101\u6218\u6280"
+  ComboMovtionID: 0
+  AnimationName: Sword_01_Skill
+  MovtionAtkValue: 0
+  MovtionEvents:
+  - EventType: 0
+    AnimationFrame: 4
+  - EventType: 1
+    AnimationFrame: 5
+  - EventType: 2
+    AnimationFrame: 9
+  - EventType: 3
+    AnimationFrame: 10

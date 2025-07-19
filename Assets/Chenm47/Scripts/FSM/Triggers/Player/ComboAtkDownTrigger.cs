@@ -18,8 +18,7 @@ namespace AI.FSM
             bool interactingBool = base.HandleTrigger(fSMBase);
             //此时上一动画结束，interactingBool为true
             //处于后摇阶段且动，画播放完毕interacting也为true
-            PlayerFSMBase playerFSMBase = fSMBase as PlayerFSMBase;
-            return interactingBool && playerFSMBase.playerInfo.IsInAttackRecoveryFlag;
+            return interactingBool && fSMBase.characterInfo.IsInMovtionRecoveryFlag;
         }
     }
 }

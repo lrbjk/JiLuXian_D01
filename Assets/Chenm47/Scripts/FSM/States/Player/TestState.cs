@@ -1,4 +1,5 @@
 using AI.FSM.Framework;
+using ns.Character.Player;
 using UnityEngine;
 namespace AI.FSM
 {
@@ -22,13 +23,15 @@ namespace AI.FSM
 
         private static void MoveMentHandle(PlayerFSMBase fSMBase)
         {
+            PlayerInfo playerInfo = fSMBase.characterInfo as PlayerInfo;
             float moveX = fSMBase.playerInput.HorizontalMove;
             float moveY = fSMBase.playerInput.VerticalMove;
             float movement = Mathf.Clamp01(Mathf.Abs(moveX) + Mathf.Abs(moveY));
-            float moveSpeed = fSMBase.playerInfo.MoveBaseSpeed;
+
+            float moveSpeed = playerInfo.MoveBaseSpeed;
             if (fSMBase.playerInput.RollHoldTrigger) //如果是长按
             {
-                moveSpeed = fSMBase.playerInfo.SprintSpeed;//冲刺状态
+                moveSpeed = playerInfo.SprintSpeed;//冲刺状态
                 movement = 2f;
             }
 
