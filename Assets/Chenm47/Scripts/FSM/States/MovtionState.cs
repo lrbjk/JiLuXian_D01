@@ -74,7 +74,7 @@ namespace AI.FSM
             //播放相应动画
             var animationName = movtionInfo.AnimationName;
             Debug.Log("动作名称：" + movtionInfo.MovtionName + ";播放动画状态：" + animationName);
-            fSMBase.animationHandler.PlayTargetAnimation(animationName,true, 0.2f);
+            fSMBase.animationHandler.PlayTargetAnimation(animationName, true, 0.2f);
         }
 
         public override void ExitState(FSMBase fSMBase)
@@ -91,11 +91,29 @@ namespace AI.FSM
             //后摇结束
             fSMBase.characterInfo.IsInMovtionRecoveryFlag = false;
         }
-
+        /// <summary>
+        /// 前摇结束
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnPreMovtionEnd(object sender, Common.AnimationEventArgs e) { }
-
+        /// <summary>
+        /// 动作生效开始
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnMovtionStart(object sender, Common.AnimationEventArgs e) { }
+        /// <summary>
+        /// 动作生效结束
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnMovtionEnd(object sender, Common.AnimationEventArgs e) { }
+        /// <summary>
+        /// 前摇开始
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected virtual void OnMovtionRecovery(object sender, Common.AnimationEventArgs e)
         {
             //后摇开始

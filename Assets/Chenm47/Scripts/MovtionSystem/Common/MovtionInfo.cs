@@ -43,5 +43,9 @@ namespace ns.Movtion
         //用动作事件来描述发生帧
         [Tooltip("动作事件列表")]
         public MovtionEventParams[] MovtionEvents;
+
+        ////打击特效
+        //[Tooltip("打击特效预制体")]
+
     }
 }

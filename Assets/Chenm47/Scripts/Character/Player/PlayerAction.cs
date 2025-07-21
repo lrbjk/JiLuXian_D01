@@ -1,7 +1,9 @@
 using Common;
+using Common.Helper;
 using ns.Camera;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 
@@ -29,6 +31,11 @@ namespace ns.Character.Player
         }
 
         //通用
+
+        public void MoveDirectly(Vector3 target)
+        {
+            rb.MovePosition(target);
+        }
 
         /// <summary>
         /// 
@@ -121,11 +128,87 @@ namespace ns.Character.Player
             return rb.velocity.y < 0;
         }
 
-        public Vector2 GetVelocity()
+        public Vector3 GetVelocity()
         {
             return rb.velocity;
         }
 
+        public void SetVelocity(Vector3 velocity)
+        {
+            rb.velocity = velocity;
+        }
+
+        public float detectionRadius = 1f;
+        public float backAngleThreshold = 60f;
+        public LayerMask enemyLayer;
+        public bool IsBackStabOrRiposte()
+        {
+            //1. 使用球形检测获取范围内的敌人
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, detectionRadius, enemyLayer);
+            Collider res = null;
+            float minDistance = Mathf.Infinity;
+            foreach (Collider collider in hitColliders)
+            {
+                var enemyF = collider.transform.forward;
+                var toEnemy = collider.transform.position - transform.position;
+                Debug.Log("距离" + toEnemy.magnitude);
+                if (toEnemy.magnitude > detectionRadius || toEnemy.magnitude > minDistance)
+                    continue;//距离检测
+                //前后检测
+                float dotProduct = Vector3.Dot(enemyF, transform.forward);
+                if (dotProduct <= 0)//在前方
+                    continue;
+                //判断角度
+                float angle = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
+                Debug.Log("角度" + angle);
+                if (angle > backAngleThreshold)
+                    continue;
+                res = collider;
+            }
+            if (res != null)
+            {
+                playerInfo.BackStabedTarget = res.GetComponent<CharacterInfo>();
+                return true;
+            }
+            else return false;
+        }
+
+        public float forwardDetectionRadius = 1f;
+        public float forwardAngleThreshold = 60f;
+        public bool IsForwardStabOrRiposte()
+        {
+            //1. 使用球形检测获取范围内的敌人
+            Collider[] hitColliders = Physics.OverlapSphere(transform.position, forwardDetectionRadius, enemyLayer);
+            Collider res = null;
+            float minDistance = Mathf.Infinity;
+            foreach (Collider collider in hitColliders)
+            {
+                var enemyF = collider.transform.forward;
+                var toEnemy = collider.transform.position - transform.position;
+                Debug.Log("距离" + toEnemy.magnitude);
+                if (toEnemy.magnitude > detectionRadius || toEnemy.magnitude > minDistance)
+                    continue;//距离检测
+                //前后检测
+                float dotProduct = Vector3.Dot(-enemyF, transform.forward);
+                if (dotProduct <= 0)//在后方
+                    continue;
+                //判断角度
+                float angle = Mathf.Acos(dotProduct) * Mathf.Rad2Deg;
+                Debug.Log("前角度" + angle);
+                if (angle > backAngleThreshold)
+                    continue;
+                res = collider;
+            }
+            if (res != null)
+            {
+                playerInfo.BackStabedTarget = res.GetComponent<CharacterInfo>();
+                return true;
+            }
+            else return false;
+        }
+
+
+        //玩家特有
         /// <summary>
         /// 获取锁定目标
         /// </summary>

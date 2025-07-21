@@ -1,11 +1,6 @@
 using AI.FSM.Framework;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-/*
-
-*/
 namespace AI.FSM
 {
     /// <summary>
@@ -17,7 +12,8 @@ namespace AI.FSM
         {
             PlayerFSMBase playerFSMBase = fSMBase as PlayerFSMBase;
             var v = playerFSMBase.playerAction.GetVelocity();
-            return v.y < 0f;
+            //Debug.Log(Time.frameCount.ToString() + "y" + v.y);
+            return v.y < -0.1f;
         }
 
         public override void Init()

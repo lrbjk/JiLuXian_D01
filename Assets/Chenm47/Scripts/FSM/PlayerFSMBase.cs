@@ -26,6 +26,7 @@ namespace AI.FSM
         public CameraHandler cameraHandler;
         [HideInInspector]
         public PlayerInventory playerInventory;
+        public PlayerRootMotion playerRootMotion;
         #endregion
 
         protected override void Start()
@@ -35,6 +36,7 @@ namespace AI.FSM
             playerAction = GetComponent<PlayerAction>();
             cameraHandler = FindAnyObjectByType<CameraHandler>();
             playerInventory = GetComponent<PlayerInventory>();
+            playerRootMotion = GetComponentInChildren<PlayerRootMotion>(true);
             base.Start();
         }
     }

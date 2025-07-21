@@ -17,6 +17,9 @@ namespace AI.FSM
         JumpInput,
         VyNegatived,
         OnGround,
-        ToFallEndTimerAndOnGround
+        ToFallEndTimerAndOnGround,
+        BackStab,
+        ForwardStab,
+        RollBreak
     }
 }

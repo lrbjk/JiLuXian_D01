@@ -25,7 +25,7 @@ public class ResetAnimatorParam : StateMachineBehaviour
         if (!ShouldMovtionRecoveryTrigger)
         {
             animator.SetBool(ParamName, ParamValue);
-            Debug.Log(Time.frameCount + "Animator退出状态且处于后摇阶段，重置参数：" + ParamName + " 为 " + ParamValue);
+            Debug.Log(Time.frameCount + "Animator退出状态，重置参数：" + ParamName + " 为 " + ParamValue);
             return;
         }
         //仅当处于后摇阶段动画结束

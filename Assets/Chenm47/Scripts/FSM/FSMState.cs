@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace AI.FSM.Framework
 {
@@ -59,6 +60,7 @@ namespace AI.FSM.Framework
             {
                 if (trigger.HandleTrigger(fSMBase))
                 {
+                    Debug.Log("触发条件" + trigger.triggerID);
                     fSMBase.SwitchState(map[trigger.triggerID]);
                     break;
                 }

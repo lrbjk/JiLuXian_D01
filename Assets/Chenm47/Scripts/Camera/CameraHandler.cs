@@ -79,7 +79,7 @@ namespace ns.Camera
             RaycastHit hit;
             Vector3 direction = CameraTF.position - CameraPivotTF.position;
             direction.Normalize();
-            Debug.DrawRay(CameraPivotTF.position, direction * targetDistance, Color.red);
+            //Debug.DrawRay(CameraPivotTF.position, direction * targetDistance, Color.red);
             if (Physics.SphereCast
             (CameraPivotTF.position, CameraCollisionRadius,
             direction, out hit, targetDistance, CameraCollisonLayers))
