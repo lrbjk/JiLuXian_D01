@@ -38,3 +38,10 @@ InteractingDown>Default
 InteractingDown>Default
 [ForwardStab]
 InteractingDown>Default
+[Damaged]
+RollBreak>Roll
+InteractingDown>Default
+[Died]
+[AnyState]
+IsDamaged>Damaged
+IsDied>Died

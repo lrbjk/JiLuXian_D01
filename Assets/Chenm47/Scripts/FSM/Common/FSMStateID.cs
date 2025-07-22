@@ -20,6 +20,8 @@ namespace AI.FSM
         FallEnd,
         Jump,
         BackStab,
-        ForwardStab
+        ForwardStab,
+        Died,
+        Damaged
     }
 }

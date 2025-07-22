@@ -9,7 +9,7 @@ namespace ns.Movtion
         [Tooltip("前摇结束")]
         PreMovtionEnd, // 前摇结束
         [Tooltip("动作开始")]
-        MovtionStart, // 动作生效开始
+        MovtionStart, // 动作生效开始（攻击开始、道具使用开始......）
         [Tooltip("动作结束")]
         MovtionEnd, // 动作生效结束
         [Tooltip("动作后摇开始")]
@@ -44,8 +44,9 @@ namespace ns.Movtion
         [Tooltip("动作事件列表")]
         public MovtionEventParams[] MovtionEvents;
 
-        ////打击特效
-        //[Tooltip("打击特效预制体")]
-
+        [Tooltip("命中目标受击动作")]
+        public int DamagedMovtionID;
+        [Tooltip("命中目标死亡动作")]
+        public int DeadMovtionID;
     }
 }

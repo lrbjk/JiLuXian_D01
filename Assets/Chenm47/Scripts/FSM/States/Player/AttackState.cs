@@ -75,6 +75,8 @@ namespace AI.FSM
         {
             base.ExitState(fSMBase);
             //清空临时变量
+            //以防万一禁用碰撞体
+            currentWeaponGO.GetComponentInChildren<WeaponCollderHandle>(true).SetCollider(false);
             currentWeaponGO = null;
         }
 

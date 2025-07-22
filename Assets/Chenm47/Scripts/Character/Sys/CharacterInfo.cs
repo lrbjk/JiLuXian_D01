@@ -65,6 +65,10 @@ namespace ns.Character
         [Tooltip("是否处于后摇阶段")]
         /// <summary>是否处于后摇阶段</summary>
         public bool IsInMovtionRecoveryFlag;
+        public int CurrentMovtionID = 0;
+        public int ComboMovtionlID = 0;
+        public bool IsDamaged = false;
+        public bool IsDied = false;
 
     }
 }

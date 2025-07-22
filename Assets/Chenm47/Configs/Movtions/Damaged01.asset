@@ -10,19 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc40a8649f0b0d7429d87eb923de70ff, type: 3}
-  m_Name: BackStep
+  m_Name: Damaged01
   m_EditorClassIdentifier: 
-  MovtionID: 1
-  MovtionName: "\u540E\u64A4\u6B65"
+  MovtionID: 9
+  MovtionName: "\u53D7\u51FB1"
   ComboMovtionID: 0
-  AnimationName: BackStep
+  AnimationName: Damaged
   MovtionAtkValue: 0
-  MovtionEvents:
-  - EventType: 1
-    AnimationFrame: 2
-  - EventType: 2
-    AnimationFrame: 5
-  - EventType: 3
-    AnimationFrame: 20
+  MovtionEvents: []
   DamagedMovtionID: 0
   DeadMovtionID: 0

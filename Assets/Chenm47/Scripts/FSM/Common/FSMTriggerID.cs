@@ -20,6 +20,8 @@ namespace AI.FSM
         ToFallEndTimerAndOnGround,
         BackStab,
         ForwardStab,
-        RollBreak
+        RollBreak,
+        IsDamaged,
+        IsDied
     }
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace AI.FSM
 {
     /// <summary>
-    /// 描述：动作状态，进一步实现动作前后摇等动画事件的处理
+    /// 描述：动作状态，进一步实现动作前后摇等动画事件的处理，内部在进入状态时已播放动画
     /// </summary>
     public abstract class MovtionState : FSMState
     {

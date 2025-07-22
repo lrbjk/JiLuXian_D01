@@ -1,6 +1,7 @@
 using Common;
 using Common.Helper;
 using ns.Camera;
+using ns.Movtion;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
@@ -207,6 +208,26 @@ namespace ns.Character.Player
             else return false;
         }
 
+        public void Damaged(int atkValue, int damagedMovtionID, int diedMovtionID)
+        {
+            //无敌?
+            //伤害计算
+            playerInfo.HP -= atkValue;
+            if (playerInfo.HP < 0)            //受击、死亡？
+            {
+                playerInfo.HP = 0;
+                //死亡动作?
+                playerInfo.CurrentMovtionID = diedMovtionID;
+                playerInfo.IsDied = true;
+            }
+            else
+            {
+                //受击动作？
+                playerInfo.CurrentMovtionID = damagedMovtionID;
+                //标记Trigger以便切换状态
+                playerInfo.IsDamaged = true;
+            }
+        }
 
         //玩家特有
         /// <summary>

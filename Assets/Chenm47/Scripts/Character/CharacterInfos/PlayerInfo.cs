@@ -44,8 +44,6 @@ namespace ns.Character.Player
         [HideInInspector]
         public bool IsDownStair = false;
         public AttackInputType LastAttackType = AttackInputType.None;
-        public int CurrentMovtionID = 0;
-        public int ComboMovtionlID = 0;
         public float FallTimer;
     }
 }
