@@ -8,12 +8,17 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Crate Short Mat
-  m_Shader: {fileID: 4800000, guid: d98853b4c5470e2469fe3a8f7770bbc0, type: 3}
+  m_Shader: {fileID: 4800000, guid: 97dee19b6f36bf445aea43c07f37a5d0, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _MATCAP_ON
   - _NORMALMAP
-  m_InvalidKeywords: []
+  - _OUTLINE_PASS
+  - _SCREEN_SAPCE_RIM
+  m_InvalidKeywords:
+  - _HIGHTLIGHTSHAPE_ON
+  - _MATCAPREFRACT1_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -32,6 +37,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: edf3aaaffcf4f1d48ac5113102ca02cb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _CubeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -44,6 +53,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Emission:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -52,8 +65,24 @@ Material:
         m_Texture: {fileID: 2800000, guid: aea2490530f06b6479f24f2d8c79229b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MatCapMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCapTex1:
+        m_Texture: {fileID: 2800000, guid: d56b2b90fe3efab408c6dd20fd9a4e7c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Metal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: f5f413de0858115449fd876c95bff035, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: edf3aaaffcf4f1d48ac5113102ca02cb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -64,11 +93,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Roughness:
+        m_Texture: {fileID: 2800000, guid: f5f413de0858115449fd876c95bff035, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SmoothnessTex:
         m_Texture: {fileID: 2800000, guid: 3015894ee920a224b9f6e318539bc507, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMask:
+        m_Texture: {fileID: 2800000, guid: 3015894ee920a224b9f6e318539bc507, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _bump:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -86,10 +127,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlbedoSmoothness: 1
     - _AlphaClip: 0
     - _AlphaToMask: 0
+    - _AmbientColorIntensity: 0.1
     - _Blend: 0
+    - _BlendDst: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
+    - _BlendSrc: 1
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
@@ -99,22 +145,56 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
+    - _EmissionIntensity: 1
     - _EnvironmentReflections: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HightlightShape: 1
+    - _Lazer_ON: 0
+    - _MatCapAlphaBrust1: 1
+    - _MatCapBlendMode1: 0
+    - _MatCapColorBrust1: 0.25
+    - _MatCapDepth1: 0.5
+    - _MatCapRefract1: 1
+    - _MatCap_ON: 1
+    - _MetalIntensity: 1
     - _Metallic: 0.7
     - _Mode: 0
+    - _ModelSize: 25.8
+    - _NoseLineHoriDisp: 1
+    - _NoseLineKDnDisp: 1
     - _OcclusionStrength: 1
+    - _Outline: 1
+    - _OutlineWidth: 4.58
+    - _OutlineZOffset: 0
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _ScreenSpaceRim: 1
+    - _ScreenSpaceRimBrightness: 1
+    - _ScreenSpaceRimFadeout: 0.18
+    - _ScreenSpaceRimThreshold: 0
+    - _ScreenSpaceRimWidth: 4.09
+    - _ScreenSpaceShadow: 0
+    - _ScreenSpaceShadowFadeout: 0.2
+    - _ScreenSpaceShadowThreshold: 0.015
+    - _ScreenSpaceShadowWidth: 0.2
+    - _ShapeSoftness: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SpecularIntensity: 0.79
+    - _SpecularRange: 0.521
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
+    - _StencilComp: 0
+    - _StencilFailOp: 0
+    - _StencilPassOp: 0
+    - _StencilRef: 0
+    - _StencilZPassOp: 0
     - _Surface: 0
+    - _ToonSpecular: 0.26
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -122,5 +202,19 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MatCapParam1: {r: 0, g: 0, b: 0, a: 0}
+    - _MatCapTintColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor1: {r: 0, g: 0, b: 0, a: 1}
+    - _PostFrontTint: {r: 1, g: 1, b: 1, a: 1}
+    - _PostSSSTint: {r: 1, g: 1, b: 1, a: 1}
+    - _PostShadowFadeTint: {r: 0.70980394, g: 0.70980394, b: 0.70980394, a: 1}
+    - _PostShadowTint: {r: 0.70980394, g: 0.70980394, b: 0.70980394, a: 1}
+    - _PostShallowFadeTint: {r: 0.70980394, g: 0.70980394, b: 0.70980394, a: 1}
+    - _PostShallowTint: {r: 0.7106918, g: 0.7106918, b: 0.7106918, a: 1}
+    - _RimGlowLightColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 0.5286183, g: 0.62656814, b: 0.654088, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _UISunColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Custom_MGCA_OBJ
+  m_Shader: {fileID: 4800000, guid: 97dee19b6f36bf445aea43c07f37a5d0, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - _MATCAP_ON
+  - _SCREEN_SAPCE_RIM
+  - _SCREEN_SPACE_SHADOW
+  m_InvalidKeywords:
+  - _HIGHTLIGHTSHAPE_ON
+  - _MATCAPREFRACT1_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CubeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _LightTex:
+        m_Texture: {fileID: 2800000, guid: 5541caacf9b1603498d5df299b5b9254, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 96747c193717fa74cbc6dfd9a64bc185, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCapMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCapTex1:
+        m_Texture: {fileID: 2800000, guid: d56b2b90fe3efab408c6dd20fd9a4e7c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Metal:
+        m_Texture: {fileID: 2800000, guid: 2d672071fbccdc8428b05df17df717c5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 5541caacf9b1603498d5df299b5b9254, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OtherDataTex1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OtherDataTex2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Roughness:
+        m_Texture: {fileID: 2800000, guid: 2d672071fbccdc8428b05df17df717c5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SpecularMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _AlbedoSmoothness: 0.39
+    - _AlphaClip: 0.5
+    - _AmbientColorIntensity: 0.1
+    - _BlendDst: 0
+    - _BlendOp: 0
+    - _BlendSrc: 1
+    - _BumpScale: 1
+    - _Cull: 2
+    - _Glossiness: 1
+    - _HightlightShape: 1
+    - _HightlightShape1: 0
+    - _Lazer_ON: 0
+    - _MatCapAlphaBrust1: 1
+    - _MatCapBlendMode1: 0
+    - _MatCapColorBrust1: 1
+    - _MatCapDepth1: 1
+    - _MatCapRefract1: 1
+    - _MatCap_ON: 1
+    - _MetalIntensity: 0
+    - _Metallic: 1
+    - _ModelSize: 48.5
+    - _ModelSize1: 1
+    - _NoseLineHoriDisp: 2
+    - _NoseLineKDnDisp: 2
+    - _Outline: 0
+    - _OutlineWidth: 1
+    - _OutlineZOffset: 0.01
+    - _ScreenSpaceRim: 1
+    - _ScreenSpaceRimBrightness: 1
+    - _ScreenSpaceRimFadeout: 0.5
+    - _ScreenSpaceRimThreshold: 0.01
+    - _ScreenSpaceRimWidth: 1.32
+    - _ScreenSpaceShadow: 1
+    - _ScreenSpaceShadowFadeout: 0.2
+    - _ScreenSpaceShadowThreshold: 0.015
+    - _ScreenSpaceShadowWidth: 0.2
+    - _ShapeSoftness: 0.207
+    - _ShapeSoftness1: 1
+    - _SkinMatID: 0
+    - _SpecularIntensity: 1
+    - _SpecularRange: 0.502
+    - _SpecularRange1: 1
+    - _StencilComp: 0
+    - _StencilFailOp: 0
+    - _StencilPassOp: 0
+    - _StencilRef: 0
+    - _StencilZPassOp: 0
+    - _ToonSpecular: 0.471
+    - _ToonSpecular1: 0.01
+    - _ZWrite: 1
+    m_Colors:
+    - _Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
+    - _MatCapParam1: {r: 0, g: 0, b: 0, a: 0}
+    - _MatCapTintColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor1: {r: 1, g: 0, b: 0, a: 1}
+    - _PostFrontTint: {r: 1, g: 1, b: 1, a: 1}
+    - _PostSSSTint: {r: 1, g: 1, b: 1, a: 1}
+    - _PostShadowFadeTint: {r: 1, g: 0, b: 0, a: 1}
+    - _PostShadowTint: {r: 1, g: 0.3238992, b: 0.3238992, a: 1}
+    - _PostShallowFadeTint: {r: 0, g: 0, b: 0, a: 1}
+    - _PostShallowTint: {r: 0, g: 0, b: 0, a: 1}
+    - _RimGlowLightColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _ShadowColor: {r: 1, g: 0, b: 0, a: 1}
+    - _ShadowColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _ShallowColor: {r: 0.45789814, g: 1, b: 0, a: 1}
+    - _ShallowColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _UISunColor: {r: 1, g: 1, b: 1, a: 1}
+    - _UISunColor1: {r: 1, g: 1, b: 1, a: 1}
+  m_BuildTextureStacks: []
