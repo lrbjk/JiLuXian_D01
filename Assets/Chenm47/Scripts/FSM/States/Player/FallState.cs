@@ -31,7 +31,10 @@ namespace AI.FSM
             base.ActionState(fSMBase);
             PlayerInfo playerInfo = fSMBase.characterInfo as PlayerInfo;
             playerInfo.FallTimer += Time.deltaTime;
-        }
+            //Debug.Log("FallTimer" + playerInfo.FallTimer);
+            PlayerFSMBase playerFSMBase = (PlayerFSMBase)fSMBase;
 
+            fSMBase.animator.SetFloat("Vy", playerFSMBase.playerAction.GetVelocity().y);
+        }
     }
 }

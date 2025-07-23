@@ -24,3 +24,5 @@ MonoBehaviour:
     AnimationFrame: 5
   - EventType: 3
     AnimationFrame: 20
+  DamagedMovtionID: 0
+  DeadMovtionID: 0

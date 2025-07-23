@@ -19,10 +19,10 @@ MonoBehaviour:
   MovtionAtkValue: 0
   MovtionEvents:
   - EventType: 0
-    AnimationFrame: 4
+    AnimationFrame: 16
   - EventType: 1
-    AnimationFrame: 5
+    AnimationFrame: 17
   - EventType: 2
-    AnimationFrame: 9
+    AnimationFrame: 21
   - EventType: 3
-    AnimationFrame: 10
+    AnimationFrame: 22

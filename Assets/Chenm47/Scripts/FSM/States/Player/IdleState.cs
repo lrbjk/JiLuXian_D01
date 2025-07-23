@@ -22,7 +22,8 @@ namespace AI.FSM
             //playerFSMbase.animator.SetFloat("Horizontal", 0f, 0.1f, Time.deltaTime);
             playerFSM.animator.SetFloat("Vertical", 0f);
             playerFSM.animator.SetFloat("Horizontal", 0f);
-            playerFSM.animator.Play("Idle");
+            playerFSM.animationHandler.PlayTargetAnimation("Idle", false, 0.1f);
+            //playerFSM.animator.Play("Idle");
         }
 
         public override void ActionState(FSMBase fSMBase)
@@ -33,6 +34,7 @@ namespace AI.FSM
             {//转向
                 Vector3 lookDir =
                     playerFSM.characterInfo.LockedTargetTF.position - playerFSM.characterInfo.LockedTF.position;
+                lookDir.Set(lookDir.x, 0, lookDir.z);
                 playerFSM.playerAction.LookAndMove(lookDir, Vector3.zero, 0);
             }
         }

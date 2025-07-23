@@ -12,9 +12,12 @@ namespace ns.Character
         protected Animator anim;
         protected CharacterMovtionManager characterMovtionManager;
 
-        private void Start()
+        private void Awake()
         {
             anim = GetComponentInChildren<Animator>(true);
+        }
+        private void Start()
+        {
             characterMovtionManager = GetComponent<CharacterMovtionManager>();
             AnimatorController controller = anim.runtimeAnimatorController as AnimatorController;
 
@@ -42,7 +45,7 @@ namespace ns.Character
         /// <param name="normalizedTransitionDuration">过度时间</param>
         public virtual void PlayTargetAnimation(string targetAnima, bool isInteracting, float normalizedTransitionDuration)
         {
-            Debug.Log($"播放动画：{targetAnima}，是否交互：{isInteracting}");//本质是用于标记动画是否完结，和根运动
+            Debug.Log($"播放动画：{targetAnima}，是否交互：{isInteracting}");//本质是用于标记动画是否完结
             anim.SetBool("IsInteracting", isInteracting);
             anim.CrossFade(targetAnima, normalizedTransitionDuration);
             //anim.Play(targetAnima);//直接播放动画，没有过度

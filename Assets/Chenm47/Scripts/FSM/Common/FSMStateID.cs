@@ -17,6 +17,11 @@ namespace AI.FSM
         JumpStart,
         JumpInAir,
         Fall,
-        FallEnd
+        FallEnd,
+        Jump,
+        BackStab,
+        ForwardStab,
+        Died,
+        Damaged
     }
 }

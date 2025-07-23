@@ -73,17 +73,39 @@ namespace AI.FSM.Framework
             foreach (var state in configurationReader.StatesMap)
             {
                 string currentStateName = state.Key;
+                //如果是末尾的AnyState，则对所有状态都添加
+                if (currentStateName == "AnyState")
+                {
+                    foreach (var existedstate in states)
+                    {
+                        foreach (var transitionMap in state.Value)
+                        {//条件状态映射
+                         // transitionMap.Key条件
+                         //transitionMap.Value对应状态
+                            FSMTriggerID fSMTriggerID = (FSMTriggerID)Enum.Parse(typeof(FSMTriggerID), transitionMap.Key);
+                            FSMStateID fSMStateID = (FSMStateID)Enum.Parse(typeof(FSMStateID), transitionMap.Value);
+                            existedstate.AddMap(fSMTriggerID, fSMStateID);
+                        }
+                    }
+                    return;
+                }
+
                 Type t = Type.GetType("AI.FSM." + currentStateName + "State");
                 FSMState currentState = Activator.CreateInstance(t) as FSMState;
                 states.Add(currentState);
-                foreach (var item in state.Value)
+
+                //如果是转移表是空的，跳过添加转移
+                if (state.Value.Count == 0)
+                    continue;
+                foreach (var transitionMap in state.Value)
                 {//条件状态映射
-                    // item.Key条件
-                    //item.Value对应状态
-                    FSMTriggerID fSMTriggerID = (FSMTriggerID)Enum.Parse(typeof(FSMTriggerID), item.Key);
-                    FSMStateID fSMStateID = (FSMStateID)Enum.Parse(typeof(FSMStateID), item.Value);
+                    // transitionMap.Key条件
+                    //transitionMap.Value对应状态
+                    FSMTriggerID fSMTriggerID = (FSMTriggerID)Enum.Parse(typeof(FSMTriggerID), transitionMap.Key);
+                    FSMStateID fSMStateID = (FSMStateID)Enum.Parse(typeof(FSMStateID), transitionMap.Value);
                     currentState.AddMap(fSMTriggerID, fSMStateID);
                 }
+
             }
         }
 
