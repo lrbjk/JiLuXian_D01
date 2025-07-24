@@ -17,6 +17,7 @@ MonoBehaviour:
   ComboMovtionID: 3
   AnimationName: Sword_Heavy_Attack02
   MovtionAtkValue: 0
+  PreMovtionRotateSpeed: 2
   MovtionEvents:
   - EventType: 0
     AnimationFrame: 14
@@ -26,3 +27,6 @@ MonoBehaviour:
     AnimationFrame: 30
   - EventType: 3
     AnimationFrame: 31
+  FrontDamagedMovtionID: 0
+  BackDamagedMovtionID: 0
+  DeadMovtionID: 0

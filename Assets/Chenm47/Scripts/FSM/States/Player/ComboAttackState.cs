@@ -22,14 +22,14 @@ namespace AI.FSM
             Debug.Log(Time.frameCount + "进入ComboAttackState状态");
             base.EnterState(fSMBase);
             //后摇结束
-            playerFSMBase.characterInfo.IsInMovtionRecoveryFlag = false;
+            playerFSM.characterInfo.IsInMovtionRecoveryFlag = false;
         }
         protected override MovtionInfo GetMovtionInfo(bool isLeft, WeaponInfo currentWeponInfo)
         {
             //直接获取玩家信息中的ComboSkillID
-            PlayerInfo playerInfo = playerFSMBase.characterInfo as PlayerInfo;
+            PlayerInfo playerInfo = playerFSM.characterInfo as PlayerInfo;
             int movtionID = playerInfo.ComboMovtionlID;
-            var info = playerFSMBase.movtionManager.GetMovtionInfo(movtionID);
+            var info = playerFSM.movtionManager.GetMovtionInfo(movtionID);
             return info;
         }
 

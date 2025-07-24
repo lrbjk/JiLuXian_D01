@@ -22,8 +22,8 @@ namespace AI.FSM
         {
             base.EnterState(fSMBase);
             PlayerInfo playerInfo = fSMBase.characterInfo as PlayerInfo;
-            fSMBase.animator.Play("Fall");
             playerInfo.FallTimer = 0f;
+            playerInfo.IsOnTop = false;
         }
 
         public override void ActionState(FSMBase fSMBase)
@@ -36,5 +36,6 @@ namespace AI.FSM
 
             fSMBase.animator.SetFloat("Vy", playerFSMBase.playerAction.GetVelocity().y);
         }
+
     }
 }

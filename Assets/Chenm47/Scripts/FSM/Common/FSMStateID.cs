@@ -14,14 +14,13 @@ namespace AI.FSM
         Attack,
         ComboAttack,
         MovtionState,
-        JumpStart,
-        JumpInAir,
         Fall,
         FallEnd,
         Jump,
         BackStab,
         ForwardStab,
         Died,
-        Damaged
+        Damaged,
+        DirectFall
     }
 }

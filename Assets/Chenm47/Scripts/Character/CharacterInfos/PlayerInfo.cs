@@ -45,5 +45,6 @@ namespace ns.Character.Player
         public bool IsDownStair = false;
         public AttackInputType LastAttackType = AttackInputType.None;
         public float FallTimer;
+        public bool IsOnTop=false;
     }
 }

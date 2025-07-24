@@ -44,6 +44,7 @@ namespace AI.FSM
         {
             PlayerInfo playerInfo = playerFSM.characterInfo as PlayerInfo;
 
+            //移动处理
             float moveX = playerFSM.playerInput.HorizontalMove;
             float moveY = playerFSM.playerInput.VerticalMove;
             movement = Mathf.Clamp01(Mathf.Abs(moveX) + Mathf.Abs(moveY));
@@ -70,7 +71,7 @@ namespace AI.FSM
                    playerInfo.LockedTargetTF.position - playerInfo.LockedTF.position;
                 lookDir.Set(lookDir.x, 0, lookDir.z);
                 //Debug.DrawRay(playerFSM.transform.position, lookDir.normalized * 3f, Color.red);
-                playerFSM.playerAction.LookAndMove(lookDir, moveDir, moveSpeed);//只在xz平面旋转即可
+                playerFSM.playerAction.LookDir(lookDir);//只在xz平面旋转即可
             }
         }
 

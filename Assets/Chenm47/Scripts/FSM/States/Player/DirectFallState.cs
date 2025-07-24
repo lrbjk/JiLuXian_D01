@@ -1,25 +1,21 @@
 using AI.FSM.Framework;
-using UnityEngine;
 
-/*
-
-*/
 namespace AI.FSM
 {
     /// <summary>
     /// 描述：
     /// </summary>
-    public class JumpInAirState : FSMState
+    public class DirectFallState : FallState
     {
         public override void Init()
         {
-            StateID = FSMStateID.JumpInAir;
+            StateID = FSMStateID.DirectFall;
         }
 
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
-            fSMBase.animator.Play("JumpInAir");
+            fSMBase.animator.CrossFade("DirectFall", 0.1f);
         }
 
     }

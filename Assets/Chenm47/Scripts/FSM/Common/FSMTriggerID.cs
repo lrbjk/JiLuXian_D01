@@ -22,6 +22,8 @@ namespace AI.FSM
         ForwardStab,
         RollBreak,
         IsDamaged,
-        IsDied
+        IsDied,
+        IsOnJumpTop,
+        DntOnGround
     }
 }
