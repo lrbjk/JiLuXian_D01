@@ -52,6 +52,11 @@ namespace ns.Character.Player
             playerMotor3D.LookAndMove(lookDir, moveDir, moveSpeed);
         }
 
+        public void LookDir(Vector3 dir,float rotateSpeed=10f)
+        {
+            playerMotor3D.LookAtVector(dir,rotateSpeed);
+        }
+
         /// <summary>
         /// 保持刚体y速度
         /// </summary>
@@ -103,13 +108,22 @@ namespace ns.Character.Player
 
         public bool GroundCastHit(out RaycastHit hitInfo)
         {
+            ////射线检测
+            //bool isHit = Physics.Raycast
+            //     (groundRayPoint.position, Vector3.down, out var res, playerInfo.GroundDistance, playerInfo.GroundLayer);
             //射线检测
-            bool isHit = Physics.Raycast
-                 (groundRayPoint.position, Vector3.down, out var res, playerInfo.GroundDistance, playerInfo.GroundLayer);
-            hitInfo = res;
+            bool isHit = Physics.SphereCast(groundRayPoint.position, 0.05f, Vector3.down, out hitInfo,
+                playerInfo.GroundDistance, playerInfo.GroundLayer);
             //Debug.DrawRay(groundRayPoint.position, Vector3.down * playerInfo.GroundDistance, Color.red);
+
             return isHit;
         }
+
+        //private void OnDrawGizmos()
+        //{
+        //    groundRayPoint = transform.Find("GroundRayPoint");
+        //    Gizmos.DrawSphere(groundRayPoint.position + Vector3.down * 0.15f, 0.05f);
+        //}
 
         public bool IsOnGround()
         {
@@ -212,7 +226,7 @@ namespace ns.Character.Player
         {
             //无敌?
             //伤害计算
-            playerInfo.HP -= atkValue;
+            playerInfo.HP -= atkValue;//
             if (playerInfo.HP < 0)            //受击、死亡？
             {
                 playerInfo.HP = 0;

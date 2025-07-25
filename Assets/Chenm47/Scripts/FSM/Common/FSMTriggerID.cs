@@ -23,6 +23,8 @@ namespace AI.FSM
         RollBreak,
         IsDamaged,
         IsDied,
+        IsOnJumpTop,
+        DntOnGround,
         
         // Ghoul  triggers
         TargetInSight,

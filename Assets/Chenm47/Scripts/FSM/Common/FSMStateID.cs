@@ -14,8 +14,6 @@ namespace AI.FSM
         Attack,
         ComboAttack,
         MovtionState,
-        JumpStart,
-        JumpInAir,
         Fall,
         FallEnd,
         Jump,
@@ -23,6 +21,7 @@ namespace AI.FSM
         ForwardStab,
         Died,
         Damaged,
+        DirectFall,
         // Ghoul specific states
         GhoulIdle,
         GhoulWalking,

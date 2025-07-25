@@ -39,13 +39,17 @@ namespace ns.Movtion
         public string AnimationName;
         [Tooltip("动作伤害数值")]
         public int MovtionAtkValue;
+        [Tooltip("前摇期间转向速度")]
+        public float PreMovtionRotateSpeed;
 
         //用动作事件来描述发生帧
         [Tooltip("动作事件列表")]
         public MovtionEventParams[] MovtionEvents;
 
-        [Tooltip("命中目标受击动作")]
-        public int DamagedMovtionID;
+        [Tooltip("正面命中目标受击动作")]
+        public int FrontDamagedMovtionID;
+        [Tooltip("背面命中目标受击动作")]
+        public int BackDamagedMovtionID;
         [Tooltip("命中目标死亡动作")]
         public int DeadMovtionID;
     }

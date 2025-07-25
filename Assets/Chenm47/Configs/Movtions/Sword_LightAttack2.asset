@@ -17,6 +17,7 @@ MonoBehaviour:
   ComboMovtionID: 7
   AnimationName: Sword_Light_Attack02
   MovtionAtkValue: 0
+  PreMovtionRotateSpeed: 1
   MovtionEvents:
   - EventType: 0
     AnimationFrame: 11
@@ -26,3 +27,6 @@ MonoBehaviour:
     AnimationFrame: 17
   - EventType: 3
     AnimationFrame: 18
+  FrontDamagedMovtionID: 0
+  BackDamagedMovtionID: 0
+  DeadMovtionID: 0

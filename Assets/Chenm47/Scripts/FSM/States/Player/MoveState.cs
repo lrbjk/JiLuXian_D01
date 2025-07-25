@@ -44,6 +44,7 @@ namespace AI.FSM
         {
             PlayerInfo playerInfo = playerFSM.characterInfo as PlayerInfo;
 
+            //移动处理
             float moveX = playerFSM.playerInput.HorizontalMove;
             float moveY = playerFSM.playerInput.VerticalMove;
             movement = Mathf.Clamp01(Mathf.Abs(moveX) + Mathf.Abs(moveY));

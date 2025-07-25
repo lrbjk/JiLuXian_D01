@@ -62,9 +62,10 @@ namespace ns.Character
 
 
         //为动作状态机提供的成员
+        [Tooltip("是否处于前摇阶段")]
+        public bool IsInPreMovtionFlag = false;
         [Tooltip("是否处于后摇阶段")]
-        /// <summary>是否处于后摇阶段</summary>
-        public bool IsInMovtionRecoveryFlag;
+        public bool IsInMovtionRecoveryFlag = false;
         public int CurrentMovtionID = 0;
         public int ComboMovtionlID = 0;
         public bool IsDamaged = false;

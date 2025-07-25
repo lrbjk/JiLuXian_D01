@@ -58,7 +58,9 @@ namespace ns.Character.Player
         public bool HeavyAttackR { get; protected set; }
         public bool SkillAttackR { get; protected set; }
 
+        /// <summary>跳跃输入</summary>
         public bool Jump { get; protected set; }
+
 
         public bool LockView { get; protected set; }
         /// <summary>
@@ -87,10 +89,10 @@ namespace ns.Character.Player
             VerticalCamera = VerticalCameraAixInput();
 
             RollInput();
+            Jump = JumpInput();
 
             AttackInput();
 
-            Jump = JumpInput();
 
             LockViewInput();
             SwitchLockedTargetInput();
@@ -161,15 +163,15 @@ namespace ns.Character.Player
         }
         protected virtual bool RollInputDown()
         {
-            return Input.GetKeyDown(KeyCode.LeftShift);
+            return Input.GetKeyDown(KeyCode.Space);
         }
         protected virtual bool RollInputHold()
         {
-            return Input.GetKey(KeyCode.LeftShift);
+            return Input.GetKey(KeyCode.Space);
         }
         protected virtual bool RollInputUp()
         {
-            return Input.GetKeyUp(KeyCode.LeftShift);
+            return Input.GetKeyUp(KeyCode.Space);
         }
 
         /// <summary>
@@ -262,13 +264,25 @@ namespace ns.Character.Player
             return Input.GetKeyDown(KeyCode.Comma);
         }
 
+        private float rollUpTimer = 0f;
+        public float JumpDelta = 0.1f;
         /// <summary>
         /// 跳跃输入
         /// </summary>
         /// <returns></returns>
         protected virtual bool JumpInput()
         {
-            return Input.GetKeyDown(KeyCode.Space);
+            //长按疾跑后并短时间内再次按下
+            if (RollPressedTimer >= RollPressedTime && RollUp)
+                //记录放开时刻
+                rollUpTimer = Time.time;
+            if (RollDown)
+            {
+                float delta = Time.time - rollUpTimer;
+                if (delta < JumpDelta)
+                    return true;
+            }
+            return false;
         }
 
         /// <summary>

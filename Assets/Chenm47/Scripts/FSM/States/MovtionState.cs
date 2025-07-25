@@ -86,6 +86,9 @@ namespace AI.FSM
                 fSMBase.animationEventBehaviour.RegisterEvent(eventType, existingHandler);
             }
 
+            //处理前后摇等标记
+            fSMBase.characterInfo.IsInPreMovtionFlag = true;
+
             //播放相应动画
             var animationName = movtionInfo.AnimationName;
             Debug.Log("动作名称：" + movtionInfo.MovtionName + ";播放动画状态：" + animationName);
@@ -111,7 +114,10 @@ namespace AI.FSM
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected virtual void OnPreMovtionEnd(object sender, Common.AnimationEventArgs e) { }
+        protected virtual void OnPreMovtionEnd(object sender, Common.AnimationEventArgs e)
+        {
+            fSMBase.characterInfo.IsInPreMovtionFlag = false;
+        }
         /// <summary>
         /// 动作生效开始
         /// </summary>
@@ -125,7 +131,7 @@ namespace AI.FSM
         /// <param name="e"></param>
         protected virtual void OnMovtionEnd(object sender, Common.AnimationEventArgs e) { }
         /// <summary>
-        /// 前摇开始
+        /// 后摇开始
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -134,5 +140,9 @@ namespace AI.FSM
             //后摇开始
             fSMBase.characterInfo.IsInMovtionRecoveryFlag = true;
         }
+
+
+
+
     }
 }

@@ -8,7 +8,7 @@ namespace ns.Character.Player
     public class PlayerMotor3D : MonoBehaviour
     {
         [SerializeField]
-        private float RotateSpeed = 10f; // 转向速度
+        private float RotateSpeed = 10f; // 移动转向速度
 
         private Rigidbody rb;
 
@@ -17,14 +17,14 @@ namespace ns.Character.Player
             rb = GetComponent<Rigidbody>();
         }
 
-        private void LookAtVector(Vector3 dir)
+        public void LookAtVector(Vector3 dir, float rotateSpeed = 10f)
         {
             if (dir == Vector3.zero) return;
             //转向
             Quaternion tr = Quaternion.LookRotation(dir);
             if (Quaternion.Angle(transform.rotation, tr) < 0.01f) return; //如果角度差小于0.01度则不转向
             //transform.rotation = Quaternion.Slerp(transform.rotation, tr, RotateSpeed * Time.deltaTime);
-            rb.MoveRotation(Quaternion.Slerp(transform.rotation, tr, RotateSpeed * Time.fixedDeltaTime));
+            rb.MoveRotation(Quaternion.Slerp(transform.rotation, tr, rotateSpeed * Time.fixedDeltaTime));
         }
 
         public void Move(Vector3 dir, float MoveSpeed)

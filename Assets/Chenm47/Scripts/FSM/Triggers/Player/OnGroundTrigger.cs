@@ -1,4 +1,5 @@
 using AI.FSM.Framework;
+using UnityEngine;
 
 namespace AI.FSM
 {
@@ -10,6 +11,7 @@ namespace AI.FSM
         public override bool HandleTrigger(FSMBase fSMBase)
         {
             PlayerFSMBase playerFSMBase = fSMBase as PlayerFSMBase;
+            //Debug.Log("isOnground" + playerFSMBase.playerAction.IsOnGround());
             return playerFSMBase.playerAction.IsOnGround();//在地面
         }
 

@@ -6,6 +6,7 @@ BackStab>BackStab
 ForwardStab>ForwardStab
 AttackInput>Attack
 JumpInput>Jump
+DntOnGround>DirectFall
 [Roll]
 InteractingDown>Default
 [BackStep]
@@ -18,7 +19,7 @@ BackStab>BackStab
 ForwardStab>ForwardStab
 AttackInput>Attack
 JumpInput>Jump
-VyNegatived>Fall
+DntOnGround>DirectFall
 [Attack]
 ComboAtk>ComboAttack
 RollBreak>Roll
@@ -28,8 +29,11 @@ ComboAtk>ComboAttack
 RollBreak>Roll
 ComboAtkDown>Default
 [Jump]
-VyNegatived>Fall
+IsOnJumpTop>Fall
 [Fall]
+ToFallEndTimerAndOnGround>FallEnd
+OnGround>Default
+[DirectFall]
 ToFallEndTimerAndOnGround>FallEnd
 OnGround>Default
 [FallEnd]
