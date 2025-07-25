@@ -5,15 +5,15 @@ using UnityEngine;
 namespace EnemyAIBase
 {
     /// <summary>
-    /// Ghoul警戒目标 - 当AIPerception检测到可疑活动时的警戒行为
+    /// Ghoul警戒目标 - 当AIPerception检测到可疑活动时警戒行为
     /// </summary>
     public class Goal_Ghoul_Alert : AIGoal
     {
         protected new Ghoul owner;
         private AIPerception perception;
         private float alertStartTime;
-        private float alertDuration = 5f; // 警戒持续时间
-        private float lookAroundInterval = 1f; // 环顾间隔
+        private float alertDuration = 5f;
+        private float lookAroundInterval = 1f;
         private float lastLookTime;
         private Vector3 lastKnownPlayerPosition;
         private bool hasLastKnownPosition = false;
@@ -50,7 +50,6 @@ namespace EnemyAIBase
 
         public override GoalStatus Process()
         {
-            // 检查是否完全检测到玩家
             if (perception != null && perception.IsPlayerFullyDetected())
             {
                 status = GoalStatus.Completed;
@@ -58,7 +57,6 @@ namespace EnemyAIBase
                 return status;
             }
             
-            // 检查警戒时间是否结束
             if (Time.time - alertStartTime > alertDuration)
             {
                 // 检查当前怀疑度
@@ -66,18 +64,14 @@ namespace EnemyAIBase
                 if (suspicionLevel < 0.2f)
                 {
                     status = GoalStatus.Completed;
-                    Debug.Log("Goal_Ghoul_Alert: 警戒时间结束，怀疑度降低");
                     return status;
                 }
                 else
                 {
-                    // 怀疑度仍然较高，延长警戒时间
                     alertStartTime = Time.time;
-                    Debug.Log("Goal_Ghoul_Alert: 怀疑度仍高，延长警戒时间");
                 }
             }
             
-            // 执行警戒行为
             PerformAlertBehavior();
             
             return GoalStatus.Active;
@@ -101,14 +95,9 @@ namespace EnemyAIBase
 
         private void LookAround()
         {
-            // 随机选择一个方向进行观察
             float randomAngle = Random.Range(-180f, 180f);
             Vector3 lookDirection = Quaternion.Euler(0, randomAngle, 0) * owner.transform.forward;
-            
-            // 缓慢转向该方向
             RotateTowards(lookDirection);
-            
-            Debug.Log($"Goal_Ghoul_Alert: 环顾四周，角度 {randomAngle:F1}");
         }
 
         private void LookTowardsLastKnownPosition()
@@ -119,7 +108,6 @@ namespace EnemyAIBase
             if (directionToLastKnown != Vector3.zero)
             {
                 RotateTowards(directionToLastKnown);
-                // Debug.Log("Goal_Ghoul_Alert: 朝向最后已知玩家位置");
             }
         }
 

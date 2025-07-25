@@ -43,7 +43,7 @@ namespace EnemyAIBase
 
         public override GoalStatus Process()
         {
-            // 检查AIPerception是否检测到玩家
+            
             if (perception != null && perception.IsPlayerFullyDetected())
             {
                 status = GoalStatus.Completed;
@@ -51,7 +51,7 @@ namespace EnemyAIBase
                 return status;
             }
 
-            // 检查传统目标检测（备用）
+           
             if (owner.GetTarget() != null)
             {
                 status = GoalStatus.Completed;
@@ -118,7 +118,7 @@ namespace EnemyAIBase
             {
                
 
-                // 怀疑度下降时，恢复正常巡逻
+               
                 patrolSpeedMultiplier = 1f;
                 patrolRadius = 5f; // 恢复默认半径
             }
@@ -145,7 +145,6 @@ namespace EnemyAIBase
 
         private void SetRandomPatrolTarget()
         {
-            // 在当前位置周围随机选择一个巡逻点
             Vector3 randomDirection = Random.insideUnitSphere * patrolRadius;
             randomDirection.y = 0; // 保持在同一水平面
             patrolTarget = owner.transform.position + randomDirection;
@@ -158,7 +157,7 @@ namespace EnemyAIBase
         {
             if (hasPatrolTarget)
             {
-                // 创建移动SubGoal
+              
                 currentMoveGoal = new Goal_MoveToSomeWhere(owner, patrolTarget, 1f, 15f);
                 AddSubGoal(currentMoveGoal);
                 // Debug.Log($"Goal_Ghoul_Patrol: 开始移动到巡逻点 {patrolTarget}");

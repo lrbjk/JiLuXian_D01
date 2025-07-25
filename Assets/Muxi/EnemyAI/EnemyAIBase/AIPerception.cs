@@ -166,6 +166,19 @@ namespace EnemyAIBase
             return player != null && playerSuspicion >= maxSuspicion;
         }
 
+        // 设置怀疑度（用于受击等特殊情况）
+        public void SetPlayerSuspicionLevel(float normalizedLevel)
+        {
+            playerSuspicion = Mathf.Clamp(normalizedLevel * maxSuspicion, 0f, maxSuspicion);
+            Debug.Log($"AIPerception: 设置怀疑度为 {playerSuspicion}/{maxSuspicion} ({normalizedLevel:F2})");
+        }
+
+        // 增加怀疑度
+        public void AddSuspicion(float amount)
+        {
+            playerSuspicion = Mathf.Clamp(playerSuspicion + amount, 0f, maxSuspicion);
+        }
+
         // 可视化调试
         private void OnDrawGizmosSelected()
         {

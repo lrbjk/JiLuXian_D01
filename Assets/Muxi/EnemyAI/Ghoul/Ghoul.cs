@@ -9,7 +9,6 @@ namespace EnemyAIBase
     [RequireComponent(typeof(AIPerception))]
     public class Ghoul : BaseEnemy
     {
-        //自己的独属字段
         private GhoulFSMBase fsmBase;
         private EnemyInfo enemyInfo;
 
@@ -52,15 +51,13 @@ namespace EnemyAIBase
         private void OnPlayerDetected(Transform detectedPlayer)
         {
             target = detectedPlayer;
-            // Debug.Log($"Ghoul: 开始检测到玩家 {detectedPlayer.name}，开始积累怀疑度");
         }
 
         private void OnPlayerLost(Transform lostPlayer)
         {
             target = null;
             Debug.Log($"Ghoul: 失去玩家 {lostPlayer.name}");
-
-            // 切换回和平状态
+            
             var currentGoal = brain.GetGoalManager().CurrentGoal;
             if (currentGoal is Goal_Ghoul_Battle)
             {
@@ -75,11 +72,8 @@ namespace EnemyAIBase
 
         private void OnSuspicionChanged(float suspicionLevel)
         {
-            // 可以根据怀疑度调整行为
-            // 例如：怀疑度高时增加警戒状态
             if (suspicionLevel > 0.5f && suspicionLevel < 1f)
             {
-                // 中等怀疑度：可以添加警戒行为
                 Debug.Log($"Ghoul: 怀疑度上升 {suspicionLevel:F2}");
             }
         }
@@ -88,7 +82,10 @@ namespace EnemyAIBase
         {
             // 配置高级决策器
             RegisterHighLevelDecisions();
-            
+
+            // 注册中断处理
+            RegisterInterrupts();
+
             var initialGoal = CreateGoalFromDecision("peaceful");
             if (initialGoal != null)
             {
@@ -98,11 +95,26 @@ namespace EnemyAIBase
             Debug.Log("Ghoul AI初始化完成");
         }
 
+        private void RegisterInterrupts()
+        {
+            var interruptHandler = brain.GetInterruptHandler();
+            if (interruptHandler != null)
+            {
+                // 注册受击中断检查
+                interruptHandler.RegisterInterrupt(InterruptType.Damage, () => {
+                    var enemyInfo = GetComponent<EnemyInfo>();
+                    return enemyInfo != null && enemyInfo.IsDamaged;
+                });
+
+                Debug.Log("Ghoul: 中断处理器注册完成");
+            }
+        }
+
         private void RegisterHighLevelDecisions()
         {
             var decisionMaker = brain.GetDecisionMaker();
 
-            // 注册和平状态决策
+            // idle状态决策
             decisionMaker.RegisterAction("peaceful", 50f, (enemy) => {
                 // 如果没有完全检测到玩家，倾向于和平状态
                 if (perception != null && !perception.IsPlayerFullyDetected())
@@ -112,9 +124,8 @@ namespace EnemyAIBase
                 return 0f;
             });
 
-            // 注册战斗状态决策
+            // 战斗状态决策
             decisionMaker.RegisterAction("battle", 100f, (enemy) => {
-                // 如果完全检测到玩家，强烈倾向于战斗状态
                 if (perception != null && perception.IsPlayerFullyDetected())
                 {
                     return 2f;
@@ -128,8 +139,6 @@ namespace EnemyAIBase
         protected override void Update()
         {
             base.Update();
-
-            // 高级决策：在和平状态和战斗状态之间切换
             MakeHighLevelDecision();
         }
 

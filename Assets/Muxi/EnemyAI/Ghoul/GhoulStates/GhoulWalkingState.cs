@@ -114,17 +114,17 @@ namespace AI.FSM
 
         private void HandlePatrolMovement()
         {
-            // 简单的巡逻逻辑：在当前位置周围随机移动
+            // 在当前位置周围随机移动
             if (navAgent == null || !navAgent.isActiveAndEnabled || !navAgent.isOnNavMesh) return;
 
-            // 如果已经到达目标或没有目标，选择新的巡逻点
+
             if (!navAgent.hasPath || navAgent.remainingDistance < 1f)
             {
-                Vector3 randomDirection = Random.insideUnitSphere * 5f; // 5米半径
+                Vector3 randomDirection = Random.insideUnitSphere * 5f; 
                 randomDirection.y = 0; // 保持在同一水平面
                 Vector3 newTarget = ghoul.transform.position + randomDirection;
 
-                // 确保目标在NavMesh上
+              
                 if (NavMesh.SamplePosition(newTarget, out NavMeshHit hit, 5f, NavMesh.AllAreas))
                 {
                     navAgent.SetDestination(hit.position);
@@ -132,7 +132,7 @@ namespace AI.FSM
                 }
             }
 
-            // 手动控制旋转朝向路径方向
+            // 控制旋转朝向路径方向
             RotateTowardsTarget();
         }
 
@@ -140,14 +140,13 @@ namespace AI.FSM
         {
             if (navAgent == null || !navAgent.hasPath) return;
 
-            // 获取NavMeshAgent的期望移动方向
+            // NavMeshAgent移动方向
             Vector3 desiredVelocity = navAgent.desiredVelocity;
 
             if (desiredVelocity.magnitude > 0.1f)
             {
-                // 计算目标旋转
                 Vector3 lookDirection = desiredVelocity.normalized;
-                lookDirection.y = 0; // 保持水平旋转
+                lookDirection.y = 0; 
 
                 if (lookDirection != Vector3.zero)
                 {
@@ -166,7 +165,6 @@ namespace AI.FSM
 
         private void SyncNavMeshAgentPosition()
         {
-            // 在Root Motion模式下，需要手动同步NavMeshAgent的位置
             if (navAgent != null && navAgent.isActiveAndEnabled && navAgent.isOnNavMesh)
             {
                 navAgent.nextPosition = ghoul.transform.position;
@@ -183,8 +181,7 @@ namespace AI.FSM
 
             // 设置动画参数
             ghoulFSMBase.animator.SetFloat("Speed", normalizedSpeed);
-
-            // 如果有方向参数，设置为前进
+            
             if (HasAnimatorParameter("MoveX"))
             {
                 ghoulFSMBase.animator.SetFloat("MoveX", 0f);
@@ -193,8 +190,7 @@ namespace AI.FSM
             {
                 ghoulFSMBase.animator.SetFloat("MoveY", normalizedSpeed);
             }
-
-            // 确保Animator的applyRootMotion为true
+            
             if (ghoulFSMBase.animator.applyRootMotion != true)
             {
                 ghoulFSMBase.animator.applyRootMotion = true;

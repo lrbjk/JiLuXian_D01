@@ -36,7 +36,7 @@ namespace EnemyAIBase
 
         public override GoalStatus Process()
         {
-            // 检查是否有目标出现
+           
             if (owner.GetTarget() != null)
             {
                 status = GoalStatus.Completed;
@@ -44,7 +44,7 @@ namespace EnemyAIBase
                 return status;
             }
 
-            // 检查是否待机时间过长，需要巡逻
+            
             if (Time.time - idleStartTime > maxIdleTime)
             {
                 status = GoalStatus.Completed;

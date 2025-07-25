@@ -48,4 +48,5 @@ public class AIBrain
 
     public GoalManager GetGoalManager() => goalManager;
     public DecisionMaker GetDecisionMaker() => decisionMaker;
+    public InterruptHandler GetInterruptHandler() => interruptHandler;
 }}

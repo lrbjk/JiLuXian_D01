@@ -13,7 +13,7 @@ namespace AI.FSM
         private GhoulFSMBase ghoulFSMBase;
         private EnemyInfo enemyInfo;
         private bool reactionFinished = false;
-
+        private GhoulFSMBase fsmBase;
         public override void Init()
         {
             StateID = FSMStateID.GhoulReactionToHit;
@@ -64,13 +64,39 @@ namespace AI.FSM
         public override void ActionState(FSMBase fSMBase)
         {
             base.ActionState(fSMBase);
-            
-            UpdateAnimatorParameters();
 
-            // 在击状态中Ghoul的特殊行为
-           
+            UpdateAnimatorParameters();
             
+            HandleHitReaction(fSMBase);
         }
+
+        private void HandleHitReaction(FSMBase fSMBase)
+        {
+            // 停止移动
+            var ghoul = fSMBase.GetComponent<Ghoul>();
+            if (ghoul != null)
+            {
+                var navAgent = ghoul.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                // 停止移动
+                if (navAgent != null)
+                {
+                    navAgent.ResetPath();
+                }
+                fsmBase = ghoul.GetComponent<GhoulFSMBase>();
+                // 重置Animator参数
+                if (fsmBase?.animator != null)
+                {
+                    fsmBase.animator.SetFloat("MoveX", 0f);
+                    fsmBase.animator.SetFloat("MoveY", 0f);
+                    fsmBase.animator.SetFloat("Speed", 0f);
+                }
+                
+            }
+
+            // 受击时设置玩家为目标 待实现
+           
+        }
+        
 
         private void UpdateAnimatorParameters()
         {

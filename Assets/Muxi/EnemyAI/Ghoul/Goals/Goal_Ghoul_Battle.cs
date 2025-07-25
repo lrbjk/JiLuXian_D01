@@ -21,11 +21,10 @@ using UnityEngine;
         public override void Activate()
         {
             base.Activate();
-            // 初始化决策器
+            
             this.decisionMaker = new DecisionMaker(owner);
             owner.TransitionToCombat();
-
-            // 注册战斗中的可用行动
+            
             RegisterBattleActions();
 
             Debug.Log("Goal_Ghoul_Battle: 激活战斗目标");
@@ -33,13 +32,13 @@ using UnityEngine;
 
         private void RegisterBattleActions()
         {
-            // 注册追击动作
+            // 注册动作
             decisionMaker.RegisterAction("chase", 40f, (enemy) => {
                 float distance = enemy.GetDistanceToTarget();
                 Transform target = enemy.GetTarget();
                 if (target == null) return 0f;
 
-                // 检查攻击冷却时间
+               
                 float timeSinceLastAttack = Time.time - TargetInAttackRangeTrigger.GetLastAttackTime();
                 bool canAttack = timeSinceLastAttack >= 4f;
 
@@ -74,8 +73,7 @@ using UnityEngine;
 
                 return 0f;
             });
-
-            // 注册待机动作（作为后备选择）
+            
             decisionMaker.RegisterAction("idle", 10f, (enemy) => {
                 Transform target = enemy.GetTarget();
                 if (target == null) return 1f; // 没有目标时待机
@@ -95,7 +93,7 @@ using UnityEngine;
                 lastDecisionTime = Time.time;
             }
 
-            // 重要：调用基类的Process方法来处理SubGoals
+          
             base.Process();
 
             return GoalStatus.Active;
@@ -111,17 +109,11 @@ using UnityEngine;
             if (!string.IsNullOrEmpty(selectedAction))
             {
                 Debug.Log($"Goal_Ghoul_Battle: 选择动作 {selectedAction}");
-
-                // 根据选择的动作创建对应的SubGoal
                 IAIGoal subGoal = CreateSubGoalFromAction(selectedAction);
                 if (subGoal != null)
                 {
                     AddSubGoal(subGoal);
                     Debug.Log($"Goal_Ghoul_Battle: 添加SubGoal {subGoal.GetType().Name}");
-                }
-                else
-                {
-                    Debug.LogError($"Goal_Ghoul_Battle: 无法创建SubGoal for action {selectedAction}");
                 }
             }
         }
@@ -140,7 +132,6 @@ using UnityEngine;
                     return new Goal_Ghoul_Idle(owner);
 
                 default:
-                    Debug.LogWarning($"Goal_Ghoul_Battle: 未知动作 {action}");
                     return null;
             }
         }
@@ -149,5 +140,20 @@ using UnityEngine;
         {
             base.Terminate();
             Debug.Log("Goal_Ghoul_Battle: 终止战斗目标");
+        }
+
+        public override bool HandleInterrupt(InterruptType type)
+        {
+            if (type == InterruptType.Damage)
+            {
+                // 受到伤害时，战斗状态不中断，但会传递给SubGoals
+                var currentSubGoal = GetCurrentSubGoal();
+                if (currentSubGoal != null)
+                {
+                    return currentSubGoal.HandleInterrupt(type);
+                }
+                return false;
+            }
+            return false;
         }
     }

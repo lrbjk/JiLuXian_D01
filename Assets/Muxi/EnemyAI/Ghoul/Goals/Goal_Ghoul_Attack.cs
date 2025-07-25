@@ -64,7 +64,6 @@ namespace EnemyAIBase
                 return status;
             }
             
-            // 检查目标是否还存在
             target = owner.GetTarget();
             if (target == null)
             {
@@ -73,7 +72,7 @@ namespace EnemyAIBase
                 return status;
             }
             
-            // 检查攻击是否完成
+            // 攻击是否完成
             if (fsmBase != null && fsmBase.CurrentState is GhoulAttackState attackState)
             {
                 if (attackState.IsAttackFinished())

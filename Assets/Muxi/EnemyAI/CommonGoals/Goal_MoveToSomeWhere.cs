@@ -150,8 +150,7 @@ namespace EnemyAIBase
         private void UpdateAnimatorParameters()
         {
             if (fsmBase?.animator == null) return;
-            
-            // 计算移动速度
+  
             Vector3 velocity = navAgent.desiredVelocity;
             float speed = velocity.magnitude;
             

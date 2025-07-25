@@ -56,11 +56,9 @@ namespace EnemyAIBase
             // 检查目标是否还存在
             if (target == null)
             {
-                // 检查是否超过失去目标的时间限制
                 if (Time.time - lastSeenTime > loseTargetTime)
                 {
                     status = GoalStatus.Failed;
-                    Debug.Log("Goal_Ghoul_Chase: 失去目标太久，追击失败");
                     return status;
                 }
             }
@@ -111,13 +109,9 @@ namespace EnemyAIBase
                 // 创建移动SubGoal，追击时到达距离稍微大一些
                 currentMoveGoal = new Goal_MoveToSomeWhere(owner, target.position, owner.attackRange * 0.8f, 10f);
                 AddSubGoal(currentMoveGoal);
-                Debug.Log($"Goal_Ghoul_Chase: 开始追击移动到 {target.position}，攻击范围: {owner.attackRange}");
                 Debug.Log($"Goal_Ghoul_Chase: 创建Goal_MoveToSomeWhere，到达距离: {owner.attackRange * 0.8f}");
             }
-            else
-            {
-                Debug.LogError("Goal_Ghoul_Chase: StartChaseMovement - target为null！");
-            }
+          
         }
 
         private void UpdateChaseTarget()

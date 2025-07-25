@@ -69,7 +69,7 @@ namespace EnemyAIBase
                 return suspicionLevel > 0.2f ? baseWeight * 1.5f : baseWeight;
             });
 
-            // 注册警戒动作（新增）
+          
             decisionMaker.RegisterAction("alert", 25f, (enemy) => {
                 // 当有中等怀疑度时，进行警戒
                 float suspicionLevel = perception?.GetPlayerSuspicionLevel() ?? 0f;
@@ -84,17 +84,15 @@ namespace EnemyAIBase
         public override GoalStatus Process()
         {
             // 只有当AIPerception完全检测到玩家时才切换到战斗状态
-            // 这确保了怀疑度系统的正常工作
+   
             if (perception != null && perception.IsPlayerFullyDetected())
             {
                 status = GoalStatus.Completed;
                 Debug.Log("Goal_Ghoul_Peaceful: AIPerception完全检测到玩家（怀疑度满），切换到战斗状态");
                 return status;
             }
-
-            // 移除传统目标检测，完全依赖AIPerception的怀疑度系统
-
-            // 监控感知状态变化
+            
+  
             MonitorPerceptionChanges();
 
             // 显示怀疑度状态（
@@ -106,7 +104,7 @@ namespace EnemyAIBase
                 // Debug.Log($"[Goal_Ghoul_Peaceful] 怀疑度: {suspicionLevel:F2}, 检测到玩家: {hasPlayer}, 完全检测: {fullyDetected}");
             }
 
-            // 定期做决策
+           
             if (Time.time - lastDecisionTime > decisionInterval)
             {
                 if (subGoals.Count == 0)
@@ -127,39 +125,35 @@ namespace EnemyAIBase
             bool currentlyDetected = perception.HasDetectedPlayer;
             float suspicionLevel = perception.GetPlayerSuspicionLevel();
 
-            // 检测状态变化
+           
             if (currentlyDetected != wasPlayerDetected)
             {
                 wasPlayerDetected = currentlyDetected;
 
                 if (currentlyDetected)
                 {
-                    // Debug.Log("Goal_Ghoul_Peaceful: 开始检测到玩家，提高警戒");
-                    // 可以立即触发新的决策
+                    
                     lastDecisionTime = 0f;
                 }
-                else
-                {
-                    // Debug.Log("Goal_Ghoul_Peaceful: 失去sight");
-                }
+               
             }
 
-            // 根据怀疑度调整行为
+            
             if (suspicionLevel > 0.5f)
             {
-                // 高怀疑度时，缩短决策间隔
+                
                 decisionInterval = 1f;
             }
             else
             {
-                // 正常怀疑度时，恢复正常决策间隔
+               
                 decisionInterval = 2f;
             }
         }
 
         private void MakeDecision()
         {
-            // 使用决策器选择动作
+            
             string selectedAction = decisionMaker.MakeDecision();
 
             if (!string.IsNullOrEmpty(selectedAction))
@@ -201,14 +195,14 @@ namespace EnemyAIBase
         public override void Terminate()
         {
             base.Terminate();
-            Debug.Log("Goal_Ghoul_Peaceful: 终止和平目标");
+            Debug.Log("Goal_Ghoul_Peaceful: 终止idle目标");
         }
 
         public override bool HandleInterrupt(InterruptType type)
         {
             if (type == InterruptType.Damage)
             {
-                // 受到伤害时立即结束和平状态
+                // 受到伤害时立即结束idle状态
                 status = GoalStatus.Failed;
                 return true;
             }
