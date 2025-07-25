@@ -17,6 +17,12 @@ MonoBehaviour:
   ComboMovtionID: 0
   AnimationName: Zombie Attack
   MovtionAtkValue: 2
-  MovtionEvents: []
-  DamagedMovtionID: 0
+  PreMovtionRotateSpeed: 0
+  MovtionEvents:
+  - EventType: 1
+    AnimationFrame: 20
+  - EventType: 2
+    AnimationFrame: 121
+  FrontDamagedMovtionID: 0
+  BackDamagedMovtionID: 0
   DeadMovtionID: 0
