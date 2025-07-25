@@ -18,7 +18,6 @@ public class AIBrain
 
     public void Update()
     {
-        // Check for interrupts
         if (interruptHandler.CheckInterrupts())
         {
             return;
@@ -27,7 +26,6 @@ public class AIBrain
         // Process current goal
         if (goalManager.CurrentGoal == null || goalManager.CurrentGoal.Status != GoalStatus.Active)
         {
-            // Make new decision
             var decision = decisionMaker.MakeDecision();
             if (!string.IsNullOrEmpty(decision))
             {
@@ -44,13 +42,8 @@ public class AIBrain
 
     private IAIGoal CreateGoalFromDecision(string decision)
     {
-        // Factory method to create goals based on decision
-        switch (decision)
-        {
-            
-            default:
-                return null;
-        }
+        // 使用BaseEnemy的goalFactory来创建目标
+        return owner.CreateGoalFromDecision(decision);
     }
 
     public GoalManager GetGoalManager() => goalManager;

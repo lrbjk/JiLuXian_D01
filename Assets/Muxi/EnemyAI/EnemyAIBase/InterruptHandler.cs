@@ -6,8 +6,6 @@ namespace EnemyAIBase
     {
         Damage,
         Threat,
-        Opportunity,
-        Emergency
     }
 
     public class InterruptHandler

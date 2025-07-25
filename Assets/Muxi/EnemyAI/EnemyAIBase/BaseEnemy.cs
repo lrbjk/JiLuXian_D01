@@ -10,9 +10,7 @@ namespace EnemyAIBase
         public float currentHealth;
         public float attackRange = 2f;
         public float sightRange = 10f;
-
-        //TODO:整合子目标的实际执行 GAS System
-
+        
         //AI基础组件
         [Header("AI Components")] protected AIBrain brain;
         protected AIPerception perception;
@@ -64,6 +62,7 @@ namespace EnemyAIBase
 
         protected virtual void Update()
         {
+
             UpdatePerception();
             brain.Update();
         }

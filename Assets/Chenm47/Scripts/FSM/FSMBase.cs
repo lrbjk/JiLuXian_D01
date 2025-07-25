@@ -58,6 +58,13 @@ namespace AI.FSM.Framework
 
         private void Update()
         {
+            // 确保currentState不为null
+            if (currentState == null)
+            {
+                Debug.LogError($"FSMBase.Update: currentState为null！GameObject: {gameObject.name}");
+                return;
+            }
+
             currentState.Reason(this);//判断当前状态
             currentState.ActionState(this);//行动
         }
@@ -90,9 +97,24 @@ namespace AI.FSM.Framework
                     return;
                 }
 
-                Type t = Type.GetType("AI.FSM." + currentStateName + "State");
+                string typeName = "AI.FSM." + currentStateName + "State";
+                Type t = Type.GetType(typeName);
+
+                if (t == null)
+                {
+                    Debug.LogError($"FSMBase.FSMConfig: 找不到状态类型 {typeName}！GameObject: {gameObject.name}");
+                    continue;
+                }
+
                 FSMState currentState = Activator.CreateInstance(t) as FSMState;
+                if (currentState == null)
+                {
+                    Debug.LogError($"FSMBase.FSMConfig: 无法创建状态实例 {typeName}！GameObject: {gameObject.name}");
+                    continue;
+                }
+
                 states.Add(currentState);
+                // Debug.Log($"FSMBase.FSMConfig: 成功创建状态 {typeName}");
 
                 //如果是转移表是空的，跳过添加转移
                 if (state.Value.Count == 0)
@@ -121,10 +143,25 @@ namespace AI.FSM.Framework
         private void SetDefaultState()
         {
             //设置默认状态
+            if (states == null || states.Count == 0)
+            {
+                Debug.LogError($"FSMBase.SetDefaultState: states列表为空！GameObject: {gameObject.name}");
+                return;
+            }
+
             defulatState = states.Find(s => s.StateID == defaultStateID);
+            if (defulatState == null)
+            {
+                Debug.LogError($"FSMBase.SetDefaultState: 找不到默认状态 {defaultStateID}！GameObject: {gameObject.name}");
+                Debug.Log($"可用状态: {string.Join(", ", states.ConvertAll(s => s.StateID.ToString()))}");
+                return;
+            }
+
             currentState = defulatState;
             CurrentStateName = currentState.StateID.ToString();
             currentState.EnterState(this);
+
+            // Debug.Log($"FSMBase.SetDefaultState: 成功设置默认状态 {defaultStateID}");
         }
 
         public void SwitchState(FSMStateID stateId)
@@ -133,7 +170,7 @@ namespace AI.FSM.Framework
                 stateId == FSMStateID.Default ?
                 defulatState :
                 states.Find(s => s.StateID == stateId);
-            print(Time.frameCount + CurrentStateName.ToString() + "=>" + stateId.ToString());
+            // print(Time.frameCount + CurrentStateName.ToString() + "=>" + stateId.ToString());
             //当前状态退出
             currentState.ExitState(this);
             currentState = state;

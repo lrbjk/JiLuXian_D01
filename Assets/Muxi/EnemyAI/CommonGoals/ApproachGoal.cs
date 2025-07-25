@@ -34,8 +34,7 @@ public class Goal_Approach : AIGoal
             status = GoalStatus.Completed;
             return status;
         }
-    
-        // Move towards target
+        
         var motor = owner.GetComponent<AIMoveBehavior>();
         motor.SetDestination(owner.GetTarget().position);
     

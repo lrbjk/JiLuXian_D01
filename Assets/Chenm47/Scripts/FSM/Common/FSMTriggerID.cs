@@ -22,6 +22,17 @@ namespace AI.FSM
         ForwardStab,
         RollBreak,
         IsDamaged,
-        IsDied
+        IsDied,
+        
+        // Ghoul  triggers
+        TargetInSight,
+        TargetInAttackRange,
+        TargetLost,
+        AttackFinished,
+        HitReactionFinished,
+        ShouldPatrol,
+        ShouldChase,
+        TooCloseToTarget,
+        PatrolCompleted
     }
 }

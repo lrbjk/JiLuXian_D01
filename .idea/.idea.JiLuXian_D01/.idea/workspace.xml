@@ -4,50 +4,184 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6d0ad1aa-dddc-4f98-beec-cf8487f8658f" name="更改" comment="" />
+    <list default="true" id="6d0ad1aa-dddc-4f98-beec-cf8487f8658f" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.JiLuXian_D01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JiLuXian_D01/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Common/FSMStateID.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Common/FSMStateID.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Common/FSMTriggerID.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Common/FSMTriggerID.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/FSMBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/FSMBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/FSMState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/FSMState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/States/MovtionState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/States/MovtionState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/CommonGoals/ApproachGoal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/CommonGoals/ApproachGoal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/AIBrain.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/AIBrain.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/AIGoal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/AIGoal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/AIMoveBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/AIMoveBehavior.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/BaseEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/BaseEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/InterruptHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/InterruptHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Ghoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Ghoul.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goal_Ghoul_Battle.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goal_Ghoul_Battle.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Walking.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Walking.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Zombie Attack.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Zombie Attack.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Zombie Death.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Zombie Death.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Zombie Idle.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Zombie Idle.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Zombie Reaction Hit.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/Zombie/X Bot@Zombie Reaction Hit.fbx.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mu3657&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lrbjk/JiLuXian_D01.git&quot;,
+    &quot;accountId&quot;: &quot;d37d37b0-0baf-41a1-9442-b2a555d4e66c&quot;
+  }
+}</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/05ae39d3f4dd4252ab6715ce5e13c793958c00/c2/cf004cb4/ModelImporter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Attack.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Chase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.11/ShaderLibrary/API/D3D11.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/Lighting.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/SurfaceInput.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/UniversalMetaPass.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/Shaders/LitForwardPass.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/Shaders/LitInput.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/Shaders/LitMetaPass.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/Shaders/SimpleLit.shader" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/Shaders/Terrain/TerrainLitInput.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.searcher@4.9.2/Tests/Editor/SearcherTests.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "node.js.selected.package.tslint": "(autodetect)"
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="30GQpZruYrwshgU0pKm8CXkCoPz" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected="独立播放器.单元测试(批处理模式)">
     <configuration name="启动 Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\2022.3.38f1c1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\GameSoft\Unity\Editor\2022.3.38f1c1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath D:\unity\JiLuXian_D01 -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="单元测试(批处理模式)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\2022.3.38f1c1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\GameSoft\Unity\Editor\2022.3.38f1c1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\unity\JiLuXian_D01 -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
+      <method v="2" />
+    </configuration>
+    <configuration name="附加到 Unity 编辑器" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="useMixedMode" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="附加到 Unity 编辑器并运行" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
   </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="6d0ad1aa-dddc-4f98-beec-cf8487f8658f" name="更改" comment="" />
+      <created>1753251613515</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1753251613515</updated>
+      <workItem from="1753251615021" duration="8277000" />
+      <workItem from="1753288190008" duration="3520000" />
+      <workItem from="1753336123605" duration="18862000" />
+      <workItem from="1753428374230" duration="10096000" />
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="false" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityProjectDiscoverer">
+    <option name="hasUnityReference" value="true" />
+    <option name="unityProject" value="true" />
+    <option name="unityProjectFolder" value="true" />
+  </component>
   <component name="UnityUnitTestConfiguration" currentTestLauncher="Both" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.OperationCanceledException" breakIfHandledByOtherCode="false" displayValue="System.OperationCanceledException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.Tasks.TaskCanceledException" breakIfHandledByOtherCode="false" displayValue="System.Threading.Tasks.TaskCanceledException" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="DotNet_Exception_Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>
