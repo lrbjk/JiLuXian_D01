@@ -14,7 +14,6 @@ Material:
   m_ValidKeywords:
   - _NORMALMAP
   - _OUTLINE_PASS
-  - _SCREEN_SAPCE_RIM
   m_InvalidKeywords:
   - _HIGHTLIGHTSHAPE_ON
   m_LightmapFlags: 4
@@ -169,7 +168,7 @@ Material:
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _ScreenSpaceRim: 1
+    - _ScreenSpaceRim: 0
     - _ScreenSpaceRimBrightness: 1
     - _ScreenSpaceRimFadeout: 0.18
     - _ScreenSpaceRimThreshold: 0
