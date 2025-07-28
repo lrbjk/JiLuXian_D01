@@ -60,7 +60,7 @@ namespace AI.FSM.Framework
             {
                 if (trigger.HandleTrigger(fSMBase))
                 {
-                    Debug.Log("触发条件" + trigger.triggerID);
+                    Debug.Log($"[{fSMBase.CurrentStateName}] 触发条件: {trigger.triggerID} -> {map[trigger.triggerID]}");
                     fSMBase.SwitchState(map[trigger.triggerID]);
                     break;
                 }

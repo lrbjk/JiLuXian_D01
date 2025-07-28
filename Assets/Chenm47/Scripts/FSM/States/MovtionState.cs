@@ -31,6 +31,21 @@ namespace AI.FSM
             base.EnterState(fSMBase);
             this.fSMBase = fSMBase;
             movtionInfo = InitMovtionInfo(fSMBase);
+
+            // 检查MovtionInfo是否为null
+            if (movtionInfo == null)
+            {
+                Debug.LogError($"MovtionState.EnterState: MovtionInfo为null！状态: {this.GetType().Name}");
+                return;
+            }
+
+            // 检查MovtionEvents是否为null
+            if (movtionInfo.MovtionEvents == null)
+            {
+                Debug.LogWarning($"MovtionState.EnterState: MovtionEvents为null，跳过事件监听。状态: {this.GetType().Name}");
+                return;
+            }
+
             //根据动作参数监听事件
             foreach (var movtionEvent in movtionInfo.MovtionEvents)
             {

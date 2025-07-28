@@ -21,6 +21,11 @@ namespace AI.FSM
         ForwardStab,
         Died,
         Damaged,
-        DirectFall
+        DirectFall,
+        // Ghoul specific states
+        GhoulIdle,
+        GhoulWalking,
+        GhoulReactionToHit,
+        GhoulAttack
     }
 }
