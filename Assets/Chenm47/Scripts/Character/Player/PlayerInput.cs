@@ -265,6 +265,7 @@ namespace ns.Character.Player
         }
 
         private float rollUpTimer = 0f;
+        [Tooltip("长跑后该时间内若再按下则判断为跳跃")]
         public float JumpDelta = 0.1f;
         /// <summary>
         /// 跳跃输入

@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace ns.Character
 {
     /// <summary>
@@ -25,11 +21,9 @@ namespace ns.Character
         public string CharacterName;
         /// <summary>角色参数类型</summary>
         public CharacterParamType CharacterParam_Type;
-        /// <summary>基础最大血量</summary>
-        public int BaseMaxHP;
-        /// <summary>基础普通攻击伤害</summary>
-        public int BaseSimpleAtk;
-        /// <summary>基础移动速度</summary>
-        public float BaseSpeed;
+        /// <summary>最大血量</summary>
+        public int MaxHP;
+        /// <summary>移动速度</summary>
+        public float Speed;
     }
 }

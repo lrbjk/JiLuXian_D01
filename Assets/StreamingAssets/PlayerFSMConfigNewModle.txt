@@ -23,11 +23,13 @@ DntOnGround>DirectFall
 [Attack]
 ComboAtk>ComboAttack
 RollBreak>Roll
+BackStepBreak>BackStep
 InteractingDown>Default
 [ComboAttack]
 ComboAtk>ComboAttack
 RollBreak>Roll
 ComboAtkDown>Default
+BackStepBreak>BackStep
 [Jump]
 IsOnJumpTop>Fall
 [Fall]

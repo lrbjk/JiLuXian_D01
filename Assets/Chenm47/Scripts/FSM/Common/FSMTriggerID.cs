@@ -24,6 +24,7 @@ namespace AI.FSM
         IsDamaged,
         IsDied,
         IsOnJumpTop,
-        DntOnGround
+        DntOnGround,
+        BackStepBreak
     }
 }

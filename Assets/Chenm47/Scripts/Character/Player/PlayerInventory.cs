@@ -1,6 +1,4 @@
 using ns.Item.Weapons;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -12,8 +10,8 @@ namespace ns.Character.Player
     public class PlayerInventory : MonoBehaviour
     {
         //测试，初始携带武器
-        public WeaponInfo LeftWeapon;
-        public WeaponInfo RightWeapon;
+        public Weapon LeftWeapon;
+        public Weapon RightWeapon;
 
         private WeaponSlotManager slotManager;
         private void Awake()
@@ -23,8 +21,8 @@ namespace ns.Character.Player
 
         private void Start()
         {
-            slotManager.LoadWeaponOnSlot(LeftWeapon, true);
-            slotManager.LoadWeaponOnSlot(RightWeapon, false);
+            slotManager.LoadWeaponOnSlot(LeftWeapon.Info, true);
+            slotManager.LoadWeaponOnSlot(RightWeapon.Info, false);
         }
 
     }
