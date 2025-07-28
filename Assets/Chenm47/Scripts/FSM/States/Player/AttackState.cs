@@ -23,7 +23,7 @@ namespace AI.FSM
         {
             playerFSM = fSMBase as PlayerFSMBase;
             //获取当前武器信息
-            WeaponInfo currentWeponInfo = fSMBase.equipmentManager.GetCurrentAtkWeapon(fSMBase);
+            WeaponInfo currentWeponInfo = fSMBase.equipmentManager.GetCurrentAtkWeapon().Info;
             //左手？右手？
             bool isLeft = playerFSM.playerInput.IsLeftAttackTrigger;
             var lweapon = playerFSM.playerInventory.LeftWeapon;

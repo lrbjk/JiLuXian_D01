@@ -1,22 +1,46 @@
+using ns.Movtion;
 using UnityEngine;
 
 namespace ns.Character
 {
+    public enum CharacterPropertyType
+    {
+        活力,
+        耐力,
+        精力,
+        力量,
+        敏捷,
+        智慧,
+        感知
+    }
+
+    public enum ResistanceType
+    {
+        打击,
+        斩击,
+        突刺,
+        魔力,
+    }
+
+
+    public class CharacterProperty
+    {
+        public CharacterPropertyType propertyType;
+        public int value;
+    }
+
+
+    [RequireComponent(typeof(CharacterMovtionManager))]
     /// <summary>
     /// 描述：角色信息基类
     /// </summary>
-    public class CharacterInfo : MonoBehaviour
+    public abstract class CharacterInfo : MonoBehaviour
     {
         /*
         角色信息
         ------------------------
         角色参数ID
         当前血量
-        最大血量加成
-        普通攻击伤害加成值
-        受到伤害增加值
-        速度变化比例
-        buff持续时间变化值
          */
         /// <summary>角色参数ID </summary>
         public int CharacterParamID;
@@ -32,20 +56,45 @@ namespace ns.Character
             }
         }
 
+        public CharacterMovtionManager MovtionManager;
+
+        private void Start()
+        {
+            MovtionManager = GetComponent<CharacterMovtionManager>();
+        }
+
         /// <summary>当前血量 </summary>
         public int HP;
-        /// <summary>最大血量加成 </summary>
-        public int MaxHPDelta;
-        /// <summary>计算变化后的最大血量</summary>
-        public int MaxHPAftDelta { get { return MaxHPDelta + CharacterParam.BaseMaxHP; } }
-        /// <summary>普通攻击伤害加成值 </summary>
-        public int ExSimpleATK;
-        /// <summary>受到伤害增加值 </summary>
-        public int ExDamaged;
-        /// <summary>速度变化比例</summary>
-        public float SpeedRatio;
-        /// <summary>buff持续时间变化值 </summary>
-        public float BuffTimeDelta;
+        /// <summary>
+        /// 获取武器基础物理攻击力
+        /// </summary>
+        /// <returns></returns>
+        public abstract float GetWeaponPhysicalATK();
+        /// <summary>
+        /// 获取武器处决系数
+        /// </summary>
+        /// <returns></returns>
+        public abstract float GetWeaponExecutionCoefficient();
+
+        /// <summary>
+        /// 获取防御力
+        /// </summary>
+        /// <returns></returns>
+        public abstract int GetDEF();
+        /// <summary>
+        /// 获取抗性
+        /// </summary>
+        /// <param name="resistanceType"></param>
+        /// <returns></returns>
+        public abstract int GetResistance(ResistanceType resistanceType);
+        /// <summary>
+        /// 获取临界状态系数
+        /// </summary>
+        /// <returns></returns>
+        public virtual int GetCriticalStateEffectCoefficient()
+        {
+            return 1;
+        }
 
         /// <summary>角色被他人锁定的Transform </summary>
         public Transform LockedTF;

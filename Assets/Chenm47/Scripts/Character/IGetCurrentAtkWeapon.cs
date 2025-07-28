@@ -14,6 +14,6 @@ namespace ns.Character
     /// </summary>
     public interface IGetCurrentAtkWeapon
     {
-        public WeaponInfo GetCurrentAtkWeapon(FSMBase playerFSMBase);
+        public Weapon GetCurrentAtkWeapon();
     }
 }

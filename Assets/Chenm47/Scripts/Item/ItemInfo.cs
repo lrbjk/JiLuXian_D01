@@ -9,5 +9,6 @@ namespace ns.Item
     {
         public Sprite ItemIcon;
         public string ItemName;
+        public int ItemID;
     }
 }

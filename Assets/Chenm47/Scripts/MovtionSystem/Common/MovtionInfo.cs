@@ -1,3 +1,4 @@
+using ns.Character;
 using System;
 using UnityEngine;
 
@@ -37,10 +38,14 @@ namespace ns.Movtion
         public int ComboMovtionID;
         [Tooltip("动画名称 ")]
         public string AnimationName;
-        [Tooltip("动作伤害数值")]
-        public int MovtionAtkValue;
+        [Tooltip("动作倍率")]
+        public float ActionMultiplier;
+        [Tooltip("处决动作倍率")]
+        public float ExecutionMultiplier;//注意非处决动作必须为0
         [Tooltip("前摇期间转向速度")]
         public float PreMovtionRotateSpeed;
+        [Tooltip("物理攻击属性")]
+        public ResistanceType PhysicalResistanceType;
 
         //用动作事件来描述发生帧
         [Tooltip("动作事件列表")]

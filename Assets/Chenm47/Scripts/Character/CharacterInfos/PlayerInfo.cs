@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ns.Character.Player
@@ -45,6 +46,46 @@ namespace ns.Character.Player
         public bool IsDownStair = false;
         public AttackInputType LastAttackType = AttackInputType.None;
         public float FallTimer;
-        public bool IsOnTop=false;
+        public bool IsOnTop = false;
+
+
+        /// <summary>角色属性值 </summary>
+        public List<CharacterProperty> CharacterProperties;
+        private CharacterEquipmentManager equipmentManager;
+
+        private void Start()
+        {
+            equipmentManager = GetComponent<CharacterEquipmentManager>();
+        }
+
+        public override int GetDEF()
+        {
+            int res = 0;
+            foreach (var equipmentInfo in equipmentManager.GetEquipmentInfos())
+            {
+                res += equipmentInfo.DEF;
+            }
+            return res;
+        }
+
+        public override float GetWeaponPhysicalATK()
+        {
+            return equipmentManager.GetCurrentAtkWeapon().GetFinalATK();
+        }
+
+        public override int GetResistance(ResistanceType resistanceType)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override int GetCriticalStateEffectCoefficient()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override float GetWeaponExecutionCoefficient()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

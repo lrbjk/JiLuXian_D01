@@ -25,7 +25,7 @@ namespace AI.FSM
         IsDied,
         IsOnJumpTop,
         DntOnGround,
-        
+        BackStepBreak,
         // Ghoul  triggers
         TargetInSight,
         TargetInAttackRange,
