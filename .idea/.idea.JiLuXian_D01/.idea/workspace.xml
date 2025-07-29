@@ -42,9 +42,9 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/05ae39d3f4dd4252ab6715ce5e13c793958c00/c2/cf004cb4/ModelImporter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Attack.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Chase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/SuanCaiyu/UI/BagTest/BagScroller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.11/ShaderLibrary/API/D3D11.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/Lighting.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/SurfaceInput.hlsl" root0="SKIP_HIGHLIGHTING" />
@@ -84,6 +84,28 @@
       <option name="EXE_PATH" value="D:\GameSoft\Unity\Editor\2022.3.38f1c1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath D:\unity\JiLuXian_D01 -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\unity\JiLuXian_D01" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="A:\2022.3.38f1c1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath A:\unity\JiLuXian_D01 -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="A:\unity\JiLuXian_D01" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="A:\2022.3.38f1c1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath A:\unity\JiLuXian_D01 -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="A:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
