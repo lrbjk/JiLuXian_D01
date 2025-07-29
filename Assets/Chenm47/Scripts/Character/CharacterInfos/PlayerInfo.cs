@@ -1,3 +1,6 @@
+using ns.Item.Equipment;
+using ns.Movtion;
+using ns.Value;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,13 +51,23 @@ namespace ns.Character.Player
         public float FallTimer;
         public bool IsOnTop = false;
 
-
+        [Header("角色属性值")]
         /// <summary>角色属性值 </summary>
         public List<CharacterProperty> CharacterProperties;
-        private CharacterEquipmentManager equipmentManager;
+        /// <summary>角色抗性表 </summary>
+        public List<CharacterResistanceProperty> CharacterResistanceProperties;
+        /// <summary>角色异常抗性表 </summary>
+        public List<CharacterAbnormalResistanceProperty> AbnormalResistanceProperties;
+        /// <summary>转换值 </summary>
+        public int TransitionValue;
+        /// <summary>当前角色临界状态 </summary>
+        public CriticalStateType CurrentCriticalStateType;
 
-        private void Start()
+
+        private CharacterEquipmentManager equipmentManager;
+        protected override void Start()
         {
+            base.Start();
             equipmentManager = GetComponent<CharacterEquipmentManager>();
         }
 
@@ -75,17 +88,32 @@ namespace ns.Character.Player
 
         public override int GetResistance(ResistanceType resistanceType)
         {
-            throw new System.NotImplementedException();
+            return CharacterResistanceProperties.Find(p => p.propertyType == resistanceType).value;
         }
 
-        public override int GetCriticalStateEffectCoefficient()
+        public override float GetCriticalStateEffectCoefficient()
         {
-            throw new System.NotImplementedException();
+            //该数值会根据玩家装备的“核心”而有所不同
+            return equipmentManager.GetKernelInfo().GetCriticalStateEffectCoefficient(CurrentCriticalStateType);
         }
 
         public override float GetWeaponExecutionCoefficient()
         {
-            throw new System.NotImplementedException();
+            //获取武器的处决系数
+            return equipmentManager.GetCurrentAtkWeapon().WInfo.ExecutionCoefficient;
+        }
+
+        public override float GetBaseReducedPoise()
+        {
+            //削韧值=武器削韧值*动作倍率
+            MovtionInfo movtionInfo = MovtionManager.GetMovtionInfo(CurrentMovtionID);
+            return equipmentManager.GetCurrentAtkWeapon().WInfo.ReducedPoise * movtionInfo.ActionMultiplier;
+        }
+
+        public override float GetBaseMovtionPoise()
+        {
+            //动作韧性 = 削韧值
+            return DamageCalculator.CalculatePoiseDamage(this);
         }
     }
 }

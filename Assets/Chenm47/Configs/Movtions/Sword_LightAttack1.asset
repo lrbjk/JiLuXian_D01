@@ -16,8 +16,12 @@ MonoBehaviour:
   MovtionName: "\u5251\u8F7B\u51FB1"
   ComboMovtionID: 6
   AnimationName: Sword_Light_Attack01
-  MovtionAtkValue: 0
+  ActionMultiplier: 1
+  ExecutionMultiplier: 0
+  MovtionPoise: 1
+  MovtionReducedPoise: 0
   PreMovtionRotateSpeed: 1
+  PhysicalResistanceType: 0
   MovtionEvents:
   - EventType: 0
     AnimationFrame: 16

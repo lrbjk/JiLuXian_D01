@@ -1,8 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using CharacterInfo = ns.Character.CharacterInfo;
 
 public class DamageContext
 {
-    
+    public CharacterInfo AttackerInfo;
+
+    public DamageContext(CharacterInfo attackerInfo)
+    {
+        AttackerInfo = attackerInfo;
+    }
 }

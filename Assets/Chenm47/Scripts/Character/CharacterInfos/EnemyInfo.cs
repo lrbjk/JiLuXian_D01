@@ -5,14 +5,27 @@ namespace ns.Character
     /// </summary>
     public class EnemyInfo : CharacterInfo
     {
+        public override float GetBaseMovtionPoise()
+        {
+            //throw new System.NotImplementedException();
+            return 10;
+        }
+
+        public override float GetBaseReducedPoise()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override int GetDEF()
         {
-            throw new System.NotImplementedException();//具体实现
+            //throw new System.NotImplementedException();//具体实现
+            return 10;
         }
 
         public override int GetResistance(ResistanceType resistanceType)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
+            return 10;
         }
 
         public override float GetWeaponExecutionCoefficient()

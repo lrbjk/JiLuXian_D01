@@ -10,8 +10,8 @@ namespace ns.Character.Player
     public class PlayerInventory : MonoBehaviour
     {
         //测试，初始携带武器
-        public Weapon LeftWeapon;
-        public Weapon RightWeapon;
+        public PlayerWeapon LeftWeapon;
+        public PlayerWeapon RightWeapon;
 
         private WeaponSlotManager slotManager;
         private void Awake()
@@ -19,10 +19,13 @@ namespace ns.Character.Player
             slotManager = GetComponentInChildren<WeaponSlotManager>(true);
         }
 
-        private void Start()
+        public void LoadWeaponOnSlot(WeaponInfo info, CharacterInfo characterInfo, bool isLeft)
         {
-            slotManager.LoadWeaponOnSlot(LeftWeapon.Info, true);
-            slotManager.LoadWeaponOnSlot(RightWeapon.Info, false);
+            slotManager.LoadWeaponOnSlot(info, isLeft);
+            if (isLeft)
+                LeftWeapon = new PlayerWeapon(characterInfo as PlayerInfo, info);
+            else
+                RightWeapon = new PlayerWeapon(characterInfo as PlayerInfo, info);
         }
 
     }

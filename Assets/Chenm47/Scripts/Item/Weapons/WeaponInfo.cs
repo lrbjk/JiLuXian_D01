@@ -31,6 +31,8 @@ namespace ns.Item.Weapons
         public List<WeaponCharacterProperty> WCPOriginalProperties;//初始能力加成配置
         public ResistanceType OriginalNatureType;//属性伤害类型
         public ResistanceType OriginalAbnormalType;//异常伤害类型
+        public float ExecutionCoefficient;//处决系数
+        public float ReducedPoise;//武器削韧值
         #endregion
 
         #region 运行时获取使用
@@ -39,11 +41,15 @@ namespace ns.Item.Weapons
         /// </summary>
         [HideInInspector]
         public GameObject ModleGO;
+        /// <summary>武器数值</summary>
         public WeaponValue WeaponValue;
         public int CurrentLV;
-        public List<WeaponCharacterProperty> WCPCurrentProperties;//人物属性加成
+        [Tooltip("当前武器人物属性加成")]
+        public List<WeaponCharacterProperty> WCPCurrentProperties;//当前武器人物属性加成
+        [Tooltip("当前物理属性伤害类型")]
         public ResistanceType CurrentNatureType;//当前属性伤害类型
-        public ResistanceType CurrentAbnormalType;//当前异常伤害类型
+        [Tooltip("当前异常伤害类型")]
+        public AbnormalType CurrentAbnormalType;//当前异常伤害类型
         #endregion
     }
 }

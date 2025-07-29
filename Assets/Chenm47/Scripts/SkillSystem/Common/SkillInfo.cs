@@ -2,7 +2,6 @@ using UnityEngine;
 
 namespace ns.Skill
 {
-    [CreateAssetMenu(menuName = "Skill/SkillInfo")]
     /// <summary>
     /// 描述：
     /// </summary>

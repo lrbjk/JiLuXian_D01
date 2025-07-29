@@ -166,7 +166,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5610884078883986163, guid: 9fbe61d1f4bc091439f25f985dd189a5,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 61946446096899115}
+      addedObject: {fileID: 4075312457774905711}
     - targetCorrespondingSourceObject: {fileID: 5610884078883986163, guid: 9fbe61d1f4bc091439f25f985dd189a5,
         type: 3}
       insertIndex: -1
@@ -178,7 +178,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9140318479984001153}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &61946446096899115
+--- !u!65 &4075312457774905711
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -197,8 +197,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.1872873, y: 1.0326567, z: 0.05871539}
-  m_Center: {x: -0.001966074, y: 0.69704163, z: -0.0014715875}
+  m_Size: {x: 0.1766819, y: 1.0258174, z: 0.08912742}
+  m_Center: {x: 0.00080931187, y: 0.69849527, z: -0.000000037252903}
 --- !u!114 &2009142176252235829
 MonoBehaviour:
   m_ObjectHideFlags: 0

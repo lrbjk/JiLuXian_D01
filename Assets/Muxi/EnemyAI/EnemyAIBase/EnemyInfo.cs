@@ -39,6 +39,16 @@ namespace EnemyAIBase
         [Tooltip("追击速度倍数")]
         public float ChaseSpeedMultiplier = 1.5f;
 
+        public override float GetBaseMovtionPoise()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override float GetBaseReducedPoise()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override int GetDEF()
         {
             throw new System.NotImplementedException();

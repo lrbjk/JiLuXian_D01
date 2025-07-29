@@ -16,8 +16,12 @@ MonoBehaviour:
   MovtionName: "\u5251\u91CD\u51FB2"
   ComboMovtionID: 3
   AnimationName: Sword_Heavy_Attack02
-  MovtionAtkValue: 0
+  ActionMultiplier: 1
+  ExecutionMultiplier: 0
+  MovtionPoise: 1
+  MovtionReducedPoise: 0
   PreMovtionRotateSpeed: 2
+  PhysicalResistanceType: 0
   MovtionEvents:
   - EventType: 0
     AnimationFrame: 14

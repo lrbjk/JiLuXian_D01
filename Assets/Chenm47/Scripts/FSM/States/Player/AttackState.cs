@@ -23,11 +23,12 @@ namespace AI.FSM
         {
             playerFSM = fSMBase as PlayerFSMBase;
             //获取当前武器信息
-            WeaponInfo currentWeponInfo = fSMBase.equipmentManager.GetCurrentAtkWeapon().Info;
+            WeaponInfo currentWeponInfo = fSMBase.equipmentManager.GetCurrentAtkWeapon().WInfo;
             //左手？右手？
             bool isLeft = playerFSM.playerInput.IsLeftAttackTrigger;
-            var lweapon = playerFSM.playerInventory.LeftWeapon;
-            var rweapon = playerFSM.playerInventory.RightWeapon;
+            PlayerEquipmentManager em = playerFSM.equipmentManager as PlayerEquipmentManager;
+            var lweapon = em.GetHandingWeapon(true);
+            var rweapon = em.GetHandingWeapon(false);
             currentWeaponGO = currentWeponInfo.ModleGO;
             //获取技能信息
             MovtionInfo movtionInfo = GetMovtionInfo(isLeft, currentWeponInfo);
@@ -94,7 +95,7 @@ namespace AI.FSM
                     playerFSM.cameraHandler.transform.forward * moveY;
                 moveDir.y = 0;
                 moveDir.Normalize();
-                Debug.Log(movtionInfo.PreMovtionRotateSpeed);
+                //Debug.Log(movtionInfo.PreMovtionRotateSpeed);
                 playerFSM.playerAction.LookDir(moveDir, movtionInfo.PreMovtionRotateSpeed);
             }
             else//锁定视角

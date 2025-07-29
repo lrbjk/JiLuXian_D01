@@ -15,6 +15,10 @@ namespace ns.Movtion
         MovtionEnd, // 动作生效结束
         [Tooltip("动作后摇开始")]
         MovtionRecovery, // 动作后摇开始
+        [Tooltip("霸体开始")]
+        ArmorStart,
+        [Tooltip("霸体结束")]
+        ArmorEnd,
     }
     [Serializable]
     public struct MovtionEventParams

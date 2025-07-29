@@ -15,7 +15,7 @@ namespace ns.Item.Weapons
     {
         protected static WeaponLVHandler lVHandler;//处理武器等级加成
         protected static WeaponCharacterPropertyHandler WPCPHandler;//处理角色属性加成
-        public WeaponInfo Info;
+        public WeaponInfo WInfo;
 
         public abstract float GetFinalATK();
 

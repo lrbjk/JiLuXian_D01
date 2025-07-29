@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 0}
   ItemName: Sword_01
+  ItemID: 0
   ModlePrefab: {fileID: 986163900176472707, guid: 7a5225416d5552d4c8a078d206fb8c2d,
     type: 3}
-  IsUnarmed: 0
   Type: 0
   LightAtkIDL: 5
   HeavyAtkIDL: 3
@@ -24,4 +24,18 @@ MonoBehaviour:
   LightAtkIDR: 5
   HeavyAtkIDR: 3
   SkillAtkIDR: 8
+  WCPOriginalProperties: []
+  OriginalNatureType: 0
+  OriginalAbnormalType: 0
+  ExecutionCoefficient: 0
+  ReducedPoise: 0
   ModleGO: {fileID: 0}
+  WeaponValue: {fileID: 11400000, guid: 54d68e6515a96e74896874630d1332b0, type: 2}
+  CurrentLV: 0
+  WCPCurrentProperties:
+  - cpt: 0
+    wpt: 0
+  - cpt: 1
+    wpt: 1
+  CurrentNatureType: 0
+  CurrentAbnormalType: 0

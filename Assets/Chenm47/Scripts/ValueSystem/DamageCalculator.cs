@@ -9,12 +9,12 @@ namespace ns.Value
     public static class DamageCalculator
     {
         /// <summary>
-        /// 计算伤害
+        /// 计算伤害，内部没有修改相关数值 
         /// </summary>
         /// <param name="attacker"></param>
         /// <param name="defender"></param>
-        /// <returns></returns>
-        public static float CalculateDamage(
+        /// <returns>最终造成的伤害</returns>
+        public static int CalculateDamage(
             CharacterInfo attacker,
             CharacterInfo defender)
         {
@@ -94,36 +94,57 @@ namespace ns.Value
 
             //(6.3) 最终造成伤害=常规伤害+处决伤害
             float finalDamage = ruleDamage + ExecutionDamage;
-            return finalDamage;
+            return Mathf.FloorToInt(finalDamage);
         }
-
         /// <summary>
-        /// 计算韧性值
+        /// 计算攻击方的削韧值
         /// </summary>
-        /// <param name="attacker"></param>
+        /// <param name="info"></param>
         /// <param name="defender"></param>
         /// <returns></returns>
-        public static float CalculatePoise(
-            CharacterInfo attacker,
-            CharacterInfo defender)
+        public static int CalculatePoiseDamage(
+            CharacterInfo info)
         {
-                //            （1）削韧值
-                //玩家：
-                //削韧值 = 武器削韧值 * 动作倍率
-                //敌人：
-                //削韧值 = 敌人动作削韧值
-                //（2）是否处决
-                //基础韧性-= 削韧值
-                //若处决韧性值 < 0则虚弱状态
-                //一段时间后恢复并 * 1.1
-                //（3）动作韧性 = 动作韧性值
-                //（4）是否打断僵直
-                //若霸体帧内：
-                //累积削韧值 > 动作韧性
-                //非霸体帧：
-                //直接比较削韧值 > 动作韧性
-
-            return 0;
+            //（1.1）削韧值
+            //玩家：
+            //削韧值 = 武器削韧值 * 动作倍率
+            //敌人：
+            //削韧值 = 敌人动作削韧值
+            float poiseDamage = info.GetBaseReducedPoise();
+            //（1.2）
+            //Buff后削韧值 = 削韧值 + buff
+            //float buffPost = poiseDamage + buff;
+            float buffPost = poiseDamage;
+            return Mathf.FloorToInt(buffPost);
+            //（2）是否处决
+            //基础韧性-= 削韧值
+            //若处决韧性值 < 0则虚弱状态
+            //一段时间后恢复并 * 1.1
+            //（3）动作韧性 = 动作韧性值
+            //（4）是否打断僵直
+            //若霸体帧内：
+            //累积削韧值 > 动作韧性
+            //非霸体帧：
+            //直接比较削韧值 > 动作韧性
+        }
+        /// <summary>
+        /// 计算角色的当前动作韧性值
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public static int CalculateMovtionPoise(CharacterInfo info)
+        {
+            //（2.1）动作韧性
+            //玩家：
+            //动作韧性 = 削韧值
+            //敌人：
+            //动作韧性 = 敌人动作韧性
+            float baseMpoise = info.GetBaseMovtionPoise();
+            //（2.2）
+            //Buff后动作韧性 = 动作韧性 + buff
+            //float buffPostMpoise=baseMpoise+buff;
+            float buffPostMpoise = baseMpoise;
+            return Mathf.FloorToInt(buffPostMpoise);
         }
 
     }

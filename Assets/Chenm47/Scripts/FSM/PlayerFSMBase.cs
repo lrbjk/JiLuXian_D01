@@ -24,8 +24,6 @@ namespace AI.FSM
         public PlayerAction playerAction;
         [HideInInspector]
         public CameraHandler cameraHandler;
-        [HideInInspector]
-        public PlayerInventory playerInventory;
         public PlayerRootMotion playerRootMotion;
         #endregion
 
@@ -35,7 +33,6 @@ namespace AI.FSM
             playerInput = GetComponent<PlayerInput>();
             playerAction = GetComponent<PlayerAction>();
             cameraHandler = FindAnyObjectByType<CameraHandler>();
-            playerInventory = GetComponent<PlayerInventory>();
             playerRootMotion = GetComponentInChildren<PlayerRootMotion>(true);
             base.Start();
         }

@@ -13,7 +13,7 @@ namespace ns.Character
     {
         protected FSMBase fSMBase;
 
-        private void Start()
+        protected virtual void Start()
         {
             fSMBase = GetComponent<FSMBase>();
         }
@@ -27,5 +27,8 @@ namespace ns.Character
 
         public abstract IEnumerable<EquipmentInfo> GetEquipmentInfos();
 
+        public abstract KernelInfo GetKernelInfo();
+
+        public abstract void EquipWeapon(WeaponInfo weaponInfo, bool isLeft);
     }
 }

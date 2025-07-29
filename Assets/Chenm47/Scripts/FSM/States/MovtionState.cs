@@ -108,6 +108,8 @@ namespace AI.FSM
 
             //后摇结束
             fSMBase.characterInfo.IsInMovtionRecoveryFlag = false;
+            //霸体结束
+            fSMBase.characterInfo.IsInArmorFlag = false;
         }
         /// <summary>
         /// 前摇结束
@@ -140,9 +142,15 @@ namespace AI.FSM
             //后摇开始
             fSMBase.characterInfo.IsInMovtionRecoveryFlag = true;
         }
-
-
-
-
+        protected virtual void OnArmorStart(object sender, Common.AnimationEventArgs e)
+        {
+            //霸体开始
+            fSMBase.characterInfo.IsInArmorFlag = true;
+        }
+        protected virtual void OnArmorEnd(object sender, Common.AnimationEventArgs e)
+        {
+            //霸体结束
+            fSMBase.characterInfo.IsInArmorFlag = false;
+        }
     }
 }

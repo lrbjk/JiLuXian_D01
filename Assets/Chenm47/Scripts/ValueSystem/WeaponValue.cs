@@ -1,5 +1,6 @@
 using ns.Character;
 using ns.Item.Weapons;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,9 +11,17 @@ namespace ns.Value
     {
         private Dictionary<WeaponType, Dictionary<int, float>> map;
 
-        WeaponLVHandler()
+        public WeaponLVHandler()
         {
             //读取配置
+            //测试---------------
+            //每种类型不同等级对应不同系数
+            map = new Dictionary<WeaponType, Dictionary<int, float>>(1);
+            var swordMap = new Dictionary<int, float>();
+            swordMap.Add(0, 0.5f);
+            swordMap.Add(1, 0.8f);
+            swordMap.Add(2, 1f);
+            map.Add(WeaponType.Sword, swordMap);
         }
 
         public float GetLVFactor(WeaponType type, int lv)
@@ -26,6 +35,7 @@ namespace ns.Value
         A, B, C, D, E
     }
 
+    [Serializable]
     public struct WeaponCharacterProperty
     {
         public CharacterPropertyType cpt;
@@ -35,6 +45,13 @@ namespace ns.Value
     public class WeaponCharacterPropertyHandler
     {
         private Dictionary<WeaponPropertyLV, float> map;
+
+        public WeaponCharacterPropertyHandler()
+        {
+            map = new Dictionary<WeaponPropertyLV, float>();
+            map.Add(WeaponPropertyLV.A, 1.1f);
+            map.Add(WeaponPropertyLV.B, 0.9f);
+        }
 
         public float GetWeaponPropertyLVFactor(WeaponPropertyLV weaponPropertyLV)
         {
