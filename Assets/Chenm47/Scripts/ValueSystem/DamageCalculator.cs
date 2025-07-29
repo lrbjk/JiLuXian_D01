@@ -8,7 +8,13 @@ namespace ns.Value
     /// </summary>
     public static class DamageCalculator
     {
-        public static float CalculatePhysicalDamage(
+        /// <summary>
+        /// 计算伤害
+        /// </summary>
+        /// <param name="attacker"></param>
+        /// <param name="defender"></param>
+        /// <returns></returns>
+        public static float CalculateDamage(
             CharacterInfo attacker,
             CharacterInfo defender)
         {
@@ -90,5 +96,35 @@ namespace ns.Value
             float finalDamage = ruleDamage + ExecutionDamage;
             return finalDamage;
         }
+
+        /// <summary>
+        /// 计算韧性值
+        /// </summary>
+        /// <param name="attacker"></param>
+        /// <param name="defender"></param>
+        /// <returns></returns>
+        public static float CalculatePoise(
+            CharacterInfo attacker,
+            CharacterInfo defender)
+        {
+                //            （1）削韧值
+                //玩家：
+                //削韧值 = 武器削韧值 * 动作倍率
+                //敌人：
+                //削韧值 = 敌人动作削韧值
+                //（2）是否处决
+                //基础韧性-= 削韧值
+                //若处决韧性值 < 0则虚弱状态
+                //一段时间后恢复并 * 1.1
+                //（3）动作韧性 = 动作韧性值
+                //（4）是否打断僵直
+                //若霸体帧内：
+                //累积削韧值 > 动作韧性
+                //非霸体帧：
+                //直接比较削韧值 > 动作韧性
+
+            return 0;
+        }
+
     }
 }

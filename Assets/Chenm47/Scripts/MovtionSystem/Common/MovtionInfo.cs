@@ -42,6 +42,10 @@ namespace ns.Movtion
         public float ActionMultiplier;
         [Tooltip("处决动作倍率")]
         public float ExecutionMultiplier;//注意非处决动作必须为0
+        [Tooltip("动作韧性值")]
+        public int MovtionPoise;
+        [Tooltip("动作削韧值")]
+        public int MovtionReducedPoise;
         [Tooltip("前摇期间转向速度")]
         public float PreMovtionRotateSpeed;
         [Tooltip("物理攻击属性")]

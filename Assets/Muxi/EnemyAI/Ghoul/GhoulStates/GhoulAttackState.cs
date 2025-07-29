@@ -145,8 +145,8 @@ namespace AI.FSM
 
             if (distanceToTarget <= attackRange)
             {
-                // 执行攻击逻辑
-                Debug.Log($"Ghoul攻击目标，伤害值: {movtionInfo.MovtionAtkValue}");
+                //// 执行攻击逻辑
+                //Debug.Log($"Ghoul攻击目标，伤害值: {movtionInfo.MovtionAtkValue}");
 
                 // 这里可以添加实际的伤害计算和应用
                 // 例如：target.GetComponent<CharacterInfo>().TakeDamage(movtionInfo.MovtionAtkValue);

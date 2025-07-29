@@ -65,6 +65,12 @@ namespace ns.Character
 
         /// <summary>当前血量 </summary>
         public int HP;
+        /// <summary>基础韧性值 </summary>
+        public int BasePoise;
+
+        /// <summary>当前韧性值 </summary>
+        public int Poise;
+
         /// <summary>
         /// 获取武器基础物理攻击力
         /// </summary>
