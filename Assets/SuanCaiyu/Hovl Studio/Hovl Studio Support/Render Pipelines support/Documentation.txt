@@ -1,0 +1,12 @@
+The editor replaces shaders in the materials to make effects work with different Rendering Pipelines.
+Works only with Hovl Studio assets - https://assetstore.unity.com/publishers/28391
+
+Using: 
+Go to tab "Tools > Pipeline changer for Hovl Studio assets"
+After opening the window, select the desired Render Pipeline.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Don't forget to enable Depth texture and Opaque texture for URP package if you want correct working of Distortion particles.
+Aslo you can not change your URP package settings, but then you need to delete from effects all particles that use Distortion.
+Go to Edit/ProjectSettings/Graphics and there you can find your URP package in Scriptable Render Pipeline Settings.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
