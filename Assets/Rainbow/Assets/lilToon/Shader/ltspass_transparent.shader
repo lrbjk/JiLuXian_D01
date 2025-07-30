@@ -3,6 +3,18 @@ Shader "Hidden/ltspass_transparent"
     Properties
     {
         //----------------------------------------------------------------------------------------------------------------------
+        // Dummy
+        _DummyProperty ("If you are seeing this, some script is broken.", Float) = 0
+        _DummyProperty ("This also happens if something other than lilToon is broken.", Float) = 0
+        _DummyProperty ("You need to check the error on the console and take appropriate action, such as reinstalling the relevant tool.", Float) = 0
+        _DummyProperty (" ", Float) = 0
+        _DummyProperty ("これが表示されている場合、なんらかのスクリプトが壊れています。", Float) = 0
+        _DummyProperty ("これはlilToon以外のものが壊れている場合にも発生します。", Float) = 0
+        _DummyProperty ("コンソールでエラーを確認し、該当するツールを入れ直すなどの対処を行う必要があります。", Float) = 0
+        [Space(1000)]
+        _DummyProperty ("", Float) = 0
+
+        //----------------------------------------------------------------------------------------------------------------------
         // Base
         [lilToggle]     _Invisible                  ("sInvisible", Int) = 0
                         _AsUnlit                    ("sAsUnlit", Range(0, 1)) = 0
@@ -192,6 +204,16 @@ Shader "Hidden/ltspass_transparent"
         [lilEnum]       _ShadowMaskType             ("sShadowMaskTypes", Int) = 0
                         _ShadowFlatBorder           ("sBorder", Range(-2, 2)) = 1
                         _ShadowFlatBlur             ("sBlur", Range(0.001, 2)) = 1
+
+        //----------------------------------------------------------------------------------------------------------------------
+        // Rim Shade
+        [lilToggleLeft] _UseRimShade                ("RimShade", Int) = 0
+                        _RimShadeColor              ("sColor", Color) = (0.5,0.5,0.5,1.0)
+        [NoScaleOffset] _RimShadeMask               ("Mask", 2D) = "white" {}
+                        _RimShadeNormalStrength     ("sNormalStrength", Range(0, 1)) = 1.0
+                        _RimShadeBorder             ("sBorder", Range(0, 1)) = 0.5
+                        _RimShadeBlur               ("sBlur", Range(0, 1)) = 1.0
+        [PowerSlider(3.0)]_RimShadeFresnelPower     ("sFresnelPower", Range(0.01, 50)) = 1.0
 
         //----------------------------------------------------------------------------------------------------------------------
         // Reflection
@@ -445,6 +467,11 @@ Shader "Hidden/ltspass_transparent"
 
         //----------------------------------------------------------------------------------------------------------------------
         // ID Mask
+        // _IDMaskCompile will enable compilation of IDMask-related systems. For compatibility, setting certain
+        // parameters to non-zero values will also enable the IDMask feature, but this enable switch ensures that
+        // animator-controlled IDMasked meshes will be compiled correctly. Note that this _only_ controls compilation,
+        // and is ignored at runtime.
+        [ToggleUI]      _IDMaskCompile              ("_IDMaskCompile", Int) = 0
         [lilEnum]       _IDMaskFrom                 ("_IDMaskFrom|0: UV0|1: UV1|2: UV2|3: UV3|4: UV4|5: UV5|6: UV6|7: UV7|8: VertexID", Int) = 8
         [ToggleUI]      _IDMask1                    ("_IDMask1", Int) = 0
         [ToggleUI]      _IDMask2                    ("_IDMask2", Int) = 0
@@ -454,6 +481,7 @@ Shader "Hidden/ltspass_transparent"
         [ToggleUI]      _IDMask6                    ("_IDMask6", Int) = 0
         [ToggleUI]      _IDMask7                    ("_IDMask7", Int) = 0
         [ToggleUI]      _IDMask8                    ("_IDMask8", Int) = 0
+        [ToggleUI]      _IDMaskIsBitmap             ("_IDMaskIsBitmap", Int) = 0
                         _IDMaskIndex1               ("_IDMaskIndex1", Int) = 0
                         _IDMaskIndex2               ("_IDMaskIndex2", Int) = 0
                         _IDMaskIndex3               ("_IDMaskIndex3", Int) = 0
@@ -462,6 +490,38 @@ Shader "Hidden/ltspass_transparent"
                         _IDMaskIndex6               ("_IDMaskIndex6", Int) = 0
                         _IDMaskIndex7               ("_IDMaskIndex7", Int) = 0
                         _IDMaskIndex8               ("_IDMaskIndex8", Int) = 0
+
+        [ToggleUI]      _IDMaskControlsDissolve     ("_IDMaskControlsDissolve", Int) = 0
+        [ToggleUI]      _IDMaskPrior1               ("_IDMaskPrior1", Int) = 0
+        [ToggleUI]      _IDMaskPrior2               ("_IDMaskPrior2", Int) = 0
+        [ToggleUI]      _IDMaskPrior3               ("_IDMaskPrior3", Int) = 0
+        [ToggleUI]      _IDMaskPrior4               ("_IDMaskPrior4", Int) = 0
+        [ToggleUI]      _IDMaskPrior5               ("_IDMaskPrior5", Int) = 0
+        [ToggleUI]      _IDMaskPrior6               ("_IDMaskPrior6", Int) = 0
+        [ToggleUI]      _IDMaskPrior7               ("_IDMaskPrior7", Int) = 0
+        [ToggleUI]      _IDMaskPrior8               ("_IDMaskPrior8", Int) = 0
+
+        //----------------------------------------------------------------------------------------------------------------------
+        // UDIM Discard
+        [lilToggleLeft] _UDIMDiscardCompile         ("sUDIMDiscard", Int) = 0
+        [lilEnum]       _UDIMDiscardUV              ("sUDIMDiscardUV|0: UV0|1: UV1|2: UV2|3: UV3", Int) = 0
+        [lilEnum]       _UDIMDiscardMode            ("sUDIMDiscardMode|0: Vertex|1: Pixel (slower)", Int) = 0
+        [lilToggle]     _UDIMDiscardRow3_3          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow3_2          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow3_1          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow3_0          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow2_3          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow2_2          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow2_1          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow2_0          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow1_3          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow1_2          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow1_1          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow1_0          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow0_3          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow0_2          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow0_1          ("", Int) = 0
+        [lilToggle]     _UDIMDiscardRow0_0          ("", Int) = 0
 
         //----------------------------------------------------------------------------------------------------------------------
         // Encryption
@@ -542,7 +602,7 @@ Shader "Hidden/ltspass_transparent"
         [HideInInspector]                               _BaseColor          ("sColor", Color) = (1,1,1,1)
         [HideInInspector]                               _BaseMap            ("Texture", 2D) = "white" {}
         [HideInInspector]                               _BaseColorMap       ("Texture", 2D) = "white" {}
-        [HideInInspector]                               _lilToonVersion     ("Version", Int) = 35
+        [HideInInspector]                               _lilToonVersion     ("Version", Int) = 45
 
         //----------------------------------------------------------------------------------------------------------------------
         // Advanced
@@ -659,6 +719,7 @@ Shader "Hidden/ltspass_transparent"
             #define LIL_FEATURE_RECEIVE_SHADOW
             #define LIL_FEATURE_SHADOW_3RD
             #define LIL_FEATURE_SHADOW_LUT
+            #define LIL_FEATURE_RIMSHADE
             #define LIL_FEATURE_EMISSION_1ST
             #define LIL_FEATURE_EMISSION_2ND
             #define LIL_FEATURE_ANIMATE_EMISSION_UV
@@ -683,6 +744,7 @@ Shader "Hidden/ltspass_transparent"
             #define LIL_FEATURE_DISSOLVE
             #define LIL_FEATURE_DITHER
             #define LIL_FEATURE_IDMASK
+            #define LIL_FEATURE_UDIMDISCARD
             #define LIL_FEATURE_OUTLINE_TONE_CORRECTION
             #define LIL_FEATURE_OUTLINE_RECEIVE_SHADOW
             #define LIL_FEATURE_ANIMATE_OUTLINE_UV
@@ -710,6 +772,7 @@ Shader "Hidden/ltspass_transparent"
             #define LIL_FEATURE_ShadowColorTex
             #define LIL_FEATURE_Shadow2ndColorTex
             #define LIL_FEATURE_Shadow3rdColorTex
+            #define LIL_FEATURE_RimShadeMask
             #define LIL_FEATURE_BacklightColorTex
             #define LIL_FEATURE_SmoothnessTex
             #define LIL_FEATURE_MetallicGlossMap
@@ -745,6 +808,7 @@ Shader "Hidden/ltspass_transparent"
             #define LIL_OPTIMIZE_APPLY_SHADOW_FA
             #define LIL_OPTIMIZE_USE_FORWARDADD
             #define LIL_OPTIMIZE_USE_VERTEXLIGHT
+            #define LIL_FEATURE_VRCLIGHTVOLUMES_WITHOUTPACKAGE
             #pragma skip_variants LIGHTMAP_ON DYNAMICLIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK DIRLIGHTMAP_COMBINED _MIXED_LIGHTING_SUBTRACTIVE
             #pragma target 3.5
             #pragma fragmentoption ARB_precision_hint_fastest
@@ -1011,6 +1075,17 @@ Shader "Hidden/ltspass_transparent"
         {
             Name "SHADOW_CASTER"
             Tags {"LightMode" = "ShadowCaster"}
+
+            Stencil
+            {
+                Ref [_StencilRef]
+                ReadMask [_StencilReadMask]
+                WriteMask [_StencilWriteMask]
+                Comp [_StencilComp]
+                Pass [_StencilPass]
+                Fail [_StencilFail]
+                ZFail [_StencilZFail]
+            }
             Offset 1, 1
             Cull [_Cull]
 
@@ -1040,6 +1115,17 @@ Shader "Hidden/ltspass_transparent"
         {
             Name "SHADOW_CASTER_OUTLINE"
             Tags {"LightMode" = "ShadowCaster"}
+
+            Stencil
+            {
+                Ref [_StencilRef]
+                ReadMask [_StencilReadMask]
+                WriteMask [_StencilWriteMask]
+                Comp [_StencilComp]
+                Pass [_StencilPass]
+                Fail [_StencilFail]
+                ZFail [_StencilZFail]
+            }
             Offset 1, 1
             Cull [_Cull]
 
