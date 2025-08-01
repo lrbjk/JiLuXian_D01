@@ -24,7 +24,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _NoseLineKDnDisp
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -92,31 +92,31 @@ Material:
     - _MatCapDepth1: 0.63
     - _MatCapRefract1: 1
     - _MatCap_ON: 1
-    - _MetalIntensity: 6.63
-    - _ModelSize: 1
+    - _MetalIntensity: 0.84
+    - _ModelSize: 100
     - _NoseLineHoriDisp: 1
     - _NoseLineKDnDisp: 1
     - _Outline: 1
-    - _OutlineWidth: 2.99
+    - _OutlineWidth: 10
     - _OutlineZOffset: 0.01
     - _ScreenSpaceRim: 1
     - _ScreenSpaceRimBrightness: 0.41
     - _ScreenSpaceRimFadeout: 4.45
     - _ScreenSpaceRimThreshold: 0.486
-    - _ScreenSpaceRimWidth: 1.58
+    - _ScreenSpaceRimWidth: 1.71
     - _ScreenSpaceShadow: 0
     - _ScreenSpaceShadowFadeout: 2.77
     - _ScreenSpaceShadowThreshold: 0.301
-    - _ScreenSpaceShadowWidth: 0
+    - _ScreenSpaceShadowWidth: 0.221
     - _ShapeSoftness: 1
-    - _SpecularIntensity: 0.1
-    - _SpecularRange: 1
+    - _SpecularIntensity: 1
+    - _SpecularRange: 0
     - _StencilComp: 0
     - _StencilFailOp: 0
     - _StencilPassOp: 0
     - _StencilRef: 0
     - _StencilZPassOp: 0
-    - _ToonSpecular: 0.01
+    - _ToonSpecular: 1
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

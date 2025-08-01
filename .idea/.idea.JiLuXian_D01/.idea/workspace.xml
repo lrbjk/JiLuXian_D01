@@ -5,53 +5,89 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d0ad1aa-dddc-4f98-beec-cf8487f8658f" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_light.exr.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JiLuXian_D01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JiLuXian_D01/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/OBJ.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/HHH/OBJ.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/TestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/Resources/Enermy/Boss_robote/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/Resources/Enermy/Boss_robote/New Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/Resources/Enermy/Boss_robote/Roobote_Test.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/Resources/Enermy/Boss_robote/Roobote_Test.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Barrel Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Barrel Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Bay Door Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Bay Door Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Cart Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Cart Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Catwalk Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Catwalk Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Ceiling Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Ceiling Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Crate Long Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Crate Long Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Crate Short Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Crate Short Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Ducts Pillars Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Ducts Pillars Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Extinguisher Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Extinguisher Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Fan Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Fan Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Floor Tile Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Floor Tile Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Garbage Bin Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Garbage Bin Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Colored Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Colored Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Fixture Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Fixture Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Pallet Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Pallet Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Security Cam Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Security Cam Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Shelf Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Shelf Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Shelf Trans Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Shelf Trans Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Sign Red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Sign Red.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Stairs Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Stairs Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Stairs Trans Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Stairs Trans Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Props Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Props Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Trans Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Trans Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Vent Trans Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Vent Trans Mat.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls Alpha.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls Alpha.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls Variant.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls Variant.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Windows.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Windows.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/barrel_s.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/barrel_s.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/LightingData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/LightingData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-0.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-0.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-1.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-1.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-2.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-2.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-3.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-3.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-4.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-4.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-5.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-5.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-6.exr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-6.exr.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/LightingData.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/LightingData.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_dir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_dir.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_light.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_light.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_dir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_dir.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_light.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_light.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_dir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_dir.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_light.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_light.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_dir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_dir.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_light.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_light.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_dir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_dir.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_light.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_light.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_dir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_dir.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_light.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_light.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_dir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_dir.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_light.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_light.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_dir.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_dir.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_light.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_light.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-0.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-0.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-1.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-1.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-2.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-2.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-3.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-3.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-4.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-4.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-5.exr" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-5.exr.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +115,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Chase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/SuanCaiyu/UI/BagTest/BagScroller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.core@14.0.11/ShaderLibrary/API/D3D11.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/BRDF.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/Lighting.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/RealtimeLights.hlsl" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/ShaderVariablesFunctions.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/SurfaceInput.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/ShaderLibrary/UniversalMetaPass.hlsl" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@14.0.11/Shaders/Lit.shader" root0="SKIP_HIGHLIGHTING" />
@@ -148,7 +187,7 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="附加到 Unity 编辑器并运行" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="附加到 Unity 编辑器" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
@@ -158,7 +197,7 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="附加到 Unity 编辑器" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="附加到 Unity 编辑器并运行" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
@@ -185,6 +224,10 @@
       <workItem from="1753791658047" duration="1195000" />
       <workItem from="1753861240446" duration="2000" />
       <workItem from="1753888220204" duration="2420000" />
+      <workItem from="1753951487493" duration="405000" />
+      <workItem from="1754025228923" duration="15744000" />
+      <workItem from="1754052991490" duration="3355000" />
+      <workItem from="1754060660408" duration="2324000" />
     </task>
     <servers />
   </component>

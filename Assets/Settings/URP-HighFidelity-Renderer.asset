@@ -1,5 +1,75 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4363960698314026354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e218c3529c6d64a88a21ba3ffa966e, type: 3}
+  m_Name: VaporwaveFeature
+  m_EditorClassIdentifier: 
+  m_Active: 1
+  shaderSetting:
+    ConvoluteShader: {fileID: 4800000, guid: c5a7aad91a1cfac4ab74d374d4bc4cbe, type: 3}
+    BlitGraphShader: {fileID: 4800000, guid: 8efa216e27b7943409bbbc8999fc7cbf, type: 3}
+    BlitGraphInvertShader: {fileID: 4800000, guid: cd11724d174c8ac41b89600221fa31fd,
+      type: 3}
+    SnowShader: {fileID: 4800000, guid: 27c4e6126d30a1a47a46a51a3979abb2, type: 3}
+    InvertLightShader: {fileID: 4800000, guid: 55f2dc6f9259df14e995ccbcd3445387, type: 3}
+    InterlacedShader: {fileID: 4800000, guid: 69489ed44571fa24fa2aa08af58ef073, type: 3}
+    TransposeXShader: {fileID: 4800000, guid: 5f711b280109a4945a8ba3f9e1f1ab6e, type: 3}
+    YUVHandleShader: {fileID: 4800000, guid: 2b4c6188b8392a14dac2bc3510754558, type: 3}
+    RGB2YUVShader: {fileID: 4800000, guid: 520918341155c304695e610124244fa1, type: 3}
+    YUV2RGBShader: {fileID: 4800000, guid: bec94d2892f7de144b4b40fbe1ac2547, type: 3}
+    GraphNoiseShader: {fileID: 4800000, guid: 647fb2d8d04c3ad4cae2e530949ad689, type: 3}
+    EvLEDShader: {fileID: 4800000, guid: c7f60ff7a03206f4894784e87d85eb3c, type: 3}
+    FishEyeShader: {fileID: 4800000, guid: 49cdaba85fb9aed4cb3797686bf2ded4, type: 3}
+    WaterMarkShader: {fileID: 4800000, guid: b5ba203f003fe2a409a38bd33867ebd8, type: 3}
+  renderPassEvent: 600
+  m_Setting:
+    yuvHandleXEnable: 1
+    shiftX: 6
+    shiftY: 4
+    shiftU: 0
+    shiftV: 0
+    level: 4
+    contrast: 1
+    light: 1
+    darkFade: 0
+    brightFade: 0
+    vividU: 1.18
+    vividV: 0.93
+    interlacedEnable: 1
+    interlaced: 1
+    interlacedLine: 4
+    interlacedLight: 0.2
+    transposeXEnable: 0
+    transposeX: 1.28
+    transposePow: 6.7
+    transposeNoise: 0.616
+    qualityEnable: 1
+    darkNoise: 2
+    lightNoise: 5
+    LEDResolutionEnable: 0
+    LEDResolutionLevel: 1
+    FishEyeEnable: 1
+    FishEyeIntensity_X: 0.1
+    FishEyeIntensity_Y: 0.1
+    FishEyePow: 0.5
+    WaterMarkEnable: 0
+    MarkTextureRect: {x: 0.56, y: 0.45, z: 1, w: 1}
+    MarkTextureAlpha: 1
+    MarkTexture: {fileID: 2800000, guid: 6e85d55b8cd158a4e80d28f774b14946, type: 3}
+    MarkTextPrefab: {fileID: 0}
+    MarkTextFiled: 
+    emphasizeLines: 1
+    convoluteType: 0
+    snowEffect: 0
+    invertLight: 0
 --- !u!114 &-1878332245247344467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53,7 +123,8 @@ MonoBehaviour:
     hdrDebugViewPS: {fileID: 4800000, guid: 573620ae32aec764abd4d728906d2587, type: 3}
   m_RendererFeatures:
   - {fileID: -1878332245247344467}
-  m_RendererFeatureMap: adc0de57c6d2eee5
+  - {fileID: -4363960698314026354}
+  m_RendererFeatureMap: adc0de57c6d2eee58e123abbdd1870c3
   m_UseNativeRenderPass: 0
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   xrSystemData: {fileID: 11400000, guid: 60e1133243b97e347b653163a8c01b64, type: 2}
