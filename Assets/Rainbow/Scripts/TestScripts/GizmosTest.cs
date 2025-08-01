@@ -22,6 +22,14 @@ public class GizmosTest : MonoBehaviour
         {
             GetComponent<Animator>().CrossFadeInFixedTime("OH_Light_Attack_01", 0.25f);
         }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GetComponent<Animator>().CrossFadeInFixedTime("Shoot", 0.25f);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GetComponent<Animator>().CrossFadeInFixedTime("Loading", 0.25f);
+        }
         hitboxEvent?.Invoke();
     }
     public virtual void OpenHit()
