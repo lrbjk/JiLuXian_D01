@@ -28,6 +28,11 @@ namespace ns.Character
             return 10;
         }
 
+        public override ResistanceType[] GetWeaponAllSpecialResistanceTypes()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override float GetWeaponExecutionCoefficient()
         {
             return 0;//现阶段敌人无法处决
@@ -36,6 +41,11 @@ namespace ns.Character
         public override float GetWeaponPhysicalATK()
         {
             throw new System.NotImplementedException();//直接使用动作配置获得的攻击数值
+        }
+
+        public override float GetWeaponSpecialResistanceAtk(ResistanceType resistanceType)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

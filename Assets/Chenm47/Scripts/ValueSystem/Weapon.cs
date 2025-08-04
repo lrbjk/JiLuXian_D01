@@ -1,3 +1,4 @@
+using ns.Character;
 using ns.Value;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,7 +18,11 @@ namespace ns.Item.Weapons
         protected static WeaponCharacterPropertyHandler WPCPHandler;//处理角色属性加成
         public WeaponInfo WInfo;
 
-        public abstract float GetFinalATK();
+        public abstract float GetFinalPhysicalATK();
+
+        public abstract float GetSpecialATK(ResistanceType resistanceType);
+
+        public abstract ResistanceType[] GetAllSpecialResistanceTypes();
 
     }
 }

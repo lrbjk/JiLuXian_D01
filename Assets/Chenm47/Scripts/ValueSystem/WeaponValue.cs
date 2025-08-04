@@ -41,6 +41,12 @@ namespace ns.Value
         public CharacterPropertyType cpt;
         public WeaponPropertyLV wpt;
     }
+    [Serializable]
+    public struct WeaponSpecialBaseAtk
+    {
+        public ResistanceType specialResistanceType;
+        public int Value;
+    }
 
     public class WeaponCharacterPropertyHandler
     {
@@ -72,7 +78,13 @@ namespace ns.Value
     public class WeaponValue : ScriptableObject
     {
         public int WeaponItemID;
-        public float BaseAtk;
+        public int BasePhysicalAtk;
+        [Header("武器属性攻击数值")]
+        public List<WeaponSpecialBaseAtk> WeaponSpecialBaseAtks;
+        [Header("处决系数")]
+        public float ExecutionCoefficient;//处决系数
+        [Header("武器削韧值")]
+        public float ReducedPoise;//武器削韧值
     }
 
 }

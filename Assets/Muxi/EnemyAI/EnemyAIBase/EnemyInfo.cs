@@ -75,6 +75,11 @@ namespace EnemyAIBase
             return 5;
         }
 
+        public override ResistanceType[] GetWeaponAllSpecialResistanceTypes()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override float GetWeaponExecutionCoefficient()
         {
             return 0f; // 敌人无法处决
@@ -139,6 +144,11 @@ namespace EnemyAIBase
             }
 
             Debug.Log($"=== EnemyInfo.TakeDamage 结束 ===");
+        }
+
+        public override float GetWeaponSpecialResistanceAtk(ResistanceType resistanceType)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

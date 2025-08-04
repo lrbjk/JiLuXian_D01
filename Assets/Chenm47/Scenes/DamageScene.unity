@@ -839,11 +839,35 @@ MonoBehaviour:
     value: 5
   - propertyType: 2
     value: 0
+  - propertyType: 3
+    value: 0
+  - propertyType: 4
+    value: 0
+  - propertyType: 5
+    value: 0
+  - propertyType: 6
+    value: 0
   CharacterResistanceProperties:
+  - propertyType: 0
+    value: 7
   - propertyType: 1
+    value: 7
+  - propertyType: 2
+    value: 7
+  - propertyType: 3
+    value: 7
+  - propertyType: 4
+    value: 7
+  - propertyType: 5
+    value: 7
+  - propertyType: 6
     value: 7
   AbnormalResistanceProperties:
   - propertyType: 1
+    value: 15
+  - propertyType: 2
+    value: 15
+  - propertyType: 3
     value: 15
   TransitionValue: 0
   CurrentCriticalStateType: 1

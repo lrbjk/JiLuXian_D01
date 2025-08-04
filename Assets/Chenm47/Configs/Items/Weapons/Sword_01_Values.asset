@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15fd5e9e3d1c3cb4c939d0f394f183c7, type: 3}
   m_Name: Sword_01_Values
   m_EditorClassIdentifier: 
-  WeaponItemID: 0
-  BaseAtk: 20
+  WeaponItemID: 999
+  BasePhysicalAtk: 10
+  WeaponSpecialBaseAtks:
+  - specialResistanceType: 4
+    Value: 10
+  - specialResistanceType: 5
+    Value: 5
+  - specialResistanceType: 6
+    Value: 5
+  ExecutionCoefficient: 1
+  ReducedPoise: 10
