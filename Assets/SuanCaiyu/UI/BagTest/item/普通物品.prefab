@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8270025926071268822}
   - component: {fileID: 9065918246825523142}
   m_Layer: 0
-  m_Name: "\u8840\u74F6"
+  m_Name: "\u666E\u901A\u7269\u54C1"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c86d4e7eaf7444e925fbb1c4e0af21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: "\u8840\u74F6"
-  description: "\u56DE\u8840\u9053\u5177"
-  icon: {fileID: 21300000, guid: 7e228362022e1b14992e8700dae17f78, type: 3}
+  itemName: "\u666E\u901A\u7269\u54C1"
+  description: "\u666E\u901A\u7269\u54C1\n"
+  icon: {fileID: 21300000, guid: efa533897d876ae4abcab0c2eaaa89b7, type: 3}

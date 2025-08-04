@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class BagScroller : MonoBehaviour, LoopScrollPrefabSource, LoopScrollDataSource
 {
     public GameObject item;// 列表项的预制体
-    public int totalCount = 20;// 列表总项数，-1表示无限数量
+    // public int totalCount = -1;// 列表总项数，-1表示无限数量
     // 对象池实现（示例用Stack实现）
     Stack<Transform> pool = new Stack<Transform>();
 
@@ -66,7 +66,7 @@ public class BagScroller : MonoBehaviour, LoopScrollPrefabSource, LoopScrollData
         var ls = GetComponent<LoopScrollRect>();
         ls.prefabSource = this;// 设置预制体源
         ls.dataSource = this;// 设置数据源
-        ls.totalCount = totalCount;// 设置总数量
+        ls.totalCount = Inventory.Instance.inventoryItems.Count;// 设置总数量
         ls.RefillCells();// 填充单元格
     }
 }
