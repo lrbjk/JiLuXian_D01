@@ -3,6 +3,7 @@ using ns.Character;
 using ns.Movtion;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using CharacterInfo = ns.Character.CharacterInfo;
 
@@ -100,9 +101,11 @@ namespace AI.FSM.Framework
                 string typeName = "AI.FSM." + currentStateName + "State";
                 Type t = Type.GetType(typeName);
 
+                Debug.Log($"FSMBase.FSMConfig: 尝试创建状态 {currentStateName} -> {typeName}");
+
                 if (t == null)
                 {
-                    Debug.LogError($"FSMBase.FSMConfig: 找不到状态类型 {typeName}！GameObject: {gameObject.name}");
+                    Debug.LogError($"FSMBase.FSMConfig: 找不到状态类型 {typeName}！GameObject: {gameObject.name}");          
                     continue;
                 }
 
@@ -112,6 +115,7 @@ namespace AI.FSM.Framework
                     Debug.LogError($"FSMBase.FSMConfig: 无法创建状态实例 {typeName}！GameObject: {gameObject.name}");
                     continue;
                 }
+                currentState.Init();
 
                 states.Add(currentState);
                 // Debug.Log($"FSMBase.FSMConfig: 成功创建状态 {typeName}");
@@ -135,6 +139,13 @@ namespace AI.FSM.Framework
         {
             Type t = Type.GetType("AI.FSM.TestState");
             FSMState currentState = Activator.CreateInstance(t) as FSMState;
+
+            // 重要：必须调用Init方法来设置StateID
+            if (currentState != null)
+            {
+                currentState.Init();
+            }
+
             states = new List<FSMState> { currentState };
         }
 
@@ -170,11 +181,27 @@ namespace AI.FSM.Framework
                 stateId == FSMStateID.Default ?
                 defulatState :
                 states.Find(s => s.StateID == stateId);
-            // print(Time.frameCount + CurrentStateName.ToString() + "=>" + stateId.ToString());
-            //当前状态退出
-            currentState.ExitState(this);
+
+            // 检查目标状态是否存在
+            if (state == null)
+            {
+                Debug.LogError($"FSMBase.SwitchState: 找不到状态 {stateId}！GameObject: {gameObject.name}");
+                return;
+            }
+
+        
+            if (currentState != null)
+            {
+                currentState.ExitState(this);
+            }
+            else
+            {
+                Debug.LogWarning($"FSMBase.SwitchState: currentState为null，跳过ExitState。GameObject: {gameObject.name}");
+            }
+
             currentState = state;
             CurrentStateName = state.StateID.ToString();
+
             //进入下一状态
             currentState.EnterState(this);
         }

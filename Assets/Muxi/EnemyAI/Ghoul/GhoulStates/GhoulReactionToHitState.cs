@@ -24,11 +24,14 @@ namespace AI.FSM
             base.EnterState(fSMBase);
             ghoulFSMBase = fSMBase as GhoulFSMBase;
             enemyInfo = fSMBase.GetComponent<EnemyInfo>();
-            
-            // 重置受击标志
-            enemyInfo.IsDamaged = false;
+            this.fSMBase = fSMBase; // 确保fSMBase被正确设置
+
+
             reactionFinished = false;
-            
+
+            // 确保状态标志正确初始化
+            fSMBase.characterInfo.IsInMovtionRecoveryFlag = false;
+
             Debug.Log("Ghoul进入受击反应状态");
         }
 
@@ -38,24 +41,25 @@ namespace AI.FSM
             return fSMBase.movtionManager.GetMovtionInfo(fSMBase.characterInfo.CurrentMovtionID);
         }
 
-        // 动作事件处理方法
-        public void OnPreMovtionEnd(Common.AnimationEventArgs args)
+        // 动作事件处理方法（修复方法签名）
+        protected virtual void OnPreMovtionEnd(object sender, Common.AnimationEventArgs args)
         {
             Debug.Log("Ghoul受击前摇结束");
+            fSMBase.characterInfo.IsInPreMovtionFlag = false;
         }
 
-        public void OnMovtionStart(Common.AnimationEventArgs args)
+        protected virtual void OnMovtionStart(object sender, Common.AnimationEventArgs args)
         {
             Debug.Log("Ghoul受击动作开始");
         }
 
-        public void OnMovtionEnd(Common.AnimationEventArgs args)
+        protected virtual void OnMovtionEnd(object sender, Common.AnimationEventArgs args)
         {
             Debug.Log("Ghoul受击动作结束");
             reactionFinished = true;
         }
 
-        public void OnMovtionRecovery(Common.AnimationEventArgs args)
+        protected virtual void OnMovtionRecovery(object sender, Common.AnimationEventArgs args)
         {
             Debug.Log("Ghoul受击后摇开始");
             fSMBase.characterInfo.IsInMovtionRecoveryFlag = true;
@@ -131,17 +135,33 @@ namespace AI.FSM
         public override void ExitState(FSMBase fSMBase)
         {
             base.ExitState(fSMBase);
-            
+
             // 清理受击状态
             reactionFinished = false;
-            
+
+            if (enemyInfo != null)
+            {
+                enemyInfo.IsDamaged = false;
+                Debug.Log("Ghoul受击状态退出：重置IsDamaged为false");
+            }
+
+            if (ghoulFSMBase?.animator != null)
+            {
+                ghoulFSMBase.animator.SetBool("IsInteracting", false);
+            }
+
             Debug.Log("Ghoul退出受击反应状态");
         }
 
         // 检查受击反应是否完成的公共方法
         public bool IsReactionFinished()
         {
-            return reactionFinished;
+            // 受击反应完成的条件：
+            // 1. 动作结束事件已触发 (reactionFinished = true)
+            // 2. 并且处于后摇阶段 (IsInMovtionRecoveryFlag = true)
+            bool isFinished = reactionFinished && fSMBase.characterInfo.IsInMovtionRecoveryFlag;
+
+            return isFinished;
         }
     }
 }

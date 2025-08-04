@@ -83,6 +83,12 @@ using UnityEngine;
 
         public override GoalStatus Process()
         {
+            // 检查是否已死亡
+            if (CheckIfDead())
+            {
+                return status;
+            }
+
             // 检查战斗是否应该结束
             if (Time.time - lastDecisionTime > decisionInterval)
             {
@@ -93,7 +99,7 @@ using UnityEngine;
                 lastDecisionTime = Time.time;
             }
 
-          
+
             base.Process();
 
             return GoalStatus.Active;

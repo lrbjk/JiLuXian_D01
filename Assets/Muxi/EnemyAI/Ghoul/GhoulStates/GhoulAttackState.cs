@@ -1,6 +1,7 @@
 using AI.FSM.Framework;
 using Common;
 using EnemyAIBase;
+using ns.Item.Weapons;
 using ns.Movtion;
 using UnityEngine;
 
@@ -16,7 +17,8 @@ namespace AI.FSM
         protected Ghoul ghoul;
         private bool attackFinished = false;
         private Transform target;
-        
+
+        private GameObject weapon;
         // 位置保持
         private Vector3 attackPosition; // 攻击开始时的位置
 
@@ -64,6 +66,26 @@ namespace AI.FSM
 
         public override void EnterState(FSMBase fSMBase)
         {
+            
+        
+            weapon = GameObject.Find("weapon");
+            if (weapon == null)
+            {
+              
+                Transform weaponTransform = fSMBase.transform.Find("weapon");
+                if (weaponTransform != null)
+                {
+                    weapon = weaponTransform.gameObject;
+                }
+                else
+                {
+                
+                    weapon = FindChildByName(fSMBase.transform, "weapon");
+                }
+            }
+    
+        
+
             base.EnterState(fSMBase);
 
             // 获取攻击目标
@@ -110,7 +132,7 @@ namespace AI.FSM
             Debug.Log($"Ghoul进入攻击状态，锁定位置: {attackPosition}");
         }
 
-        // 动作事件处理方法（修复方法签名）
+    
         public void OnPreMovtionEnd(object sender, Common.AnimationEventArgs args)
         {
             Debug.Log("Ghoul攻击前摇结束");
@@ -118,14 +140,18 @@ namespace AI.FSM
 
         public void OnMovtionStart(object sender, Common.AnimationEventArgs args)
         {
-            Debug.Log("Ghoul攻击开始");
-            // 在这里可以启用攻击碰撞体或处理攻击逻辑
+       
+            // 激活武器碰撞体
+            var weaponCollider = weapon.GetComponentInChildren<WeaponCollderHandle>(true);
+            weaponCollider?.SetCollider(true);
             PerformAttack();
         }
 
         public void OnMovtionEnd(object sender, Common.AnimationEventArgs args)
         {
             Debug.Log("Ghoul攻击结束");
+            var weaponCollider = weapon.GetComponentInChildren<WeaponCollderHandle>(true);
+            weaponCollider?.SetCollider(false);
             attackFinished = true;
         }
 
@@ -145,17 +171,23 @@ namespace AI.FSM
 
             if (distanceToTarget <= attackRange)
             {
-                //// 执行攻击逻辑
-                //Debug.Log($"Ghoul攻击目标，伤害值: {movtionInfo.MovtionAtkValue}");
 
-                // 这里可以添加实际的伤害计算和应用
-                // 例如：target.GetComponent<CharacterInfo>().TakeDamage(movtionInfo.MovtionAtkValue);
+                //Debug.Log($"Ghoul攻击目标，伤害值: {movtionInfo.MovtionAtkValue}");
             }
         }
 
         public override void ActionState(FSMBase fSMBase)
         {
             base.ActionState(fSMBase);
+
+            // 检查是否已死亡，如果死亡则立即结束攻击
+            var enemyInfo = fSMBase.GetComponent<EnemyInfo>();
+            if (enemyInfo != null && enemyInfo.IsDied)
+            {
+                Debug.Log("[GhoulAttackState] 检测到死亡状态，强制结束攻击");
+                attackFinished = true;
+                return;
+            }
 
             // 强制保持位置，防止Root Motion导致的移动
             MaintainPosition(fSMBase);
@@ -185,7 +217,19 @@ namespace AI.FSM
                 Debug.Log($"[GhoulAttackState] AttackFinished: {attackFinished}, Distance: {(target ? Vector3.Distance(fSMBase.transform.position, target.position) : 0):F2}");
             }
         }
-
+        private GameObject FindChildByName(Transform parent, string name)
+        {
+            foreach (Transform child in parent)
+            {
+                if (child.name == name)
+                    return child.gameObject;
+        
+                GameObject found = FindChildByName(child, name);
+                if (found != null)
+                    return found;
+            }
+            return null;
+        }
         private void UpdateAnimatorParameters()
         {
             if (ghoulFsmBase?.animator == null) return;
@@ -266,73 +310,8 @@ namespace AI.FSM
             }
         }
     }
+    
+    
+    
 }
-//             bool isLeft = playerFSMBase.playerInput.IsLeftAttackTrigger;
-//             var lweapon = playerFSMBase.playerInventory.LeftWeapon;
-//             var rweapon = playerFSMBase.playerInventory.RightWeapon;
-//             currentWeaponGO = currentWeponInfo.ModleGO;
-//             //获取技能信息
-//             MovtionInfo movtionInfo = GetMovtionInfo(isLeft, currentWeponInfo);
-//             return movtionInfo;
-//         }
-//         protected virtual MovtionInfo GetMovtionInfo(bool isLeft, WeaponInfo currentWeponInfo)
-//         {
-//             //根据手中的武器和输入来决定使用哪个动作
-//             int movtionID = 0;//动作ID
-//             if (playerFSMBase.playerInput.IsLightAttackTrigger)
-//             {
-//                 if (isLeft)
-//                     movtionID = currentWeponInfo.LightAtkIDL;
-//                 else
-//                     movtionID = currentWeponInfo.LightAtkIDR;
-//             }
-//             else if (playerFSMBase.playerInput.IsHeavyAttackTrigger)
-//             {
-//                 if (isLeft)
-//                     movtionID = currentWeponInfo.HeavyAtkIDL;
-//                 else
-//                     movtionID = currentWeponInfo.HeavyAtkIDR;
-//             }
-//             else if (playerFSMBase.playerInput.IsSkillAttackTrigger)
-//             {
-//                 movtionID = currentWeponInfo.SkillAtkIDL;
-//             }
-//             var skillInfo = playerFSMBase.movtionManager.GetMovtionInfo(movtionID);
-//             return skillInfo;
-//         }
-//
-//         public override void EnterState(FSMBase fSMBase)
-//         {
-//             base.EnterState(fSMBase);
-//             //停止移动
-//             playerFSMBase.playerAction.StopMove();
-//             PlayerInfo playerInfo = playerFSMBase.characterInfo as PlayerInfo;
-//             //更新玩家信息技能ID
-//             playerInfo.LastAttackType = playerFSMBase.playerInput.AtkInputType;
-//             playerInfo.CurrentMovtionID = movtionInfo.MovtionID;
-//             playerInfo.ComboMovtionlID = movtionInfo.ComboMovtionID;
-//         }
-//
-//         public override void ExitState(FSMBase fSMBase)
-//         {
-//             base.ExitState(fSMBase);
-//             //清空临时变量
-//             //以防万一禁用碰撞体
-//             currentWeaponGO.GetComponentInChildren<WeaponCollderHandle>(true).SetCollider(false);
-//             currentWeaponGO = null;
-//         }
-//
-//         protected override void OnMovtionStart(object sender, AnimationEventArgs e)
-//         {
-//             base.OnMovtionStart(sender, e);
-//             //激活碰撞体
-//             currentWeaponGO.GetComponentInChildren<WeaponCollderHandle>(true).SetCollider(true);
-//         }
-//         protected override void OnMovtionEnd(object sender, AnimationEventArgs e)
-//         {
-//             base.OnMovtionEnd(sender, e);
-//             //禁用碰撞体
-//             currentWeaponGO.GetComponentInChildren<WeaponCollderHandle>(true).SetCollider(false);
-//         }
-//     }
-// }
+

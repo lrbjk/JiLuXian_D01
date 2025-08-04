@@ -25,7 +25,13 @@ namespace EnemyAIBase
         public override void Activate()
         {
             base.Activate();
-            
+
+            // 检查是否已死亡
+            if (CheckIfDead())
+            {
+                return;
+            }
+
             target = owner.GetTarget();
             if (target == null)
             {
@@ -56,6 +62,12 @@ namespace EnemyAIBase
 
         public override GoalStatus Process()
         {
+            // 检查是否已死亡
+            if (CheckIfDead())
+            {
+                return status;
+            }
+
             // 检查攻击超时
             if (Time.time - attackStartTime > maxAttackTime)
             {

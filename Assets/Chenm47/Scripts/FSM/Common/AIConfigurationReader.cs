@@ -1,5 +1,6 @@
 using Common;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace AI.FSM
 {
@@ -35,8 +36,21 @@ namespace AI.FSM
             }
             else
             {
-                var names = line.Split(">");
-                statesMap[currentState].Add(names[0], names[1]);
+                // 跳过注释行和不包含'>'的行
+                if (line.StartsWith("#") || line.StartsWith("//") || !line.Contains(">"))
+                {
+                    return;
+                }
+
+                var names = line.Split('>');
+                if (names.Length >= 2)
+                {
+                    statesMap[currentState].Add(names[0].Trim(), names[1].Trim());
+                }
+                else
+                {
+                    Debug.LogWarning($"AIConfigurationReader: 跳过格式错误的行: '{line}'");
+                }
             }
 
         }

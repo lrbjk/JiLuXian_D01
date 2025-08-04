@@ -1,4 +1,5 @@
 using AI.FSM.Framework;
+using EnemyAIBase;
 using UnityEngine;
 
 namespace AI.FSM
@@ -15,14 +16,32 @@ namespace AI.FSM
 
         public override bool HandleTrigger(FSMBase fSMBase)
         {
-            // 检查当前状态是否为受击反应状态，并且反应已完成
+    
             if (fSMBase.CurrentState is GhoulReactionToHitState reactionState)
             {
-                return reactionState.IsReactionFinished();
+                bool isFinished = reactionState.IsReactionFinished();
+                
+                bool aiReady = CheckAISystemReady(fSMBase);
+                
+
+                return isFinished && aiReady;
             }
-            
-            // 如果不在受击反应状态，检查是否不在动作后摇阶段
-            return !fSMBase.characterInfo.IsInMovtionRecoveryFlag;
+
+        
+            return false;
+        }
+
+        private bool CheckAISystemReady(FSMBase fSMBase)
+        {
+            var ghoul = fSMBase.GetComponent<Ghoul>();
+            if (ghoul?.Brain?.GetGoalManager() != null)
+            {
+                var currentGoal = ghoul.Brain.GetGoalManager().CurrentGoal;
+                return currentGoal == null ||
+                       currentGoal.Status == GoalStatus.Completed ||
+                       currentGoal.Status == GoalStatus.Failed;
+            }
+            return true; 
         }
     }
 }

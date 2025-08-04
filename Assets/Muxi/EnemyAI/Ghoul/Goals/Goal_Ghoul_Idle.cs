@@ -23,13 +23,19 @@ namespace EnemyAIBase
         public override void Activate()
         {
             base.Activate();
-            
+
+            // 检查是否已死亡
+            if (CheckIfDead())
+            {
+                return;
+            }
+
             // 切换到待机状态
             if (fsmBase != null)
             {
                 fsmBase.SwitchState(FSMStateID.GhoulIdle);
             }
-            
+
             idleStartTime = Time.time;
             // Debug.Log("Goal_Ghoul_Idle: 激活待机目标");
         }
@@ -65,8 +71,8 @@ namespace EnemyAIBase
         {
             if (type == InterruptType.Damage)
             {
-                // 受到伤害时立即结束待机
-                status = GoalStatus.Failed;
+                status = GoalStatus.Completed;
+                Debug.Log("Goal_Ghoul_Idle: 受到伤害，结束待机状态，准备重新决策");
                 return true;
             }
             return false;

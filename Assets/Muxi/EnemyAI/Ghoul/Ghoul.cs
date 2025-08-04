@@ -103,10 +103,37 @@ namespace EnemyAIBase
                 // 注册受击中断检查
                 interruptHandler.RegisterInterrupt(InterruptType.Damage, () => {
                     var enemyInfo = GetComponent<EnemyInfo>();
-                    return enemyInfo != null && enemyInfo.IsDamaged;
+                    bool isDamaged = enemyInfo != null && enemyInfo.IsDamaged;
+
+                    // 如果受到伤害且当前没有目标，尝试找到攻击者作为目标
+                    if (isDamaged && target == null)
+                    {
+                        SetPlayerAsTargetOnDamage();
+                    }
+
+                    return isDamaged;
                 });
 
                 Debug.Log("Ghoul: 中断处理器注册完成");
+            }
+        }
+
+        private void SetPlayerAsTargetOnDamage()
+        {
+            // 寻找玩家作为目标
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null)
+            {
+                target = player.transform;
+                Debug.Log("Ghoul: 受击后设置玩家为目标");
+
+                // 立即切换到战斗状态
+                var battleGoal = CreateGoalFromDecision("battle");
+                if (battleGoal != null)
+                {
+                    brain.GetGoalManager().SetGoal(battleGoal);
+                    Debug.Log("Ghoul: 受击后切换到战斗状态");
+                }
             }
         }
 

@@ -26,6 +26,7 @@ namespace AI.FSM
         GhoulIdle,
         GhoulWalking,
         GhoulReactionToHit,
-        GhoulAttack
+        GhoulAttack,
+        GhoulDeath
     }
 }

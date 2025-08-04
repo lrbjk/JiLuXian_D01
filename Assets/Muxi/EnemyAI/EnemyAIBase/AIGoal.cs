@@ -21,6 +21,22 @@ namespace EnemyAIBase
             status = GoalStatus.Active;
         }
 
+        /// <summary>
+        /// 检查敌人是否已死亡，如果死亡则设置Goal为失败状态
+        /// </summary>
+        /// <returns>如果已死亡返回true</returns>
+        protected bool CheckIfDead()
+        {
+            var enemyInfo = owner.GetComponent<EnemyInfo>();
+            if (enemyInfo != null && enemyInfo.IsDied)
+            {
+                Debug.Log($"{GetType().Name}: 敌人已死亡，Goal设置为失败状态");
+                status = GoalStatus.Failed;
+                return true;
+            }
+            return false;
+        }
+
         public virtual GoalStatus Process()
         {
             if (subGoals.Count > 0)

@@ -5,53 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6d0ad1aa-dddc-4f98-beec-cf8487f8658f" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-0_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-1_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-2_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-3_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-4_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-5_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-6_comp_light.exr.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_dir.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_dir.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_light.exr" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Lightmap-7_comp_light.exr.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JiLuXian_D01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JiLuXian_D01/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/OBJ.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/HHH/OBJ.shader" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/LightingData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/LightingData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-0.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-0.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-1.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-1.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-2.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-2.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-3.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-3.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-4.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-4.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-5.exr" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-5.exr" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-6.exr" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/ReflectionProbe-6.exr.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scenes/DamageScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scenes/DamageScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Common/AIConfigurationReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Common/AIConfigurationReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Common/FSMStateID.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Common/FSMStateID.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/FSMBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/FSMBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Triggers/Player/IsDiedTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Chenm47/Scripts/FSM/Triggers/Player/IsDiedTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/AITest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/AITest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/CommonGoals/Goal_MoveToSomeWhere.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/CommonGoals/Goal_MoveToSomeWhere.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/AIGoal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/AIGoal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/EnemyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/EnemyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Ghoul.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Ghoul.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulFSMBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulFSMBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulStates/GhoulAttackState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulStates/GhoulAttackState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulStates/GhoulIdleState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulStates/GhoulIdleState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulStates/GhoulReactionToHitState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulStates/GhoulReactionToHitState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulTriggers/HitReactionFinishedTrigger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/GhoulTriggers/HitReactionFinishedTrigger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Attack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Attack.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Battle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Battle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Idle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Idle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Patrol.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Patrol.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Movtion/Ghoul Attack.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Movtion/Ghoul Attack.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Movtion/Ghoul Hit Reaction.asset.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Movtion/Ghoul Hit Reaction.asset.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/New Animator Controller.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/New Animator Controller.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/StreamingAssets/GhoulFSMConfig.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StreamingAssets/GhoulFSMConfig.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +52,8 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/EnemyInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/EnemyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/EnemyAIBase/InterruptHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Attack.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Muxi/EnemyAI/Ghoul/Goals/Goal_Ghoul_Chase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/SuanCaiyu/UI/BagTest/BagScroller.cs" root0="FORCE_HIGHLIGHTING" />
@@ -117,11 +96,14 @@
 }</component>
   <component name="RunManager" selected="独立播放器.Start Unity">
     <configuration name="启动 Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\2022.3.38f1c1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\GameSoft\Unity\Editor\2022.3.38f1c1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath D:\unity\JiLuXian_D01 -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
@@ -130,6 +112,9 @@
       <option name="WORKING_DIRECTORY" value="A:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
@@ -138,24 +123,20 @@
       <option name="WORKING_DIRECTORY" value="A:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="单元测试(批处理模式)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\2022.3.38f1c1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\GameSoft\Unity\Editor\2022.3.38f1c1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\unity\JiLuXian_D01 -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
-      <method v="2" />
-    </configuration>
-    <configuration name="附加到 Unity 编辑器并运行" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
-      <option name="allowRunningInParallel" value="false" />
-      <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
-      <option name="projectPathOnTarget" />
-      <option name="selectedOptions">
-        <list />
-      </option>
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="附加到 Unity 编辑器" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -163,9 +144,27 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
       <option name="selectedOptions">
         <list />
       </option>
+      <option name="useMixedMode" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration name="附加到 Unity 编辑器并运行" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
   </component>
@@ -185,6 +184,9 @@
       <workItem from="1753791658047" duration="1195000" />
       <workItem from="1753861240446" duration="2000" />
       <workItem from="1753888220204" duration="2420000" />
+      <workItem from="1754048990452" duration="8821000" />
+      <workItem from="1754298520184" duration="77000" />
+      <workItem from="1754299034510" duration="2420000" />
     </task>
     <servers />
   </component>

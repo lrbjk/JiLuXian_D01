@@ -33,12 +33,18 @@ namespace EnemyAIBase
         public override void Activate()
         {
             base.Activate();
-            
+
+            // 检查是否已死亡
+            if (CheckIfDead())
+            {
+                return;
+            }
+
             moveBehavior = owner.GetComponent<AIMoveBehavior>();
             navAgent = owner.GetComponent<NavMeshAgent>();
             fsmBase = owner.GetComponent<GhoulFSMBase>();
-            
-            
+
+
             // 目标位置是否可达
             NavMeshPath path = new NavMeshPath();
             if (!navAgent.CalculatePath(targetPosition, path) || path.status != NavMeshPathStatus.PathComplete)

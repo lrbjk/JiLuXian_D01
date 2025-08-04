@@ -185,8 +185,9 @@ namespace EnemyAIBase
         {
             if (type == InterruptType.Damage)
             {
-                // 受到伤害时立即结束巡逻
-                status = GoalStatus.Failed;
+                // 受到伤害时立即结束巡逻，设为Completed以便重新决策
+                status = GoalStatus.Completed;
+                Debug.Log("Goal_Ghoul_Patrol: 受到伤害，结束巡逻状态，准备重新决策");
                 return true;
             }
             return false;

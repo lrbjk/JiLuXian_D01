@@ -23,17 +23,23 @@ namespace AI.FSM
             base.EnterState(fSMBase);
             ghoulFSMBase = fSMBase as GhoulFSMBase;
             enemyInfo = fSMBase.GetComponent<EnemyInfo>();
-            
+
+            // 确保动画参数正确重置
+            if (ghoulFSMBase?.animator != null)
+            {
+                ghoulFSMBase.animator.SetBool("IsInteracting", false);
+                Debug.Log("Ghoul进入待机状态：重置IsInteracting为false");
+            }
+
             if (fSMBase.animationHandler != null)
             {
                 fSMBase.animationHandler.PlayTargetAnimation("Zombie Idle", false, 0.2f);
             }
-           
 
             // 重置待机计时器
             idleTimer = 0f;
 
-            // Debug.Log("Ghoul进入待机状态");
+            Debug.Log("Ghoul进入待机状态");
         }
 
         public override void ActionState(FSMBase fSMBase)

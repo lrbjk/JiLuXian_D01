@@ -19,17 +19,20 @@ namespace AI.FSM
         protected override void Start()
         {
             ConfigFullFileName = ghoulConfigFileName;
-            
+
             defaultStateID = FSMStateID.GhoulIdle;
-            
+
             ghoul = GetComponent<Ghoul>();
 
             Debug.Log($"GhoulFSMBase: 开始初始化，TestMode={TestMode}, DefaultStateID={defaultStateID}");
-            
+
             base.Start();
+            
 
             Debug.Log($"GhoulFSMBase: 初始化完成，CurrentState={CurrentState?.StateID.ToString() ?? "NULL"}");
         }
+
+      
 
         
     }
