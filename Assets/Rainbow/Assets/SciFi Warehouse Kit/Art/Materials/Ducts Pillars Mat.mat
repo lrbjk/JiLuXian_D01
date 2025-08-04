@@ -132,10 +132,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlbedoSmoothness: 1
+    - _AlbedoSmoothness: 0.275
     - _AlphaClip: 0
     - _AlphaToMask: 0
-    - _AmbientColorIntensity: 0.1
+    - _AmbientColorIntensity: 0.056
     - _Blend: 0
     - _BlendDst: 0
     - _BlendModePreserveSpecular: 1
@@ -213,12 +213,12 @@ Material:
     - _OutlineColor1: {r: 0, g: 0, b: 0, a: 1}
     - _PostFrontTint: {r: 1, g: 1, b: 1, a: 1}
     - _PostSSSTint: {r: 1, g: 1, b: 1, a: 1}
-    - _PostShadowFadeTint: {r: 0.70980394, g: 0.70980394, b: 0.70980394, a: 1}
-    - _PostShadowTint: {r: 0.70980394, g: 0.70980394, b: 0.70980394, a: 1}
-    - _PostShallowFadeTint: {r: 0.70980394, g: 0.70980394, b: 0.70980394, a: 1}
-    - _PostShallowTint: {r: 0.7106918, g: 0.7106918, b: 0.7106918, a: 1}
+    - _PostShadowFadeTint: {r: 0, g: 0.38550162, b: 1, a: 1}
+    - _PostShadowTint: {r: 0, g: 0.43552685, b: 1, a: 1}
+    - _PostShallowFadeTint: {r: 0.969532, g: 0, b: 1, a: 1}
+    - _PostShallowTint: {r: 0.85712814, g: 0, b: 1, a: 1}
     - _RimGlowLightColor1: {r: 1, g: 1, b: 1, a: 1}
-    - _ShadowColor: {r: 0.5286183, g: 0.62656814, b: 0.654088, a: 1}
+    - _ShadowColor: {r: 1, g: 0, b: 0.77361584, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
     - _UISunColor: {r: 1, g: 1, b: 1, a: 1}

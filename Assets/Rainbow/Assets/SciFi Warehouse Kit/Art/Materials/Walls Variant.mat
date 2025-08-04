@@ -26,6 +26,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs: []
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _AlbedoSmoothness: 0.275
+    - _AmbientColorIntensity: 0.056
+    m_Colors:
+    - _PostFrontTint: {r: 1, g: 1, b: 1, a: 1}
+    - _PostSSSTint: {r: 1, g: 1, b: 1, a: 1}
+    - _PostShadowFadeTint: {r: 0, g: 0.38550162, b: 1, a: 1}
+    - _PostShadowTint: {r: 0, g: 0.43552685, b: 1, a: 1}
+    - _PostShallowFadeTint: {r: 0.969532, g: 0, b: 1, a: 1}
+    - _PostShallowTint: {r: 0.85712814, g: 0, b: 1, a: 1}
+    - _ShadowColor: {r: 1, g: 0, b: 0.77361584, a: 1}
   m_BuildTextureStacks: []

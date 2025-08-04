@@ -74,7 +74,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlbedoSmoothness: 1
+    - _AlbedoSmoothness: 0.382
     - _AlphaClip: 0.5
     - _AmbientColorIntensity: 0
     - _BlendDst: 0
@@ -125,10 +125,10 @@ Material:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _PostFrontTint: {r: 1, g: 1, b: 1, a: 1}
     - _PostSSSTint: {r: 1, g: 1, b: 1, a: 1}
-    - _PostShadowFadeTint: {r: 1, g: 1, b: 1, a: 1}
-    - _PostShadowTint: {r: 1, g: 1, b: 1, a: 1}
-    - _PostShallowFadeTint: {r: 1, g: 1, b: 1, a: 1}
-    - _PostShallowTint: {r: 1, g: 1, b: 1, a: 1}
+    - _PostShadowFadeTint: {r: 1, g: 0, b: 0, a: 1}
+    - _PostShadowTint: {r: 1, g: 0, b: 0, a: 1}
+    - _PostShallowFadeTint: {r: 1, g: 0, b: 0, a: 1}
+    - _PostShallowTint: {r: 1, g: 0, b: 0, a: 1}
     - _RimGlowLightColor1: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
