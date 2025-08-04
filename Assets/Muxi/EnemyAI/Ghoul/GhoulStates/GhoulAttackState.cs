@@ -152,13 +152,16 @@ namespace AI.FSM
             Debug.Log("Ghoul攻击结束");
             var weaponCollider = weapon.GetComponentInChildren<WeaponCollderHandle>(true);
             weaponCollider?.SetCollider(false);
-            attackFinished = true;
+            Debug.Log("Ghoul攻击动作结束，等待后摇完成");
         }
 
         public void OnMovtionRecovery(object sender, Common.AnimationEventArgs args)
         {
             Debug.Log("Ghoul攻击后摇开始");
             fSMBase.characterInfo.IsInMovtionRecoveryFlag = true;
+            // 在后摇开始时标记攻击完成
+            attackFinished = true;
+            Debug.Log("Ghoul攻击完全结束，可以转换状态");
         }
 
         private void PerformAttack()

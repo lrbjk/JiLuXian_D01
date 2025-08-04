@@ -16,13 +16,21 @@ MonoBehaviour:
   MovtionName: Ghoul Attack
   ComboMovtionID: 0
   AnimationName: Zombie Attack
-  MovtionAtkValue: 2
+  ActionMultiplier: 1.5
+  ExecutionMultiplier: 0
+  MovtionPoise: 30
+  MovtionReducedPoise: 20
   PreMovtionRotateSpeed: 0
+  PhysicalResistanceType: 0
   MovtionEvents:
+  - EventType: 0
+    AnimationFrame: 10
   - EventType: 1
-    AnimationFrame: 20
+    AnimationFrame: 15
   - EventType: 2
-    AnimationFrame: 121
+    AnimationFrame: 25
+  - EventType: 3
+    AnimationFrame: 30
   FrontDamagedMovtionID: 0
   BackDamagedMovtionID: 0
   DeadMovtionID: 0

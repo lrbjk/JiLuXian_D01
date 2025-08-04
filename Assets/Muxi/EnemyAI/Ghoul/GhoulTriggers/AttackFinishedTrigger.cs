@@ -19,14 +19,23 @@ namespace AI.FSM
             if (fSMBase.CurrentState is GhoulAttackState attackState)
             {
                 bool isFinished = attackState.IsAttackFinished();
-
-                // 添加调试信息（减少频率）
-                if (Time.frameCount % 120 == 0) // 每2秒输出一次
+                bool isInRecovery = fSMBase.characterInfo.IsInMovtionRecoveryFlag;
+                bool isInteracting = false;
+                var animator = fSMBase.GetComponent<Animator>();
+                if (animator != null)
                 {
-                    Debug.Log($"[AttackFinishedTrigger] IsAttackFinished: {isFinished}");
+                    isInteracting = animator.GetBool("IsInteracting");
                 }
 
-                return isFinished;
+                bool reallyFinished = isFinished && isInRecovery && !isInteracting;
+
+
+                if (Time.frameCount % 240 == 0) 
+                {
+                    Debug.Log($"[AttackFinishedTrigger] IsAttackFinished: {isFinished}, IsInRecovery: {isInRecovery}, IsInteracting: {isInteracting}, ReallyFinished: {reallyFinished}");
+                }
+
+                return reallyFinished;
             }
 
             // 如果不在攻击状态，检查是否不在动作后摇阶段
