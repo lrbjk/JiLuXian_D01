@@ -77,7 +77,7 @@ namespace EnemyAIBase
 
         public override ResistanceType[] GetWeaponAllSpecialResistanceTypes()
         {
-            throw new System.NotImplementedException();
+            return new ResistanceType[0];
         }
 
         public override float GetWeaponExecutionCoefficient()
@@ -148,7 +148,7 @@ namespace EnemyAIBase
 
         public override float GetWeaponSpecialResistanceAtk(ResistanceType resistanceType)
         {
-            throw new System.NotImplementedException();
+            return 0f;
         }
     }
 }
