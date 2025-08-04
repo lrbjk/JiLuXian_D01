@@ -18,8 +18,6 @@ MonoBehaviour:
   AnimationName: Sword_Light_Attack01
   ActionMultiplier: 1
   ExecutionMultiplier: 0
-  MovtionPoise: 1
-  MovtionReducedPoise: 0
   PreMovtionRotateSpeed: 1
   PhysicalResistanceType: 0
   MovtionEvents:

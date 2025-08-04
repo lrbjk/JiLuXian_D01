@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48e218c3529c6d64a88a21ba3ffa966e, type: 3}
   m_Name: VaporwaveFeature
   m_EditorClassIdentifier: 
-  m_Active: 1
+  m_Active: 0
   shaderSetting:
     ConvoluteShader: {fileID: 4800000, guid: c5a7aad91a1cfac4ab74d374d4bc4cbe, type: 3}
     BlitGraphShader: {fileID: 4800000, guid: 8efa216e27b7943409bbbc8999fc7cbf, type: 3}

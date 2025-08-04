@@ -1,6 +1,7 @@
 using ns.Movtion;
 using ns.Value;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ns.Character
@@ -22,7 +23,9 @@ namespace ns.Character
         打击,
         斩击,
         突刺,
-        魔力,
+        热能,
+        电磁,
+        共振,
     }
 
     public enum AbnormalType
@@ -101,6 +104,18 @@ namespace ns.Character
         /// </summary>
         /// <returns></returns>
         public abstract float GetWeaponPhysicalATK();
+
+        /// <summary>
+        /// 获取武器基础属性攻击力
+        /// </summary>
+        /// <returns></returns>
+        public abstract float GetWeaponSpecialResistanceAtk(ResistanceType resistanceType);
+        /// <summary>
+        /// 获取武器拥有的属性伤害类别
+        /// </summary>
+        /// <returns></returns>
+        public abstract ResistanceType[] GetWeaponAllSpecialResistanceTypes();
+
         /// <summary>
         /// 获取武器处决系数
         /// </summary>

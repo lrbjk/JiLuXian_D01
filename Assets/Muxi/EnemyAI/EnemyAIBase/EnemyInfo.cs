@@ -59,12 +59,22 @@ namespace EnemyAIBase
             throw new System.NotImplementedException();
         }
 
+        public override ResistanceType[] GetWeaponAllSpecialResistanceTypes()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override float GetWeaponExecutionCoefficient()
         {
             throw new System.NotImplementedException();
         }
 
         public override float GetWeaponPhysicalATK()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override float GetWeaponSpecialResistanceAtk(ResistanceType resistanceType)
         {
             throw new System.NotImplementedException();
         }
