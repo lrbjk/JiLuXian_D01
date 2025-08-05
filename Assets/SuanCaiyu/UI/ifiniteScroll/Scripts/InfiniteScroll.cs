@@ -16,8 +16,9 @@ public class InfiniteScroll : MonoBehaviour
     [SerializeField] private float moveDistance = 300f; // 每次移动的距离
     [SerializeField] private float moveSpeed = 1500f;   // 移动速度
     private Vector3 targetPosition;
-    private bool isMovingLeft = false;
-    private bool isMovingRight = false;
+    public bool isMovingLeft = false;
+    public bool isMovingRight = false;
+    public bool isJumping = false;
 
     //private bool isUpdated;
     //private Vector2 OldVelocity;
@@ -69,34 +70,39 @@ public class InfiniteScroll : MonoBehaviour
 
     void Update()
     {
-        //if (isUpdated)
-        //{   
-        //    isUpdated = false;
-        //    SR.velocity = OldVelocity;
-        //}
+        if (isJumping)
+        {
+            isJumping = false;
+        }
         //左边补充用完时跳转用原始组
         if (content_rtf.localPosition.x > 0)
-        {
+        {   
+            isJumping = true;
+            Debug.Log("isJumping");
             //强制刷新，避免计算所需数值有误
             Canvas.ForceUpdateCanvases();
             //OldVelocity = SR.velocity;
             targetPosition -= new Vector3(ItemList.Length * (ItemList[0].rect.width + HLG.spacing), 0, 0);
             content_rtf.localPosition -= new Vector3(ItemList.Length * (ItemList[0].rect.width + HLG.spacing), 0, 0);
             //isUpdated = true;
+           
         }
         //右边补充用完时跳转用原始组
         if (content_rtf.localPosition.x < -(ItemList[0].rect.width + HLG.spacing) * ItemList.Length)
-        {
+        {   
+            isJumping = true;
+            Debug.Log("isJumping");
             Canvas.ForceUpdateCanvases();
             //OldVelocity = SR.velocity;
             targetPosition += new Vector3(ItemList.Length * (ItemList[0].rect.width + HLG.spacing), 0, 0);
             content_rtf.localPosition += new Vector3(ItemList.Length * (ItemList[0].rect.width + HLG.spacing), 0, 0);
             //isUpdated = true;
+           
         }
 
         if (isMovingLeft)
         {
-            Debug.Log("movingleft");
+           
             // 平滑移动到目标位置
             content_rtf.localPosition = Vector3.MoveTowards(content_rtf.localPosition, targetPosition, moveSpeed * Time.deltaTime);
 
@@ -109,7 +115,7 @@ public class InfiniteScroll : MonoBehaviour
 
         if (isMovingRight)
         {
-            Debug.Log("movingright");
+            
             // 平滑移动到目标位置
             content_rtf.localPosition = Vector3.MoveTowards(content_rtf.localPosition, targetPosition, moveSpeed * Time.deltaTime);
 
