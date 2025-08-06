@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -45,7 +46,9 @@ public class Emotionalbar : MonoBehaviour
     /// <param name="amount">增加值</param>
     public void IncreaseValue(float amount)
     {
-        pointerSlider.value = Mathf.Clamp(pointerSlider.value + amount, -1f, 1f);
+       float currentAmount = Mathf.Clamp(pointerSlider.value + amount, -1f,  1f);
+        DOTween.To(() => pointerSlider.value, x => pointerSlider.value = x, currentAmount, 0.2f);
+       
     }
 
     /// <summary>
@@ -54,7 +57,8 @@ public class Emotionalbar : MonoBehaviour
     /// <param name="amount">减少值</param>
     public void DecreaseValue(float amount)
     {
-        pointerSlider.value = Mathf.Clamp(pointerSlider.value - amount, -1f, 1f);
+        float currentAmount = Mathf.Clamp(pointerSlider.value - amount, -1f, 1f);
+        DOTween.To(() => pointerSlider.value, x => pointerSlider.value = x, currentAmount, 0.2f);
     }
 
     /// <summary>
