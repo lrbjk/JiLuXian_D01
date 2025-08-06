@@ -19,12 +19,14 @@ public class InfiniteScroll : MonoBehaviour
     public bool isMovingLeft = false;
     public bool isMovingRight = false;
     public bool isJumping = false;
+    public bool endInitialization = false;
 
     //private bool isUpdated;
     //private Vector2 OldVelocity;
 
-    void Start()
+    void Awake()
     {
+        endInitialization = false ;
         scrollRect = GetComponent<ScrollRect>();
         if (scrollRect == null)
         {
@@ -65,6 +67,7 @@ public class InfiniteScroll : MonoBehaviour
         content_rtf.localPosition = new Vector3(-(ItemList[0].rect.width + HLG.spacing)*AddNum + (viewPort_rtf.rect.width- ItemList[0].rect.width)/2,
                                                 content_rtf.localPosition.y, 
                                                 content_rtf.localPosition.z);
+        endInitialization = true;
     }
 
 

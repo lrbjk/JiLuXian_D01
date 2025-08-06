@@ -30,15 +30,17 @@ public class SelectionManager : MonoBehaviour
         currentSelectionIndex = 0;
     }
     
-    void Start(){
-    //将所有已有的和新生成的物体加入列表之中
-      for (int i = 0; i < transform.childCount; i++)
+    void Start()
+    {
+        if (InfiniteScroll.endInitialization)
+        //将所有已有的和新生成的物体加入列表之中
         {
-            GameObject child = transform.GetChild(i).gameObject;
-            selectedObjects.Add(child.GetComponent<SelectableImage>());
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                GameObject child = transform.GetChild(i).gameObject;
+                selectedObjects.Add(child.GetComponent<SelectableImage>());
+            }
         }
-      
-    
     }
     
     public void SelectImage(SelectableImage newSelection)
