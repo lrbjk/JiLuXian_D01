@@ -14,9 +14,13 @@ namespace Common.MyEditor
             //生成配置文件
             string[] prefabPaths = GetPaths("prefab", "prefab");            //获取预制体路径
             string[] pngPaths = GetPaths("texture2d", "png");            //获取png图片(texture2d)路径
+            //string[] spriteatlasPaths = GetPaths("spriteatlas", "spriteatlas");            //获取spriteAtlas路径
+            string[] SOPaths = GetPaths("ScriptableObject", "asset");            //获取spriteAtlas路径
             //3.写入文件
             File.WriteAllLines("Assets/StreamingAssets/ConfigMap.txt", prefabPaths);
             File.AppendAllLines("Assets/StreamingAssets/ConfigMap.txt", pngPaths);
+            //File.AppendAllLines("Assets/StreamingAssets/ConfigMap.txt", spriteatlasPaths);
+            File.AppendAllLines("Assets/StreamingAssets/ConfigMap.txt", SOPaths);
             AssetDatabase.Refresh();
         }
         /// <summary>

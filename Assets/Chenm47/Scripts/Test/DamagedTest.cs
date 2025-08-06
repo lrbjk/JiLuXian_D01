@@ -6,7 +6,7 @@ using UnityEngine;
 /*
 
 */
-namespace ns.Test
+namespace ns.PlayerTest
 {
     /// <summary>
     /// 描述：

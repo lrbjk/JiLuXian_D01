@@ -1,0 +1,2 @@
+DOTweenSettings=DOTweenSettings
+RtpcConfig=RtpcConfig

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
+	<RootPaths>
+		<ProjectRoot>E:\Projects\WwiseProjects\HuanDaiWwiseProject\</ProjectRoot>
+		<SourceFilesRoot>E:\Projects\WwiseProjects\HuanDaiWwiseProject\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>E:\Projects\GameProjects\HuanDai\Assets\StreamingAssets\Audio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>E:\Projects\WwiseProjects\HuanDaiWwiseProject\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX" Hash="2472128889">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>1355168291.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="1831431028" Language="SFX" Hash="1187680047">
+			<ObjectPath>\SoundBanks\Default Work Unit\TestSoundBank</ObjectPath>
+			<ShortName>TestSoundBank</ShortName>
+			<Path>1831431028.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1097980931" Name="TestEvent" ObjectPath="\Events\Default Work Unit\TestEvent" DurationType="OneShot" DurationMin="0.490667" DurationMax="0.490667">
+					<IncludedMemoryFiles>
+						<File Id="654569716" Language="SFX">
+							<ShortName>body_hit_large_32.wav</ShortName>
+							<Path>SFX\body_hit_large_32_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>
