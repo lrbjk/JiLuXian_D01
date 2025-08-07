@@ -16,23 +16,22 @@ namespace ns.Character.Player
     public class PlayerAction : MonoSingleton<PlayerAction>
     {
         //通用
-        private PlayerMotor3D playerMotor3D;
+        public PlayerMotor3D playerMotor3D;
         private Rigidbody rb;
-        private Transform groundRayPoint;
+
         private PlayerInfo playerInfo;
         [SerializeField]
         CameraHandler cameraHandler;
+
         protected override void Init()
         {
             base.Init();
             playerInfo = GetComponent<PlayerInfo>();
             rb = GetComponent<Rigidbody>();
-            groundRayPoint = transform.Find("GroundRayPoint");
             playerMotor3D = GetComponent<PlayerMotor3D>();
         }
 
         //通用
-
         public void MoveDirectly(Vector3 target)
         {
             rb.MovePosition(target);
@@ -52,9 +51,9 @@ namespace ns.Character.Player
             playerMotor3D.LookAndMove(lookDir, moveDir, moveSpeed);
         }
 
-        public void LookDir(Vector3 dir,float rotateSpeed=10f)
+        public void LookDir(Vector3 dir, float rotateSpeed = 10f)
         {
-            playerMotor3D.LookAtVector(dir,rotateSpeed);
+            playerMotor3D.LookAtVector(dir, rotateSpeed);
         }
 
         /// <summary>
@@ -106,36 +105,11 @@ namespace ns.Character.Player
             playerMotor3D.Jump(playerInfo.JumpSpeed);
         }
 
-        public bool GroundCastHit(out RaycastHit hitInfo)
-        {
-            ////射线检测
-            //bool isHit = Physics.Raycast
-            //     (groundRayPoint.position, Vector3.down, out var res, playerInfo.GroundDistance, playerInfo.GroundLayer);
-            //射线检测
-            bool isHit = Physics.SphereCast(groundRayPoint.position, 0.05f, Vector3.down, out hitInfo,
-                playerInfo.GroundDistance, playerInfo.GroundLayer);
-            //Debug.DrawRay(groundRayPoint.position, Vector3.down * playerInfo.GroundDistance, Color.red);
-
-            return isHit;
-        }
-
         //private void OnDrawGizmos()
         //{
         //    groundRayPoint = transform.Find("GroundRayPoint");
         //    Gizmos.DrawSphere(groundRayPoint.position + Vector3.down * 0.15f, 0.05f);
         //}
-
-        public bool IsOnGround()
-        {
-            //if (hit && rb.velocity.y <= 0)//防止还未起跳已经检测为地面
-            if (GroundCastHit(out var hit))//防止还未起跳已经检测为地面
-            {
-                //刷新跳跃次数
-                playerInfo.CurrentJumpCount = 0;
-                return true;
-            }
-            return false;
-        }
 
         public bool IsFall()
         {
@@ -190,6 +164,7 @@ namespace ns.Character.Player
 
         public float forwardDetectionRadius = 1f;
         public float forwardAngleThreshold = 60f;
+
         public bool IsForwardStabOrRiposte()
         {
             //1. 使用球形检测获取范围内的敌人

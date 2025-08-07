@@ -1,5 +1,5 @@
 using AI.FSM.Framework;
-using UnityEngine;
+using ns.Character.Player;
 
 namespace AI.FSM
 {
@@ -12,7 +12,8 @@ namespace AI.FSM
         {
             PlayerFSMBase playerFSMBase = fSMBase as PlayerFSMBase;
             //Debug.Log("isOnground" + playerFSMBase.playerAction.IsOnGround());
-            return playerFSMBase.playerAction.IsOnGround();//在地面
+            var info = playerFSMBase.characterInfo as PlayerInfo;
+            return info.IsOnGround;//在地面
         }
 
         public override void Init()

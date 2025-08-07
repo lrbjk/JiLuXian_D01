@@ -27,10 +27,9 @@ namespace ns.Character.Player
         public float RollSpeed = 10;
         public float BackStepSpeed = 6;
         public float JumpSpeed = 18;
-        public float GroundDistance = 0.05f;
+
         [Header("下落平台恢复时间")]
         public float DownStairRecoverTime = 0.25f;
-        public LayerMask GroundLayer;
         public int MaxJumpCount = 2;
         [Header("最大锁定距离")]
         public float MaxLockDistance = 2f;
@@ -51,6 +50,8 @@ namespace ns.Character.Player
         public AttackInputType LastAttackType = AttackInputType.None;
         public float FallTimer;
         public bool IsOnTop = false;
+        public bool IsOnGround;
+        public RaycastHit GroundHit;
 
         [Header("角色属性值")]
         /// <summary>角色属性值 </summary>
