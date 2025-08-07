@@ -609,7 +609,7 @@ Shader "Custom/MGCA/OBJ"
             float3 lightDirectionWS = normalize(mainLight.direction);
 
             //MainTex 
-            float4 var_MainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, float2(0.5,0.5));
+            float4 var_MainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex,input.texcoord);
             var_MainTex *= _Color;
             float3 baseCol = var_MainTex.rgb * _Color.xyz;
             float baseAlpha = 1.0;
