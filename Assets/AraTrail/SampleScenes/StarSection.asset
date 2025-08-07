@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b950e038d44bf4dd5bb7675161554ed5, type: 3}
+  m_Name: StarSection
+  m_EditorClassIdentifier: 
+  vertices:
+  - {x: -0.28381374, y: -0.28699553}
+  - {x: 0, y: -1}
+  - {x: 0.28381374, y: -0.28699553}
+  - {x: 1, y: 0.00000017484555}
+  - {x: 0.28381374, y: 0.28699553}
+  - {x: 0, y: 1}
+  - {x: -0.28381374, y: 0.28699553}
+  - {x: -0.9933481, y: 0}
+  - {x: -0.28381374, y: -0.28699553}
+  snapX: 32
+  snapY: 32
