@@ -131,7 +131,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlbedoSmoothness: 0.275
+    - _AlbedoSmoothness: 0.167
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _AmbientColorIntensity: 0.056
@@ -165,7 +165,7 @@ Material:
     - _MetalIntensity: 1
     - _Metallic: 0
     - _Mode: 0
-    - _ModelSize: 20.6
+    - _ModelSize: 39.8
     - _NoseLineHoriDisp: 1
     - _NoseLineKDnDisp: 1
     - _OcclusionStrength: 1
@@ -184,12 +184,12 @@ Material:
     - _ScreenSpaceShadowFadeout: 0.2
     - _ScreenSpaceShadowThreshold: 0.015
     - _ScreenSpaceShadowWidth: 0.2
-    - _ShapeSoftness: 1
+    - _ShapeSoftness: 0.584
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _SpecularIntensity: 0.192
-    - _SpecularRange: 0.356
+    - _SpecularIntensity: 0.134
+    - _SpecularRange: 0
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _StencilComp: 0
@@ -198,7 +198,7 @@ Material:
     - _StencilRef: 0
     - _StencilZPassOp: 0
     - _Surface: 0
-    - _ToonSpecular: 0.062
+    - _ToonSpecular: 0.029
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
@@ -214,8 +214,8 @@ Material:
     - _PostSSSTint: {r: 1, g: 1, b: 1, a: 1}
     - _PostShadowFadeTint: {r: 0, g: 0.38550162, b: 1, a: 1}
     - _PostShadowTint: {r: 0, g: 0.43552685, b: 1, a: 1}
-    - _PostShallowFadeTint: {r: 0.969532, g: 0, b: 1, a: 1}
-    - _PostShallowTint: {r: 0.85712814, g: 0, b: 1, a: 1}
+    - _PostShallowFadeTint: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
+    - _PostShallowTint: {r: 0.2830189, g: 0.2830189, b: 0.2830189, a: 1}
     - _RimGlowLightColor1: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 1, g: 0, b: 0.77361584, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}

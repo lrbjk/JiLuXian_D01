@@ -68,10 +68,10 @@ Material:
     - _HightlightShape: 1
     - _Metallic: 0.777
     - _Mode: 2
-    - _ModelSize: 20.6
+    - _ModelSize: 39.8
     - _Smoothness: 0.5
-    - _SpecularRange: 0.356
-    - _ToonSpecular: 0.062
+    - _SpecularRange: 0
+    - _ToonSpecular: 0.029
     m_Colors:
     - _OutlineColor1: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
