@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Material
+  m_Shader: {fileID: 4800000, guid: 54d3fc50e8ae73040ae2b6e167ce10e2, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords:
+  - _BASESETTING_ON
+  - _COLORSETTING_ON
+  - _EFFECTSETTING_ON
+  - _FISHEYESETTING_ON
+  - _INTERLACED_ON
+  - _Interlaced_ON
+  - _KERNELTYPE_EMBOSS
+  - _LEDSETTING_ON
+  - _OTHERTSETTING_ON
+  - _QUALITYSETTING_ON
+  - _QUALITY_ON
+  - _TRANSPOSEX_ON
+  - _TransposeX_ON
+  - _WATEREFFECTSETTING_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: e6133309413ff6346b1d27e4f77a3b2f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MarkTexture:
+        m_Texture: {fileID: 2800000, guid: 6e85d55b8cd158a4e80d28f774b14946, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _BaseSetting: 1
+    - _BaseSetting_Out: 1
+    - _BrightFade: 79
+    - _ColorSetting: 1
+    - _ColorSetting_Out: 1
+    - _Contrast: 1.3
+    - _ConvoluteEffect: 0
+    - _ConvoluteEffect_Out: 1
+    - _DarkFade: 31.2
+    - _DrakNoise: 125
+    - _EffectSetting: 1
+    - _EffectSetting_Out: 1
+    - _FishEyeEffect: 0
+    - _FishEyeIntensity_X: 0.18
+    - _FishEyeIntensity_Y: 0.13
+    - _FishEyePow: 2.94
+    - _FishEyeSetting: 1
+    - _FishEyeSetting_Out: 1
+    - _GRAPHNOISEEFFECT: 0
+    - _GraphNoiseEffect: 0
+    - _Interlaced: 3.87
+    - _InterlacedEffect: 0
+    - _InterlacedEffect_Out: 1
+    - _InterlacedLight: 1
+    - _InterlacedLine: 3.43
+    - _InvertLightEffect: 0
+    - _KernelType: 3
+    - _LEDEffect: 0
+    - _LEDResolutionLevel: 2.37
+    - _LEDSetting: 1
+    - _Level: 81
+    - _Light: 1.73
+    - _LightNoise: 106
+    - _MarkTextureAlpha: 1
+    - _OthertSetting: 1
+    - _OthertSetting_Out: 1
+    - _QualityEffect: 0
+    - _QualitySetting: 1
+    - _QualitySetting_Out: 1
+    - _Quality_Out: 1
+    - _ShiftU: -47
+    - _ShiftV: -25
+    - _ShiftX: 0
+    - _ShiftY: 0
+    - _TransposeNoise: 0.449
+    - _TransposePow: 4.63
+    - _TransposeX: 1.32
+    - _TransposeXEffect: 0
+    - _VividU: 0.46
+    - _VividV: 0.63
+    - _WaterEffectSetting: 1
+    - _WaterEffectSetting_Out: 1
+    - _WaterMarkEffect: 0
+    - _YUVHandleEffect: 0
+    m_Colors:
+    - _MarkTextureRect: {r: 0.62, g: 0.52, b: 0.51, a: 0.34}
+  m_BuildTextureStacks: []
+--- !u!114 &2875184793043322811
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 7

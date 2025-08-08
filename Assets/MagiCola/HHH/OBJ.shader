@@ -11,8 +11,8 @@ Shader "Custom/MGCA/OBJ"
         _BumpScale("法线缩放",Float) = 1
         [NoScaleOffset]_Metal("Metal",2D) = "Black"{}
         _MetalIntensity("Metallic",Range(0.1,20)) = 0
-        [NoScaleOffset]_Roughness("Smoothness",2D) = "Black"{}
-        _Glossiness("Smoothness",Range(0.1,20)) = 0
+        [NoScaleOffset]_Roughness("_Roughness",2D) = "Black"{}
+        _Glossiness("_RoughnessIntensity",Range(0.1,20)) = 0
         [NoScaleOffset]_SpecularMask("SpecularMask",2D) = "white"{}
         [NoScaleOffset]_Emission("Emission",2D)="black"{}
         _EmissionIntensity("EmissionIntensity",Range(0.1,20)) = 1
@@ -33,14 +33,6 @@ Shader "Custom/MGCA/OBJ"
         _MatCapColorBrust1("MatCapColorBrust1",Range(0,10)) = 1
         _MatCapAlphaBrust1("MatCapAlphaBrust1",Range(0,10)) = 1
 
-        //depthShadow
-        [Space(10)]
-        [Header(ScreenSpaceShadow)]
-        [Toggle(_SCREEN_SPACE_SHADOW)]_ScreenSpaceShadow("Screen Space Shadow",Float) = 1
-        _ScreenSpaceShadowWidth("Screen Space Shadow Width",Range(0,1)) = 0.2
-        _ScreenSpaceShadowThreshold("Screen Space Shadow Threshold",Range(0,1)) = 0.015
-        _ScreenSpaceShadowFadeout("Screen Space Shadow Fadeout",Range(0,10)) = 0.2
-
         //shadow
         [Space(10)]
         [Header(Shadow)]
@@ -58,10 +50,8 @@ Shader "Custom/MGCA/OBJ"
 
         //pbr
         [Space(10)]
-        [Header(Addotional Specular)]
-        [Toggle]_HightlightShape("HightlightShape",Float) = 0
+        [Header(Specular)]
         [HDR]_SpecularColor("SpecularColor",Color) = (1,1,1,1)
-        _ShapeSoftness("ShapeSoftness",Range(0,1)) = 1
         _SpecularRange("SpecularRange",Range(0,2)) = 1
         _ToonSpecular("ToonSpecular",Range(0,1)) = 0.01
         _ModelSize("ModelSize",Range(0,100)) = 1
@@ -81,17 +71,6 @@ Shader "Custom/MGCA/OBJ"
         [Space(10)]
         [Header(Ambient)]
         _AmbientColorIntensity("AmbientColorIntensity",Range(0,1)) = 0.1
-
-        //RimColor
-        [Space(10)]
-        [Header(RimColor)]
-        [Toggle(_SCREEN_SAPCE_RIM)]_ScreenSpaceRim("ScreenSpace Rim",Float) = 1
-        [HDR]_UISunColor("_UISunColor",Color) = (1,1,1,1)
-        [HDR]_RimGlowLightColor1("RimGlowLightColor1",Color) = (1,1,1,1)
-        _ScreenSpaceRimWidth("ScreenSpaceRimWidth",Range(0,5)) = 1
-        _ScreenSpaceRimThreshold("ScreenSpaceRimThreshold",Range(0,1)) = 0.01
-        _ScreenSpaceRimFadeout("ScreenSpaceRimFadeout",Range(0,10)) = 0.5
-        _ScreenSpaceRimBrightness("ScreenSpaceRimBrightness",Range(0,10)) = 1
 
         //Option
         [Space(10)]
@@ -154,10 +133,6 @@ Shader "Custom/MGCA/OBJ"
             float _AlphaClip;
             float _ZWrite;
             float _Cull;
-            float _ScreenSpaceShadow;
-            float _ScreenSpaceShadowWidth;
-            float _ScreenSpaceShadowThreshold;
-            float _ScreenSpaceShadowFadeout;
             float _ScreenSpaceRimWidth;
             float _OutlineWidth;
             float _OutlineZOffset;
@@ -184,8 +159,6 @@ Shader "Custom/MGCA/OBJ"
 
             //pbr
             float _MetalIntensity;
-            float _HightlightShape;
-            float _ShapeSoftness;
             float _SpecularRange;
             float _Glossiness;
             float _ToonSpecular;
@@ -195,15 +168,6 @@ Shader "Custom/MGCA/OBJ"
 
             //SH
             float _AmbientColorIntensity;
-
-            //rim
-            float _SkinMatID;
-            float3 _UISunColor;
-            float3 _RimGlowLightColor1;
-            float ScreenSpaceRimWidth;
-            float _ScreenSpaceRimThreshold;
-            float _ScreenSpaceRimFadeout;
-            float _ScreenSpaceRimBrightness;
 
             //蒙版测试
             int _StencilRef;
@@ -350,12 +314,12 @@ Shader "Custom/MGCA/OBJ"
 
             // Subject the probes weight if the other probe is dominant
             float weightProbe0 = probe1Dominant
-                                        ? min(desiredWeightProbe0,
-                                                 1.0f - desiredWeightProbe1)
-                                        : desiredWeightProbe0;
+                                     ? min(desiredWeightProbe0,
+                                           1.0f - desiredWeightProbe1)
+                                     : desiredWeightProbe0;
             float weightProbe1 = probe0Dominant
-                                            ? min(desiredWeightProbe1, 1.0f - desiredWeightProbe0)
-                                            : desiredWeightProbe1;
+                                     ? min(desiredWeightProbe1, 1.0f - desiredWeightProbe0)
+                                     : desiredWeightProbe1;
 
             float totalWeight = weightProbe0 + weightProbe1;
 
@@ -419,6 +383,7 @@ Shader "Custom/MGCA/OBJ"
 
             return irradiance;
         }
+
 
         float3 TriShadow(float baseAttenuation, float shadowAttenuation)
         {
@@ -487,7 +452,7 @@ Shader "Custom/MGCA/OBJ"
             SSSColor = _PostSSSTint;
             FrontColor = _PostFrontTint;
             ForwardColor = 1.0;
-            
+
 
             float3 albedo = (albedoForward * ForwardColor + albedoFront * FrontColor + albedoSSS * SSSColor); //亮面颜色
             albedo += (albedoShadowFade * shadowFadeColor + albedoShadow * shadowColor + (albedoShallowFade) *
@@ -498,7 +463,7 @@ Shader "Custom/MGCA/OBJ"
         }
 
         half3 GlossyEnvironmentReflection1(half3 reflectVector, float3 positionWS, half perceptualRoughness,
-            half occlusion)
+                                                             half occlusion)
         {
             #if !defined(_ENVIRONMENTREFLECTIONS_OFF)
             half3 irradiance;
@@ -570,14 +535,15 @@ Shader "Custom/MGCA/OBJ"
 
             output.positionCS = positionInputs.positionCS;
             output.positionWSAndFogFactor = float4(positionInputs.positionWS,
-                                  ComputeFogFactor(positionInputs.positionCS.z));
+               ComputeFogFactor(positionInputs.positionCS.z));
             output.normalWS = normalInputs.normalWS;
 
             output.tangentWS.xyz = normalInputs.tangentWS;
             output.tangentWS.w = input.tangentOS.w * GetOddNegativeScale();
             output.viewDirWS = unity_OrthoParams.w == 0
-                                             ? GetCameraPositionWS() - positionInputs.positionWS
-                                             : GetWorldToViewMatrix()[2].xyz;
+                    ? GetCameraPositionWS() - positionInputs.
+                    positionWS
+                    : GetWorldToViewMatrix()[2].xyz;
 
             output.texcoord = input.uv;
 
@@ -585,7 +551,7 @@ Shader "Custom/MGCA/OBJ"
             #ifdef DYNAMICLIGHTMAP_ON
                 output.dynamicLightmapUV = input.dynamicLightmapUV.xy * unity_DynamicLightmapST.xy + unity_DynamicLightmapST.zw;
             #endif
-            OUTPUT_SH(output.normalWS.xyz, output.vertexSH);
+                OUTPUT_SH(output.normalWS.xyz, output.vertexSH);
 
             #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
                 output.shadowCoord = GetShadowCoord(positionInputs);
@@ -609,7 +575,7 @@ Shader "Custom/MGCA/OBJ"
             float3 lightDirectionWS = normalize(mainLight.direction);
 
             //MainTex 
-            float4 var_MainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, float2(0.5,0.5));
+            float4 var_MainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.texcoord);
             var_MainTex *= _Color;
             float3 baseCol = var_MainTex.rgb * _Color.xyz;
             float baseAlpha = 1.0;
@@ -626,7 +592,7 @@ Shader "Custom/MGCA/OBJ"
             matcapMask = SAMPLE_TEXTURE2D(_matcapMask, sampler_matcapMask, input.texcoord);
             metallic = SAMPLE_TEXTURE2D(_Metal, sampler_Metal, input.texcoord).b;
             metallic = pow(metallic, _MetalIntensity);
-            smoothness = _Glossiness * SAMPLE_TEXTURE2D(_Roughness, sampler_Roughness, input.texcoord).g;
+            smoothness = _Glossiness * (1 - SAMPLE_TEXTURE2D(_Roughness, sampler_Roughness, input.texcoord).g);
             specularMask = SAMPLE_TEXTURE2D(_SpecularMask, sampler_SpecularMask, input.texcoord);
             //TBN
             float sign = input.tangentWS.w;
@@ -645,22 +611,15 @@ Shader "Custom/MGCA/OBJ"
             normalWS *= isFrontFace ? 1.0 : -1.0;
             pixelNormalWS *= isFrontFace ? 1.0 : -1.0;
 
-            pixelNormalWS =  normalWS;
-          
+            pixelNormalWS = normalWS;
+
 
             // return float4(pixelNormalWS.xyz,1);
 
             // return float4(pixelNormalWS,1);
-            float shape = _HightlightShape;
             float range = _SpecularRange;
-            float halfWS = normalize(viewDirWS + lightDirectionWS);
-            float LoH = dot(lightDirectionWS, halfWS);
-            float rangeLoH = saturate(range * LoH * 0.75 + 0.25);
-            float rangeLoH2 = max(0.1, rangeLoH * rangeLoH);
-            float NoL = dot(pixelNormalWS, lightDirectionWS);
-            float rangeNoL = saturate(range * NoL * 0.75 + 0.25);
             float specular = 0;
-            half3 reflectVector = reflect(-viewDirWS, normalWS);
+            half3 reflectVector = reflect(-viewDirWS, pixelNormalWS);
             half NoV = saturate(dot(normalWS, viewDirWS));
             half fresnelTerm = Pow4(1.0 - NoV);
 
@@ -668,27 +627,6 @@ Shader "Custom/MGCA/OBJ"
             float3 albedo = 0;
             float shadowAttenuation = 1;
             float3 additionalLightsColor = 0;
-
-            //屏幕空间(深度)阴影
-            #if _SCREEN_SPACE_SHADOW
-            {
-                float lineEyeDepth = input.positionCS.w;
-                float perspective = 1.0 / lineEyeDepth;
-                float offsetMul = _ScreenSpaceShadowWidth * 5.0 * perspective / 100.0;
-
-                float3 lightDirectionVS = TransformWorldToViewDir(lightDirectionWS);
-                float2 offset = lightDirectionVS.xy * offsetMul;
-                int2 coord = input.positionCS.xy + offset * _ScaledScreenParams.xy;
-
-                coord = min(max(0, coord), _ScaledScreenParams.xy - 1);
-                float offsetSceneDepth = LoadSceneDepth(coord);
-                float offsetSceneLinearEyeDepth = LinearEyeDepth(offsetSceneDepth, _ZBufferParams);
-
-                float fadeout = max(1e-5, _ScreenSpaceShadowFadeout);
-                shadowAttenuation = saturate(
-                    (offsetSceneLinearEyeDepth - (lineEyeDepth - _ScreenSpaceShadowThreshold)) * 50 / fadeout);
-            }
-            #endif
 
             // //CreateAmbientOcclusionFactor
             half indirectAmbientOcclusion;
@@ -703,24 +641,8 @@ Shader "Custom/MGCA/OBJ"
             indirectAmbientOcclusion = 1;
             #endif
 
-            half4 shadowMask = 0;
-            shadowMask = SAMPLE_SHADOWMASK(input.staticLightmapUV);
 
-            #if defined(_ADDITIONAL_LIGHTS)
-            InputData inputData = (InputData)0;
-            inputData.positionWS = positionWS;
-            inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
-            uint pixelLightCount = GetAdditionalLightsCount();
-            LIGHT_LOOP_BEGIN(pixelLightCount)
-                Light light = GetAdditionalLight(lightIndex, positionWS, shadowMask);
-                float AdditionalShadow = dot(pixelNormalWS, light.direction);
-                // albedo += light.color * light.distanceAttenuation * shadowAttenuation;
-                float3 UnityLight = light.shadowAttenuation * light.distanceAttenuation *  light.color;
-                albedo += TriShadow(AdditionalShadow, shadowAttenuation) * UnityLight;
-            LIGHT_LOOP_END
-            #endif
-            
-            albedo = albedo * 0.5 + 0.5 * baseCol;
+            // albedo = (albedo * 0.5 + 0.5) * baseCol;
             // return float4(albedo, 1);
             //---------------------------------------------------------------------------------------------------------
 
@@ -789,10 +711,24 @@ Shader "Custom/MGCA/OBJ"
             }
             //--------------------------------------------------------------------------------------------
             //PBR
+            BRDFData brdfData;
+            InitializeBRDFData(gammaColor, metallic, 0, smoothness, baseAlpha, brdfData);
             float3 pbrDiffuseColor = lerp(0.96 * gammaColor, 0, metallic);
-            pbrDiffuseColor *= ao;
             float3 pbrSpecularColor = lerp(0.04, gammaColor, metallic);
-            // return float4(pbrDiffuseColor,1);
+
+            //CalculateShadowMask
+            half4 shadowMask = 0;
+            shadowMask = SAMPLE_SHADOWMASK(input.staticLightmapUV);
+            #if defined(SHADOWS_SHADOWMASK) && defined(LIGHTMAP_ON)
+            shadowMask = shadowMask;
+            #elif !defined (LIGHTMAP_ON)
+            shadowMask = unity_ProbesOcclusion;
+            #else
+            shadowMask = half4(1, 1, 1, 1);
+            #endif
+
+
+            // return float4(pbrSpecularColor,1);
             float3 specularColor = 0;
             // Additional Highlight
             float perceptualRoughness = 1 - smoothness;
@@ -800,6 +736,54 @@ Shader "Custom/MGCA/OBJ"
             float normalizationTerm = roughness * 4 + 2;
             float roughness2 = roughness * roughness;
             float roughness2Minus1 = roughness2 - 1;
+
+            #if defined(_ADDITIONAL_LIGHTS)
+            InputData inputData = (InputData)0;
+            inputData.positionWS = positionWS;
+            inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
+            uint pixelLightCount = GetAdditionalLightsCount();
+                LIGHT_LOOP_BEGIN(pixelLightCount)
+                Light light = GetAdditionalLight(lightIndex, positionWS, shadowMask);
+                float AdditionalShadow = dot(pixelNormalWS, light.direction);
+                // albedo += light.color * light.distanceAttenuation * shadowAttenuation;
+                float3 UnityLight = light.shadowAttenuation * light.distanceAttenuation * light.color;
+                albedo += TriShadow(AdditionalShadow, shadowAttenuation) * UnityLight;
+
+            
+                float NoL = dot(pixelNormalWS, light.direction);
+                float rangeNoL = saturate(range * NoL * 0.75 + 0.25);
+                float halfWS = normalize(viewDirWS + light.direction);
+                float LoH = dot(lightDirectionWS, halfWS);
+                float rangeLoH = saturate(range * LoH * 0.75 + 0.25);
+                float rangeLoH2 = max(0.1, rangeLoH * rangeLoH);
+                float NdotH = dot(pixelNormalWS, halfWS);
+                float rangeNdotH = saturate(range * NdotH * 0.75 + 0.25);
+                float d = rangeNdotH * rangeNdotH * roughness2Minus1 + 1.0;
+                float ggx = roughness2 / ((d * d) * rangeLoH2 * normalizationTerm);
+                specular = saturate((ggx - smoothness) * rangeNoL);
+                specular = specular / max(1e-5, roughness);
+                float toon = _ToonSpecular;
+                float size = _ModelSize;
+                specular *= toon * size * specularMask;
+                specular *= 10;
+                specular = saturate(specular);
+                specular *= _SpecularIntensity;
+                float3 tintColor = _SpecularColor;
+                specularColor += specular * tintColor;
+            
+            LIGHT_LOOP_END
+            #endif
+
+            float mainShadow = dot(pixelNormalWS, mainLight.direction) *Luminance(mainLight.color);
+            float3 mainLightColor = mainLight.shadowAttenuation * mainLight.distanceAttenuation * (mainLight.color);
+            albedo += TriShadow(mainShadow, shadowAttenuation) * mainLightColor;
+
+            float NoL = dot(pixelNormalWS, mainLight.direction);
+            float rangeNoL = saturate(range * NoL * 0.75 + 0.25);
+            float halfWS = normalize(viewDirWS + mainLight.direction);
+            float LoH = dot(lightDirectionWS, halfWS);
+            float rangeLoH = saturate(range * LoH * 0.75 + 0.25);
+            float rangeLoH2 = max(0.1, rangeLoH * rangeLoH);
             float NdotH = dot(pixelNormalWS, halfWS);
             float rangeNdotH = saturate(range * NdotH * 0.75 + 0.25);
             float d = rangeNdotH * rangeNdotH * roughness2Minus1 + 1.0;
@@ -813,199 +797,61 @@ Shader "Custom/MGCA/OBJ"
             specular = saturate(specular);
             specular *= _SpecularIntensity;
             float3 tintColor = _SpecularColor;
-            specularColor = specular * tintColor;
+            specularColor += specular * tintColor;
+
+
+            // return float4(specularColor, 1);
+
+
             // return float4(specular.xxx, 1);
-
-
-            float3 rimGlowColor = 0;
-            //背光衰减
-            float LoV = dot(lightDirectionWS, viewDirWS);
-            float viewAttenuation = -LoV * 0.5 + 0.5;
-            viewAttenuation = pow2(viewAttenuation);
-            viewAttenuation = viewAttenuation * 0.5 + 0.5;
-
-            //法线垂直方向衰减
-            float verticalAttenuation = pixelNormalWS.y * 0.5 + 0.5;
-            verticalAttenuation = pow2(viewAttenuation);
-            verticalAttenuation = smoothstep(0, 1, verticalAttenuation);
-            float lightAtteuation = saturate(dot(pixelNormalWS, lightDirectionWS)) * shadowAttenuation;
-
-            //菲涅尔
-            float cameraDistance = length(input.viewDirWS);
-            float fresnelDistanceFade = (0.65) - 0.45 * min(1, cameraDistance / 12.0);
-            float fresnelAttenuation = 1 - NoV - fresnelDistanceFade;
-            float fresnelSoftness = 0.3;
-            fresnelAttenuation = smoothstep(0, fresnelSoftness, fresnelAttenuation);
-            float distanceAttenuation = 1 - 0.7 * saturate(cameraDistance * 0.2 - 1);
-            float edgeAttenuation = 1 - pow4(pow5(viewAttenuation));
-            float3 sunColor = _UISunColor;
-
-            //缩放系数
-            float sunColorScaled = pow2(pow4(sunColor));
-            sunColorScaled /= max(1e-5, dot(sunColorScaled, 0.7));
-            // 缩放控制
-            sunColor = averageColor(sunColor) * sunColorScaled;
-            sunColor = lerp(albedo, sunColor, shadowAttenuation);
-            sunColor = lerp(albedo, sunColor, edgeAttenuation);
-
-            // return float4(sunColor,1);
 
 
             float3 rimDiffuse = pow(max(1e-5, pbrDiffuseColor), 0.2);
             rimDiffuse = normalize(rimDiffuse);
 
-            //平均漫反射和边缘光
-            float diffuseBrightness = averageColor(pbrDiffuseColor);
-            diffuseBrightness = (1 - 0.2 * pow2(diffuseBrightness)) * 0.1;
-            rimDiffuse *= diffuseBrightness;
-            float3 rimSpecular = pbrSpecularColor;
-            float3 rimColor = lerp(rimDiffuse, rimSpecular, metallic);
-            rimColor *= 48;
-            rimColor *= fresnelAttenuation * verticalAttenuation * viewAttenuation * lightAtteuation *
-                distanceAttenuation * sunColor;
-            float3 glowColor = _RimGlowLightColor1;
-            rimColor *= glowColor;
-            float rimColorBrightness = averageColor(rimColor);
-            rimColorBrightness = pow2(rimColorBrightness);
-            rimColorBrightness = 1 + 0.5 * rimColorBrightness;
-            rimColor *= rimColorBrightness;
-            rimGlowColor = rimColor;
-
-
-            //屏幕空间边缘光
-            float screenSpaceRim = 0.0;
-            #if _SCREEN_SAPCE_RIM
-               {
-                  float linearEyeDepth = input.positionCS.w;
-                  float3 normalVS = TransformWorldToViewDir(normalWS);
-                  float2 uvOffset = float2(normalize(normalVS.xy)) * _ScreenSpaceRimWidth / linearEyeDepth;
-                  int2 texPos = input.positionCS.xy + uvOffset;
-                  texPos = min(max(0,texPos),_ScaledScreenParams.xy -1);
-                  float offsetSceneDepth = LoadSceneDepth(texPos);
-                  float offsetSceneLinearEteDepth = LinearEyeDepth(offsetSceneDepth,_ZBufferParams);
-                  screenSpaceRim = saturate((offsetSceneLinearEteDepth - (linearEyeDepth + _ScreenSpaceRimThreshold)) * 10 / _ScreenSpaceRimFadeout);
-                  screenSpaceRim*= _ScreenSpaceRimBrightness;
-               }
-            #endif
-            rimGlowColor = rimColor * screenSpaceRim;
-            // return float4(rimGlowColor,1);
 
             // float3 ambientColor = gammaColor * _AmbientColorIntensity;
             float3 finalColor = 0;
-            finalColor += pbrDiffuseColor * albedo + pbrSpecularColor * specularColor * albedo * 2;
-            // finalColor += max(0, pbrSpecularColor * specularColor * albedo - 1);
-            // color += rimGlowColor;
+            finalColor += pbrDiffuseColor * albedo + pbrSpecularColor * albedo * specularColor;
+            finalColor += max(0, pbrSpecularColor * specularColor * albedo - 1);
             finalColor += emission;
 
-            finalColor = MixFog(finalColor,input.positionWSAndFogFactor.w);
-
-
+            // return float4(finalColor, 1);
             //Unity Lit
-            // BRDFData brdfData;
-            // InitializeBRDFData(finalColor, 0.04, 0, 0, baseAlpha, brdfData);
-            //
-            // half3 bakedGI = 0;
-            // #if defined(DYNAMICLIGHTMAP_ON)
-            // bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV, input.vertexSH, pixelNormalWS);
-            // #else
-            // bakedGI = SAMPLE_GI(input.staticLightmapUV, input.vertexSH, normalWS);
-            // #endif
-            //
-            // float2 dynamicLightmapUV = 0;
-            // float2 staticLightmapUV = 0;
-            // half3 vertexSH = 0;
-            // #if defined(DEBUG_DISPLAY)
-            // #if defined(DYNAMICLIGHTMAP_ON)
-            //     dynamicLightmapUV = input.dynamicLightmapUV;
-            // #endif
-            // #if defined(LIGHTMAP_ON)
-            //     staticLightmapUV = input.staticLightmapUV;
-            // #else
-            // vertexSH = input.vertexSH;
-            // #endif
-            // #endif
-            //
-            // // return  float4(input.vertexSH,1);
-            //
-            // //CalculateShadowMask
-            // #if defined(SHADOWS_SHADOWMASK) && defined(LIGHTMAP_ON)
-            // shadowMask = shadowMask;
-            // #elif !defined (LIGHTMAP_ON)
-            // shadowMask = unity_ProbesOcclusion;
-            // #else
-            // shadowMask = half4(1, 1, 1, 1);
-            // #endif
-            //
-            // // return float4(shadowMask.xxx,1);
-            //
-            // #if defined(DEBUG_DISPLAY)
-            // switch (_DebugLightingMode)
-            // {
-            // case DEBUGLIGHTINGMODE_LIGHTING_WITHOUT_NORMAL_MAPS:
-            //     directAmbientOcclusion = 0.5;
-            //     indirectAmbientOcclusion = 0.5;
-            //     break;
-            //
-            // case DEBUGLIGHTINGMODE_LIGHTING_WITH_NORMAL_MAPS:
-            //     directAmbientOcclusion *= 0.5;
-            //     indirectAmbientOcclusion *= 0.5;
-            //     break;
-            // }
-            // #endif
-            // indirectAmbientOcclusion = min(indirectAmbientOcclusion, ao);
-            // lightColor *= directAmbientOcclusion;
-            // // return float4(directAmbientOcclusion.xxx,1);
-            //
-            // //MixRealtimeAndBakedGI
-            // #if defined(LIGHTMAP_ON) && defined(_MIXED_LIGHTING_SUBTRACTIVE)
-            //     bakedGI = SubtractDirectMainLightFromLightmap(mainLight, normalWS, bakedGI);
-            // #endif
-            //
-            // half3 giColor = bakedGI;
-            // half3 emissionColor = emission;
-            // half3 vertexLightingColor = 0;
-            // half3 mainLightColor = 0;
-            //
-            // //GlobalIllumination
-            // half3 indirectDiffuse = bakedGI;
-            // half3 indirectSpecular =
-            //     GlossyEnvironmentReflection1(reflectVector, positionWS, half(1 - smoothness), 1.0h);
-            // half3 color = EnvironmentBRDF(brdfData, indirectDiffuse, indirectSpecular, fresnelTerm);
-            // if (IsOnlyAOLightingFeatureEnabled())
-            // {
-            //     color = half3(1, 1, 1); // "Base white" for AO debug lighting mode
-            // }
-            // giColor = color * ao;
-            //
-            // mainLightColor = LightingPhysicallyChanged(brdfData, mainLight, normalWS, viewDirWS, false);
-            //
-            // // return float4(mainLightColor,1);
-            //
-            // //多光源
-            // #if defined(_ADDITIONAL_LIGHTS)
-            // inputData.positionWS = positionWS;
-            // inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
-            // LIGHT_LOOP_BEGIN(pixelLightCount)
-            // Light light = GetAdditionalLight(lightIndex, positionWS, shadowMask);
-            //
-            // #if defined(_SCREEN_SPACE_OCCLUSION) && !defined(_SURFACE_TYPE_TRANSPARENT)
-            //     if (IsLightingFeatureEnabled(DEBUGLIGHTINGFEATUREFLAGS_AMBIENT_OCCLUSION))
-            //     {
-            //         light.color *= directAmbientOcclusion;
-            //     }
-            // #endif
-            // additionalLightsColor += LightingPhysicallyChanged(brdfData, light, normalWS, viewDirWS, false);
-            // LIGHT_LOOP_END
-            // #endif
-            //
-            // // return float4(additionalLightsColor, 1);
-            //
-            // float3 ambientColor = giColor + additionalLightsColor + emissionColor + vertexLightingColor +
-            //     mainLightColor;
-            //
-            // return float4(additionalLightsColor,1);
-            //
-            // ambientColor = MixFog(ambientColor, input.positionWSAndFogFactor.w);
+
+
+            //LightMap
+            half3 bakedGI = 0;
+            #if defined(DYNAMICLIGHTMAP_ON)
+            bakedGI = SAMPLE_GI(input.staticLightmapUV, input.dynamicLightmapUV, input.vertexSH, pixelNormalWS);
+            #else
+            bakedGI = SAMPLE_GI(input.staticLightmapUV, input.vertexSH, normalWS);
+            #endif
+
+            indirectAmbientOcclusion = min(indirectAmbientOcclusion, ao);
+            lightColor *= directAmbientOcclusion;
+            // return float4(indirectAmbientOcclusion.xxx,1);
+
+            //MixRealtimeAndBakedGI
+            #if defined(LIGHTMAP_ON) && defined(_MIXED_LIGHTING_SUBTRACTIVE)
+                bakedGI = SubtractDirectMainLightFromLightmap(mainLight, normalWS, bakedGI);
+            #endif
+            half3 giColor = bakedGI;
+
+            //GlobalIllumination
+            half3 indirectDiffuse = bakedGI;
+            half3 indirectSpecular =
+                GlossyEnvironmentReflection1(reflectVector, positionWS, half(1 - smoothness), indirectAmbientOcclusion);
+            half3 color = EnvironmentBRDF(brdfData, indirectDiffuse, indirectSpecular, fresnelTerm);
+            if (IsOnlyAOLightingFeatureEnabled())
+            {
+                color = half3(1, 1, 1); // "Base white" for AO debug lighting mode
+            }
+            giColor = color * indirectAmbientOcclusion;
+
+            finalColor += giColor;
+            finalColor = MixFog(finalColor, input.positionWSAndFogFactor.w);
+
             return float4(finalColor, 1);
         }
         ENDHLSL

@@ -11,6 +11,7 @@ public class Emotionalbar : MonoBehaviour
     [SerializeField] private float lowThreshold = -0.75f;
     [SerializeField] private float highThreshold = 0.75f;
 
+    [SerializeField] private float currentAmount;
     // 当前指针状态
     public enum PointerState
     {
@@ -27,7 +28,7 @@ public class Emotionalbar : MonoBehaviour
         pointerSlider.minValue = -1f;
         pointerSlider.maxValue = 1f;
         pointerSlider.value = 0f;
-
+        currentAmount = 0f;
         // 初始状态
         currentState = PointerState.Normal;
     }
@@ -46,7 +47,7 @@ public class Emotionalbar : MonoBehaviour
     /// <param name="amount">增加值</param>
     public void IncreaseValue(float amount)
     {
-       float currentAmount = Mathf.Clamp(pointerSlider.value + amount, -1f,  1f);
+         currentAmount = Mathf.Clamp(currentAmount + amount, -1f,  1f);
         DOTween.To(() => pointerSlider.value, x => pointerSlider.value = x, currentAmount, 0.2f);
        
     }
@@ -57,7 +58,7 @@ public class Emotionalbar : MonoBehaviour
     /// <param name="amount">减少值</param>
     public void DecreaseValue(float amount)
     {
-        float currentAmount = Mathf.Clamp(pointerSlider.value - amount, -1f, 1f);
+         currentAmount = Mathf.Clamp(currentAmount - amount, -1f, 1f);
         DOTween.To(() => pointerSlider.value, x => pointerSlider.value = x, currentAmount, 0.2f);
     }
 

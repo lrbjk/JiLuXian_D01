@@ -378,7 +378,7 @@ namespace Vaporwave
             }
             public void Convolute(CommandBuffer cmd)
             {
-                cmd.SetGlobalMatrix("_ConvoluteCore", ConvolutionKernels.GetConvolutionKernel(setting.convoluteType));
+                cmd.SetGlobalMatrix("_ConvoluteCore",  ConvolutionKernels.GetConvolutionKernel(setting.convoluteType));
                 cmd.SetGlobalVector("_TexDeltaSize", new Vector4(1 / texSize.x, 1 / texSize.y, 0, 0));
                 cmd.Blit(GetSourceRT(), GetTargetRT(), convoluteMat);
                 SwapRT();

@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.408805, g: 0.03213867, b: 0.03213867, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.056
@@ -47706,7 +47706,7 @@ PrefabInstance:
     - target: {fileID: 6935417351677981081, guid: d324de115c4dff845bee7b7f166883c4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.5607717
+      value: -0.8125627
       objectReference: {fileID: 0}
     - target: {fileID: 6935417351677981081, guid: d324de115c4dff845bee7b7f166883c4,
         type: 3}
@@ -65090,6 +65090,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8616490788913087722, guid: d96e3ff0793bd824fb6771e987a80a35,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.1219977
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616490788913087722, guid: d96e3ff0793bd824fb6771e987a80a35,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 8616490788914857482, guid: d96e3ff0793bd824fb6771e987a80a35,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2da46bd0cd7f58d46b0e6872aa396b12, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -65620,10 +65635,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Crate Short
       objectReference: {fileID: 0}
+    - target: {fileID: 8842527932766607019, guid: 5b83660a4c6176b41bfec1b7029c6597,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8842527933058443303, guid: 5b83660a4c6176b41bfec1b7029c6597,
         type: 3}
       propertyPath: m_Name
       value: Crate Short
+      objectReference: {fileID: 0}
+    - target: {fileID: 8842527933058443303, guid: 5b83660a4c6176b41bfec1b7029c6597,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8842527933452262136, guid: 5b83660a4c6176b41bfec1b7029c6597,
         type: 3}
