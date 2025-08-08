@@ -2,7 +2,6 @@ using AI.FSM.Framework;
 using ns.Camera;
 using ns.Character.Player;
 using UnityEngine;
-using CharacterInfo = ns.Character.CharacterInfo;
 
 namespace AI.FSM
 {
@@ -13,7 +12,7 @@ namespace AI.FSM
     [RequireComponent(typeof(PlayerAnimationHandler))]
     [RequireComponent(typeof(Rigidbody))]
     /// <summary>
-    /// 描述：
+    /// 描述：Awake后的单例
     /// </summary>
     public class PlayerFSMBase : FSMBase
     {
@@ -25,7 +24,15 @@ namespace AI.FSM
         [HideInInspector]
         public CameraHandler cameraHandler;
         public PlayerRootMotion playerRootMotion;
+        public PlayerInfo playerInfo;
+        public PlayerMotor3D playerMotor3D;
         #endregion
+
+        public static PlayerFSMBase Instance { get; private set; }
+        private void Awake()
+        {
+            Instance = this;
+        }
 
         protected override void Start()
         {
@@ -34,7 +41,9 @@ namespace AI.FSM
             playerAction = GetComponent<PlayerAction>();
             cameraHandler = FindAnyObjectByType<CameraHandler>();
             playerRootMotion = GetComponentInChildren<PlayerRootMotion>(true);
+            playerMotor3D = GetComponent<PlayerMotor3D>();
             base.Start();
+            playerInfo = characterInfo as PlayerInfo;
         }
     }
 }

@@ -52,6 +52,10 @@ namespace ns.Character.Player
         public bool IsOnTop = false;
         public bool IsOnGround;
         public RaycastHit GroundHit;
+        public Transform ClimbPosTF;
+        public bool IsInUpClimbBox = false;
+        public bool IsInDownClimbBox = false;
+        public bool IsClimbLiftHandDown= true;
 
         [Header("角色属性值")]
         /// <summary>角色属性值 </summary>

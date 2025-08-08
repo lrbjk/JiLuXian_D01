@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 744696712074739806}
   - component: {fileID: 7468216904396470321}
   - component: {fileID: 7737667967652731399}
+  - component: {fileID: 1858171774976719465}
+  - component: {fileID: 7300571018426674698}
   m_Layer: 0
   m_Name: Md_Char_Low_Poly_Man
   m_TagString: Untagged
@@ -107,6 +109,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef5f1e66909d98a4184634d716d3ecb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1858171774976719465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85136060678157062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f12a84d9533f8140850122adbc1f54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ikActive: 1
+  rotation: 0
+  showMarkers: 0
+  LeftFoot: {fileID: 6646412107419084568}
+  RightFoot: {fileID: 2292831307007048197}
+  footOffset: 0.12
+  smooth: 10
+  deltaAmplifier: 1
+--- !u!195 &7300571018426674698
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85136060678157062}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 2
 --- !u!1 &272649451154436281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,6 +1286,10 @@ MonoBehaviour:
   FallTimer: 0
   IsOnTop: 0
   IsOnGround: 0
+  ClimbPosTF: {fileID: 0}
+  IsInUpClimbBox: 0
+  IsInDownClimbBox: 0
+  IsClimbLiftHandDown: 1
   CharacterProperties:
   - propertyType: 0
     value: 10
@@ -1315,12 +1363,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotateSpeed: 10
-  Radius: 0.15
+  Radius: 0.13
   GroundLayer:
     serializedVersion: 2
     m_Bits: 1
-  GroundDistance: 0.2
+  GroundDistance: 0.5
   FallPushForce: 2
+  MaxSlopeAngle: 45
+  GroundAngle: 0
 --- !u!114 &7599313516407303739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1386,6 +1436,8 @@ MonoBehaviour:
   playerAction: {fileID: 0}
   cameraHandler: {fileID: 0}
   playerRootMotion: {fileID: 0}
+  playerInfo: {fileID: 0}
+  playerMotor3D: {fileID: 0}
 --- !u!136 &1593835764427854643
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2453,7 +2505,7 @@ Transform:
   m_GameObject: {fileID: 7615127708887460316}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0.15}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

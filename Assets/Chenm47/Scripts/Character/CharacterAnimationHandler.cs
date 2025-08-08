@@ -48,6 +48,21 @@ namespace ns.Character
             Debug.Log($"播放动画：{targetAnima}，是否交互：{isInteracting}");//本质是用于标记动画是否完结
             anim.SetBool("IsInteracting", isInteracting);
             anim.CrossFade(targetAnima, normalizedTransitionDuration);
+            //anim.CrossFadeInFixedTime(targetAnima, normalizedTransitionDuration);
+            //anim.Play(targetAnima);//直接播放动画，没有过度
+        }
+        /// <summary>
+        /// 播放目标动画，使用固定时间过度
+        /// </summary>
+        /// <param name="targetAnima">目标动画状态名称</param>
+        /// <param name="isInteracting">是否交互</param>
+        /// <param name="normalizedTransitionDuration">过度时间</param>
+        public virtual void PlayTargetAnimationFixed(string targetAnima, bool isInteracting, float normalizedTransitionDuration)
+        {
+            Debug.Log($"播放动画：{targetAnima}，是否交互：{isInteracting}");//本质是用于标记动画是否完结
+            anim.SetBool("IsInteracting", isInteracting);
+            //anim.CrossFade(targetAnima, normalizedTransitionDuration);
+            anim.CrossFadeInFixedTime(targetAnima, normalizedTransitionDuration);
             //anim.Play(targetAnima);//直接播放动画，没有过度
         }
 

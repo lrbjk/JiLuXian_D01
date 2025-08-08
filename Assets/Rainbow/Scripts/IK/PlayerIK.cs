@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerIK : MonoBehaviour
@@ -19,8 +17,8 @@ public class PlayerIK : MonoBehaviour
     //length of the linecast
     float legDistance;
     //
-    int layerMask = 1 << 7;
-    CharacterController controller;
+    int layerMask = 1 << 10;
+    //CharacterController controller;
     UnityEngine.AI.NavMeshAgent agent;
     private Rigidbody rb;
     float LeftFootY, RightFootY;
@@ -28,16 +26,23 @@ public class PlayerIK : MonoBehaviour
     public float smooth = 10f;
     public float deltaAmplifier = 1f;
 
+    private CapsuleCollider capsuleCollider;
+
+
     void Start()
     {
         animator = GetComponent<Animator>();
-        controller = GetComponentInParent<CharacterController>();
+        //controller = GetComponentInParent<CharacterController>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         rb = GetComponentInParent<Rigidbody>();
+        capsuleCollider = GetComponentInParent<CapsuleCollider>();
         //hit all layers but the players layer
-        layerMask = ~layerMask;
-        colliderHeight = controller.height;
+        //layerMask = ~layerMask;
+        //colliderHeight = controller.height;
+        colliderHeight = capsuleCollider.height;
         //controllerBoundsBottom = controller.bounds.extents.y;
+        agent.height = colliderHeight;
+        agent.radius = capsuleCollider.radius;
     }
 
     void FixedUpdate()
@@ -120,39 +125,46 @@ public class PlayerIK : MonoBehaviour
         //this will change the length of the linecast based on the agents speed
         stateBasedLegDistance();
 
-        if (planeSpeed(ref controller) < 0.1f)
+        if (planeSpeed(ref rb) < 0.1f)
         {
             float delta = Mathf.Abs(LeftFootY - RightFootY);
-            controller.height = colliderHeight - delta * deltaAmplifier;
-            if (controller.height < 0f)
+            capsuleCollider.height = colliderHeight - delta * deltaAmplifier;
+            if (capsuleCollider.height < 0f)
             {
-                controller.height = colliderHeight;
+                capsuleCollider.height = colliderHeight;
             }
             //controller.center = new Vector3(0, Mathf.Lerp(controller.center.y, colliderCenterY + delta, Time.deltaTime * smooth), 0);//new Vector3 (0, colliderCenterY + delta, 0);
         }
         else
         {
-            controller.height = colliderHeight;
+            capsuleCollider.height = colliderHeight;
             //controller.center = new Vector3 (0, colliderCenterY, 0);
         }
     }
 
     private void stateBasedLegDistance()
     {
-        if (controller)
-        {
-            legDistance = (1 / (planeSpeed(ref controller) + 0.8f));
-        }
-        else
-        {
-            legDistance = (1 / (planeSpeed(ref agent) + 0.8f));
-        }
+        //if (controller)
+        //{
+        //    //legDistance = (1 / (planeSpeed(ref controller) + 0.8f));
+        //    legDistance = (1 / (planeSpeed(ref rb) + 0.8f));
+        //}
+        //else
+        //{
+        //    legDistance = (1 / (planeSpeed(ref agent) + 0.8f));
+        //}
+        legDistance = (1 / (planeSpeed(ref agent) + 0.8f));
     }
 
 
-    private float planeSpeed(ref CharacterController characterController)
+    //private float planeSpeed(ref CharacterController characterController)
+    //{
+    //    Vector3 planeSpeed = new Vector3(characterController.velocity.x, 0, characterController.velocity.z);
+    //    return planeSpeed.magnitude;
+    //}
+    private float planeSpeed(ref Rigidbody rigidbody)
     {
-        Vector3 planeSpeed = new Vector3(characterController.velocity.x, 0, characterController.velocity.z);
+        Vector3 planeSpeed = new Vector3(rigidbody.velocity.x, 0, rigidbody.velocity.z);
         return planeSpeed.magnitude;
     }
 

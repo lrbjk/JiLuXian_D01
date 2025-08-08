@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -36,7 +37,9 @@ namespace ns.Character.Player
         public float VerticalCamera { get; protected set; }
 
         public bool RollDown { get; protected set; }
-
+        /// <summary>
+        /// 翻滚键是否按住
+        /// </summary>
         public bool RollHold { get; protected set; }
         /// <summary>翻滚键按下的时间</summary>
         public float RollPressedTimer { get; protected set; }
@@ -61,6 +64,8 @@ namespace ns.Character.Player
         /// <summary>跳跃输入</summary>
         public bool Jump { get; protected set; }
 
+        /// <summary>交互输入</summary>
+        public bool Interacting { get; protected set; }
 
         public bool LockView { get; protected set; }
         /// <summary>
@@ -90,7 +95,7 @@ namespace ns.Character.Player
 
             RollInput();
             Jump = JumpInput();
-
+            Interacting = InteractingInput();
             AttackInput();
 
 
@@ -98,7 +103,6 @@ namespace ns.Character.Player
             SwitchLockedTargetInput();
 
         }
-
         //常用输入
         /// <summary>
         /// 移动输入
@@ -330,6 +334,11 @@ namespace ns.Character.Player
                 //切换锁定目标
                 PlayerAction.Instance.SwitchLockTarget(SwitchLockedTarget);
             }
+        }
+
+        private bool InteractingInput()
+        {
+            return Input.GetKeyDown(KeyCode.E);
         }
 
     }

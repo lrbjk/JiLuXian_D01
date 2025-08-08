@@ -7,6 +7,7 @@ ForwardStab>ForwardStab
 AttackInput>Attack
 JumpInput>Jump
 DntOnGround>DirectFall
+ClimbStartInput>ClimbStart
 [Roll]
 InteractingDown>Default
 [BackStep]
@@ -20,6 +21,7 @@ ForwardStab>ForwardStab
 AttackInput>Attack
 JumpInput>Jump
 DntOnGround>DirectFall
+ClimbStartInput>ClimbStart
 [Attack]
 ComboAtk>ComboAttack
 RollBreak>Roll
@@ -43,6 +45,15 @@ InteractingDown>Default
 [BackStab]
 InteractingDown>Default
 [ForwardStab]
+InteractingDown>Default
+[ClimbStart]
+InteractingDown>ClimbIdle
+[ClimbIdle]
+ClimbEndInput>ClimbEnd
+ClimbMoveInput>ClimbMove
+[ClimbMove]
+InteractingDown>ClimbIdle
+[ClimbEnd]
 InteractingDown>Default
 [Damaged]
 RollBreak>Roll

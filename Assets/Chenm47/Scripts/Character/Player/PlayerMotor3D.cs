@@ -76,6 +76,12 @@ namespace ns.Character.Player
             rb.MoveRotation(Quaternion.Slerp(transform.rotation, tr, rotateSpeed * Time.fixedDeltaTime));
         }
 
+        public void LookAtVentorNow(Vector3 dir)
+        {
+            Quaternion tr = Quaternion.LookRotation(dir);
+            rb.MoveRotation(tr);
+        }
+
         public void Move(Vector3 dir, float MoveSpeed)
         {
             LookAtVector(dir);
@@ -122,6 +128,14 @@ namespace ns.Character.Player
             LookAtVector(dir);
             rb.MovePosition(target);
         }
+        /// <summary>
+        /// 移动到指定位置
+        /// </summary>
+        /// <param name="target"></param>
+        public void MovePositionOnly(Vector3 target)
+        {
+            rb.MovePosition(target);
+        }
 
         public void Jump(float JumpSpeed)
         {
@@ -136,6 +150,11 @@ namespace ns.Character.Player
         public void AddForce(Vector3 force, ForceMode forceMode = ForceMode.Force)
         {
             rb.AddForce(force, forceMode);
+        }
+
+        public void SetRbGravity(bool isGravity)
+        {
+            rb.useGravity = isGravity;
         }
 
     }

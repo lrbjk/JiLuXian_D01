@@ -26,6 +26,11 @@ namespace AI.FSM
         IsOnJumpTop,
         DntOnGround,
         BackStepBreak,
+
+        ClimbStartInput,
+        ClimbMoveInput,
+        ClimbEndInput,
+
         // Ghoul  triggers
         TargetInSight,
         TargetInAttackRange,
