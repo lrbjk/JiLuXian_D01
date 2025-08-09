@@ -2,8 +2,12 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
-public class StatuValueControl : MonoBehaviour
+
+namespace Common.UI
+{
+    public class StatuValueControl : MonoBehaviour
 {
     [Header("Slider Reference")]
     [SerializeField] private Image statusValueimage;
@@ -38,7 +42,7 @@ public class StatuValueControl : MonoBehaviour
         //初始化目标宽度
         targetWidth = maxValue;
 
-        SetBossHP(1000f);
+        //SetBossHP(1000f);
         // 添加点击事件监听
         //if (targetButton1 != null && targetButton2 != null)
         //{
@@ -112,6 +116,12 @@ public class StatuValueControl : MonoBehaviour
         amount = (800 * amount) / BossFullHp;
         StartCoroutine(Decrease(amount));
     }
+
+     public void IncreseBossHp(float amount)
+      {
+            amount = (800 * amount) / BossFullHp;
+            StartCoroutine(Increase(amount));
+        }
     //----------------------------------------------------------------------------下面是具体实现
 
     /// <summary>
@@ -326,3 +336,7 @@ public class StatuValueControl : MonoBehaviour
 
 
 }
+
+
+}
+

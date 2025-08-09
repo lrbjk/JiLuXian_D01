@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
-public class KeyboardImageCycler : MonoBehaviour
+public class ImageCycler : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private Image DisplayImage;
@@ -11,7 +11,7 @@ public class KeyboardImageCycler : MonoBehaviour
     [SerializeField] private Button cycleButton; // 仅用于显示用途
 
     [Header("Weapon Images")]
-    [SerializeField] private List<Sprite> weaponImages = new List<Sprite>();
+    [SerializeField] private List<Sprite> equipmentImages = new List<Sprite>();
 
     [Header("Keyboard Settings")]
     [SerializeField] private KeyCode cycleKey = KeyCode.RightArrow;
@@ -28,53 +28,53 @@ public class KeyboardImageCycler : MonoBehaviour
         cycleButton.interactable = false;
 
         // 初始化显示
-        if (weaponImages.Count > 0)
+        if (equipmentImages.Count > 0)
         {
-            UpdateWeaponDisplay();
+            UpdateImagerDisplay();
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(cycleKey))
-        {
-            CycleWeapon();
-            lastKeyPressTime = Time.time;
-        }
-        else if (Input.GetKey(cycleKey) &&
-                Time.time > lastKeyPressTime + keyRepeatDelay &&
-                Time.time > lastKeyPressTime + keyRepeatRate)
-        {
-            CycleWeapon();
-            lastKeyPressTime = Time.time;
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(cycleKey))
+    //    {
+    //        CycleImage();
+    //        lastKeyPressTime = Time.time;
+    //    }
+    //    else if (Input.GetKey(cycleKey) &&
+    //            Time.time > lastKeyPressTime + keyRepeatDelay &&
+    //            Time.time > lastKeyPressTime + keyRepeatRate)
+    //    {
+    //        CycleImage();
+    //        lastKeyPressTime = Time.time;
+    //    }
+    //}
 
-    private void CycleWeapon()
+    public void CycleImage()
     {
-        if (weaponImages.Count == 0) return;
+        if (equipmentImages.Count == 0) return;
 
         // 模拟按钮动画
         StartCoroutine(PlayButtonAnimation());
 
         // 切换武器
-        currentIndex = (currentIndex + 1) % weaponImages.Count;
+        currentIndex = (currentIndex + 1) % equipmentImages.Count;
 
         if(NextImage != null)
         {
-             nextIndex = (currentIndex + 1) % weaponImages.Count;
+             nextIndex = (currentIndex + 1) % equipmentImages.Count;
         }
        
-        UpdateWeaponDisplay();
+        UpdateImagerDisplay();
     }
 
-    private void UpdateWeaponDisplay()
+    private void UpdateImagerDisplay()
     {
-        DisplayImage.sprite = weaponImages[currentIndex];
+        DisplayImage.sprite = equipmentImages[currentIndex];
         DisplayImage.color = new Color(1, 1, 1, DisplayImage.sprite ? 1 : 0);//透明度为0-1之间的百分比
         if (NextImage != null)
         {
-            NextImage.sprite = weaponImages[nextIndex];
+            NextImage.sprite = equipmentImages[nextIndex];
             NextImage.color = new Color(1, 1, 1 , 0.6f );
         }
     }

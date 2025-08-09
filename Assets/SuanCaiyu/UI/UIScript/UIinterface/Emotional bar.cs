@@ -107,8 +107,8 @@ public class Emotionalbar : MonoBehaviour
     /// <param name="newhigh"></param>
     public void ResetEmotionalBar(float newlow , float newhigh , float fullamount)
     {
-        lowThreshold = newlow/fullAmount;
-        highThreshold = newhigh/fullAmount;
+        lowThreshold = newlow/fullamount;
+        highThreshold = newhigh/fullamount;
         fullAmount = fullamount;
         RestImage();
     }
@@ -123,10 +123,12 @@ public class Emotionalbar : MonoBehaviour
         RectTransform rectTransform_2 = highImage.GetComponent<RectTransform>();
         RectTransform rectTransform_3 = mark1.GetComponent<RectTransform>();
         RectTransform rectTransform_4 = mark2.GetComponent<RectTransform>();
+        RectTransform rectTransform_5 = decreseImage.GetComponent<RectTransform>();
 
         rectTransform.sizeDelta = new Vector2(lowThreshold * 950, rectTransform.sizeDelta.y);
         rectTransform_1.sizeDelta = new Vector2((highThreshold - lowThreshold) * 950, rectTransform.sizeDelta.y);
         rectTransform_2.sizeDelta = new Vector2((1f - highThreshold) * 950, rectTransform.sizeDelta.y);
+        rectTransform_5.sizeDelta = new Vector2(0f, rectTransform.sizeDelta.y);
 
         rectTransform_1.anchoredPosition = new Vector2(-475f + rectTransform.sizeDelta.x, 0);
         rectTransform_3.anchoredPosition = rectTransform_1.anchoredPosition;

@@ -627,7 +627,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 15120780}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: DecreasePlayerMp
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 10
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &15120780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,9 +792,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 540150186}
-        m_TargetAssemblyTypeName: Statusvaluecontroller, Assembly-CSharp
-        m_MethodName: Increse
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: IncreasePlayerHp
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2113,15 +2125,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Statusvaluecontroller, Assembly-CSharp
-        m_MethodName: IncreaseValue
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: IncresePlyerMaxHpToFull
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0.05
+          m_FloatArgument: 25
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -2682,6 +2694,8 @@ RectTransform:
   - {fileID: 2088633441}
   - {fileID: 2129618433}
   - {fileID: 378791405}
+  - {fileID: 1790805756}
+  - {fileID: 2020144487}
   - {fileID: 1340116550}
   - {fileID: 1392328718}
   - {fileID: 1934072835}
@@ -3472,9 +3486,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 540150186}
-        m_TargetAssemblyTypeName: Statusvaluecontroller, Assembly-CSharp
-        m_MethodName: IncreseMaxOnly
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: IncreasePlayerMaxHp
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3629,10 +3643,7 @@ MonoBehaviour:
   DisplayImage: {fileID: 163539202}
   NextImage: {fileID: 2045368981}
   cycleButton: {fileID: 272525689}
-  weaponImages:
-  - {fileID: 21300000, guid: 389e6472e6f51bb458415a04c759acd4, type: 3}
-  - {fileID: 21300000, guid: a0519016f5a7932478768dd172a09838, type: 3}
-  - {fileID: 21300000, guid: f97e415068f0c364db7b821769d5c5ae, type: 3}
+  equipmentImages: []
   cycleKey: 49
   keyRepeatDelay: 0.5
   keyRepeatRate: 0.1
@@ -9420,9 +9431,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 540150186}
-        m_TargetAssemblyTypeName: Statusvaluecontroller, Assembly-CSharp
-        m_MethodName: Decrese
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: DecreasePlayerHp
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9577,10 +9588,7 @@ MonoBehaviour:
   DisplayImage: {fileID: 1525339493}
   NextImage: {fileID: 0}
   cycleButton: {fileID: 680797417}
-  weaponImages:
-  - {fileID: 21300000, guid: aa458b571087d984ca86525314e868ae, type: 3}
-  - {fileID: 21300000, guid: 40d14c9ac1e7e9c4b8961a96233185ee, type: 3}
-  - {fileID: 21300000, guid: a0519016f5a7932478768dd172a09838, type: 3}
+  equipmentImages: []
   cycleKey: 101
   keyRepeatDelay: 0.5
   keyRepeatRate: 0.1
@@ -10463,9 +10471,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2129618434}
-        m_TargetAssemblyTypeName: Emotionalbar, Assembly-CSharp
-        m_MethodName: IncreseMax
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: IncreseFullEmotion
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11384,14 +11392,11 @@ MonoBehaviour:
   ComboMovtionlID: 0
   IsDamaged: 0
   IsDied: 0
-  MaxMoodValue: 10
   MoveBaseSpeed: 3
   SprintSpeed: 6
   RollSpeed: 10
   BackStepSpeed: 6
   JumpSpeed: 18
-  DownStairRecoverTime: 0.25
-  MaxJumpCount: 2
   MaxLockDistance: 20
   EnemyLayer:
     serializedVersion: 2
@@ -13223,15 +13228,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Statusvaluecontroller, Assembly-CSharp
-        m_MethodName: IncreaseValue
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: DcreasePlyaerMaxMp
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0.05
+          m_FloatArgument: 10
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -13780,9 +13785,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2129618434}
-        m_TargetAssemblyTypeName: Emotionalbar, Assembly-CSharp
-        m_MethodName: DecreaseValue
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: DecreaseEmotion
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14006,9 +14011,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2129618434}
-        m_TargetAssemblyTypeName: Emotionalbar, Assembly-CSharp
-        m_MethodName: DecreaseMax
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: DecreaseFullEmotion
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14224,6 +14229,7 @@ GameObject:
   - component: {fileID: 996511197}
   - component: {fileID: 996511196}
   - component: {fileID: 996511199}
+  - component: {fileID: 996511200}
   m_Layer: 5
   m_Name: MainUI
   m_TagString: Untagged
@@ -14315,6 +14321,18 @@ Canvas:
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &996511199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996511194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50b5e21f3a9a1aa45be39633568c09b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &996511200
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -15512,9 +15530,7 @@ MonoBehaviour:
   DisplayImage: {fileID: 1644735738}
   NextImage: {fileID: 0}
   cycleButton: {fileID: 1105968961}
-  weaponImages:
-  - {fileID: 21300000, guid: bc6e0240d8401ce459b2e6d6dfdae544, type: 3}
-  - {fileID: 21300000, guid: 4c9d73e031e32fb42be2fb54af2adac2, type: 3}
+  equipmentImages: []
   cycleKey: 113
   keyRepeatDelay: 0.5
   keyRepeatRate: 0.1
@@ -16201,9 +16217,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 540150186}
-        m_TargetAssemblyTypeName: Statusvaluecontroller, Assembly-CSharp
-        m_MethodName: DecreseMax
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: DcreasePlyaerMaxHp
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -16504,10 +16520,7 @@ MonoBehaviour:
   DisplayImage: {fileID: 1419514338}
   NextImage: {fileID: 1624643397}
   cycleButton: {fileID: 1201026890}
-  weaponImages:
-  - {fileID: 21300000, guid: 0eb6927abaf60bf498a140165acb78dd, type: 3}
-  - {fileID: 21300000, guid: 18ab14cb1d3677144a541f9c6dfad1f7, type: 3}
-  - {fileID: 21300000, guid: d22f85f1d9855d74a9ad4b41fe29eda3, type: 3}
+  equipmentImages: []
   cycleKey: 50
   keyRepeatDelay: 0.5
   keyRepeatRate: 0.1
@@ -18825,15 +18838,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Statusvaluecontroller, Assembly-CSharp
-        m_MethodName: IncreaseValue
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: IncreasePlayerMp
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0.05
+          m_FloatArgument: 20
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
@@ -19212,8 +19225,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1340116550}
   - component: {fileID: 1340116551}
+  - component: {fileID: 1340116553}
+  - component: {fileID: 1340116552}
   m_Layer: 5
-  m_Name: "Boss\u76F8\u5173"
+  m_Name: BossHp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19234,8 +19249,6 @@ RectTransform:
   - {fileID: 1544991598}
   - {fileID: 1247669225}
   - {fileID: 343818266}
-  - {fileID: 1790805756}
-  - {fileID: 2020144487}
   m_Father: {fileID: 210014777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
@@ -19263,6 +19276,32 @@ MonoBehaviour:
   targetWidth: 0
   BossFullHp: 0
   easeType: 6
+--- !u!225 &1340116552
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340116549}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1340116553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340116549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba6654bfc5f4c744b9f9aa11933da52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1340116552}
+  fadeDuration: 0.4
 --- !u!1 &1343736920
 GameObject:
   m_ObjectHideFlags: 0
@@ -20716,7 +20755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1460120963
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20737,7 +20776,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 824.99994, y: -445.33325}
+  m_AnchoredPosition: {x: 536, y: -445.33325}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1460201323
@@ -21190,7 +21229,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2129618434}
         m_TargetAssemblyTypeName: Emotionalbar, Assembly-CSharp
-        m_MethodName: IncreseFullAmount
+        m_MethodName: IncreseMax
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21770,7 +21809,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1595275620
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21791,7 +21830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 825, y: -445.33325}
+  m_AnchoredPosition: {x: 536, y: -445.33325}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1596622967
@@ -24284,7 +24323,7 @@ GameObject:
   - component: {fileID: 1790805758}
   - component: {fileID: 1790805757}
   m_Layer: 5
-  m_Name: "\u51CF\u5C11\u6D4B\u8BD5"
+  m_Name: "BOSS\u8840\u91CF\u51CF\u5C11"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24299,10 +24338,10 @@ RectTransform:
   m_GameObject: {fileID: 1790805755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.66671985, y: 0.7329598, z: 0.9993597}
+  m_LocalScale: {x: 0.6667198, y: 0.73295975, z: 0.99935967}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1340116550}
+  m_Father: {fileID: 210014777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -24353,10 +24392,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1340116551}
-        m_TargetAssemblyTypeName: StatuValueControl, Assembly-CSharp
-        m_MethodName: DecreseBossHP
-        m_Mode: 4
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: BossHp_Off
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -25445,9 +25484,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2129618434}
-        m_TargetAssemblyTypeName: Emotionalbar, Assembly-CSharp
-        m_MethodName: IncreaseValue
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: IncreaseEmotion
         m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27345,7 +27384,7 @@ GameObject:
   - component: {fileID: 2020144489}
   - component: {fileID: 2020144488}
   m_Layer: 5
-  m_Name: "\u589E\u52A0\u6D4B\u8BD5"
+  m_Name: "BOSS\u8840\u91CF\u589E\u52A0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27360,10 +27399,10 @@ RectTransform:
   m_GameObject: {fileID: 2020144486}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.66671985, y: 0.7329598, z: 0.9993597}
+  m_LocalScale: {x: 0.6667198, y: 0.73295975, z: 0.99935967}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1340116550}
+  m_Father: {fileID: 210014777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -27414,10 +27453,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1340116551}
-        m_TargetAssemblyTypeName: Statusvaluecontroller, Assembly-CSharp
-        m_MethodName: Increse
-        m_Mode: 4
+      - m_Target: {fileID: 996511199}
+        m_TargetAssemblyTypeName: Common.UI.MainUIFunc, Assembly-CSharp
+        m_MethodName: BossHp_On
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
