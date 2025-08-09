@@ -1,7 +1,6 @@
 using AI.FSM;
-using AI.FSM.Framework;
-using ns.Item.Equipment;
-using ns.Item.Weapons;
+using ns.ItemInfos;
+using ns.Weapons;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,13 +17,13 @@ namespace ns.Character.Player
         private EquipmentInfo[] equipmentInfos;//装备防具信息
         [Tooltip("核心信息")]
         [SerializeField]
-        private KernelInfo currentKernelInfo;
+        private KernelEquipmentItemInfo currentKernelInfo;
         private CharacterInfo characterInfo;
         protected override void Start()
         {
             base.Start();
             playerInventory = GetComponent<PlayerInventory>();
-            characterInfo=GetComponent<CharacterInfo>();
+            characterInfo = GetComponent<CharacterInfo>();
             //测试用
             playerInventory.LoadWeaponOnSlot(playerInventory.LeftWeapon.WInfo, characterInfo, true);
             playerInventory.LoadWeaponOnSlot(playerInventory.RightWeapon.WInfo, characterInfo, false);
@@ -68,7 +67,7 @@ namespace ns.Character.Player
             return playerInventory.RightWeapon;
         }
 
-        public override KernelInfo GetKernelInfo()
+        public override KernelEquipmentItemInfo GetKernelInfo()
         {
             return currentKernelInfo;
         }

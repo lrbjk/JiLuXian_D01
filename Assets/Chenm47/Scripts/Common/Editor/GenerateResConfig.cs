@@ -21,6 +21,7 @@ namespace Common.MyEditor
             File.AppendAllLines("Assets/StreamingAssets/ConfigMap.txt", pngPaths);
             //File.AppendAllLines("Assets/StreamingAssets/ConfigMap.txt", spriteatlasPaths);
             File.AppendAllLines("Assets/StreamingAssets/ConfigMap.txt", SOPaths);
+            //File.AppendAllLines("Assets/StreamingAssets/SOConfigMap.txt", SOPaths);
             AssetDatabase.Refresh();
         }
         /// <summary>

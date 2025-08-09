@@ -2,7 +2,7 @@ using ns.Character.Player;
 using UnityEngine;
 using CharacterInfo = ns.Character.CharacterInfo;
 
-namespace ns.Item.Weapons
+namespace ns.ItemInfos.Weapons
 {
     /// <summary>
     /// 描述：

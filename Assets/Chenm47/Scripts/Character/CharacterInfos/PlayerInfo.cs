@@ -1,21 +1,32 @@
-using ns.Item.Equipment;
-using ns.Item.Weapons;
 using ns.Movtion;
 using ns.Value;
+using ns.Weapons;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ns.Character.Player
 {
+    [Serializable]
+    public class CriticalStateValuePairs
+    {
+        public CriticalStateType type;
+        public float value;
+    }
+
+    public enum CriticalStateType
+    {
+        充盈,
+        稳定,
+        空虚
+    }
+
     /// <summary>
     /// 描述：玩家角色信息
     /// </summary>
     public class PlayerInfo : CharacterInfo
     {
         /*为调节使用*/
-        /// <summary>最大心情值</summary>
-        [Header("最大心情值")]
-        public int MaxMoodValue = 10;
         /// <summary>
         /// 角色基础移动速度
         /// </summary>
@@ -28,9 +39,6 @@ namespace ns.Character.Player
         public float BackStepSpeed = 6;
         public float JumpSpeed = 18;
 
-        [Header("下落平台恢复时间")]
-        public float DownStairRecoverTime = 0.25f;
-        public int MaxJumpCount = 2;
         [Header("最大锁定距离")]
         public float MaxLockDistance = 2f;
         public LayerMask EnemyLayer;

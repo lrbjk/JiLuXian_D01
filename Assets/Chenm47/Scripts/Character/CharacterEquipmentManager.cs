@@ -1,6 +1,6 @@
 using AI.FSM.Framework;
-using ns.Item.Equipment;
-using ns.Item.Weapons;
+using ns.ItemInfos;
+using ns.Weapons;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +27,7 @@ namespace ns.Character
 
         public abstract IEnumerable<EquipmentInfo> GetEquipmentInfos();
 
-        public abstract KernelInfo GetKernelInfo();
+        public abstract KernelEquipmentItemInfo GetKernelInfo();
 
         public abstract void EquipWeapon(WeaponInfo weaponInfo, bool isLeft);
     }

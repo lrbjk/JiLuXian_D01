@@ -1,8 +1,7 @@
 using AI.FSM.Framework;
 using ns.Character.Player;
-using ns.Item.Weapons;
+using ns.ItemInfos;
 using ns.Movtion;
-using ns.Skill;
 using UnityEngine;
 
 namespace AI.FSM

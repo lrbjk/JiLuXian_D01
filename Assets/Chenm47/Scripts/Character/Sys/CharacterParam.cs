@@ -21,9 +21,5 @@ namespace ns.Character
         public string CharacterName;
         /// <summary>角色参数类型</summary>
         public CharacterParamType CharacterParam_Type;
-        /// <summary>最大血量</summary>
-        public int MaxHP;
-        /// <summary>移动速度</summary>
-        public float Speed;
     }
 }

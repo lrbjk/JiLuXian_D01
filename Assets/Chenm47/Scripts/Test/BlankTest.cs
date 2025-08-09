@@ -1,4 +1,5 @@
 using AI.FSM;
+using ns.BagSystem;
 using ns.Character.Player;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,18 +15,21 @@ namespace ns.PlayerTest
     /// </summary>
     public class BlankTest : MonoBehaviour
     {
-        public Animator animator;
-        public PlayerRootMotion rootMotion;
-
         private void OnGUI()
         {
-            if (GUILayout.Button("Play"))
+            if (GUILayout.Button("获得核心1"))
             {
-                rootMotion.ApplyAnimaMotionAll = true;
-                rootMotion.ApplyAnimatRotationY = true;
-                PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(false);
-                animator.Play("Test");
+                InventoryManager.Instance.AddItem(new BagSystem.Freamwork.Item(ItemInfoManager.GetItemInfo("核心1")));
             }
+
+            if (GUILayout.Button("查看当前所有物品"))
+            {
+                foreach (var item in InventoryManager.Instance.GetAllItems())
+                {
+                    print(item.itemInfo.ItemName + " x" + item.CurrentCount);
+                }
+            }
+
         }
     }
 }

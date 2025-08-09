@@ -1,12 +1,5 @@
-using AI.FSM.Framework;
-using ns.Item.Weapons;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using ns.Weapons;
 
-/*
-
-*/
 namespace ns.Character
 {
     /// <summary>

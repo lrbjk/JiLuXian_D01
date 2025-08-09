@@ -1,4 +1,6 @@
-using ns.Item.Weapons;
+using ns.ItemInfos;
+using ns.ItemInfos.Weapons;
+using ns.Weapons;
 using UnityEngine;
 
 
