@@ -21,6 +21,8 @@ public class Emotionalbar : MonoBehaviour
     [SerializeField] private float currentAmount;
     [SerializeField] private float maxAmount;
 
+    [SerializeField] private float fullAmount;
+
     public Ease easeType = Ease.OutQuad;
     // 当前指针状态
     public enum PointerState
@@ -40,6 +42,7 @@ public class Emotionalbar : MonoBehaviour
         pointerSlider.value = 0.5f;
         currentAmount = 0.5f;
         maxAmount = 1f;
+        fullAmount = 100f;
         // 初始状态
         currentState = PointerState.Normal;
 
@@ -64,7 +67,7 @@ public class Emotionalbar : MonoBehaviour
     /// <param name="amount">增加值</param>
     public void IncreaseValue(float amount)
     {
-         currentAmount = Mathf.Clamp(currentAmount + amount, 0f,  maxAmount);
+         currentAmount = Mathf.Clamp(currentAmount + amount/fullAmount, 0f,  maxAmount);
         DOTween.To(() => pointerSlider.value, x => pointerSlider.value = x, currentAmount, 0.2f);
        
     }
@@ -75,7 +78,7 @@ public class Emotionalbar : MonoBehaviour
     /// <param name="amount">减少值</param>
     public void DecreaseValue(float amount)
     {
-         currentAmount = Mathf.Clamp(currentAmount - amount, 0f, maxAmount);
+         currentAmount = Mathf.Clamp(currentAmount - amount/fullAmount, 0f, maxAmount);
         DOTween.To(() => pointerSlider.value, x => pointerSlider.value = x, currentAmount, 0.2f);
     }
 
@@ -85,7 +88,7 @@ public class Emotionalbar : MonoBehaviour
     /// <param name="value">目标值 (-1到1之间)</param>
     public void SetValue(float value)
     {
-        pointerSlider.value = Mathf.Clamp(value, 0f, maxAmount);
+        pointerSlider.value = Mathf.Clamp(value/fullAmount, 0f, maxAmount);
     }
 
     /// <summary>
@@ -98,14 +101,15 @@ public class Emotionalbar : MonoBehaviour
     }
 
     /// <summary>
-    /// 设置新的阈值
+    /// 更新整个情感条，阈值和最大情感量
     /// </summary>
     /// <param name="newlow"></param>
     /// <param name="newhigh"></param>
-    public void ResetThreshold(float newlow , float newhigh)
+    public void ResetEmotionalBar(float newlow , float newhigh , float fullamount)
     {
-        lowThreshold = newlow;
-        highThreshold = newhigh;
+        lowThreshold = newlow/fullAmount;
+        highThreshold = newhigh/fullAmount;
+        fullAmount = fullamount;
         RestImage();
     }
 
@@ -181,6 +185,15 @@ public class Emotionalbar : MonoBehaviour
         rectTransform.DOSizeDelta(new Vector2(targetWidth, rectTransform.sizeDelta.y), 0.1f)
            .SetEase(easeType);
 
+    }
+
+    /// <summary>
+    /// 增加最大情感量到某个值
+    /// </summary>
+    /// <param name="amount"></param>
+    public void IncreseFullAmount(float amount)
+    {
+        fullAmount = amount;
     }
     #endregion
 
