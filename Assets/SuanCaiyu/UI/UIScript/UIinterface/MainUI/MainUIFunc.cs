@@ -1,15 +1,19 @@
+using Common.Helper;
 using Common.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 namespace Common.UI
 {
-    public class MainUIFunc : MonoBehaviour
+    public class MainUIFunc : UILayerManager
     {
         private StatuValueControl hpControl;
         private StatuValueControl mpControl;
+        private MoneyText hpBottle;
+        private MoneyText mpBottle;
         private StatuValueControl bossControl;
         private FadeUI bossFadeUI;
         private Emotionalbar emotionalbar;
@@ -17,43 +21,60 @@ namespace Common.UI
         private ImageCycler leftWeapon;
         private ImageCycler upWeapon;
         private ImageCycler downWeapon;
+        private MoneyText moneyText;
 
         //public Emotionalbar emotionalbar;
 
-        private void Start()
+        protected override void Start()
         {
-            Transform hp = transform.Find("FirstUI/状态栏/HP");
+            base.Start();
+            Transform hp = transform.Find("FirstUI/StatusBar/HP");
              hpControl = hp.GetComponent<StatuValueControl>();
             Debug.Log("找到HP控制！");
 
-            Transform mp = transform.Find("FirstUI/状态栏/MP");
+            Transform mp = transform.Find("FirstUI/StatusBar/MP");
              mpControl = mp.GetComponent<StatuValueControl>();
             Debug.Log("找到MP控制！");
+
+            Transform hb = transform.Find("FirstUI/StatusBar/HPBottle");
+            hpBottle = hb.GetComponent<MoneyText>();
+            Debug.Log("找到HP瓶！");
+
+            Transform mb = transform.Find("FirstUI/StatusBar/MPBottle");
+            mpBottle = mb.GetComponent<MoneyText>();
+            Debug.Log("找到MP瓶！");
 
             Transform boss = transform.Find("FirstUI/BossHp");
             bossControl = boss.GetComponent<StatuValueControl>();
             bossFadeUI = boss.GetComponent<FadeUI>();
             Debug.Log("找到Boss血条控制和显隐控制！");
 
-            Transform em = transform.Find("FirstUI/情感条");
+            Transform em = transform.Find("FirstUI/EmotionalBar");
             emotionalbar = em.GetComponent<Emotionalbar>();
             Debug.Log("找到情感值控制！");
 
-            Transform rw = transform.Find("FirstUI/装备栏/右手武器");
-            rightWeapon = em.GetComponent<ImageCycler>();
+            Transform lm = transform.Find("FirstUI/EquipmentSlot/LeftWeapon");
+            leftWeapon = lm.GetComponent<ImageCycler>();
+            if (lm != null) { Debug.Log("找左手武器！"); }
+            else { Debug.Log("未找左手武器！"); }
+            
+                Transform rw = transform.Find("FirstUI/EquipmentSlot/RightWeapon");
+            rightWeapon = rw.GetComponent<ImageCycler>();
             Debug.Log("找到右手武器！");
 
-            Transform lw = transform.Find("FirstUI/装备栏/左手武器");
-            leftWeapon = em.GetComponent<ImageCycler>();
-            Debug.Log("找到左手武器！");
 
-            Transform uw = transform.Find("FirstUI/装备栏/技能");
-            upWeapon = em.GetComponent<ImageCycler>();
+            Transform uw = transform.Find("FirstUI/EquipmentSlot/Skill/CurrentSkill");
+            upWeapon = uw.GetComponent<ImageCycler>();
             Debug.Log("找到技能！");
 
-            Transform dw = transform.Find("FirstUI/装备栏/道具");
-            downWeapon = em.GetComponent<ImageCycler>();
+            Transform dw = transform.Find("FirstUI/EquipmentSlot/Prop/CurrentProp");
+            downWeapon = dw.GetComponent<ImageCycler>();
             Debug.Log("找到道具！");
+
+            Transform mt = transform.FindChildByName("Currency");
+            moneyText = mt.GetComponent<MoneyText>();
+            Debug.Log("找到货币！");
+
 
 
         }
@@ -173,6 +194,26 @@ namespace Common.UI
         #endregion
 
         #region 玩家血瓶蓝瓶方法
+
+        public void AddHp(int amount)
+        {
+           hpBottle.AddBottle(amount);
+        }
+
+        public void SubHp(int amount)
+        {
+            hpBottle.SubBottle(amount);
+        }
+
+        public void AddMp(int amount)
+        {
+            mpBottle.AddBottle(amount);
+        }
+
+        public void SubMp(int amount)
+        {
+            mpBottle.SubBottle(amount);
+        }
         #endregion
 
         #region 玩家BUFF方法
@@ -293,6 +334,15 @@ namespace Common.UI
         #endregion
 
         #region 玩家货币方法
+        public void IncreseCurrency(int amount)
+        {
+            moneyText.AddMoney(amount);
+        }
+
+        public void DecreseCurrency(int amount)
+        {
+            moneyText.SubtractMoney(amount);
+        }
         #endregion
 
         #region Boss方法

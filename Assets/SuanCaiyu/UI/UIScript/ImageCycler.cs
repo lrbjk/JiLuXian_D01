@@ -8,24 +8,24 @@ public class ImageCycler : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private Image DisplayImage;
     [SerializeField] private Image NextImage;
-    [SerializeField] private Button cycleButton; // 仅用于显示用途
+    //[SerializeField] private Button cycleButton; // 仅用于显示用途
 
     [Header("Weapon Images")]
     [SerializeField] private List<Sprite> equipmentImages = new List<Sprite>();
 
-    [Header("Keyboard Settings")]
-    [SerializeField] private KeyCode cycleKey = KeyCode.RightArrow;
-    [SerializeField] private float keyRepeatDelay = 0.5f;
-    [SerializeField] private float keyRepeatRate = 0.1f;
+    //[Header("Keyboard Settings")]
+    //[SerializeField] private KeyCode cycleKey = KeyCode.RightArrow;
+    //[SerializeField] private float keyRepeatDelay = 0.5f;
+    //[SerializeField] private float keyRepeatRate = 0.1f;
 
     private int currentIndex = 0;
     private int nextIndex = 1;
-    private float lastKeyPressTime;
+   // private float lastKeyPressTime;
 
     private void Start()
     {
         // 禁用按钮交互但保留视觉效果
-        cycleButton.interactable = false;
+        //cycleButton.interactable = false;
 
         // 初始化显示
         if (equipmentImages.Count > 0)
@@ -82,20 +82,21 @@ public class ImageCycler : MonoBehaviour
     private System.Collections.IEnumerator PlayButtonAnimation()
     {
         // 按钮按下状态
-        cycleButton.GetComponent<Image>().color = cycleButton.colors.pressedColor;
+        DisplayImage.GetComponent<Image>().color = new Color(0.75f , 0.75f , 0.75f);
 
+        Debug.Log("切换武器");
         yield return new WaitForSeconds(0.1f);
 
         // 按钮恢复正常状态
-        cycleButton.GetComponent<Image>().color = cycleButton.colors.normalColor;
+        DisplayImage.GetComponent<Image>().color = new Color(1 , 1 ,1 );
     }
 
     // 编辑器里重置时自动获取引用
-    private void Reset()
-    {
-        if (cycleButton == null)
-            cycleButton = GetComponent<Button>();
-        if (DisplayImage == null && cycleButton != null)
-            DisplayImage = cycleButton.GetComponent<Image>();
-    }
+    //private void Reset()
+    //{
+    //    if (cycleButton == null)
+    //        cycleButton = GetComponent<Button>();
+    //    if (DisplayImage == null && cycleButton != null)
+    //        DisplayImage = cycleButton.GetComponent<Image>();
+    //}
 }
