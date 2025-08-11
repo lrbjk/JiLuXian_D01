@@ -6,6 +6,9 @@ namespace AI.FSM
     public enum FSMTriggerID
     {
         RollInput,
+        RollBreak,
+        LockedRollInput,
+        LockedRollBreak,
         MovementInput,
         NoMovementInput,
         InteractingDown,
@@ -20,7 +23,6 @@ namespace AI.FSM
         ToFallEndTimerAndOnGround,
         BackStab,
         ForwardStab,
-        RollBreak,
         IsDamaged,
         IsDied,
         IsOnJumpTop,

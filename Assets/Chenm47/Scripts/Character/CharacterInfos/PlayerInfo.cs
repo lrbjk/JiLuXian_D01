@@ -45,6 +45,7 @@ namespace ns.Character.Player
         [Header("玩家动作信息ID")]
         [Tooltip("玩家角色的翻滚动作信息ID")]
         public int RollMovtionID;
+        public int LockedRollMovtionID;
         public int BackStepMovtionID;
         public int JumpMovtionID;
 

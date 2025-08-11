@@ -1,5 +1,6 @@
 [Idle]
 MovementInput>Move
+LockedRollInput>LockedRoll
 RollInput>Roll
 BackStepInput>BackStep
 BackStab>BackStab
@@ -10,10 +11,13 @@ DntOnGround>DirectFall
 ClimbStartInput>ClimbStart
 [Roll]
 InteractingDown>Default
+[LockedRoll]
+InteractingDown>Default
 [BackStep]
 InteractingDown>Default
 [Move]
 NoMovementInput>Default
+LockedRollInput>LockedRoll
 RollInput>Roll
 BackStepInput>BackStep
 BackStab>BackStab
@@ -24,12 +28,10 @@ DntOnGround>DirectFall
 ClimbStartInput>ClimbStart
 [Attack]
 ComboAtk>ComboAttack
-RollBreak>Roll
 BackStepBreak>BackStep
 InteractingDown>Default
 [ComboAttack]
 ComboAtk>ComboAttack
-RollBreak>Roll
 ComboAtkDown>Default
 BackStepBreak>BackStep
 [Jump]
@@ -56,9 +58,10 @@ InteractingDown>ClimbIdle
 [ClimbEnd]
 InteractingDown>Default
 [Damaged]
-RollBreak>Roll
 InteractingDown>Default
 [Died]
 [AnyState]
 IsDamaged>Damaged
 IsDied>Died
+LockedRollBreak>LockedRoll
+RollBreak>Roll

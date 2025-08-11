@@ -23,6 +23,13 @@ namespace AI.FSM
             return fSMBase.movtionManager.GetMovtionInfo(playerInfo.RollMovtionID);
         }
 
+        protected override void PlayAnimation(FSMBase fSMBase)
+        {
+            //正常过度默认参数(offeset)无法循环播放
+            fSMBase.animator.SetBool("IsInteracting", true);
+            fSMBase.animator.CrossFade(movtionInfo.AnimationName, 0.1f, -1, 0f);
+        }
+
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
@@ -34,14 +41,19 @@ namespace AI.FSM
             moveDir.y = 0;
             moveDir.Normalize();
 
-            playerFSMBase.playerAction.Move(moveDir, playerInfo.RollSpeed);
+            //playerFSMBase.playerAction.Move(moveDir, playerInfo.RollSpeed);
 
+            //转向
+            playerFSMBase.playerMotor3D.LookAtVector(moveDir, 25);
+
+            //直接应用rootmotion
+            playerFSMBase.playerRootMotion.ApplyAnimaMotionAll = true;
         }
 
-        public override void ActionState(FSMBase fSMBase)
+        public override void ExitState(FSMBase fSMBase)
         {
-            base.ActionState(fSMBase);
-            //速度衰减效果......
+            base.ExitState(fSMBase);
+            playerFSMBase.playerRootMotion.ApplyAnimaMotionAll = false;
         }
     }
 }
