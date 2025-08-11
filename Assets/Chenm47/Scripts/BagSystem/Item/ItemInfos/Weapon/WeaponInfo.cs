@@ -14,7 +14,7 @@ namespace ns.ItemInfos
     /// <summary>
     /// 描述：
     /// </summary>
-    public class WeaponInfo : ItemInfo
+    public abstract class WeaponInfo : ItemInfo
     {
         #region 直接配置数据
         public GameObject ModlePrefab;
@@ -47,5 +47,12 @@ namespace ns.ItemInfos
         [Tooltip("当前异常伤害类型")]
         public AbnormalType CurrentAbnormalType;//当前异常伤害类型
         #endregion
+
+        protected override void InitializeDefaults()
+        {
+            base.InitializeDefaults();
+            MaxCount = 1;
+        }
+
     }
 }
