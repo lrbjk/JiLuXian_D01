@@ -1,8 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
-using ns.BagSystem.Freamwork;
-using ns.BagSystem;
+
 
 
 
@@ -16,6 +15,7 @@ using ns.BagSystem;
                                // public int totalCount = -1;// 列表总项数，-1表示无限数量
                                // 对象池实现（示例用Stack实现）
         
+        [SerializeField]private BagList bagList;
 
         Stack<Transform> pool = new Stack<Transform>();
 
@@ -68,12 +68,15 @@ using ns.BagSystem;
 
         void Start()
         {
-        InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Material, out var itemLst);
+         // bagList = GetComponent<BagList>();
         // 获取LoopScrollRect组件并初始化
+
         var ls = GetComponent<LoopScrollRect>();
             ls.prefabSource = this;// 设置预制体源
             ls.dataSource = this;// 设置数据源
-            ls.totalCount = itemLst.Count;// 设置总数量
+            ls.totalCount = bagList.bagItems.Count;// 设置总数量
             ls.RefillCells();// 填充单元格
         }
+
+        
     }
