@@ -66,17 +66,24 @@ using UnityEngine.UI;
             transform.SendMessage("ScrollCellIndex", idx);
         }
 
-        void Start()
-        {
-         // bagList = GetComponent<BagList>();
+        //void Start()
+        //{
+        //  bagList = GetComponent<BagList>();
         // 获取LoopScrollRect组件并初始化
 
-        var ls = GetComponent<LoopScrollRect>();
-            ls.prefabSource = this;// 设置预制体源
-            ls.dataSource = this;// 设置数据源
-            ls.totalCount = bagList.bagItems.Count;// 设置总数量
-            ls.RefillCells();// 填充单元格
-        }
+        //var ls = GetComponent<LoopScrollRect>();
+        //    ls.prefabSource = this;// 设置预制体源
+        //    ls.dataSource = this;// 设置数据源
+        //    ls.totalCount = bagList.bagItems.Count;// 设置总数量
+        //    ls.RefillCells();// 填充单元格
+        //}
 
-        
+    public void OnEnable()
+    {
+        var ls = GetComponent<LoopScrollRect>();
+        ls.prefabSource = this;// 设置预制体源
+        ls.dataSource = this;// 设置数据源
+        ls.totalCount = bagList.bagItems.Count;// 设置总数量
+        ls.RefillCells();// 填充单元格
     }
+}

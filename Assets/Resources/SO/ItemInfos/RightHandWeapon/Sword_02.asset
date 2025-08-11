@@ -9,17 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909057da6d8889644ba3ca0fdacd6910, type: 3}
-  m_Name: Axe
+  m_Script: {fileID: 11500000, guid: 6bbe149aead5b174f8d7dce79f44152a, type: 3}
+  m_Name: Sword_02
   m_EditorClassIdentifier: 
-  ItemIcon: {fileID: 0}
-  ItemName: Axe
-  ItemDescription: "\u65A7\u5934"
+  ItemIcon: {fileID: 21300000, guid: aa458b571087d984ca86525314e868ae, type: 3}
+  ItemName: Sword_02
+  ItemDescription: 
   ItemID: 0
-  iType: 9
-  MaxCount: 1
+  iType: 0
+  MaxCount: 0
   _isInitialized: 1
-  ModlePrefab: {fileID: 986163900176472707, guid: 34476b27d75c0834abb7d1000950c303,
+  ModlePrefab: {fileID: 3625775846750061088, guid: 779d1dbbf09b7944299db714fe0931fd,
     type: 3}
   wType: 0
   LightAtkIDL: 5
@@ -29,10 +29,8 @@ MonoBehaviour:
   HeavyAtkIDR: 3
   SkillAtkIDR: 8
   WCPOriginalProperties: []
-  WeaponValue: {fileID: 11400000, guid: 54d68e6515a96e74896874630d1332b0, type: 2}
+  WeaponValue: {fileID: 0}
   ModleGO: {fileID: 0}
   CurrentLV: 0
-  WCPCurrentProperties:
-  - cpt: 3
-    wpt: 4
+  WCPCurrentProperties: []
   CurrentAbnormalType: 0

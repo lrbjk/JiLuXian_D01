@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static BagList;
 
 public class SelectionManager : MonoBehaviour
 {
@@ -12,10 +14,14 @@ public class SelectionManager : MonoBehaviour
 
     public InfiniteScroll InfiniteScroll;
 
+    //与背包连接接口
+    [SerializeField] private BagList bagList;
+
     //冷却时间
     public float minInterval = 0.5f;
     private float lastCallTime;
-
+    // 在SelectionManager中
+    public static event Action<ItemCategory> OnCategoryChanged;
     private void Awake()
     {
         if (Instance == null)
@@ -61,7 +67,24 @@ public class SelectionManager : MonoBehaviour
         currentlySelected = newSelection;
         currentlySelected.SetSelected(true);
         currentSelectionIndex = selectedObjects.IndexOf(currentlySelected);
-        
+
+        //切换时增加背包物品分类判断
+        bagList.currentCategory = currentSelectionIndex switch
+        {
+            6 or 16 => ItemCategory.Consumable,
+            7 or 17 => ItemCategory.Material,
+            8 or 18 => ItemCategory.Currency,
+            9 or 19 => ItemCategory.HeadEquipment,
+            10 or 0 or 20 => ItemCategory.BodyEquipment,
+            11 or 21 or 1 => ItemCategory.KernelEquipment,
+            12 or 2 => ItemCategory.Spell,
+            13 or 3 => ItemCategory.Key,
+            14 or 4 => ItemCategory.RightHandWeapon,
+            15 or 5 => ItemCategory.LeftHandWeapon,
+            _ => ItemCategory.None
+        };
+
+        bagList.InitializeSlotPrefabReferences();
     }
 
      public void moveRightOnEdge()
