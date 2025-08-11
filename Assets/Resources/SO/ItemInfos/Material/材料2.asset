@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a00ae40dc6ceb4d8eb4faf7473fa06, type: 3}
   m_Name: "\u6750\u65992"
   m_EditorClassIdentifier: 
-  ItemIcon: {fileID: 0}
-  ItemName: 
+  ItemIcon: {fileID: 21300000, guid: 9977942466997714b8c7378dc4a86ca6, type: 3}
+  ItemName: "HP\u74F6"
   ItemDescription: 
   ItemID: 0
   iType: 1

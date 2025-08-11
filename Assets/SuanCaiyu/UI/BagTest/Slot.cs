@@ -1,3 +1,5 @@
+using ns.BagSystem;
+using ns.BagSystem.Freamwork;
 using Scy;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,17 +14,19 @@ public class Slot : MonoBehaviour
 
     public Image image;
 
- 
+    
 
-        void ScrollCellIndex(int idx)
+    void ScrollCellIndex(int idx)
         {
-            Debug.Log(idx);
+             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Material, out var itemLst);
+             Debug.Log(idx);
+           
             //修改文本
-            text.text = Inventory.Instance.inventoryItems[idx].itemName;
+            text.text = itemLst[idx].itemInfo.name;
             //修改项名称
-            transform.name = Inventory.Instance.inventoryItems[idx].itemName;
+            transform.name = itemLst[idx].itemInfo.name;
             //展示图片
-            image.sprite = Inventory.Instance.inventoryItems[idx].icon;
+            image.sprite = itemLst[idx].itemInfo.ItemIcon;
 
         }
 
