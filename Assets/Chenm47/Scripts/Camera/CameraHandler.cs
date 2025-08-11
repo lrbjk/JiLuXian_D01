@@ -1,3 +1,4 @@
+using AI.FSM;
 using Common;
 using ns.Character.Player;
 using UnityEngine;
@@ -18,9 +19,7 @@ namespace ns.Camera
         public float PivotSpeed = 1f;
         public float MinPivot = -35;
         public float MaxPivot = 35;
-        [SerializeField]
         PlayerInput input;
-        [SerializeField]
         PlayerInfo playerInfo;
 
 
@@ -29,6 +28,7 @@ namespace ns.Camera
         private void Start()
         {
             defaultDistance = -CameraTF.localPosition.z;
+            input = PlayerFSMBase.Instance.playerInput;
         }
 
         private void LateUpdate()
