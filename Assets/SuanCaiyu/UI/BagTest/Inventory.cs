@@ -1,11 +1,11 @@
-using System.Collections.Generic;
+//using System.Collections.Generic;
 
-namespace Scy
-{
-    //库存系统脚本
-    public class Inventory : SingletonMono<Inventory>
-    {
-        public List<Item> inventoryItems = new List<Item>();//背包的物品列表
-    }
+//namespace Scy
+//{
+//    //库存系统脚本
+//    public class Inventory : SingletonMono<Inventory>
+//    {
+//        public List<Item> inventoryItems = new List<Item>();//背包的物品列表
+//    }
 
-}
+//}

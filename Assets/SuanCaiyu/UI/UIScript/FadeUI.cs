@@ -1,28 +1,34 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class FadeUI : MonoBehaviour
+
+namespace Common.UI
 {
-    [SerializeField] private CanvasGroup canvasGroup;
-    [SerializeField] private float fadeDuration = 0.4f;
-
-    // Öð½¥ÏÔÊ¾
-    public void FadeIn()
+    public class FadeUI : MonoBehaviour
     {
-        canvasGroup.DOFade(1f, fadeDuration)
-            .OnStart(() => {
-                canvasGroup.blocksRaycasts = true;
-                gameObject.SetActive(true);
-            });
-    }
+        [SerializeField] private CanvasGroup canvasGroup;
+        [SerializeField] private float fadeDuration = 0.4f;
 
-    // Öð½¥ÏûÊ§
-    public void FadeOut()
-    {
-        canvasGroup.DOFade(0f, fadeDuration)
-            .OnComplete(() => {
-                canvasGroup.blocksRaycasts = false;
-                gameObject.SetActive(false);
-            });
+        // Öð½¥ÏÔÊ¾
+        public void FadeIn()
+        {
+            canvasGroup.DOFade(1f, fadeDuration)
+                .OnStart(() =>
+                {
+                    canvasGroup.blocksRaycasts = true;
+                    gameObject.SetActive(true);
+                });
+        }
+
+        // Öð½¥ÏûÊ§
+        public void FadeOut()
+        {
+            canvasGroup.DOFade(0f, fadeDuration)
+                .OnComplete(() =>
+                {
+                    canvasGroup.blocksRaycasts = false;
+                    gameObject.SetActive(false);
+                });
+        }
     }
 }

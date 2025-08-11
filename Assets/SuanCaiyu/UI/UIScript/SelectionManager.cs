@@ -72,9 +72,9 @@ public class SelectionManager : MonoBehaviour
             return;
         }
 
-        if (currentSelectionIndex >= 8 && (InfiniteScroll.content_rtf.localPosition.x <= -2365))
+        if (currentSelectionIndex >= 10 && (InfiniteScroll.content_rtf.localPosition.x <= -2965))
         {
-            currentSelectionIndex -= 7;
+            currentSelectionIndex -= 9;
         }
         else
         {
@@ -97,9 +97,9 @@ public class SelectionManager : MonoBehaviour
             return;
         }
 
-        if (currentSelectionIndex <= 5 && (InfiniteScroll.content_rtf.localPosition.x >= -265))
+        if (currentSelectionIndex <= 7 && (InfiniteScroll.content_rtf.localPosition.x >= -265))
         {
-            currentSelectionIndex += 7;
+            currentSelectionIndex += 9;
         }
         else
         {
