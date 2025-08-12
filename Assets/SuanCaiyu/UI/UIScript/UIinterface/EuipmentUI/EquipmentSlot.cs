@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace Common.UI
 {
     // 背包插槽脚本
-    public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class  EquipemtSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public Text text;
         public Text description;
@@ -16,20 +16,19 @@ namespace Common.UI
         public int number;
         public EquipmentUIFunc equipmentUIFunc;
         // 不再需要存储BagList引用，因为我们会通过父对象获取
-        private BagList bagList;
+        private EquipmentBagUIList bagUIList;
 
         private void Start()
         {
             equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
-          
         }
         void ScrollCellIndex(int idx)
         {
             // 从父对象获取BagList组件
-            if (bagList == null)
+            if (bagUIList == null)
             {
-                bagList = GetComponentInParent<BagList>();
-                if (bagList == null)
+                bagUIList = GetComponentInParent<EquipmentBagUIList>();
+                if (bagUIList == null)
                 {
                     Debug.LogError("无法找到父对象上的BagList组件");
                     return;
@@ -37,14 +36,14 @@ namespace Common.UI
             }
 
             // 检查索引是否有效
-            if (idx < 0 || idx >= bagList.bagItems.Count)
+            if (idx < 0 || idx >= bagUIList.equipBagItems.Count)
             {
-                Debug.LogError($"无效的索引: {idx}, 列表长度: {bagList.bagItems.Count}");
+                Debug.LogError($"无效的索引: {idx}, 列表长度: {bagUIList.equipBagItems.Count}");
                 return;
             }
 
             // 获取对应物品
-            var item = bagList.bagItems[idx];
+            var item = bagUIList.equipBagItems[idx];
             if (item == null)
             {
                 Debug.LogError($"索引 {idx} 处的物品为null");
@@ -87,8 +86,8 @@ namespace Common.UI
         {
             if (equipmentUIFunc != null && image != null && text != null)
             {
-                equipmentUIFunc.DescriptionImage.sprite = image.sprite;
-                equipmentUIFunc.DescriptionText.text = text.text;
+                equipmentUIFunc.EquipDescriptionImage.sprite = image.sprite;
+                equipmentUIFunc.EquipDescriptionText.text = text.text;
                 Debug.Log("鼠标进入插槽");
             }
         }
