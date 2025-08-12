@@ -47,13 +47,13 @@ namespace AI.FSM
             playerFSMBase.playerMotor3D.LookAtVector(moveDir, 25);
 
             //直接应用rootmotion
-            playerFSMBase.playerRootMotion.ApplyAnimaMotionAll = true;
+            playerFSMBase.playerMotor3D.ApplyAnimaMotionAll = true;
         }
 
         public override void ExitState(FSMBase fSMBase)
         {
             base.ExitState(fSMBase);
-            playerFSMBase.playerRootMotion.ApplyAnimaMotionAll = false;
+            playerFSMBase.playerMotor3D.ApplyAnimaMotionAll = false;
         }
     }
 }

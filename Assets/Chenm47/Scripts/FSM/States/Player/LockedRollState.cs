@@ -43,12 +43,12 @@ namespace AI.FSM
         {
             base.EnterState(fSMBase);
             //直接应用rootmotion
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimaMotionAll = true;
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = true;
         }
         public override void ExitState(FSMBase fSMBase)
         {
             base.ExitState(fSMBase);
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimaMotionAll = false;
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = false;
         }
     }
 }

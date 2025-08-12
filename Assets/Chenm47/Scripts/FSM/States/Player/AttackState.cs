@@ -67,7 +67,7 @@ namespace AI.FSM
             #region 移动控制
             //停止移动
             playerFSM.playerAction.StopMove();
-            playerFSM.playerRootMotion.ApplyAnimaMotionAll = true;
+            playerFSM.playerMotor3D.ApplyAnimaMotionAll = true;
             //启用根运动
             PlayerInfo playerInfo = playerFSM.characterInfo as PlayerInfo;
             #endregion
@@ -97,14 +97,14 @@ namespace AI.FSM
                 moveDir.y = 0;
                 moveDir.Normalize();
                 //Debug.Log(movtionInfo.PreMovtionRotateSpeed);
-                playerFSM.playerAction.LookDir(moveDir, movtionInfo.PreMovtionRotateSpeed);
+                playerFSM.playerMotor3D.LookAtVector(moveDir, movtionInfo.PreMovtionRotateSpeed);
             }
             else//锁定视角
             {
                 Vector3 lookDir =
                    playerFSM.characterInfo.LockedTargetTF.position - playerFSM.characterInfo.LockedTF.position;
                 lookDir.Set(lookDir.x, 0, lookDir.z);
-                playerFSM.playerAction.LookDir(lookDir, movtionInfo.PreMovtionRotateSpeed);
+                playerFSM.playerMotor3D.LookAtVector(lookDir, movtionInfo.PreMovtionRotateSpeed);
             }
         }
 
@@ -115,7 +115,7 @@ namespace AI.FSM
             //以防万一禁用碰撞体
             currentWeaponGO.GetComponentInChildren<WeaponCollderHandle>(true).SetCollider(false);
             currentWeaponGO = null;
-            playerFSM.playerRootMotion.ApplyAnimaMotionAll = false;
+            playerFSM.playerMotor3D.ApplyAnimaMotionAll = false;
         }
 
         protected override void OnPreMovtionEnd(object sender, AnimationEventArgs e)

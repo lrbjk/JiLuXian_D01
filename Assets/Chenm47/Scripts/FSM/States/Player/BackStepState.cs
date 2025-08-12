@@ -43,13 +43,13 @@ namespace AI.FSM
             //playerFSMBase.playerAction.LookAndMove(Vector3.zero, moveDir, playerInfo.BackStepSpeed);
 
             //直接应用rootmotion
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimaMotionAll = true;
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = true;
         }
 
         public override void ExitState(FSMBase fSMBase)
         {
             base.ExitState(fSMBase);
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimaMotionAll = false;
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = false;
         }
 
     }

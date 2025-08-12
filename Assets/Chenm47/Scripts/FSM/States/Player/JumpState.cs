@@ -20,8 +20,8 @@ namespace AI.FSM
             PlayerFSMBase playerFSMBase = fSMBase as PlayerFSMBase;
             //此时由动画控制y速度，并记录当前其他轴速度
             Vector3 v = playerFSMBase.playerAction.GetVelocity();
-            playerFSMBase.playerRootMotion.BeforeApplySpeed = v;
-            playerFSMBase.playerRootMotion.ApplyAnimaMotionY = true;
+            playerFSMBase.playerMotor3D.BeforeApplySpeed = v;
+            playerFSMBase.playerMotor3D.ApplyAnimaMotionY = true;
 
             //playerFSMBase.playerAction.Jump();
 
@@ -43,8 +43,8 @@ namespace AI.FSM
             PlayerFSMBase playerFSMBase = fSMBase as PlayerFSMBase;
             //此时取消由动画控制y速度
             //y速度恒定为最后此时速度，其他速度归零
-            playerFSMBase.playerRootMotion.BeforeApplySpeed = Vector3.zero;
-            playerFSMBase.playerRootMotion.ApplyAnimaMotionY = false;
+            playerFSMBase.playerMotor3D.BeforeApplySpeed = Vector3.zero;
+            playerFSMBase.playerMotor3D.ApplyAnimaMotionY = false;
             //playerFSMBase.playerAction.SetVelocity(new Vector3(0, lastFallVy, 0));
         }
 

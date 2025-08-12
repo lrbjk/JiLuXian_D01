@@ -39,7 +39,7 @@ namespace AI.FSM
                 fSMBase.cameraHandler.transform.forward * moveY;
             moveDir.y = 0;
             moveDir.Normalize();
-            fSMBase.playerAction.Move(moveDir, moveSpeed);
+            fSMBase.playerMotor3D.Move(moveDir, moveSpeed);
             fSMBase.animator.SetFloat("Vertical", movement, 0.1f, Time.deltaTime);
         }
 
