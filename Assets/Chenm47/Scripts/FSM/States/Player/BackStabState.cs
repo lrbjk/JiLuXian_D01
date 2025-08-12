@@ -21,7 +21,7 @@ namespace AI.FSM
             playerFSMBase.playerAction.StopMove();
             //移动玩家到敌人身后
             var standingPos = fSMBase.characterInfo.BackStabedTarget.BackStabedStandingTF.position;
-            playerFSMBase.playerAction.MoveDirectly(standingPos);
+            playerFSMBase.playerMotor3D.MovePositionOnly(standingPos);
             //播放玩家背刺动画
             fSMBase.animationHandler.PlayTargetAnimation("BackStab", true, 0.01f);
             ////暂时直接播放指定背刺攻击动作    后续可能会改成提供的接口

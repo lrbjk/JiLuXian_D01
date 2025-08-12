@@ -35,7 +35,8 @@ namespace AI.FSM
                 Vector3 lookDir =
                     playerFSM.characterInfo.LockedTargetTF.position - playerFSM.characterInfo.LockedTF.position;
                 lookDir.Set(lookDir.x, 0, lookDir.z);
-                playerFSM.playerAction.LookAndMove(lookDir, Vector3.zero, 0);
+                playerFSM.playerMotor3D.LookAtVector(lookDir);
+                //playerFSM.playerAction.LookAndMove(lookDir,Vector3.zero, 0);
             }
         }
 

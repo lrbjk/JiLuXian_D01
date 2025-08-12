@@ -20,7 +20,7 @@ namespace AI.FSM
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimaMotionAll = true;
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = true;
         }
 
         public override void ActionState(FSMBase fSMBase)
@@ -61,7 +61,7 @@ namespace AI.FSM
         public override void ExitState(FSMBase fSMBase)
         {
             base.ExitState(fSMBase);
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimaMotionAll = false;
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = false;
         }
 
         private void MovementHandle(PlayerFSMBase playerFSM)
@@ -103,7 +103,7 @@ namespace AI.FSM
             #region Rootmovtion
             if (!playerFSM.playerInput.LockViewTrigger || playerFSM.playerInput.RollHoldTrigger)
             {
-                playerFSM.playerAction.LookDir(moveDir);
+                playerFSM.playerMotor3D.LookAtVector(moveDir);
             }
             else
             {//锁定视角情况
@@ -113,7 +113,7 @@ namespace AI.FSM
                 //Debug.DrawRay(playerFSM.transform.position, lookDir.normalized * 3f, Color.red);
                 //playerFSM.playerAction.LookAndMove(lookDir, moveDir, moveSpeed);//只在xz平面旋转即可
                 //playerFSM.playerAction.LookDir(lookDir, 1f);
-                playerFSM.playerAction.LookDir(lookDir);
+                playerFSM.playerMotor3D.LookAtVector(lookDir);
             }
             #endregion
 

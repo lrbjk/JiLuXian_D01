@@ -53,8 +53,6 @@ namespace ns.Character.Player
         [HideInInspector]
         public PlayerAnimaParams AnimaParams = new PlayerAnimaParams();
         [HideInInspector]
-        public int CurrentJumpCount = 0;
-        [HideInInspector]
         public bool IsDownStair = false;
         public AttackInputType LastAttackType = AttackInputType.None;
         public float FallTimer;

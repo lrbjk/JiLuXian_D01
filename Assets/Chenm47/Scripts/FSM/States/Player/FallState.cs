@@ -12,7 +12,6 @@ namespace AI.FSM
     /// </summary>
     public class FallState : FSMState
     {
-        private float fallTimer = 0f;
         public override void Init()
         {
             StateID = FSMStateID.Fall;
@@ -24,6 +23,8 @@ namespace AI.FSM
             PlayerInfo playerInfo = fSMBase.characterInfo as PlayerInfo;
             playerInfo.FallTimer = 0f;
             playerInfo.IsOnTop = false;
+            //启用重力
+            PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(true);
         }
 
         public override void ActionState(FSMBase fSMBase)
@@ -35,6 +36,21 @@ namespace AI.FSM
             PlayerFSMBase playerFSMBase = (PlayerFSMBase)fSMBase;
 
             fSMBase.animator.SetFloat("Vy", playerFSMBase.playerAction.GetVelocity().y);
+        }
+
+        public override void ExitState(FSMBase fSMBase)
+        {
+            base.ExitState(fSMBase);
+            //禁用重力
+            PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(false);
+            //将玩家位置更新到地面位置
+            if (Physics.Raycast(fSMBase.transform.position, Vector3.down, out RaycastHit hit, PlayerFSMBase.Instance.playerMotor3D.GroundSphereRadius + 0.05f,
+                 PlayerFSMBase.Instance.playerMotor3D.GroundLayer))
+            {
+                var pos = PlayerFSMBase.Instance.transform.position;
+                pos.y = hit.point.y;
+                PlayerFSMBase.Instance.transform.position = pos;
+            }
         }
 
     }

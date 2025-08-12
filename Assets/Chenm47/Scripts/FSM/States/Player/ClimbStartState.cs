@@ -18,10 +18,12 @@ namespace AI.FSM
             base.EnterState(fSMBase);
             //吸附到梯子点位
             MoveToClimbPoint();
-            //开启rootmovtion
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimatRotationY = true;
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimaMotionAll = true;
+            PlayerFSMBase.Instance.playerAction.StopMove();
             PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(false);
+            //禁用下台阶检测
+            PlayerFSMBase.Instance.playerMotor3D.DisableDownStepRay = true;
+            //开启rootmovtion
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = true;
 
             fSMBase.animator.SetFloat("Vertical", PlayerFSMBase.Instance.playerInfo.IsInUpClimbBox ? 1f : -1f);
 
@@ -42,6 +44,7 @@ namespace AI.FSM
             //PlayerFSMBase.Instance.transform.SetPositionAndRotation(targetPos, Quaternion.LookRotation(target.forward));
 
             PlayerFSMBase.Instance.playerMotor3D.MovePositionOnly(targetPos);
+            //PlayerFSMBase.Instance.playerMotor3D.IsDebug = true;
             PlayerFSMBase.Instance.playerMotor3D.LookAtVentorNow(target.forward);
 
             Debug.Log(Time.frameCount.ToString() + "吸附到点位" + PlayerFSMBase.Instance.transform.position

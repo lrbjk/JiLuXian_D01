@@ -1,10 +1,6 @@
-using Common;
-using Common.Helper;
 using ns.Camera;
-using ns.Movtion;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 
@@ -28,45 +24,9 @@ namespace ns.Character.Player
             base.Init();
             playerInfo = GetComponent<PlayerInfo>();
             rb = GetComponent<Rigidbody>();
-            playerMotor3D = GetComponent<PlayerMotor3D>();
+            playerMotor3D = GetComponentInChildren<PlayerMotor3D>();
         }
 
-        //通用
-        public void MoveDirectly(Vector3 target)
-        {
-            rb.MovePosition(target);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dir">(1,0,0)右,(-1,0,0)左</param>
-        /// <param name="speed">z速度</param>
-        public void Move(Vector3 dir, float speed)
-        {
-            playerMotor3D.Move(dir, speed);
-        }
-        public void LookAndMove(Vector3 lookDir, Vector3 moveDir, float moveSpeed)
-        {
-            playerMotor3D.LookAndMove(lookDir, moveDir, moveSpeed);
-        }
-
-        public void LookDir(Vector3 dir, float rotateSpeed = 10f)
-        {
-            playerMotor3D.LookAtVector(dir, rotateSpeed);
-        }
-
-        /// <summary>
-        /// 保持刚体y速度
-        /// </summary>
-        /// <param name="dir">(1,0,0)右,(-1,0,0)左</param>
-        /// <param name="speed">z速度</param>
-        public void MoveKeepVy(Vector3 dir, float speed)
-        {
-            playerMotor3D.MoveKeepVy(dir, speed);
-        }
-
-        private Coroutine moveCoroutine;
 
         /// <summary>
         /// 从当前位置向指定位置移动speed距离，开启协程直到运动到目标点结束
@@ -89,10 +49,11 @@ namespace ns.Character.Player
             }
             moveCoroutine = null;
         }
+        private Coroutine moveCoroutine;
 
         public void StopMove()
         {
-            playerMotor3D.Move(Vector3.zero, 0);
+            playerMotor3D.StopMove();
             if (moveCoroutine != null)
             {
                 StopCoroutine(moveCoroutine);
@@ -100,31 +61,9 @@ namespace ns.Character.Player
             }
         }
 
-        public void Jump()
-        {
-            playerMotor3D.Jump(playerInfo.JumpSpeed);
-        }
-
-        //private void OnDrawGizmos()
-        //{
-        //    groundRayPoint = transform.Find("GroundRayPoint");
-        //    Gizmos.DrawSphere(groundRayPoint.position + Vector3.down * 0.15f, 0.05f);
-        //}
-
-        public bool IsFall()
-        {
-            bool res = rb.velocity.y < 0;
-            return rb.velocity.y < 0;
-        }
-
         public Vector3 GetVelocity()
         {
             return rb.velocity;
-        }
-
-        public void SetVelocity(Vector3 velocity)
-        {
-            rb.velocity = velocity;
         }
 
         public float detectionRadius = 1f;
