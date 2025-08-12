@@ -20,7 +20,6 @@ namespace ns.Camera
         public float MinPivot = -35;
         public float MaxPivot = 35;
         PlayerInput input;
-        PlayerInfo playerInfo;
 
 
         private Vector3 cameraFallowVelocity = Vector3.zero;
@@ -117,7 +116,7 @@ namespace ns.Camera
             if (input.LockViewTrigger)
             {
                 //锁定目标
-                var targetPos = playerInfo.LockedTargetTF.position;
+                var targetPos = PlayerFSMBase.Instance.playerInfo.LockedTargetTF.position;
                 Vector3 cameraPosition = CameraTF.position;
 
                 //计算从相机到目标点的理想方向

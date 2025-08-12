@@ -87,8 +87,8 @@ namespace ns.Character.Player
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position + forwardCheckDistance * transform.forward, GroundSphereRadius);//地面球
+            //Gizmos.color = Color.red;
+            //Gizmos.DrawSphere(transform.position + forwardCheckDistance * transform.forward, GroundSphereRadius);//地面球
             Gizmos.color = Color.blue;
             Vector3 dir = transform.forward;
 
