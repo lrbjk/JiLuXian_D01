@@ -7,13 +7,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using static EquipmentBagUIList;
 
+/// <summary>
+/// 总的装备管理
+/// </summary>
 public class EquipmentController : MonoBehaviour
 {
-    public List<EuipmentItem> rightHandWeaponsNum = new List<EuipmentItem>();
-    public List<EuipmentItem> leftHandWeaponsNum = new List<EuipmentItem>();
-    public List<EuipmentItem> headEquipmentsNum = new List<EuipmentItem>();
-    public List<EuipmentItem> bodyEquipmentsNum = new List<EuipmentItem>();
-    public List<EuipmentItem> KernelEquipmentsNum = new List<EuipmentItem>();
+    
 
     public Button rightHandButton;
     public Button leftHandButton;

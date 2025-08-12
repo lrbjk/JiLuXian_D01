@@ -8,7 +8,7 @@ using UnityEngine.UI;
 namespace Common.UI
 {
     // ±³°ü²å²Û½Å±¾
-    public class  EquipemtSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class  EquipmentSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         public Text text;
         public Text description;
