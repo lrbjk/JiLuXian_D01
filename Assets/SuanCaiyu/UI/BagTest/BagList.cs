@@ -13,7 +13,7 @@ public class BagList : MonoBehaviour
     [SerializeField] private int initialSlotCount = 50; // 初始格子数量
 
     [Header("运行时数据")]
-    public List<SlotBase> bagItems = new List<SlotBase>(); 
+    public List<SlotBase> bagItems = new List<SlotBase>();
 
     /// <summary>
     /// 背包分类的枚举，用于上方选项的通信
@@ -66,11 +66,11 @@ public class BagList : MonoBehaviour
         }
 
 
-        foreach (var slot in bagItems)
-        {
-            slot.text_1.text = "";
-            slot.image_1.sprite = null;
-        }
+        //foreach (var slot in bagItems)
+        //{
+        //    slot.text_1.text = "";
+        //    slot.image_1.sprite = null;
+        //}
 
 
         //将玩家物品信息添加到背包

@@ -22,8 +22,8 @@ MonoBehaviour:
   ModlePrefab: {fileID: 986163900176472707, guid: 34476b27d75c0834abb7d1000950c303,
     type: 3}
   wType: 0
-  LightAtkIDL: 5
-  HeavyAtkIDL: 5
+  LightAtkIDL: 100
+  HeavyAtkIDL: 103
   SkillAtkIDL: 8
   LightAtkIDR: 5
   HeavyAtkIDR: 5

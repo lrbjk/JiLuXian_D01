@@ -87,7 +87,6 @@ GameObject:
   - component: {fileID: 3638289843029926163}
   - component: {fileID: 6042372957901388716}
   - component: {fileID: 2371169498226611823}
-  - component: {fileID: 8775194107000535555}
   m_Layer: 5
   m_Name: EquipmentUI
   m_TagString: Untagged
@@ -178,18 +177,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8775194107000535555
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 116528468221522730}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33d6b2747edf2a2418d143a271ef9a33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &301664120638765492
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,6 +6009,7 @@ MonoBehaviour:
   selectedObjects: []
   currentSelectionIndex: 0
   InfiniteScroll: {fileID: 3131536080552707096}
+  bagList: {fileID: 0}
   minInterval: 0.15
 --- !u!1 &4480603438922036798
 GameObject:
@@ -7370,6 +7358,8 @@ MonoBehaviour:
   slotPrefab: {fileID: 174784, guid: 5c10f093faf7743478df74df4dcdca16, type: 3}
   initialSlotCount: 50
   bagItems: []
+  currentCategory: 0
+  bagScroller: {fileID: 0}
 --- !u!1 &5115107687707504566
 GameObject:
   m_ObjectHideFlags: 0
