@@ -42,7 +42,6 @@ namespace AI.FSM
             base.ExitState(fSMBase);
             PlayerFSMBase playerFSMBase = fSMBase as PlayerFSMBase;
             //此时取消由动画控制y速度
-            //y速度恒定为最后此时速度，其他速度归零
             playerFSMBase.playerMotor3D.BeforeApplySpeed = Vector3.zero;
             playerFSMBase.playerMotor3D.ApplyAnimaMotionY = false;
             //playerFSMBase.playerAction.SetVelocity(new Vector3(0, lastFallVy, 0));

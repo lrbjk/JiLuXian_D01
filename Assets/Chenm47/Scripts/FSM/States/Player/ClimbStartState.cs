@@ -16,9 +16,9 @@ namespace AI.FSM
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
+            PlayerFSMBase.Instance.playerAction.StopMove();
             //吸附到梯子点位
             MoveToClimbPoint();
-            PlayerFSMBase.Instance.playerAction.StopMove();
             PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(false);
             //禁用下台阶检测
             PlayerFSMBase.Instance.playerMotor3D.DisableDownStepRay = true;

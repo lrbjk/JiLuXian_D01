@@ -1,3 +1,6 @@
+using AI.FSM;
+using AI.FSM.Framework;
+using Cinemachine.Utility;
 using TMPro;
 using UnityEngine;
 namespace ns.Character.Player
@@ -23,18 +26,22 @@ namespace ns.Character.Player
 
         public float GroundSphereRadius = 0.05f;
         public LayerMask GroundLayer;
-        public float GroundDistance = 0.16f;
+        //public float GroundDistance = 0.16f;
         public float FallPushForce = 1f;
-        public float MaxSlopeAngle = 30f;
+        //public float MaxSlopeAngle = 30f;
         public float GroundAngle;
 
 
         //障碍物检测
         public float startUpOffest = 0.05f;
+        public float startDownOffest = 0.05f;
         public float forwardCheckDistance = 0.2f;
         public float stepHeight = 0.3f;//台阶高度
+        public float stepDownDepth = 0.1f;
         public float stepSmooth = 0.01f;
         public float stepDownVelocity = 3f;
+        public float UpPlaneMaxDixtance = 0.2f;//上台阶，向下检测射线长度
+        private const float resistanceDownRatio = 0.5f;
         public LayerMask ObstacleLayer;
 
         private Vector3 footPos;
@@ -62,10 +69,15 @@ namespace ns.Character.Player
             if (!playerInfo.IsOnGround)
             {
                 checkIsExitGroundTimer += Time.deltaTime;
+                //Debug.Log("离开地面时间" + checkIsExitGroundTimer);
                 if (checkIsExitGroundTimer >= checkIsExitGroundMaxTime)
+                {
+                    //Debug.Log("离开地面");
                     playerInfo.IsOnGround = false;
+                }
                 else
                 {
+                    //Debug.Log("在地面");
                     playerInfo.IsOnGround = true;
                 }
             }
@@ -82,26 +94,32 @@ namespace ns.Character.Player
             //{
             //    Debug.Log(Time.frameCount + "Fixed" + targetRotation.eulerAngles);
             //}
+            //Debug.Log(Time.time + "FIXED");
             rb.MoveRotation(targetRotation);
         }
 
-        private void OnDrawGizmos()
-        {
-            //Gizmos.color = Color.red;
-            //Gizmos.DrawSphere(transform.position + forwardCheckDistance * transform.forward, GroundSphereRadius);//地面球
-            Gizmos.color = Color.blue;
-            Vector3 dir = transform.forward;
+        //private void OnDrawGizmos()
+        //{
+        //    Gizmos.color = Color.green;
+        //    Gizmos.DrawSphere(transform.position + forwardCheckDistance * transform.forward, GroundSphereRadius);//地面球
+        //    Gizmos.color = Color.yellow;
+        //    Vector3 dir = transform.forward;
 
-            Gizmos.DrawLine(transform.position + Vector3.up * startUpOffest, transform.position + Vector3.up * startUpOffest + transform.forward * forwardCheckDistance);// 低位射线
-            Gizmos.DrawLine(transform.position + Vector3.up * stepHeight,
-               transform.position + Vector3.up * stepHeight + transform.forward * forwardCheckDistance);// 高位射线
+        //    Gizmos.DrawLine(transform.position + Vector3.up * startUpOffest, transform.position + Vector3.up * startUpOffest + transform.forward * forwardCheckDistance);// 低位射线
+        //    Gizmos.DrawLine(transform.position + Vector3.up * stepHeight,
+        //       transform.position + Vector3.up * stepHeight + transform.forward * forwardCheckDistance);// 高位射线
 
-            Gizmos.color = Color.gray;
-            Gizmos.DrawLine(transform.position - Vector3.up * startUpOffest + transform.forward * forwardCheckDistance,//下台阶检测
-                transform.position - Vector3.up * startUpOffest + transform.forward * forwardCheckDistance +
-                Vector3.down * stepHeight);
+        //    Gizmos.color = Color.gray;
+        //    Gizmos.DrawLine(transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance,//下台阶检测
+        //        transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance +
+        //        Vector3.down * stepDownDepth);
 
-        }
+        //    Gizmos.color = Color.red;
+        //    Gizmos.DrawLine(transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance,
+        //        transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance +
+        //        Vector3.down * UpPlaneMaxDixtance);//前方台阶上表面射线
+
+        //}
 
         public bool GroundCastHit()
         {
@@ -167,6 +185,8 @@ namespace ns.Character.Player
 
         public void StopMove()
         {
+            targetPosition = rb.position;
+            targetRotation = rb.rotation;//不需要转向了
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
@@ -186,6 +206,19 @@ namespace ns.Character.Player
             rb.useGravity = isGravity;
         }
 
+        public void UpdateToGround()
+        {
+            //将玩家位置更新到贴近地面
+            if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, GroundSphereRadius * 2f, GroundLayer))
+            {
+                Debug.Log("更新玩家位置到地面");
+                var pos = rb.position;
+                pos.y = hit.point.y;
+                //PlayerFSMBase.Instance.transform.position = pos;
+                rb.MovePosition(pos);
+            }
+        }
+
         #region RootMotion
         private Animator animator;
         public bool ApplyAnimaMotionY { get; set; } = false;
@@ -196,9 +229,12 @@ namespace ns.Character.Player
 
         private void OnAnimatorMove()
         {
+            //Debug.Log(Time.time + "OnAnimatorMove");
             if (ApplyAnimaMotionAll)
             {
                 rb.velocity = animator.velocity;
+                //给一个默认下降速度
+                rb.velocity.Set(rb.velocity.x, -2f, rb.velocity.y);
                 targetRotation *= animator.deltaRotation;
 
                 //前方障碍物检测
@@ -225,21 +261,58 @@ namespace ns.Character.Player
                     if (!isHighObstacle)
                     {
                         Debug.Log("上台阶");
-                        //rb.AddForce(Vector3.up * stepUpVelocity, ForceMode.Impulse);
-                        rb.position += new Vector3(0f, stepSmooth, 0f);
+                        ////rb.AddForce(Vector3.up * stepDownVelocity, ForceMode.Impulse);
+                        //rb.position += new Vector3(0f, stepSmooth, 0f);
+                        //前方台阶上表面射线
+                        if (Physics.Raycast(transform.position + Vector3.up * (stepHeight + 0.01f) + forward * forwardCheckDistance, Vector3.down, out RaycastHit planeHit, UpPlaneMaxDixtance, ObstacleLayer))
+                        {
+                            Vector3 newPos = rb.position;
+                            float shouldstepHeight = planeHit.point.y - rb.position.y;
+                            Debug.Log("需要抬升的高度" + shouldstepHeight);
+                            newPos.y = planeHit.point.y;
+                            //newPos.z += 0.05f;
+                            //Debug.Log(rb.velocity);
+                            rb.MovePosition(newPos);
+                        }
                     }
                 }
                 else
                 {
                     //检测是否下台阶
-                    if (!DisableDownStepRay && Physics.Raycast(transform.position - Vector3.up * startUpOffest + transform.forward * forwardCheckDistance
-                        , Vector3.down, out RaycastHit lowerStepHit, stepHeight, ObstacleLayer))
+                    Vector3 start = transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance;
+                    if (!DisableDownStepRay && Physics.Raycast(start, Vector3.down, out RaycastHit lowerStepHit, stepDownDepth, ObstacleLayer))
                     {
-                        if (rb.position.y - lowerStepHit.point.y > 0.01f)
+                        if (rb.position.y - lowerStepHit.point.y > 0)
                         {
                             Debug.Log("下台阶" + lowerStepHit.collider.name);
-                            rb.AddForce(Vector3.down * stepDownVelocity, ForceMode.Impulse);
-                            //rb.position -= new Vector3(0f, stepSmooth, 0f);
+                            float angle = Vector3.Angle(lowerStepHit.normal, Vector3.up);
+                            float l = rb.velocity.magnitude;
+                            Vector3 newV = Vector3.ProjectOnPlane(rb.velocity, lowerStepHit.normal);
+                            rb.velocity = newV.normalized * l;
+                            rb.MovePosition(rb.position + transform.forward * 0.01f);
+                            //rb.AddForce(transform.forward * 0.01f, ForceMode.VelocityChange);
+                            rb.AddForce(Vector3.down * stepDownVelocity, ForceMode.VelocityChange);
+                            //rb.velocity = Vector3.zero;
+                            ////rb.AddForce(Vector3.down * stepDownVelocity, ForceMode.Impulse);
+                            ////将玩家推前
+                            //Vector3 newpos = lowerStepHit.point;
+                            //newpos.y = rb.position.y;
+                            //rb.position = newpos;
+                            //////newpos.y = lowerStepHit.point.y;
+                            ////newpos.y -= stepSmooth;
+                            ////rb.MovePosition(newpos);
+                            //Debug.Log("1" + rb.velocity);
+                            //Vector3 newV = Vector3.zero;
+                            ////float l = rb.velocity.magnitude;
+                            ////Debug.Log(l);
+                            //newV.y = -stepDownVelocity;
+                            ////newV = newV.normalized * l;
+                            ////rb.velocity = newV;
+                            ////Vector3 newV = rb.velocity;
+                            ////newV.y = stepDownVelocity;
+                            //rb.velocity = newV;
+                            //Debug.Log("2" + rb.velocity);
+                            ////rb.position -= new Vector3(0f, stepSmooth, 0f);
                         }
                     }
                 }

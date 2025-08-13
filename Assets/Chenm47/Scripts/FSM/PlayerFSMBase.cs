@@ -21,7 +21,6 @@ namespace AI.FSM
         public PlayerAction playerAction;
         [HideInInspector]
         public CameraHandler cameraHandler;
-        public PlayerRootMotion playerRootMotion;
         public PlayerInfo playerInfo;
         public PlayerMotor3D playerMotor3D;
         #endregion
@@ -38,7 +37,6 @@ namespace AI.FSM
             playerInput = GetComponent<PlayerInput>();
             playerAction = GetComponent<PlayerAction>();
             cameraHandler = FindAnyObjectByType<CameraHandler>();
-            playerRootMotion = GetComponentInChildren<PlayerRootMotion>(true);
             playerMotor3D = GetComponentInChildren<PlayerMotor3D>();
             base.Start();
             playerInfo = characterInfo as PlayerInfo;
