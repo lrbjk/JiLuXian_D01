@@ -230,7 +230,8 @@ namespace ns.Character.Player
         /// <returns></returns>
         protected virtual bool LightAttackInputL()
         {
-            return Input.GetKeyDown(KeyCode.J);
+            //return Input.GetKeyDown(KeyCode.J);
+            return Input.GetMouseButtonDown(0);
         }
         /// <summary>
         /// 重击L输入
@@ -238,7 +239,8 @@ namespace ns.Character.Player
         /// <returns></returns>
         protected virtual bool HeavyAttackInputL()
         {
-            return Input.GetKeyDown(KeyCode.U);
+            //return Input.GetKeyDown(KeyCode.U);
+            return Input.GetMouseButtonDown(1);
         }
 
         protected virtual bool SkillAttackInputL()

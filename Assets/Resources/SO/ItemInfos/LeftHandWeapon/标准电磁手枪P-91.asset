@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 905e4605399f187498464b5b069a4379, type: 3}
-  m_Name: "\u7535\u78C1\u70AE"
+  m_Name: "\u6807\u51C6\u7535\u78C1\u624B\u67AAP-91"
   m_EditorClassIdentifier: 
   ItemIcon: {fileID: 21300000, guid: bc6e0240d8401ce459b2e6d6dfdae544, type: 3}
-  ItemName: 
-  ItemDescription: 
+  ItemName: "\u6807\u51C6\u7535\u78C1\u624B\u67AAP-91"
+  ItemDescription: "\u63A2\u7D22\u5C0F\u961F\u6210\u5458\u7684\u57FA\u672C\u88C5\u5907\u4E4B\u4E00\u3002\u80FD\u53D1\u5C04\u51FAEMP\u5B50\u5F39\u3002
+    EMP\u7684\u7535\u78C1\u8109\u51B2\u80FD\u5BF9\u7070\u571F\u4EA7\u751F\u76F4\u63A5\u7684\u5F71\u54CD\uFF0C\u56E0\u6B64\u662F\u5BF9\u4ED8\u6742\u8D28\u7684\u6709\u5229\u624B\u6BB5\u4E4B\u4E00\u3002
+    \u5F53\u4EBA\u7C7B\u53D1\u73B0\u4E86EMP\u80FD\u5BF9\u6297\u6742\u8D28\u65F6\uFF0C\u4FBF\u53D1\u73B0\u4E86\u8FD9\u573A\u6218\u4E89\u83B7\u80DC\u7684\u5E0C\u671B\u3002"
   ItemID: 0
   iType: 8
-  MaxCount: 0
+  MaxCount: 1
   _isInitialized: 1
   ModlePrefab: {fileID: 0}
   wType: 1
