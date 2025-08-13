@@ -21,17 +21,21 @@ namespace AI.FSM
         protected override void PlayAnimation(FSMBase fSMBase)
         {
             //只需要播放动画，不用混合
-            float horizontalMove = PlayerFSMBase.Instance.playerInput.HorizontalMove;
-            if (horizontalMove != 0)
-            {
-                fSMBase.animator.SetFloat("Horizontal", horizontalMove > 0 ? 1 : -1);
-                fSMBase.animator.SetFloat("Vertical", 0);
-            }
-            else
-            {
-                fSMBase.animator.SetFloat("Horizontal", 0);
-                fSMBase.animator.SetFloat("Vertical", PlayerFSMBase.Instance.playerInput.VerticalMove > 0 ? 1 : -1);
-            }
+            float horizontalMove = PlayerFSMBase.Instance.playerInput.RawHorizontalMove;
+            float verticalMove = PlayerFSMBase.Instance.playerInput.RawVerticalMove;
+            //八向
+            fSMBase.animator.SetFloat("Vertical", verticalMove);
+            fSMBase.animator.SetFloat("Horizontal", horizontalMove);
+            //if (verticalMove != 0)
+            //{//纵轴优先
+            //    fSMBase.animator.SetFloat("Vertical", verticalMove);
+            //    fSMBase.animator.SetFloat("Horizontal", 0);
+            //}
+            //else
+            //{
+            //    fSMBase.animator.SetFloat("Horizontal", horizontalMove);
+            //    fSMBase.animator.SetFloat("Vertical", 0);
+            //}
 
             //正常过度默认参数(offeset)无法循环播放
             fSMBase.animator.SetBool("IsInteracting", true);

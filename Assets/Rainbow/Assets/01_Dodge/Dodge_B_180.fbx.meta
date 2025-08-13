@@ -16,11 +16,15 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: "Invalid copied Avatar Rig Configuration:\n\tNo human bone found.
-      Ensure both rig type match\n"
+    rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'spine_02' has translation animation that
+      will be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'calf_l'
+      has translation animation that will be discarded.\n\t'calf_r' has translation
+      animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -57,21 +61,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0
-        functionName: InvincibilityEvent
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.20891362
-        functionName: InvincibilityEventEnd
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1

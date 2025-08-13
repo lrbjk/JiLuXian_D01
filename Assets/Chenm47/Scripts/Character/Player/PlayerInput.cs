@@ -21,8 +21,10 @@ namespace ns.Character.Player
     public class PlayerInput : MonoBehaviour
     {
         public float HorizontalMove { get; protected set; }
-
+        public float RawHorizontalMove { get; protected set; }
         public float VerticalMove { get; protected set; }
+        public float RawVerticalMove { get; protected set; }
+        //public Vector2 LastMoveDir { get; protected set; }
         /// <summary>移动输入的强度，范围0-1</summary>
         public float Movement { get; protected set; }
         /// <summary>未经过插值的移动输入，-1，0，1</summary>
@@ -115,7 +117,9 @@ namespace ns.Character.Player
         private void MovementInput()
         {
             HorizontalMove = HorizontalMoveAixInput();
+            RawHorizontalMove = RawHorizontalMoveInput();
             VerticalMove = VerticalMoveAixInput();
+            RawVerticalMove = RawVerticalMoveInput();
             //VerticalMove = -1f;
             Movement = Mathf.Clamp01(Mathf.Abs(HorizontalMove)
                 + Mathf.Abs(VerticalMove));
@@ -136,11 +140,20 @@ namespace ns.Character.Player
         {
             return Input.GetAxis("Horizontal");
         }
+        protected virtual float RawHorizontalMoveInput()
+        {
+            return Input.GetAxisRaw("Horizontal");
+        }
+
         protected virtual float VerticalMoveAixInput()
         {
             return Input.GetAxis("Vertical");
         }
 
+        protected virtual float RawVerticalMoveInput()
+        {
+            return Input.GetAxisRaw("Vertical");
+        }
         protected virtual float RawMoveMentInput()
         {
             return RawMovement = Mathf.Clamp01(Mathf.Abs(Input.GetAxisRaw("Horizontal"))

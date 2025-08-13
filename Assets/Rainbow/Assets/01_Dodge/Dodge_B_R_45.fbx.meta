@@ -19,7 +19,12 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'spine_02' has translation animation that
+      will be discarded.\n\t'spine_03' has translation animation that will be discarded.\n\t'calf_l'
+      has translation animation that will be discarded.\n\t'calf_r' has translation
+      animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -49,7 +54,7 @@ ModelImporter:
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
+      keepOriginalOrientation: 1
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
