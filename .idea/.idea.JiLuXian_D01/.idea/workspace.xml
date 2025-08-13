@@ -6,61 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6d0ad1aa-dddc-4f98-beec-cf8487f8658f" name="更改" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JiLuXian_D01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JiLuXian_D01/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/CustomShapes.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/CustomShapes.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/MiscTrails.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/MiscTrails.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/SwordTrail.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/SwordTrail.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/TireTracks.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/TireTracks.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/Walls.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AraTrail/SampleScenes/Walls.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/Custom_MGCA_OBJ.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/Custom_MGCA_OBJ.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/NiloOutlineUtil.hlsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/NiloOutlineUtil.hlsl.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/OBJ.shader" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/OBJ.shader.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/OBJ_LIGHT.hlsl" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/HHH/OBJ_LIGHT.hlsl.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/Resources/Enermy/Boss_robote/Roobote_Test.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/Resources/Enermy/Boss_robote/Roobote_Test.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/Resources/axe/axe.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/Resources/axe/axe.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/Resources/axe/axe.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/Resources/axe/axe.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/TestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/TestScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/Tools/SmoothNormalTools.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/Tools/SmoothNormalTools.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/revolver/Mesh_revolver.fbx.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/revolver/Mesh_revolver.fbx.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/revolver/revolver.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/revolver/revolver.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/revolver/revolver_Metallic.PNG.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/revolver/revolver_Metallic.PNG.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/MagiCola/revolver/revolver_Roughness.PNG.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/MagiCola/revolver/revolver_Roughness.PNG.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Barrel Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Barrel Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Bay Door Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Bay Door Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Cart Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Cart Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Catwalk Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Catwalk Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Ceiling Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Ceiling Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Crate Long Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Crate Long Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Crate Short Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Crate Short Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Ducts Pillars Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Ducts Pillars Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Extinguisher Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Extinguisher Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Fan Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Fan Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Floor Tile Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Floor Tile Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Garbage Bin Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Garbage Bin Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Colored Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Colored Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Fixture Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Fixture Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Light Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Pallet Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Pallet Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Security Cam Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Security Cam Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Shelf Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Shelf Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Shelf Trans Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Shelf Trans Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Sign Red.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Sign Red.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Stairs Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Stairs Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Stairs Trans Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Stairs Trans Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Props Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Props Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Trans Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Structure Trans Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Vent Trans Mat.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Vent Trans Mat.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls Alpha.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls Alpha.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Walls.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Windows.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Art/Materials/Windows.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Global Volume Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Rainbow/Assets/SciFi Warehouse Kit/Demo/Scene/SciFi_Warehouse/Global Volume Profile.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Settings/URP-HighFidelity-Renderer.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TimelineSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/GlassFracture/Scripts.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Muxi/LookingGlass/LookingGlassTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Muxi/LookingGlass/LookingGlassTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,11 +88,14 @@
 }</component>
   <component name="RunManager" selected="独立播放器.Start Unity">
     <configuration name="启动 Unity" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\2022.3.38f1c1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\GameSoft\Unity\Editor\2022.3.38f1c1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath D:\unity\JiLuXian_D01 -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
@@ -153,6 +104,9 @@
       <option name="WORKING_DIRECTORY" value="A:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
@@ -161,14 +115,20 @@
       <option name="WORKING_DIRECTORY" value="A:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="单元测试(批处理模式)" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="D:\unity\2022.3.38f1c1\Editor\Unity.exe" />
+      <option name="EXE_PATH" value="D:\GameSoft\Unity\Editor\2022.3.38f1c1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath D:\unity\JiLuXian_D01 -testResults Logs/results.xml -logFile Logs/Editor.log -testPlatform EditMode -debugCodeOptimization" />
       <option name="WORKING_DIRECTORY" value="D:\unity\JiLuXian_D01" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="PTY_MODE" value="Auto" />
       <method v="2" />
     </configuration>
     <configuration name="附加到 Unity 编辑器" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -176,9 +136,13 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
       <option name="selectedOptions">
         <list />
       </option>
+      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
     <configuration name="附加到 Unity 编辑器并运行" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
@@ -186,9 +150,13 @@
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
+      <option name="runtimes">
+        <list />
+      </option>
       <option name="selectedOptions">
         <list />
       </option>
+      <option name="useMixedMode" value="false" />
       <method v="2" />
     </configuration>
   </component>
@@ -229,6 +197,7 @@
       <workItem from="1754994216225" duration="518000" />
       <workItem from="1754996254845" duration="2016000" />
       <workItem from="1755054048445" duration="1488000" />
+      <workItem from="1755077007166" duration="1337000" />
     </task>
     <servers />
   </component>
