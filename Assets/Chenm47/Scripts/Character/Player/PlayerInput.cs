@@ -112,6 +112,7 @@ namespace ns.Character.Player
         {
             HorizontalMove = HorizontalMoveAixInput();
             VerticalMove = VerticalMoveAixInput();
+            //VerticalMove = -1f;
             Movement = Mathf.Clamp01(Mathf.Abs(HorizontalMove)
                 + Mathf.Abs(VerticalMove));
 

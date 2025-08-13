@@ -929,7 +929,7 @@ AnimatorController:
     m_Controller: {fileID: 9100000}
   - m_Name: Vertical
     m_Type: 1
-    m_DefaultFloat: 0
+    m_DefaultFloat: 1
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
@@ -1748,7 +1748,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 3691461512924484102}
-    m_Position: {x: 740, y: -460, z: 0}
+    m_Position: {x: 740, y: -180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3135071854745716479}
     m_Position: {x: 1000, y: -40, z: 0}
@@ -1833,7 +1833,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 530, y: -280, z: 0}
   m_ExitPosition: {x: 1240, y: 40, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 5177687515176826287}
+  m_DefaultState: {fileID: 3691461512924484102}
 --- !u!114 &8927638738332874851
 MonoBehaviour:
   m_ObjectHideFlags: 1
