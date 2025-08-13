@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 
@@ -26,6 +25,9 @@ namespace ns.Character.Player
         public float VerticalMove { get; protected set; }
         /// <summary>移动输入的强度，范围0-1</summary>
         public float Movement { get; protected set; }
+        /// <summary>未经过插值的移动输入，-1，0，1</summary>
+        public float RawMovement { get; protected set; }
+
         /// <summary> 按移动键按下的时间 </summary>
         public float MovementPressedTimer { get; protected set; }
 
@@ -66,7 +68,9 @@ namespace ns.Character.Player
 
         /// <summary>交互输入</summary>
         public bool Interacting { get; protected set; }
-
+        /// <summary>
+        /// 是否有按下锁定切换按键
+        /// </summary>
         public bool LockView { get; protected set; }
         /// <summary>
         /// 是否处于锁定视角状态
@@ -115,7 +119,10 @@ namespace ns.Character.Player
             //VerticalMove = -1f;
             Movement = Mathf.Clamp01(Mathf.Abs(HorizontalMove)
                 + Mathf.Abs(VerticalMove));
-
+            RawMovement = RawMoveMentInput();
+            //Debug.Log("V" + VerticalMove);
+            //Debug.Log("H" + HorizontalMove);
+            //Debug.Log("Movement" + Movement);
             if (Movement > 0)
                 MovementPressedTimer += Time.deltaTime;
             else
@@ -132,6 +139,12 @@ namespace ns.Character.Player
         protected virtual float VerticalMoveAixInput()
         {
             return Input.GetAxis("Vertical");
+        }
+
+        protected virtual float RawMoveMentInput()
+        {
+            return RawMovement = Mathf.Clamp01(Mathf.Abs(Input.GetAxisRaw("Horizontal"))
+                + Mathf.Abs(Input.GetAxisRaw("Vertical")));
         }
 
         /// <summary>

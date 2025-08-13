@@ -131,9 +131,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!136 &1593835764427854643
 CapsuleCollider:
@@ -217,7 +217,6 @@ MonoBehaviour:
   LockedRollMovtionID: 12
   BackStepMovtionID: 1
   JumpMovtionID: 9
-  CurrentJumpCount: 0
   IsDownStair: 0
   LastAttackType: 6
   FallTimer: 0
@@ -278,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029ae4aecaed2b446b929ac4b89d71fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMotor3D: {fileID: 0}
   cameraHandler: {fileID: 0}
   detectionRadius: 1
   backAngleThreshold: 60
@@ -323,7 +323,6 @@ MonoBehaviour:
   playerInput: {fileID: 0}
   playerAction: {fileID: 0}
   cameraHandler: {fileID: 0}
-  playerRootMotion: {fileID: 0}
   playerInfo: {fileID: 0}
   playerMotor3D: {fileID: 0}
 --- !u!114 &7441882175394183481
@@ -339,9 +338,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LeftWeapon:
-    WInfo: {fileID: 11400000, guid: 2f44997d3a5738d45806c4b9c058c4d3, type: 2}
+    WInfo: {fileID: 11400000, guid: 32d609216b7880d4cb628cefd4cb9bef, type: 2}
   RightWeapon:
-    WInfo: {fileID: 11400000, guid: 2f44997d3a5738d45806c4b9c058c4d3, type: 2}
+    WInfo: {fileID: 11400000, guid: 32d609216b7880d4cb628cefd4cb9bef, type: 2}
 --- !u!114 &134249835580483584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +365,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac3d4abde3a612f45bc6f1557c287bf3, type: 2}
   - {fileID: 11400000, guid: 214d197fcc921744590c518453662bd0, type: 2}
   - {fileID: 11400000, guid: e58b356778b7e8d4a99c648e34d84412, type: 2}
+  - {fileID: 11400000, guid: 6ae174a38a9cfac4097e573a6c2b28bd, type: 2}
+  - {fileID: 11400000, guid: cfc90ffcbb6f9964db5a7bbdb018b9b7, type: 2}
+  - {fileID: 11400000, guid: a9238e8cf7e60514082bc21cce357e83, type: 2}
+  - {fileID: 11400000, guid: 5432f37c85d4ecc4bb151af67956c7e3, type: 2}
 --- !u!114 &8104255935956435282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -757,20 +760,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotateSpeed: 10
-  GroundSphereRadius: 0.15
+  checkIsExitGroundMaxTime: 0.3
+  GroundSphereRadius: 0.3
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 1
-  GroundDistance: 0.16
+    m_Bits: 1025
   FallPushForce: 1
-  MaxSlopeAngle: 30
   GroundAngle: 0
-  stepHeight: 0.4
-  ObstacleSphereRadius: 0.2
-  checkDistance: 0.3
-  obstacleMask:
+  startUpOffest: 0.1
+  startDownOffest: 0.05
+  forwardCheckDistance: 0.25
+  stepHeight: 0.35
+  stepDownDepth: 0.5
+  stepSmooth: 0.1
+  stepDownVelocity: 4
+  UpPlaneMaxDixtance: 0.2
+  ObstacleLayer:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1025
 --- !u!114 &7004280486089260412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -814,7 +821,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6351575581998417540}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f12a84d9533f8140850122adbc1f54d, type: 3}
   m_Name: 

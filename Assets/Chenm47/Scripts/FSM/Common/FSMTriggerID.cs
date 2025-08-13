@@ -33,6 +33,10 @@ namespace AI.FSM
         ClimbMoveInput,
         ClimbEndInput,
 
+        //Break
+        BreakAttackInput,
+        BreakMoveInput,
+
         // Ghoul  triggers
         TargetInSight,
         TargetInAttackRange,

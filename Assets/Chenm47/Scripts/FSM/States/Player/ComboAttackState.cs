@@ -32,5 +32,11 @@ namespace AI.FSM
             return info;
         }
 
+        protected override void PlayAnimation(FSMBase fSMBase)
+        {
+            //正常过度默认参数(offeset)无法循环播放
+            fSMBase.animator.CrossFade(movtionInfo.AnimationName, 0.1f, -1, 0f);
+        }
+
     }
 }

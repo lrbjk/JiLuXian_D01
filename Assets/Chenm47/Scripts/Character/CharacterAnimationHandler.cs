@@ -61,7 +61,7 @@ namespace ns.Character
         /// <param name="normalizedTransitionDuration">过度时间</param>
         public virtual void PlayTargetAnimation(string targetAnima, bool isInteracting, float normalizedTransitionDuration)
         {
-            Debug.Log($"播放动画：{targetAnima}，是否交互：{isInteracting}");//本质是用于标记动画是否完结
+            Debug.Log($"{Time.frameCount}帧播放动画：{targetAnima}，是否交互：{isInteracting}");//本质是用于标记动画是否完结
             anim.SetBool("IsInteracting", isInteracting);
             anim.CrossFade(targetAnima, normalizedTransitionDuration);
             //anim.CrossFadeInFixedTime(targetAnima, normalizedTransitionDuration);
@@ -80,6 +80,15 @@ namespace ns.Character
             //anim.CrossFade(targetAnima, normalizedTransitionDuration);
             anim.CrossFadeInFixedTime(targetAnima, normalizedTransitionDuration);
             //anim.Play(targetAnima);//直接播放动画，没有过度
+        }
+
+        public virtual void SetFloatDamp(string name, float targetValue, float delta, float dampTime, float deltaTime)
+        {
+            float v = anim.GetFloat(name);
+            if (Mathf.Abs(v - delta) <= delta)
+                anim.SetFloat(name, targetValue);
+            else
+                anim.SetFloat(name, targetValue, dampTime, deltaTime);
         }
 
         private static void AddAnimationEvent(AnimationClip clip, float frameCount, string functionName)

@@ -10,10 +10,16 @@ JumpInput>Jump
 DntOnGround>DirectFall
 ClimbStartInput>ClimbStart
 [Roll]
+BreakAttackInput>Attack
+BreakMoveInput>Move
 InteractingDown>Default
 [LockedRoll]
+BreakAttackInput>Attack
+BreakMoveInput>Move
 InteractingDown>Default
 [BackStep]
+BreakAttackInput>Attack
+BreakMoveInput>Move
 InteractingDown>Default
 [Move]
 NoMovementInput>Default
