@@ -1,3 +1,4 @@
+using AI.FSM;
 using UnityEngine;
 
 
@@ -10,7 +11,7 @@ namespace ns.Character.Player
     {
         private Rigidbody rb;
         private Animator animator;
-
+        private Vector3 rootMotionDelta;        // Root Motion 位移缓存
         public bool ApplyAnimaMotionY { get; set; } = false;
         public bool ApplyAnimaMotionAll { get; set; } = false;
 
@@ -18,11 +19,8 @@ namespace ns.Character.Player
 
         public Vector3 BeforeApplySpeed { get; set; } = Vector3.zero;
 
-        public bool DebugLog { get; set; } = false;
-
         private void Start()
         {
-            rb = GetComponentInParent<Rigidbody>(true);
             animator = GetComponent<Animator>();
         }
         //private void Update()
@@ -37,7 +35,19 @@ namespace ns.Character.Player
                 //rb.velocity = animator.velocity;
                 //animator.applyRootMotion = true;
                 //animator.v
-                rb.velocity = animator.velocity;
+                //rb.velocity = animator.velocity;
+                // 从 Animator 获取 Root Motion 位移
+                rootMotionDelta = animator.deltaPosition;
+
+                //// 叠加台阶抬升
+                //if (PlayerFSMBase.Instance.playerMotor3D.VerticalOffset > 0f)
+                //{
+                //    rootMotionDelta.y += PlayerFSMBase.Instance.playerMotor3D.VerticalOffset;
+                //}
+
+                // 用 MovePosition 应用 Root Motion + 台阶抬升
+                rb.MovePosition(rb.position + rootMotionDelta);
+                rb.MoveRotation(rb.rotation * animator.deltaRotation);
             }
             else if (ApplyAnimaMotionY)
             {

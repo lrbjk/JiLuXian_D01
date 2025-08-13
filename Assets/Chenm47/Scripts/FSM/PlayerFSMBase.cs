@@ -8,9 +8,7 @@ namespace AI.FSM
     [RequireComponent(typeof(PlayerInput))]
     [RequireComponent(typeof(PlayerInfo))]
     [RequireComponent(typeof(PlayerAction))]
-    [RequireComponent(typeof(PlayerMotor3D))]
     [RequireComponent(typeof(PlayerAnimationHandler))]
-    [RequireComponent(typeof(Rigidbody))]
     /// <summary>
     /// 描述：Awake后的单例
     /// </summary>
@@ -41,7 +39,7 @@ namespace AI.FSM
             playerAction = GetComponent<PlayerAction>();
             cameraHandler = FindAnyObjectByType<CameraHandler>();
             playerRootMotion = GetComponentInChildren<PlayerRootMotion>(true);
-            playerMotor3D = GetComponent<PlayerMotor3D>();
+            playerMotor3D = GetComponentInChildren<PlayerMotor3D>();
             base.Start();
             playerInfo = characterInfo as PlayerInfo;
         }

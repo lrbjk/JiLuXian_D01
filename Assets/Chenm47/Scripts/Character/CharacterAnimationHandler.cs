@@ -28,15 +28,31 @@ namespace ns.Character
                 {
                     if (state.state.name == movtionInfo.AnimationName)
                     {
-                        var clip = state.state.motion as AnimationClip;
-                        foreach (var movtionEvent in movtionInfo.MovtionEvents)
+                        switch (state.state.motion)
                         {
-                            AddAnimationEvent(clip, movtionEvent.AnimationFrame, movtionEvent.EventType.ToString() + "Fired");
+                            case AnimationClip clip:
+                                // 处理单个动画片段
+                                foreach (var movtionEvent in movtionInfo.MovtionEvents)
+                                {
+                                    AddAnimationEvent(clip, movtionEvent.AnimationFrame, movtionEvent.EventType.ToString() + "Fired");
+                                }
+                                break;
+                            case BlendTree blendTree:
+                                // 处理混合树中的所有子运动
+                                foreach (var child in blendTree.children)
+                                {
+                                    foreach (var movtionEvent in movtionInfo.MovtionEvents)
+                                    {
+                                        AddAnimationEvent(child.motion as AnimationClip, movtionEvent.AnimationFrame, movtionEvent.EventType.ToString() + "Fired");
+                                    }
+                                }
+                                break;
                         }
                     }
                 }
             }
         }
+
         /// <summary>
         /// 播放目标动画
         /// </summary>

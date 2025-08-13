@@ -90,6 +90,11 @@ namespace AI.FSM
             fSMBase.characterInfo.IsInPreMovtionFlag = true;
 
             //播放相应动画
+            PlayAnimation(fSMBase);
+        }
+
+        protected virtual void PlayAnimation(FSMBase fSMBase)
+        {
             var animationName = movtionInfo.AnimationName;
             Debug.Log("动作名称：" + movtionInfo.MovtionName + ";播放动画状态：" + animationName);
             fSMBase.animationHandler.PlayTargetAnimation(animationName, true, 0.2f);

@@ -1,5 +1,5 @@
 using ns.Character;
-using ns.Item.Weapons;
+using ns.ItemInfos;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

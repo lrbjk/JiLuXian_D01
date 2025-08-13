@@ -38,10 +38,11 @@ namespace AI.FSM
             fSMBase.animator.SetFloat("Vertical", 0);
             playerFSMBase.playerInfo.IsClimbLiftHandDown = true;//恢复默认
             //关闭rootmovtion
-            //PlayerFSMBase.Instance.playerRootMotion.ApplyAnimaMotionY = false;
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimatRotationY = false;
-            PlayerFSMBase.Instance.playerRootMotion.ApplyAnimaMotionAll = false;
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = false;
             PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(true);
+            //启用下台阶检测
+            PlayerFSMBase.Instance.playerMotor3D.DisableDownStepRay = true;
+
             deltaY = playerFSMBase.transform.position.y - deltaY;
             Debug.Log("ClimbEndState ExitState deltaY:" + deltaY);
         }

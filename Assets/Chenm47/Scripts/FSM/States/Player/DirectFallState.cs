@@ -18,8 +18,7 @@ namespace AI.FSM
             base.EnterState(fSMBase);
             fSMBase.animator.CrossFade("DirectFall", 0.1f);
             //给一个向前的力
-            PlayerAction playerAction = (fSMBase as PlayerFSMBase).playerAction;
-            playerAction.playerMotor3D.AddFallPuchForce();
+            PlayerFSMBase.Instance.playerMotor3D.AddFallPuchForce();
         }
 
     }
