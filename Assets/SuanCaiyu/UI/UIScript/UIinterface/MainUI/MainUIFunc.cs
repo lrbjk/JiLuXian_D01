@@ -23,6 +23,9 @@ namespace Common.UI
         private ImageCycler downWeapon;
         private MoneyText moneyText;
 
+        //与装备界面通信
+        public EquipmentViewManager equipmentViewManager;
+        private EquipmentUIFunc equipmentUIFunc;
         //public Emotionalbar emotionalbar;
 
         protected override void Start()
@@ -75,8 +78,11 @@ namespace Common.UI
             moneyText = mt.GetComponent<MoneyText>();
             Debug.Log("找到货币！");
 
+            Transform equipManager = transform.FindChildByName("EquipmentSlot");
+            equipmentViewManager = equipManager.GetComponent<EquipmentViewManager>();
+            Debug.Log("装备栏显示管理");
 
-
+            equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
         }
 
         #region 玩家HP方法
@@ -282,6 +288,7 @@ namespace Common.UI
         public void SwitchRightWeapon()
         {
             rightWeapon.CycleImage();
+            equipmentUIFunc.RightHandImage.sprite = rightWeapon.DisplayImage.sprite;
         }
 
         /// <summary>
@@ -298,6 +305,7 @@ namespace Common.UI
         public void SwitchLefttWeapon()
         {
             leftWeapon.CycleImage();
+            equipmentUIFunc.LeftHandImage.sprite=leftWeapon.DisplayImage.sprite;
         }
 
         /// <summary>

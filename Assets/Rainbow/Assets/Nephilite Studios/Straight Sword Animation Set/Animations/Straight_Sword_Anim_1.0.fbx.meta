@@ -706,7 +706,7 @@ ModelImporter:
       name: straight_sword_oh_back_step_02
       takeName: straight_sword_oh_back_step_02
       internalID: 0
-      firstFrame: 0
+      firstFrame: 5.1
       lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
