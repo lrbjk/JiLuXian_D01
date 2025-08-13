@@ -18,7 +18,7 @@ namespace Common.UI
         // 不再需要存储BagList引用，因为我们会通过父对象获取
         private BagList bagList;
 
-        private void Start()
+        private void Star()
         {
             equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
           

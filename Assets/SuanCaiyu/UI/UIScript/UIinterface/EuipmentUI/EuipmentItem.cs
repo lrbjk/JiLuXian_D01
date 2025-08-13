@@ -10,5 +10,8 @@ namespace Common.UI
         public Image equipImage;
         public Text nameText;
         public Text equipDescriptionText;
+
+        //是否已被装备
+        public bool isEquiped;
     }
 }

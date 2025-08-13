@@ -9,13 +9,14 @@ namespace Common.UI
     public class ImageCycler : MonoBehaviour
     {
         [Header("UI References")]
-        [SerializeField] private Image DisplayImage;
+        public Image DisplayImage;
         [SerializeField] private Image NextImage;
         //[SerializeField] private Button cycleButton; // 仅用于显示用途
 
         [Header("Weapon Images")]
-        [SerializeField] private List<Sprite> equipmentImages = new List<Sprite>();
+        public List<Sprite> equipmentImages = new List<Sprite>();
 
+        
         //[Header("Keyboard Settings")]
         //[SerializeField] private KeyCode cycleKey = KeyCode.RightArrow;
         //[SerializeField] private float keyRepeatDelay = 0.5f;
@@ -35,6 +36,8 @@ namespace Common.UI
             {
                 UpdateImagerDisplay();
             }
+
+           
         }
 
         //private void Update()
@@ -71,7 +74,7 @@ namespace Common.UI
             UpdateImagerDisplay();
         }
 
-        private void UpdateImagerDisplay()
+        public void UpdateImagerDisplay()
         {
             DisplayImage.sprite = equipmentImages[currentIndex];
             DisplayImage.color = new Color(1, 1, 1, DisplayImage.sprite ? 1 : 0);//透明度为0-1之间的百分比
