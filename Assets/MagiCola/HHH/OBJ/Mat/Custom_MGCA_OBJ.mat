@@ -12,12 +12,17 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _MATCAP_ON
+  - _OUTLINE_PASS_ON
   - _SCREEN_SAPCE_RIM
   - _SCREEN_SPACE_SHADOW
   m_InvalidKeywords:
   - _HIGHTLIGHTSHAPE_ON
+  - _MAINMAPS_ON
   - _MATCAPREFRACT1_ON
+  - _OPTION_ON
+  - _SHADOWSETTING_ON
+  - _SH_ON
+  - _SPECULARSETTING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -28,7 +33,15 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AO:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CubeMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emission:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -82,25 +95,36 @@ Material:
     - _BlendSrc: 1
     - _BumpScale: 1
     - _Cull: 2
+    - _EmissionIntensity: 1
     - _Glossiness: 1
     - _HightlightShape: 1
     - _HightlightShape1: 0
     - _Lazer_ON: 0
+    - _MainMaps: 1
+    - _MainMaps_Out: 1
+    - _MatCap: 0
     - _MatCapAlphaBrust1: 1
     - _MatCapBlendMode1: 0
     - _MatCapColorBrust1: 1
     - _MatCapDepth1: 1
     - _MatCapRefract1: 1
     - _MatCap_ON: 1
+    - _MatCap_Out: 0
     - _MetalIntensity: 0
     - _Metallic: 1
     - _ModelSize: 48.5
     - _ModelSize1: 1
     - _NoseLineHoriDisp: 2
     - _NoseLineKDnDisp: 2
+    - _OUTLINE_PASS: 1
+    - _OUTLINE_PASS_Out: 1
+    - _Option: 1
+    - _Option_Out: 1
     - _Outline: 0
     - _OutlineWidth: 1
     - _OutlineZOffset: 0.01
+    - _SH: 1
+    - _SH_Out: 1
     - _ScreenSpaceRim: 1
     - _ScreenSpaceRimBrightness: 1
     - _ScreenSpaceRimFadeout: 0.5
@@ -110,12 +134,16 @@ Material:
     - _ScreenSpaceShadowFadeout: 0.2
     - _ScreenSpaceShadowThreshold: 0.015
     - _ScreenSpaceShadowWidth: 0.2
+    - _ShadowSetting: 1
+    - _ShadowSetting_Out: 1
     - _ShapeSoftness: 0.207
     - _ShapeSoftness1: 1
     - _SkinMatID: 0
     - _SpecularIntensity: 1
     - _SpecularRange: 0.502
     - _SpecularRange1: 1
+    - _SpecularSetting: 1
+    - _SpecularSetting_Out: 1
     - _StencilComp: 0
     - _StencilFailOp: 0
     - _StencilPassOp: 0
@@ -123,11 +151,13 @@ Material:
     - _StencilZPassOp: 0
     - _ToonSpecular: 0.471
     - _ToonSpecular1: 0.01
+    - _UV7: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.6509434, g: 0.6509434, b: 0.6509434, a: 1}
     - _MatCapParam1: {r: 0, g: 0, b: 0, a: 0}
     - _MatCapTintColor1: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineColor1: {r: 1, g: 0, b: 0, a: 1}
     - _PostFrontTint: {r: 1, g: 1, b: 1, a: 1}
     - _PostSSSTint: {r: 1, g: 1, b: 1, a: 1}

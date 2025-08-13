@@ -6,8 +6,6 @@ public class SmoothNormalTools : EditorWindow
 {
     // 工具参数
     private GameObject targetModel;
-    private float smoothAngle = 60f;
-    private bool overwriteUV2 = true;
 
     // 添加菜单项
     [MenuItem("Tools/Smooth Normal Tool")]
@@ -27,12 +25,6 @@ public class SmoothNormalTools : EditorWindow
             typeof(GameObject), 
             true
         );
-
-        // 平滑角度设置
-        smoothAngle = EditorGUILayout.Slider("Smooth Angle", smoothAngle, 0f, 180f);
-
-        // 覆盖选项
-        overwriteUV2 = EditorGUILayout.Toggle("Overwrite UV2", overwriteUV2);
 
         // 处理按钮
         if (GUILayout.Button("Process Smooth Normals"))
@@ -64,91 +56,95 @@ public class SmoothNormalTools : EditorWindow
                 continue;
             }
 
-            // 计算平滑法线
-            Vector3[] smoothNormals = CalculateSmoothNormals(mesh);
+            SmoothNormal(mesh);
 
-            // 转换法线到UV2
-            ConvertNormalsToUV2(mesh, smoothNormals, overwriteUV2);
-
-            // 标记修改
-            EditorUtility.SetDirty(mesh);
         }
-        
-        AssetDatabase.SaveAssets();
-        Debug.Log("Smooth normal processing completed!");
+
     }
-
-    private Vector3[] CalculateSmoothNormals(Mesh mesh)
+    
+    private struct WeightedNormal
     {
-        Vector3[] normals = mesh.normals;
-        Vector3[] vertices = mesh.vertices;
-        int[] triangles = mesh.triangles;
-
-        // 创建顶点邻接字典
-        Dictionary<int, List<int>> vertexTriangles = new Dictionary<int, List<int>>();
-        for (int i = 0; i < vertices.Length; i++)
+        public Vector3 normal;
+        public float weight;
+    }
+    
+    
+        private void SmoothNormal(Mesh mesh)
+    {
+        //创建一个字典，存顶点-顶点所有法线的键值对，顶点由唯一的Vector3来确定
+        var normalDict = new Dictionary<Vector3, List<WeightedNormal>>();
+        var triangles = mesh.triangles;
+        var vertices = mesh.vertices;
+        var normals = mesh.normals;
+        var tangents = mesh.tangents;
+        var smoothNormals = mesh.normals;
+        //三角形个数为triangles数组的长度/3
+        var n = triangles.Length / 3;
+        for (var i = 0; i < n; i++)
         {
-            vertexTriangles[i] = new List<int>();
-        }
-
-        // 记录每个顶点所属的三角形
-        for (int i = 0; i < triangles.Length; i += 3)
-        {
-            vertexTriangles[triangles[i]].Add(i / 3);
-            vertexTriangles[triangles[i + 1]].Add(i / 3);
-            vertexTriangles[triangles[i + 2]].Add(i / 3);
-        }
-
-        Vector3[] smoothNormals = new Vector3[vertices.Length];
-        float cosThreshold = Mathf.Cos(smoothAngle * Mathf.Deg2Rad);
-
-        for (int i = 0; i < vertices.Length; i++)
-        {
-            List<int> adjacentTriangles = vertexTriangles[i];
-            List<Vector3> accumulatedNormals = new List<Vector3>();
-
-            // 收集符合角度条件的法线
-            foreach (int triIndex in adjacentTriangles)
+            //第i个三角形的三个顶点的索引分别是i*3,i*3+1,i*3=2
+            var vertexIndices = new[] {triangles[i * 3], triangles[i * 3 + 1], triangles[i * 3 + 2]};
+            for (var j = 0; j < 3; j++)
             {
-                Vector3 triNormal = normals[triangles[triIndex * 3]];
-                
-                // 角度判断
-                if (Vector3.Dot(normals[i], triNormal) >= cosThreshold)
+                var vertexIndex = vertexIndices[j];
+                var vertexPosition = vertices[vertexIndex];
+                if (!normalDict.ContainsKey(vertexPosition))
                 {
-                    accumulatedNormals.Add(triNormal);
+                    normalDict.Add(vertexPosition, new List<WeightedNormal>());
                 }
+                WeightedNormal weightedNormal;
+                weightedNormal.normal = normals[vertexIndex];
+                //获取当前顶点出发的两条边
+                var lineA = Vector3.zero;
+                var lineB = Vector3.zero;
+                if (j == 0)
+                {
+                    lineA = vertices[vertexIndices[1]] - vertexPosition;
+                    lineB = vertices[vertexIndices[2]] - vertexPosition;
+                }
+                else if (j == 1)
+                {
+                    lineA = vertices[vertexIndices[0]] - vertexPosition;
+                    lineB = vertices[vertexIndices[2]] - vertexPosition;
+                }
+                else if (j == 3)
+                {
+                    lineA = vertices[vertexIndices[0]] - vertexPosition;
+                    lineB = vertices[vertexIndices[1]] - vertexPosition;
+                }
+                //把角度作为权重，记录起来，
+                var angle = Vector3.Angle(lineA, lineB) * Mathf.Deg2Rad;
+                weightedNormal.weight = angle;
+                normalDict[vertexPosition].Add(weightedNormal);
             }
-
-            // 计算平均法线
-            Vector3 finalNormal = Vector3.zero;
-            foreach (Vector3 n in accumulatedNormals)
-            {
-                finalNormal += n.normalized;
-            }
-            finalNormal = finalNormal.normalized;
-
-            smoothNormals[i] = finalNormal;
         }
-
-        return smoothNormals;
-    }
-
-    private void ConvertNormalsToUV2(Mesh mesh, Vector3[] smoothNormals, bool overwrite)
-    {
-        Vector2[] uv2 = overwrite ? new Vector2[mesh.vertexCount] : mesh.uv2;
-
-        // 转换法线到UV2（使用球面坐标编码）
-        for (int i = 0; i < smoothNormals.Length; i++)
+        for (var index = 0; index < vertices.Length; index++)
         {
-            Vector3 n = smoothNormals[i];
-            
-            // 球面坐标编码（将法线转换为UV）
-            float u = (Mathf.Atan2(n.x, n.z) + Mathf.PI) / (2 * Mathf.PI);
-            float v = Mathf.Asin(n.y) / Mathf.PI + 0.5f;
-            
-            uv2[i] = new Vector2(u, v);
+            var vertex = vertices[index];
+            var weightedNormalList = normalDict[vertex];
+            var smoothNormal = Vector3.zero;
+            float weightSum = 0;
+            foreach (var weightedNormal in weightedNormalList)
+            {
+                weightSum += weightedNormal.weight;
+            }
+            foreach (var weightedNormal in weightedNormalList)
+            {
+                smoothNormal = smoothNormal + weightedNormal.normal * weightedNormal.weight / weightSum;
+            }
+            smoothNormal = smoothNormal.normalized;
+            smoothNormals[index] = smoothNormal;
+            //构建三个正交向量，作为切线空间的坐标轴
+            var normal = normals[index];
+            var tangent = tangents[index];
+            var biTangent = (Vector3.Cross(normal, tangent) * tangent.w).normalized;
+            //构建TBN矩阵
+            var tbn = new Matrix4x4(tangent, biTangent, normal, Vector3.zero);
+            //相当于smoothNormal重新投影到三个坐标轴上，获取在切线空间下的法线。
+            smoothNormals[index] = tbn.transpose.MultiplyVector(smoothNormal).normalized;
         }
-
-        mesh.uv2 = uv2;
+        mesh.SetUVs(7, smoothNormals);
+        Debug.Log("平滑法线成功");
     }
+    
 }

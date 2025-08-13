@@ -13,9 +13,15 @@ Material:
   m_ModifiedSerializedProperties: 2
   m_ValidKeywords:
   - _EMISSION
-  - _OUTLINE_PASS
+  - _OUTLINE_PASS_ON
   m_InvalidKeywords:
   - _HIGHTLIGHTSHAPE_ON
+  - _MAINMAPS_ON
+  - _OPTION_ON
+  - _OUTLINE_PASS
+  - _SHADOWSETTING_ON
+  - _SH_ON
+  - _SPECULARSETTING_ON
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
