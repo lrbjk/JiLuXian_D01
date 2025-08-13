@@ -25,8 +25,8 @@ MonoBehaviour:
   LightAtkIDL: 100
   HeavyAtkIDL: 103
   SkillAtkIDL: 8
-  LightAtkIDR: 5
-  HeavyAtkIDR: 5
+  LightAtkIDR: 100
+  HeavyAtkIDR: 103
   SkillAtkIDR: 8
   WCPOriginalProperties: []
   WeaponValue: {fileID: 11400000, guid: 54d68e6515a96e74896874630d1332b0, type: 2}
