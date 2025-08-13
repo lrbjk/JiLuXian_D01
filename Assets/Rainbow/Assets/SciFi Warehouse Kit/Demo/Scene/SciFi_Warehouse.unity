@@ -14,8 +14,8 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.408805, g: 0.03213867, b: 0.03213867, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.056
   m_LinearFogStart: 0
@@ -2992,7 +2992,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 100.77
+  m_Intensity: 20
   m_Range: 12.894322
   m_SpotAngle: 106.86197
   m_InnerSpotAngle: 21.80208
@@ -3957,7 +3957,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 5.49
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -5487,7 +5487,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 7.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -6980,7 +6980,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.96052396, b: 0.8443396, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -7744,7 +7744,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 7.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -9043,7 +9043,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 5.4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -12214,7 +12214,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 9.57
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -13046,7 +13046,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.96052396, b: 0.8443396, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -14762,7 +14762,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 10.3
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -15660,7 +15660,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 8.35
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -17176,7 +17176,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0.0992074, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 4.74
   m_SpotAngle: 61.2
   m_InnerSpotAngle: 46.05755
@@ -18325,7 +18325,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0.0992074, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 11
   m_SpotAngle: 160
   m_InnerSpotAngle: 152.43233
@@ -21057,7 +21057,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 11
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -23327,7 +23327,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 6
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -24254,9 +24254,10 @@ GameObject:
   m_Component:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
-  - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
+  - component: {fileID: 963194232}
+  - component: {fileID: 963194231}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -24264,14 +24265,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &963194226
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -24398,6 +24391,42 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!114 &963194231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45b2eebc9276496418ac79feec26403f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDefaultListener: 1
+  listenerId: 0
+--- !u!114 &963194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b990964669aab4c42b0ae8ef7454795a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_listeners:
+    initialListenerList: []
+    useDefaultListeners: 1
+  isEnvironmentAware: 0
+  isStaticObject: 0
+  m_positionOffsetData:
+    KeepMe: 0
+    positionOffset: {x: 0, y: 0, z: 0}
+  m_posOffsetData: {fileID: 0}
+  listenerMask: 1
 --- !u!4 &966134742 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5149015503972216563, guid: 20d9c287fff82dd49bc0a9b23650f1e1,
@@ -25747,7 +25776,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 5.4
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -26548,7 +26577,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.96052396, b: 0.8443396, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 5.99
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -29755,7 +29784,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 10.7
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -29962,7 +29991,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 11.57
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -31918,7 +31947,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 51.9
+  m_Intensity: 60
   m_Range: 17.461697
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -32136,7 +32165,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 27.8
+  m_Intensity: 60
   m_Range: 3.7969582
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -32665,7 +32694,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 12
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -33412,7 +33441,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 6.94
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -34206,7 +34235,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 16.95
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -38691,6 +38720,64 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30023cc824132bd4bb6a2cd831be15ba, type: 3}
+--- !u!1 &1522852214
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1522852216}
+  - component: {fileID: 1522852215}
+  m_Layer: 0
+  m_Name: WwiseGlobal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1522852215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522852214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69de3b588228b104cbf080245b9e0af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InitializationSettings: {fileID: 11400000, guid: f8920518ad6892f4590e7442e9e9d004,
+    type: 2}
+  basePath: 
+  language: 
+  defaultPoolSize: 0
+  lowerPoolSize: 0
+  streamingPoolSize: 0
+  memoryCutoffThreshold: 0
+  monitorPoolSize: 0
+  monitorQueuePoolSize: 0
+  callbackManagerBufferSize: 0
+  spatialAudioPoolSize: 0
+  maxSoundPropagationDepth: 0
+  engineLogging: 0
+--- !u!4 &1522852216
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522852214}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1526722256
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39492,7 +39579,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 14
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -46094,7 +46181,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0.0992074, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 5
   m_SpotAngle: 160
   m_InnerSpotAngle: 152.43233
@@ -48607,7 +48694,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 6.1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -49264,7 +49351,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8726415, g: 0.96722126, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 5.39
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -56051,7 +56138,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 14
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -57782,7 +57869,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.96052396, b: 0.8443396, a: 1}
-  m_Intensity: 12
+  m_Intensity: 60
   m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -65758,3 +65845,4 @@ SceneRoots:
   - {fileID: 1256454915}
   - {fileID: 249796819}
   - {fileID: 1361506949}
+  - {fileID: 1522852216}

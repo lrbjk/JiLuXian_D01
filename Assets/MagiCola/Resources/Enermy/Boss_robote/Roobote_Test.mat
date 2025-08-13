@@ -12,12 +12,17 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _MATCAP_ON
-  - _OUTLINE_PASS
+  - _OUTLINE_PASS_ON
   - _SCREEN_SAPCE_RIM
   m_InvalidKeywords:
   - _HIGHTLIGHTSHAPE_ON
+  - _MAINMAPS_ON
   - _MATCAPREFRACT1_ON
+  - _OPTION_ON
+  - _OUTLINE_PASS
+  - _SHADOWSETTING_ON
+  - _SH_ON
+  - _SPECULARSETTING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -83,22 +88,32 @@ Material:
     - _BumpScale: 1
     - _Cull: 2
     - _EmissionIntensity: 0.1
-    - _Glossiness: 6.42
+    - _Glossiness: 1
     - _HightlightShape: 1
     - _Lazer_ON: 0
+    - _MainMaps: 1
+    - _MainMaps_Out: 1
+    - _MatCap: 0
     - _MatCapAlphaBrust1: 1
     - _MatCapBlendMode1: 1
     - _MatCapColorBrust1: 1
     - _MatCapDepth1: 0.63
     - _MatCapRefract1: 1
     - _MatCap_ON: 1
-    - _MetalIntensity: 0.84
+    - _MatCap_Out: 0
+    - _MetalIntensity: 1
     - _ModelSize: 100
     - _NoseLineHoriDisp: 1
     - _NoseLineKDnDisp: 1
+    - _OUTLINE_PASS: 1
+    - _OUTLINE_PASS_Out: 1
+    - _Option: 1
+    - _Option_Out: 1
     - _Outline: 1
     - _OutlineWidth: 10
     - _OutlineZOffset: 0.01
+    - _SH: 1
+    - _SH_Out: 1
     - _ScreenSpaceRim: 1
     - _ScreenSpaceRimBrightness: 0.41
     - _ScreenSpaceRimFadeout: 4.45
@@ -108,15 +123,21 @@ Material:
     - _ScreenSpaceShadowFadeout: 2.77
     - _ScreenSpaceShadowThreshold: 0.301
     - _ScreenSpaceShadowWidth: 0.221
+    - _Shadow: 0
+    - _ShadowSetting: 1
+    - _ShadowSetting_Out: 1
     - _ShapeSoftness: 1
     - _SpecularIntensity: 1
     - _SpecularRange: 0
+    - _SpecularSetting: 1
+    - _SpecularSetting_Out: 1
     - _StencilComp: 0
     - _StencilFailOp: 0
     - _StencilPassOp: 0
     - _StencilRef: 0
     - _StencilZPassOp: 0
     - _ToonSpecular: 1
+    - _UV7: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -125,10 +146,10 @@ Material:
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _PostFrontTint: {r: 1, g: 1, b: 1, a: 1}
     - _PostSSSTint: {r: 1, g: 1, b: 1, a: 1}
-    - _PostShadowFadeTint: {r: 1, g: 0, b: 0, a: 1}
-    - _PostShadowTint: {r: 1, g: 0, b: 0, a: 1}
-    - _PostShallowFadeTint: {r: 1, g: 0, b: 0, a: 1}
-    - _PostShallowTint: {r: 1, g: 0, b: 0, a: 1}
+    - _PostShadowFadeTint: {r: 0.18867922, g: 0.18867922, b: 0.18867922, a: 1}
+    - _PostShadowTint: {r: 0.25157225, g: 0.25157225, b: 0.25157225, a: 1}
+    - _PostShallowFadeTint: {r: 0.40251565, g: 0.40251565, b: 0.40251565, a: 1}
+    - _PostShallowTint: {r: 0.4039216, g: 0.4039216, b: 0.4039216, a: 1}
     - _RimGlowLightColor1: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
