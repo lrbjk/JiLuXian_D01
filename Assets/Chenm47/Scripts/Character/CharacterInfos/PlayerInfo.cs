@@ -48,6 +48,7 @@ namespace ns.Character.Player
         public int LockedRollMovtionID;
         public int BackStepMovtionID;
         public int JumpMovtionID;
+        public int FallEndMovtionID;
 
         /*为状态机以及动画事件提供*/
         [HideInInspector]
@@ -62,7 +63,7 @@ namespace ns.Character.Player
         public Transform ClimbPosTF;
         public bool IsInUpClimbBox = false;
         public bool IsInDownClimbBox = false;
-        public bool IsClimbLiftHandDown= true;
+        public bool IsClimbLiftHandDown = true;
 
         [Header("角色属性值")]
         /// <summary>角色属性值 </summary>

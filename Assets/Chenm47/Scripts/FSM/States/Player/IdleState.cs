@@ -21,6 +21,8 @@ namespace AI.FSM
             playerFSM.animator.SetFloat("Vertical", 0f, 0.1f, Time.deltaTime);
             playerFSM.animator.SetFloat("Horizontal", 0f, 0.1f, Time.deltaTime);
             playerFSM.animationHandler.PlayTargetAnimation("Idle", false, 0.25f);
+            //启用ik
+            playerFSM.playerIK.ikActive = true;
             //playerFSM.animationHandler.PlayTargetAnimationFixed("Idle", false, 1f);
             //playerFSM.animator.CrossFadeInFixedTime("Idle", 1f, -1);
             //playerFSM.animator.Play("Idle");
@@ -41,6 +43,11 @@ namespace AI.FSM
                 //playerFSM.playerAction.LookAndMove(lookDir,Vector3.zero, 0);
             }
         }
-
+        public override void ExitState(FSMBase fSMBase)
+        {
+            base.ExitState(fSMBase);
+            //禁用ik
+            PlayerFSMBase.Instance.playerIK.ikActive = false;
+        }
     }
 }

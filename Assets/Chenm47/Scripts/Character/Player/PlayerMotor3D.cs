@@ -222,6 +222,7 @@ namespace ns.Character.Player
         #region RootMotion
         private Animator animator;
         public bool ApplyAnimaMotionY { get; set; } = false;
+        public bool ApplyAnimaMotionXZ { get; set; }
         public bool ApplyAnimaMotionAll { get; set; } = false;
         public bool DisableDownStepRay { get; set; } = false;
 
@@ -325,7 +326,13 @@ namespace ns.Character.Player
                 Vector3 v = new Vector3(BeforeApplySpeed.x, animator.velocity.y, BeforeApplySpeed.z);
                 rb.velocity = v;
             }
-
+            if (ApplyAnimaMotionXZ)
+            {
+                Vector3 v = new Vector3(animator.velocity.x, rb.velocity.y, animator.velocity.z);
+                //Vector3 v = new Vector3(animator.velocity.x, 0, animator.velocity.z);
+                //rb.AddForce(v, ForceMode.VelocityChange);
+                rb.velocity = v;
+            }
 
             //if (ApplyAnimatRotationY)
             //{

@@ -44,7 +44,7 @@ BackStepBreak>BackStep
 IsOnJumpTop>Fall
 [Fall]
 ToFallEndTimerAndOnGround>FallEnd
-OnGround>FallEnd
+OnGround>Default
 [DirectFall]
 ToFallEndTimerAndOnGround>FallEnd
 OnGround>Default

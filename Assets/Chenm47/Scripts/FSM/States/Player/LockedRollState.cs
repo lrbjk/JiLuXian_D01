@@ -47,12 +47,17 @@ namespace AI.FSM
         {
             base.EnterState(fSMBase);
             //直接应用rootmotion
-            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = true;
+            //PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = true;
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionXZ=true;
+            //启用重力
+            PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(true);
         }
         public override void ExitState(FSMBase fSMBase)
         {
             base.ExitState(fSMBase);
-            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = false;
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionXZ = false;
+            //禁用重力
+            PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(false);
         }
     }
 }

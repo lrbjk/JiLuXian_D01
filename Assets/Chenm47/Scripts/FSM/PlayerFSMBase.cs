@@ -23,6 +23,7 @@ namespace AI.FSM
         public CameraHandler cameraHandler;
         public PlayerInfo playerInfo;
         public PlayerMotor3D playerMotor3D;
+        public PlayerIK playerIK;
         #endregion
 
         public static PlayerFSMBase Instance { get; private set; }
@@ -38,6 +39,7 @@ namespace AI.FSM
             playerAction = GetComponent<PlayerAction>();
             cameraHandler = FindAnyObjectByType<CameraHandler>();
             playerMotor3D = GetComponentInChildren<PlayerMotor3D>();
+            playerIK = GetComponentInChildren<PlayerIK>();
             base.Start();
             playerInfo = characterInfo as PlayerInfo;
         }

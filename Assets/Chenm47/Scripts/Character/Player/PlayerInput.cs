@@ -117,6 +117,7 @@ namespace ns.Character.Player
         private void MovementInput()
         {
             HorizontalMove = HorizontalMoveAixInput();
+            //HorizontalMove = 1;
             RawHorizontalMove = RawHorizontalMoveInput();
             VerticalMove = VerticalMoveAixInput();
             RawVerticalMove = RawVerticalMoveInput();
@@ -306,6 +307,7 @@ namespace ns.Character.Player
         /// <returns></returns>
         protected virtual bool JumpInput()
         {
+            //return Input.GetKeyDown(KeyCode.Space);
             //长按疾跑后并短时间内再次按下
             if (RollPressedTimer >= RollPressedTime && RollUp)
                 //记录放开时刻

@@ -1,11 +1,5 @@
 using AI.FSM.Framework;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-/*
-
-*/
 namespace AI.FSM
 {
     /// <summary>
@@ -21,8 +15,7 @@ namespace AI.FSM
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
-            fSMBase.animationHandler.PlayTargetAnimation("FallEnd", true,0f);
+            fSMBase.animationHandler.PlayTargetAnimation("FallEnd", true, 0.1f);
         }
-
     }
 }

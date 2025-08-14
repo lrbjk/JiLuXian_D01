@@ -217,6 +217,7 @@ MonoBehaviour:
   LockedRollMovtionID: 12
   BackStepMovtionID: 1
   JumpMovtionID: 9
+  FallEndMovtionID: 0
   IsDownStair: 0
   LastAttackType: 6
   FallTimer: 0
@@ -325,6 +326,7 @@ MonoBehaviour:
   cameraHandler: {fileID: 0}
   playerInfo: {fileID: 0}
   playerMotor3D: {fileID: 0}
+  playerIK: {fileID: 0}
 --- !u!114 &7441882175394183481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -621,10 +623,60 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7823293702887809713, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3117317209152585649, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2904932808056726276, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: 0.0000000018626451
+      objectReference: {fileID: 0}
+    - target: {fileID: -2904932808056726276, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0.005496072
+      objectReference: {fileID: 0}
+    - target: {fileID: -2904932808056726276, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: 0.00032089208
+      objectReference: {fileID: 0}
+    - target: {fileID: -2904932808056726276, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 0.004830534
+      objectReference: {fileID: 0}
+    - target: {fileID: -2904932808056726276, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 0.0014951248
+      objectReference: {fileID: 0}
+    - target: {fileID: -2904932808056726276, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ea2916736168f45479b110b080aaad2d,
         type: 3}
       propertyPath: m_Name
       value: CharacterBaseMesh_v10.0_VRC
+      objectReference: {fileID: 0}
+    - target: {fileID: 2881917393185748195, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128063986421979777, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: ea2916736168f45479b110b080aaad2d,
         type: 3}
@@ -634,6 +686,61 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: ea2916736168f45479b110b080aaad2d,
         type: 3}
       propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868716418057165105, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868716418057165105, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.size
+      value: 81
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868716418057165105, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[11]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868716418057165105, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[21]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868716418057165105, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[32]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868716418057165105, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[54]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6868716418057165105, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_BlendShapeWeights.Array.data[76]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7766401159050952708, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7877461884833571640, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752050371880780292, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885467562071877172, guid: ea2916736168f45479b110b080aaad2d,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -760,8 +867,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RotateSpeed: 10
-  checkIsExitGroundMaxTime: 0.3
-  GroundSphereRadius: 0.3
+  checkIsExitGroundMaxTime: 0.1
+  GroundSphereRadius: 0.1
   GroundLayer:
     serializedVersion: 2
     m_Bits: 1025
