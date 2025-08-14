@@ -57,6 +57,11 @@ public class EquipmentController : MonoBehaviour
         equipmentSelector = equipmentUIFunc.equipmentSelector;
         equipmentSelector.UpdateEquipmentSelectList();
 
+        //提前创建好格子
+        equipBagUIList = equipmentUIFunc.equipBagUIList;
+        equipBagUIList.CreatEquipBagList();
+
+        //提前找到选择插槽
         righthandSelector = equipmentUIFunc.righthandSelector;
         lefthandSelector = equipmentUIFunc .lefthandSelector;
         headSelector = equipmentUIFunc .headSelector;

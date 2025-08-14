@@ -238,12 +238,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c2b81355abb1c45aede187dbddfda1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 11469264}
-  description: {fileID: 0}
+  nametext: {fileID: 0}
+  description: {fileID: 11469264}
   Displayimage: {fileID: 2579227518680684273}
   HighLightImage: {fileID: 5848172422256986020}
   SelectedImage: {fileID: 6631883732866624566}
   number: 0
+  isAdded: 0
   equipmentUIFunc: {fileID: 0}
   mainUIFunc: {fileID: 0}
   isSelected: 0

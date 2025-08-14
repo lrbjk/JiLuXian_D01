@@ -35,7 +35,7 @@ namespace Common.UI
             {
                 highLightImage.gameObject.SetActive(true);              
                 isEquiped=false;
-                equipmentBagUIList.equipmentData[EquipIndex].isSelected = false;//数据列表中被选中项的选中状态取消
+               // equipmentBagUIList.equipmentData[EquipIndex].isSelected = false;//数据列表中被选中项的选中状态取消
                 Debug.Log("选中更换武器！");
             }
         }

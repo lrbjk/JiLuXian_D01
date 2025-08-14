@@ -11,13 +11,17 @@ namespace Common.UI
     // 背包插槽脚本
     public class  EquipmentSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler ,IPointerClickHandler
     {
-        public Text text;
+        public Text nametext;
         public Text description;
+
+
         public Image Displayimage;
         public Image HighLightImage;
         public Image SelectedImage;
         public int number; //当前索引
-        [SerializeField] private bool isAdded = false;
+
+        public bool ableToEquip = false;//格子有物品可以装备
+
         [SerializeField] private EquipmentUIFunc equipmentUIFunc;
         [SerializeField] private MainUIFunc mainUIFunc;
 
@@ -65,44 +69,44 @@ namespace Common.UI
                 return;
             }
 
-            // 更新UI
-            if (text != null)
-            {
-                text.text = item.text_1.text; 
-                transform.name = item.text_1.text;
-            }
+            //// 更新UI
+            //if (text != null)
+            //{
+            //    text.text = item.text_1.text; 
+            //    transform.name = item.text_1.text;
+            //}
 
-            if (Displayimage != null && item.image_1 != null) 
-            {
-                Displayimage.sprite = item.image_1.sprite;
-            }
+            //if (Displayimage != null && item.image_1 != null) 
+            //{
+            //    Displayimage.sprite = item.image_1.sprite;
+            //}
 
-            // 更新其他属性
-            if (description != null)
-            {
-                //description.text = item.text.text; // 假设BagItem有description属性
-            }
+            //// 更新其他属性
+            //if (description != null)
+            //{
+            //    //description.text = item.text.text; // 假设BagItem有description属性
+            //}
 
-            if ( !isAdded && bagUIList.equipmentData.Count < bagUIList.EquipmentNumber)
-            {
-                Debug.Log(number);
-                EquipmentSlot newSlot = gameObject.GetComponent<EquipmentSlot>();
-                bagUIList.equipmentData.Add(newSlot);
-                //获取固定索引
-                number = bagUIList.equipmentData.IndexOf(newSlot);
-                isAdded = false;
-            }
+            //if ( !isAdded && bagUIList.equipmentData.Count < bagUIList.EquipmentNumber)
+            //{
+            //    Debug.Log(number);
+            //    EquipmentSlot newSlot = gameObject.GetComponent<EquipmentSlot>();
+            //    bagUIList.equipmentData.Add(newSlot);
+            //    //获取固定索引
+            //    number = bagUIList.equipmentData.IndexOf(newSlot);
+            //    isAdded = false;
+            //}
 
-            //将当前可装备物品存储到数据列表以便后续交互
-            //角标不可见
-            if (isSelected && number < bagUIList.EquipmentNumber)
-            {
-                SelectedImage.gameObject.SetActive(true);
-            }
-            else
-            {
-                SelectedImage.gameObject.SetActive(false);
-            }         
+            ////将当前可装备物品存储到数据列表以便后续交互
+            ////角标不可见
+            //if (isSelected && number < bagUIList.EquipmentNumber)
+            //{
+            //    SelectedImage.gameObject.SetActive(true);
+            //}
+            //else
+            //{
+            //    SelectedImage.gameObject.SetActive(false);
+            //}         
 
             //应对切换时数据列表刷新导致的选中状态刷新,如果当前索引与装备插槽索引相同且
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.RightHandWeapon)
@@ -188,124 +192,116 @@ namespace Common.UI
            
         }
 
-        void EquipSelected()
-        {
-            //选中装备右手武器
-            if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.RightHandWeapon)
-            {
+        //        void EquipSelected()
+        //        {
+        //            //选中装备右手武器
+        //            if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.RightHandWeapon)
+        //            {
 
-                for(int i = 0;i<2; i++)
-                {
-                    //判断：装备槽没有被占用且当前武器可以被装备
-                    if (equipmentSelector.rightHandWeaponList[i].isEquiped == false && !(bagUIList.equipmentData[number].isSelected))//当前被选武器没有被装备
-                    {
-                       // 图片获取
-                        equipmentSelector.rightHandWeaponList[i].equipImage.sprite = Displayimage.sprite;
-                       //信息获取（后面加） 
+        //                for(int i = 0;i<2; i++)
+        //                {
+        //                    //判断：装备槽没有被占用且当前武器可以被装备
+        //                    if (equipmentSelector.rightHandWeaponList[i].isEquiped == false && !(bagUIList.equipmentData[number].isSelected))//当前被选武器没有被装备
+        //                    {
+        //                       // 图片获取
+        //                        equipmentSelector.rightHandWeaponList[i].equipImage.sprite = Displayimage.sprite;
+        //                       //信息获取（后面加） 
 
-                        //当前插槽被占用
-                        equipmentSelector.rightHandWeaponList[i].isEquiped = true;
+        //                        //当前插槽被占用
+        //                        equipmentSelector.rightHandWeaponList[i].isEquiped = true;
 
-                        //插槽高亮状态消失，武器已经更换
-                        equipmentSelector.rightHandWeaponList[i].highLightImage.gameObject.SetActive(false);
+        //                        //插槽高亮状态消失，武器已经更换
+        //                        equipmentSelector.rightHandWeaponList[i].highLightImage.gameObject.SetActive(false);
 
-                        //当前武器已被装备
-                        bagUIList.equipmentData[number].isSelected = true;
-                        //遍历装备背包，更新装备图标
-                        for (int j = 0; j < bagUIList.EquipmentNumber; j++)
-                        {
-                            if (bagUIList.equipmentData[j].isSelected)
-                            {
-                                bagUIList.equipmentData[j].SelectedImage.gameObject.SetActive(true);
-                            }
-                            else
-                            {
-                                bagUIList.equipmentData[j].SelectedImage.gameObject.SetActive(false);
-                            }
-                        }
+        //                        //当前武器已被装备
+        //                        bagUIList.equipmentData[number].isSelected = true;
+        //                        //遍历装备背包，更新装备图标
+        //                        for (int j = 0; j < bagUIList.CurrentEquipmentNumber; j++)
+        //                        {
+        //                            if (bagUIList.equipmentData[j].isSelected)
+        //                            {
+        //                                bagUIList.equipmentData[j].SelectedImage.gameObject.SetActive(true);
+        //                            }
+        //                            else
+        //                            {
+        //                                bagUIList.equipmentData[j].SelectedImage.gameObject.SetActive(false);
+        //                            }
+        //                        }
 
-                        //装备槽获取当前索引
-                        equipmentSelector.rightHandWeaponList[i].EquipIndex = number;
+        //                        //装备槽获取当前索引
+        //                        equipmentSelector.rightHandWeaponList[i].EquipIndex = number;
 
-                        //更新主界面显示
-                        mainUIFunc.equipmentViewManager.UpdatRightHandView();
+        //                        //更新主界面显示
+        //                        mainUIFunc.equipmentViewManager.UpdatRightHandView();
 
-                        equipmentUIFunc.RightHandImage.sprite = equipmentSelector.rightHandWeaponList[0].equipImage.sprite;
+        //                        equipmentUIFunc.RightHandImage.sprite = equipmentSelector.rightHandWeaponList[0].equipImage.sprite;
 
 
-                        Debug.Log("装备成功！");
-                        return;
-                    }
-                    else if(bagUIList.equipmentData[number].isSelected)
-                    {
-                        Debug.Log("当前武器已被装备");
-                    }
-                    else
-                    {
-                        Debug.Log("已被到装备上限");
-                    }
-                }
+        //                        Debug.Log("装备成功！");
+        //                        return;
+        //                    }
+        //                    else if(bagUIList.equipmentData[number].isSelected)
+        //                    {
+        //                        Debug.Log("当前武器已被装备");
+        //                    }
+        //                    else
+        //                    {
+        //                        Debug.Log("已被到装备上限");
+        //                    }
+        //                }
 
-                
-            }
 
-            //选中装备左手武器
-            if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.LeftHandWeapon)
-            {
+        //            }
 
-                for (int i = 0; i < 2; i++)
-                {
-                    if (equipmentSelector.leftHandWeaponList[i].isEquiped == false && !(bagUIList.equipmentData[number].isSelected))
-                    {
-                        equipmentSelector.leftHandWeaponList[i].equipImage.sprite = Displayimage.sprite;
+        //            //选中装备左手武器
+        //            if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.LeftHandWeapon)
+        //            {
 
-                        equipmentSelector.leftHandWeaponList[i].isEquiped = true;
+        //                for (int i = 0; i < 2; i++)
+        //                {
+        //                    if (equipmentSelector.leftHandWeaponList[i].isEquiped == false && !(bagUIList.equipmentData[number].isSelected))
+        //                    {
+        //                        equipmentSelector.leftHandWeaponList[i].equipImage.sprite = Displayimage.sprite;
 
-                        equipmentSelector.leftHandWeaponList[i].highLightImage.gameObject.SetActive(false);
+        //                        equipmentSelector.leftHandWeaponList[i].isEquiped = true;
 
-                        bagUIList.equipmentData[number].isSelected = true;
+        //                        equipmentSelector.leftHandWeaponList[i].highLightImage.gameObject.SetActive(false);
 
-                        for (int j = 0; j < bagUIList.EquipmentNumber; j++)
-                        {
-                            if (bagUIList.equipmentData[j].isSelected)
-                            {
-                                bagUIList.equipmentData[j].SelectedImage.gameObject.SetActive(true);
-                            }
-                            else
-                            {
-                                bagUIList.equipmentData[j].SelectedImage.gameObject.SetActive(false);
-                            }
-                        }
+        //                        bagUIList.equipmentData[number].isSelected = true;
 
-                        mainUIFunc.equipmentViewManager.UpdatLeftHandView();
+        //                        for (int j = 0; j < bagUIList.CurrentEquipmentNumber; j++)
+        //                        {
+        //                            if (bagUIList.equipmentData[j].isSelected)
+        //                            {
+        //                                bagUIList.equipmentData[j].SelectedImage.gameObject.SetActive(true);
+        //                            }
+        //                            else
+        //                            {
+        //                                bagUIList.equipmentData[j].SelectedImage.gameObject.SetActive(false);
+        //                            }
+        //                        }
 
-                        equipmentUIFunc.LeftHandImage.sprite = equipmentSelector.leftHandWeaponList[0].equipImage.sprite;
+        //                        mainUIFunc.equipmentViewManager.UpdatLeftHandView();
 
-                        Debug.Log("装备成功！");
-                        return;
-                    }
-                    else if (bagUIList.equipmentData[number].isSelected)
-                    {
-                        Debug.Log("当前武器已被装备");
-                    }
-                    else
-                    {
-                        Debug.Log("已达到装备上限");
-                    }
-                }
+        //                        equipmentUIFunc.LeftHandImage.sprite = equipmentSelector.leftHandWeaponList[0].equipImage.sprite;
 
-               
-            }
-        }
-        void ScrollCellReturn()
-        {
-            Debug.Log("回收触发");
-            // 可以在这里重置插槽状态
-            if (text != null) text.text = "";
-            if (description != null) description.text = "";
-            if (Displayimage != null) Displayimage.sprite = null;
+        //                        Debug.Log("装备成功！");
+        //                        return;
+        //                    }
+        //                    else if (bagUIList.equipmentData[number].isSelected)
+        //                    {
+        //                        Debug.Log("当前武器已被装备");
+        //                    }
+        //                    else
+        //                    {
+        //                        Debug.Log("已达到装备上限");
+        //                    }
+        //                }
 
-        }
+
+        //            }
+        //        }
+
 
         public void OnPointerEnter(PointerEventData eventData)
         {
@@ -321,12 +317,12 @@ namespace Common.UI
             //        Debug.Log("鼠标进入插槽");
             //    }
             //}
-            
+
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            if (number < bagUIList.EquipmentNumber)
+            if (number < bagUIList.CurrentEquipmentNumber)
             {
                 HighLightImage.gameObject.SetActive(false);
                 Debug.Log("鼠标离开插槽");
@@ -336,9 +332,9 @@ namespace Common.UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            if (number < bagUIList.EquipmentNumber)
+            if (number < bagUIList.CurrentEquipmentNumber)
             {
-                EquipSelected();
+                //EquipSelected();
             }
         }
     }
