@@ -12,4 +12,6 @@ public class SlotBase : MonoBehaviour
     public Image image_1;
 
     public int number_1;
+
+    public bool ableToEquiped = false;
 }

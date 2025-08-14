@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using ns.BagSystem;
+using Common.UI;
 
 public class EquipmentBagUIList : MonoBehaviour
 {
    [Header("配置")]
     [SerializeField] private GameObject slotPrefab; // 拖入Slot预制体
     [SerializeField] private int initialSlotCount = 50; // 初始格子数量
+    public int EquipmentNumber = 0;//当前显示的装备数量
 
     [Header("运行时数据")]
-    public List<SlotBase> equipBagItems = new List<SlotBase>();
+    public List<SlotBase> equipBagItems = new List<SlotBase>(); //背包物体的显示列表
+    public List<EquipmentSlot> equipmentData = new List<EquipmentSlot>(); //背包物体的数据和交互列表
 
     /// <summary>
     /// 背包分类的枚举，用于上方选项的通信
@@ -20,21 +23,25 @@ public class EquipmentBagUIList : MonoBehaviour
     public EquipItemCategory currentEquipCategory = EquipItemCategory.None;
 
     public EquipmentBagScroller equipBagScroller;
+
+    ///// <summary>
+    ///// 根据插槽中的武器选中状态更新背包武器选中状态
+    ///// </summary>
+    //[SerializeField] private EquipmentUIFunc equipmentUIFunc;
+    //private EquipmentSelector equipmentSelector;
     public void OnEnable()
     {
         InitializeSlotPrefabReferences();
     }
 
-    //private void Start()
-    //{
-    //    InitializeSlotPrefabReferences();
-    //}
+
     /// <summary>
     /// 初始化Slot预制体引用到列表
     /// </summary>
     public void InitializeSlotPrefabReferences()
     {
         equipBagItems.Clear();
+        equipmentData.Clear();//选中状态也会被重置
 
         if (slotPrefab == null)
         {
@@ -78,8 +85,9 @@ public class EquipmentBagUIList : MonoBehaviour
             {
                 equipBagItems[i].text_1.text = itemLst[i].itemInfo.name;
                 equipBagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                equipBagItems[i].ableToEquiped = true;
             }
-            
+            EquipmentNumber = itemLst.Count;
         }
         else if (currentEquipCategory == EquipItemCategory.BodyEquipment)
         {
@@ -88,8 +96,9 @@ public class EquipmentBagUIList : MonoBehaviour
             {
                 equipBagItems[i].text_1.text = itemLst[i].itemInfo.name;
                 equipBagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                equipBagItems[i].ableToEquiped = true;
             }
-     
+            EquipmentNumber = itemLst.Count;
         }
         else if (currentEquipCategory == EquipItemCategory.KernelEquipment)
         {
@@ -98,8 +107,9 @@ public class EquipmentBagUIList : MonoBehaviour
             {
                 equipBagItems[i].text_1.text = itemLst[i].itemInfo.name;
                 equipBagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                equipBagItems[i].ableToEquiped = true;
             }
-         
+            EquipmentNumber = itemLst.Count;
         }       
         else if (currentEquipCategory == EquipItemCategory.RightHandWeapon)
         {
@@ -108,8 +118,10 @@ public class EquipmentBagUIList : MonoBehaviour
             {
                 equipBagItems[i].text_1.text = itemLst[i].itemInfo.name;
                 equipBagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                equipBagItems[i].ableToEquiped = true;
             }
-            
+            EquipmentNumber = itemLst.Count;
+
         }
         else if (currentEquipCategory == EquipItemCategory.LeftHandWeapon)
         {
@@ -118,8 +130,9 @@ public class EquipmentBagUIList : MonoBehaviour
             {
                 equipBagItems[i].text_1.text = itemLst[i].itemInfo.name;
                 equipBagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                equipBagItems[i].ableToEquiped = true;
             }
-           
+            EquipmentNumber = itemLst.Count;
         }
         //else if(currentCategory == EquipItemCategory.None)
         //{
@@ -131,7 +144,9 @@ public class EquipmentBagUIList : MonoBehaviour
         //    }
         //}
 
-        equipBagScroller.OnEnable();
+
+        //刷新装备背包列表
+        equipBagScroller.UpdateEquipmentBagScrollList();
 
         Debug.Log($"已成功添加 {equipBagItems.Count} 个Slot信息到背包列表");
     }

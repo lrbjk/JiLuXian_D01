@@ -25,7 +25,9 @@ public class EquipmentController : MonoBehaviour
 
     //与装备UI连接接口
     [SerializeField] private EquipmentBagUIList equipBagUIList;
+    [SerializeField] private EquipmentSelector equipmentSelector;   
     public static event Action<EquipmentBagUIList> OnCategoryChanged;
+    
 
 
     [Header("选项面板控制")]
@@ -51,12 +53,18 @@ public class EquipmentController : MonoBehaviour
 
         equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
 
+        //提前加载好插槽列表
+        equipmentSelector = equipmentUIFunc.equipmentSelector;
+        equipmentSelector.UpdateEquipmentSelectList();
+
         righthandSelector = equipmentUIFunc.righthandSelector;
         lefthandSelector = equipmentUIFunc .lefthandSelector;
         headSelector = equipmentUIFunc .headSelector;
         bodySelector = equipmentUIFunc .bodySelector;
         kernelSelector = equipmentUIFunc .kernelSelector;
         Debug.Log("找到装备背包");
+
+
     }
 
     private void EquipRightHand()

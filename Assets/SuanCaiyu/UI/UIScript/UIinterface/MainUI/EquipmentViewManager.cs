@@ -33,28 +33,43 @@ public class EquipmentViewManager : MonoBehaviour
     /// <summary>
     /// 更新右手装备栏UI显示
     /// </summary>
-    public void UpdatRightHandView(int i)
+    public void UpdatRightHandView()
     {
+        RightHnadCycler.equipmentImages.Clear();
         //右手武器
-      
-            if(equipmentSelector.rightHandWeaponList[i].isEquiped)
+        for (int i = 0; i < 2; i++)
+        {
+            if (equipmentSelector.rightHandWeaponList[i].isEquiped)
             {
                 RightHnadCycler.equipmentImages.Add(equipmentSelector.rightHandWeaponList[i].equipImage.sprite);
-                RightHnadCycler.UpdateImagerDisplay();
+                
             }
-           
+        }
+        //装备槽全部清空时防止数组越界
+        if(RightHnadCycler.equipmentImages.Count<2)
+        {
+            RightHnadCycler.currentIndex = 0;
+        }
+        RightHnadCycler.UpdateImagerDisplay();
+
     }
 
     public void UpdatLeftHandView()
     {
+        RightHnadCycler.equipmentImages.Clear();
         //左手武器
         for (int i = 0; i < 2; i++)
         {
             if (equipmentSelector.leftHandWeaponList[i].isEquiped)
             {
                 LeftHnadCycler.equipmentImages.Add(equipmentSelector.leftHandWeaponList[i].equipImage.sprite);
-                LeftHnadCycler.UpdateImagerDisplay();
+               
             }
         }
+        if (RightHnadCycler.equipmentImages.Count < 2)
+        {
+            RightHnadCycler.currentIndex = 0;
+        }
+        LeftHnadCycler.UpdateImagerDisplay();
     }
 }

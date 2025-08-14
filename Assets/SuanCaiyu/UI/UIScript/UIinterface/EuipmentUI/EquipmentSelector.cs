@@ -24,7 +24,7 @@ public class EquipmentSelector : MonoBehaviour
     public List<EuipmentItem> kernelEquipmentList = new List<EuipmentItem>();
 
     // 初始化装备列表
-    private void Awake()
+    public void UpdateEquipmentSelectList()
     {
         SpawnRightHandItem();
         SpawnLeftHandItem();

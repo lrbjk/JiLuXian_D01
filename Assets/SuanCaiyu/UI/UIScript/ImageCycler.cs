@@ -9,20 +9,20 @@ namespace Common.UI
     public class ImageCycler : MonoBehaviour
     {
         [Header("UI References")]
-        public Image DisplayImage;
+        [SerializeField] public Image DisplayImage;
         [SerializeField] private Image NextImage;
         //[SerializeField] private Button cycleButton; // 仅用于显示用途
 
         [Header("Weapon Images")]
         public List<Sprite> equipmentImages = new List<Sprite>();
 
-        
+
         //[Header("Keyboard Settings")]
         //[SerializeField] private KeyCode cycleKey = KeyCode.RightArrow;
         //[SerializeField] private float keyRepeatDelay = 0.5f;
         //[SerializeField] private float keyRepeatRate = 0.1f;
 
-        private int currentIndex = 0;
+        public int currentIndex = 0;
         private int nextIndex = 1;
         // private float lastKeyPressTime;
 

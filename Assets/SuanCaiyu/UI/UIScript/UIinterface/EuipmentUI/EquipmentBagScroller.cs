@@ -76,12 +76,18 @@ public class EquipmentBagScroller : MonoBehaviour, LoopScrollPrefabSource, LoopS
     //    ls.RefillCells();// 填充单元格
     //}
 
-    public void OnEnable()
+
+    //public void Start()
+    //{
+    //    UpdateEquipmentBagScrollList();
+    //}
+    public void UpdateEquipmentBagScrollList()
     {
         var ls = GetComponent<LoopScrollRect>();
         ls.prefabSource = this;// 设置预制体源
         ls.dataSource = this;// 设置数据源
         ls.totalCount = equipmentBagUIList.equipBagItems.Count;// 设置总数量
         ls.RefillCells();// 填充单元格
+       
     }
 }
