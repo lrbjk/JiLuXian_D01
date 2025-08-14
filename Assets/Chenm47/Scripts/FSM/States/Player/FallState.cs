@@ -24,6 +24,7 @@ namespace AI.FSM
             playerInfo.FallTimer = 0f;
             playerInfo.IsOnTop = false;
             //启用重力
+            Debug.Log(PlayerFSMBase.Instance.playerAction.GetVelocity());
             PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(true);
         }
 
@@ -44,7 +45,7 @@ namespace AI.FSM
             //禁用重力
             PlayerFSMBase.Instance.playerMotor3D.SetRbGravity(false);
             //将玩家位置更新到地面位置
-            PlayerFSMBase.Instance.playerMotor3D.UpdateToGround();
+            //PlayerFSMBase.Instance.playerMotor3D.UpdateToGround();
             //if (Physics.Raycast(fSMBase.transform.position, Vector3.down, out RaycastHit hit, PlayerFSMBase.Instance.playerMotor3D.GroundSphereRadius + 0.05f,
             //     PlayerFSMBase.Instance.playerMotor3D.GroundLayer))
             //{

@@ -16,13 +16,19 @@ MonoBehaviour:
   MovtionName: "\u540E\u64A4\u6B65"
   ComboMovtionID: 0
   AnimationName: BackStep
-  MovtionAtkValue: 0
+  ActionMultiplier: 0
+  ExecutionMultiplier: 0
+  MovtionPoise: 0
+  MovtionReducedPoise: 0
+  PreMovtionRotateSpeed: 0
+  PhysicalResistanceType: 0
   MovtionEvents:
   - EventType: 1
-    AnimationFrame: 2
+    AnimationFrame: 0
   - EventType: 2
-    AnimationFrame: 5
+    AnimationFrame: 9
   - EventType: 3
-    AnimationFrame: 20
-  DamagedMovtionID: 0
+    AnimationFrame: 15
+  FrontDamagedMovtionID: 0
+  BackDamagedMovtionID: 0
   DeadMovtionID: 0

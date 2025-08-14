@@ -24,11 +24,11 @@ MonoBehaviour:
   PhysicalResistanceType: 0
   MovtionEvents:
   - EventType: 1
-    AnimationFrame: 5
+    AnimationFrame: 0
   - EventType: 2
-    AnimationFrame: 20
+    AnimationFrame: 11
   - EventType: 3
-    AnimationFrame: 25
+    AnimationFrame: 17
   FrontDamagedMovtionID: 0
   BackDamagedMovtionID: 0
   DeadMovtionID: 0

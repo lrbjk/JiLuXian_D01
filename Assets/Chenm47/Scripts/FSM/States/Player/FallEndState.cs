@@ -21,7 +21,7 @@ namespace AI.FSM
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
-            fSMBase.animationHandler.PlayTargetAnimation("FallEnd", true, 0.01f);
+            fSMBase.animationHandler.PlayTargetAnimation("FallEnd", true,0f);
         }
 
     }

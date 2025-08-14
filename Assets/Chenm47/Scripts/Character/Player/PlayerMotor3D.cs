@@ -98,28 +98,28 @@ namespace ns.Character.Player
             rb.MoveRotation(targetRotation);
         }
 
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.green;
-        //    Gizmos.DrawSphere(transform.position + forwardCheckDistance * transform.forward, GroundSphereRadius);//地面球
-        //    Gizmos.color = Color.yellow;
-        //    Vector3 dir = transform.forward;
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(transform.position + forwardCheckDistance * transform.forward, GroundSphereRadius);//地面球
+            Gizmos.color = Color.yellow;
+            Vector3 dir = transform.forward;
 
-        //    Gizmos.DrawLine(transform.position + Vector3.up * startUpOffest, transform.position + Vector3.up * startUpOffest + transform.forward * forwardCheckDistance);// 低位射线
-        //    Gizmos.DrawLine(transform.position + Vector3.up * stepHeight,
-        //       transform.position + Vector3.up * stepHeight + transform.forward * forwardCheckDistance);// 高位射线
+            //Gizmos.DrawLine(transform.position + Vector3.up * startUpOffest, transform.position + Vector3.up * startUpOffest + transform.forward * forwardCheckDistance);// 低位射线
+            //Gizmos.DrawLine(transform.position + Vector3.up * stepHeight,
+            //   transform.position + Vector3.up * stepHeight + transform.forward * forwardCheckDistance);// 高位射线
 
-        //    Gizmos.color = Color.gray;
-        //    Gizmos.DrawLine(transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance,//下台阶检测
-        //        transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance +
-        //        Vector3.down * stepDownDepth);
+            //Gizmos.color = Color.gray;
+            //Gizmos.DrawLine(transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance,//下台阶检测
+            //    transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance +
+            //    Vector3.down * stepDownDepth);
 
-        //    Gizmos.color = Color.red;
-        //    Gizmos.DrawLine(transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance,
-        //        transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance +
-        //        Vector3.down * UpPlaneMaxDixtance);//前方台阶上表面射线
+            //Gizmos.color = Color.red;
+            //Gizmos.DrawLine(transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance,
+            //    transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance +
+            //    Vector3.down * UpPlaneMaxDixtance);//前方台阶上表面射线
 
-        //}
+        }
 
         public bool GroundCastHit()
         {
