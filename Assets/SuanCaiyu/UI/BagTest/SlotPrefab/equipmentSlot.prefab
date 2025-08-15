@@ -240,14 +240,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nametext: {fileID: 0}
   description: {fileID: 11469264}
+  EmptyImage: {fileID: 21300000, guid: f6ca7a814782fc24d8ecd6d9c66dd99c, type: 3}
   Displayimage: {fileID: 2579227518680684273}
   HighLightImage: {fileID: 5848172422256986020}
   SelectedImage: {fileID: 6631883732866624566}
-  number: 0
-  isAdded: 0
+  BagIndex: 0
+  ableToEquip: 0
+  isSelected: 0
   equipmentUIFunc: {fileID: 0}
   mainUIFunc: {fileID: 0}
-  isSelected: 0
 --- !u!1 &3168995549168543420
 GameObject:
   m_ObjectHideFlags: 0

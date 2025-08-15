@@ -15,6 +15,10 @@ namespace Common.UI
 
         //是否已被装备
         public bool isEquiped = false;
+
+        /// <summary>
+        /// 当前装备在背包的索引
+        /// </summary>
         public int EquipIndex;
 
         [SerializeField] private EquipmentUIFunc equipmentUIFunc;
@@ -33,9 +37,15 @@ namespace Common.UI
         {
             if(isEquiped)
             {
-                highLightImage.gameObject.SetActive(true);              
+                //选中高亮
+                highLightImage.gameObject.SetActive(true);    
+                
+                //插槽占用状态取消
                 isEquiped=false;
-               // equipmentBagUIList.equipmentData[EquipIndex].isSelected = false;//数据列表中被选中项的选中状态取消
+
+                //数据列表中被选中项的选中状态取消,卸下武器的效果
+                equipmentBagUIList.equipBagItems[EquipIndex].isSelected = false;
+
                 Debug.Log("选中更换武器！");
             }
         }

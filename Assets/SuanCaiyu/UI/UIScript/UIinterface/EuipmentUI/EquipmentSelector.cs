@@ -1,4 +1,5 @@
 using Common.UI;
+using ns.ItemInfos;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ public class EquipmentSelector : MonoBehaviour
     public Transform headEquipmentItemParent;
     public Transform bodyEquipmentItemParent;
     public Transform kernelItemParent;
+    public Transform consumerItemParent;
 
 
     public GameObject equipmentItemPrefab;  // EuipmentItem预制体
@@ -22,6 +24,7 @@ public class EquipmentSelector : MonoBehaviour
     public List<EuipmentItem> headEquipmentList = new List<EuipmentItem>();
     public List<EuipmentItem> bodyEquipmentList = new List<EuipmentItem>();
     public List<EuipmentItem> kernelEquipmentList = new List<EuipmentItem>();
+    public List<EuipmentItem> consumerEquipmentList = new List<EuipmentItem>();//8个装备槽用一个列表
 
     // 初始化装备列表
     public void UpdateEquipmentSelectList()
@@ -31,6 +34,7 @@ public class EquipmentSelector : MonoBehaviour
         SpawnHeadEquipmentItem();
         SpawnBodyEquipmentItem();
         SpawnKernelEquipmentItem();
+        SpawnConsumerEquipmentItem();
     }
 
 
@@ -169,6 +173,32 @@ public class EquipmentSelector : MonoBehaviour
 
             kernelItemParent.gameObject.SetActive(false);
 
+    }
 
+    /// <summary>
+    /// 实例化消耗品插槽
+    /// </summary>
+    private void SpawnConsumerEquipmentItem()
+    {
+        if (equipmentItemPrefab == null || kernelItemParent == null)
+        {
+            Debug.LogWarning("缺少必要的引用！");
+            return;
+        }
+
+        for (int i = 0; i < 8; i++)
+        {
+            // 创建新装备项实例
+            GameObject newItem = Instantiate(equipmentItemPrefab, consumerItemParent);
+
+
+            // 获取EuipmentItem组件并设置数据
+            EuipmentItem itemComponent = newItem.GetComponent<EuipmentItem>();
+
+            consumerEquipmentList.Add(itemComponent);
+
+            consumerEquipmentList[i].gameObject.SetActive(false);
+
+        }
     }
 }

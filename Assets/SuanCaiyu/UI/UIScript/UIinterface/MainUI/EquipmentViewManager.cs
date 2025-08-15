@@ -18,6 +18,8 @@ public class EquipmentViewManager : MonoBehaviour
 
     [SerializeField] private Image RightHandimage;
     [SerializeField] private Image LeftHandimage;
+    [SerializeField] private Image Spellimage;
+    [SerializeField] private Image Propimage;
 
 
     private void Start()
@@ -45,7 +47,7 @@ public class EquipmentViewManager : MonoBehaviour
                 
             }
         }
-        //装备槽全部清空时防止数组越界
+        //只有一把武器时索引固定为1
         if(RightHnadCycler.equipmentImages.Count<2)
         {
             RightHnadCycler.currentIndex = 0;
@@ -62,8 +64,7 @@ public class EquipmentViewManager : MonoBehaviour
         {
             if (equipmentSelector.leftHandWeaponList[i].isEquiped)
             {
-                LeftHnadCycler.equipmentImages.Add(equipmentSelector.leftHandWeaponList[i].equipImage.sprite);
-               
+                LeftHnadCycler.equipmentImages.Add(equipmentSelector.leftHandWeaponList[i].equipImage.sprite);              
             }
         }
         if (RightHnadCycler.equipmentImages.Count < 2)
@@ -71,5 +72,24 @@ public class EquipmentViewManager : MonoBehaviour
             RightHnadCycler.currentIndex = 0;
         }
         LeftHnadCycler.UpdateImagerDisplay();
+    }
+
+    public void UpdateConsumerView()
+    {
+        PropCycler.equipmentImages.Clear();
+
+        for(int i = 0; i <8; i++)
+        {
+            if (equipmentSelector.consumerEquipmentList[i].isEquiped)
+            {
+                PropCycler.equipmentImages.Add(equipmentSelector.consumerEquipmentList[i].equipImage.sprite);
+            }
+        }
+        //下标越界
+        if(PropCycler.currentIndex >= PropCycler.equipmentImages.Count)
+        {
+            PropCycler.currentIndex = 0;
+        }
+        PropCycler.UpdateImagerDisplay();
     }
 }

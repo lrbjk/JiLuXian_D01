@@ -288,7 +288,10 @@ namespace Common.UI
         public void SwitchRightWeapon()
         {
             rightWeapon.CycleImage();
-            equipmentUIFunc.RightHandImage.sprite = rightWeapon.DisplayImage.sprite;
+            if(rightWeapon.equipmentImages.Count != 0)
+            {
+                equipmentUIFunc.RightHandImage.sprite = rightWeapon.DisplayImage.sprite;
+            }          
         }
 
         /// <summary>
@@ -305,7 +308,11 @@ namespace Common.UI
         public void SwitchLefttWeapon()
         {
             leftWeapon.CycleImage();
-            equipmentUIFunc.LeftHandImage.sprite=leftWeapon.DisplayImage.sprite;
+            if(leftWeapon.equipmentImages.Count != 0)
+            {
+                equipmentUIFunc.LeftHandImage.sprite = leftWeapon.DisplayImage.sprite;
+            }
+
         }
 
         /// <summary>
@@ -338,6 +345,11 @@ namespace Common.UI
         public void SwitchDownWeapon()
         {
             downWeapon.CycleImage();
+            if(downWeapon.equipmentImages.Count != 0)
+            {
+                equipmentUIFunc.equipmentController.ConsumerSpriteList[equipmentUIFunc.equipmentController.currentConsumerSelectorIdx].sprite = downWeapon.DisplayImage.sprite;
+            }
+           
         }
         #endregion
 

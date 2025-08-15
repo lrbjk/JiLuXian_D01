@@ -2582,7 +2582,7 @@ PrefabInstance:
     - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
         type: 3}
       propertyPath: TestHaveItems.Array.size
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
         type: 3}
@@ -2600,7 +2600,25 @@ PrefabInstance:
         type: 3}
       propertyPath: TestHaveItems.Array.data[6].itemInfo
       value: 
-      objectReference: {fileID: 11400000, guid: 0b09b18f9e2cebb49b283fd1f0d7230f,
+      objectReference: {fileID: 11400000, guid: 37af6bd2bfa8f6048b67a95cc92b85ca,
+        type: 2}
+    - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
+        type: 3}
+      propertyPath: TestHaveItems.Array.data[7].itemInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: bba395a2a1cbb5945b731fd2de1a4e54,
+        type: 2}
+    - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
+        type: 3}
+      propertyPath: TestHaveItems.Array.data[8].itemInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: 072b36b728e06df44bbdf46bc296fdcc,
+        type: 2}
+    - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
+        type: 3}
+      propertyPath: TestHaveItems.Array.data[9].itemInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: e255286b02a625942922e3b782958453,
         type: 2}
     - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
         type: 3}
@@ -2615,6 +2633,21 @@ PrefabInstance:
     - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
         type: 3}
       propertyPath: TestHaveItems.Array.data[6].currentCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
+        type: 3}
+      propertyPath: TestHaveItems.Array.data[7].currentCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
+        type: 3}
+      propertyPath: TestHaveItems.Array.data[8].currentCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 548249005606271899, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
+        type: 3}
+      propertyPath: TestHaveItems.Array.data[9].currentCount
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4066291595582182481, guid: 8fa205f2b4b5c1744b37f12c9aba4029,
@@ -4792,45 +4825,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2903912226020444347, guid: ac61d0f848f58ed4e80163d6028e6c40,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2903912226020444347, guid: ac61d0f848f58ed4e80163d6028e6c40,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2903912226020444347, guid: ac61d0f848f58ed4e80163d6028e6c40,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560140086596425412, guid: ac61d0f848f58ed4e80163d6028e6c40,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560140086596425412, guid: ac61d0f848f58ed4e80163d6028e6c40,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4560140086596425412, guid: ac61d0f848f58ed4e80163d6028e6c40,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.000041825915
-      objectReference: {fileID: 0}
     - target: {fileID: 6241918299917521406, guid: ac61d0f848f58ed4e80163d6028e6c40,
         type: 3}
       propertyPath: m_Name
       value: OriginalUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 8282575730222893432, guid: ac61d0f848f58ed4e80163d6028e6c40,
-        type: 3}
-      propertyPath: m_Value
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

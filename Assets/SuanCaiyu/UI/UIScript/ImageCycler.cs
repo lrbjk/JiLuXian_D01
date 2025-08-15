@@ -66,7 +66,7 @@ namespace Common.UI
             // 切换武器
             currentIndex = (currentIndex + 1) % equipmentImages.Count;
 
-            if (NextImage != null)
+            if (NextImage != null && equipmentImages.Count>1)
             {
                 nextIndex = (currentIndex + 1) % equipmentImages.Count;
             }
@@ -78,7 +78,7 @@ namespace Common.UI
         {
             DisplayImage.sprite = equipmentImages[currentIndex];
             DisplayImage.color = new Color(1, 1, 1, DisplayImage.sprite ? 1 : 0);//透明度为0-1之间的百分比
-            if (NextImage != null)
+            if (NextImage != null && equipmentImages.Count > 1)
             {
                 NextImage.sprite = equipmentImages[nextIndex];
                 NextImage.color = new Color(1, 1, 1, 0.6f);
