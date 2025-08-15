@@ -119,7 +119,10 @@ namespace Common.UI
 
                         isSelected = true;
 
-                        SelectedImage.gameObject.SetActive(true);
+                        equipmentSelector.leftHandWeaponList[i].EquipIndex = BagIndex;
+
+                        //更新装备图标，刷新背包
+                        bagUIList.UpdateEquipmentBag();
 
                         mainUIFunc.equipmentViewManager.UpdatLeftHandView();
 
@@ -155,11 +158,12 @@ namespace Common.UI
 
                         isSelected = true;
 
-                        SelectedImage.gameObject.SetActive(true);
+                        equipmentSelector.headEquipmentList[0].EquipIndex = BagIndex;
 
-                        //mainUIFunc.equipmentViewManager.UpdatLeftHandView();
+                    //更新装备图标，刷新背包
+                    bagUIList.UpdateEquipmentBag();
 
-                       equipmentUIFunc.HeadImage.sprite = equipmentSelector.headEquipmentList[0].equipImage.sprite;
+                    equipmentUIFunc.HeadImage.sprite = equipmentSelector.headEquipmentList[0].equipImage.sprite;
 
                         Debug.Log("装备成功！");
                         return;
@@ -189,9 +193,10 @@ namespace Common.UI
 
                     isSelected = true;
 
-                    SelectedImage.gameObject.SetActive(true);
+                    equipmentSelector.bodyEquipmentList[0].EquipIndex = BagIndex;
 
-                    //mainUIFunc.equipmentViewManager.UpdatLeftHandView();
+                    //更新装备图标，刷新背包
+                    bagUIList.UpdateEquipmentBag();
 
                     equipmentUIFunc.BodyImage.sprite = equipmentSelector.bodyEquipmentList[0].equipImage.sprite;
 
@@ -222,9 +227,10 @@ namespace Common.UI
 
                     isSelected = true;
 
-                    SelectedImage.gameObject.SetActive(true);
+                    equipmentSelector.kernelEquipmentList[0].EquipIndex = BagIndex;
 
-                    //mainUIFunc.equipmentViewManager.UpdatLeftHandView();
+                    //更新装备图标，刷新背包
+                    bagUIList.UpdateEquipmentBag();
 
                     equipmentUIFunc.KernelImg.sprite = equipmentSelector.kernelEquipmentList[0].equipImage.sprite;
 
@@ -256,7 +262,10 @@ namespace Common.UI
 
                     isSelected = true;
 
-                    SelectedImage.gameObject.SetActive(true);
+                    equipmentSelector.consumerEquipmentList[index].EquipIndex = BagIndex;
+
+                    //更新装备图标，刷新背包
+                    bagUIList.UpdateEquipmentBag();
 
                     mainUIFunc.equipmentViewManager.UpdateConsumerView();
 
