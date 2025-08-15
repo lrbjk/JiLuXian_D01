@@ -25,8 +25,12 @@ namespace ns.BagSystem
             {
                 ItemsCategoryDic[itemType] = new List<Item>();
             }
+            /***********测试*********/
             foreach (var item in TestHaveItems)
             {
+                //先重新获取ItemInfo 因为是测试
+                ItemInfo info = ItemInfoManager.GetItemInfo(item.itemInfo.name);
+                item.itemInfo = info;
                 AddItem(item);
             }
         }

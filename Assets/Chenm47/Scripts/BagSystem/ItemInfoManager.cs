@@ -2,6 +2,7 @@ using Helper;
 using ns.ItemInfos;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 namespace ns.BagSystem
@@ -30,11 +31,10 @@ namespace ns.BagSystem
                     //自动配置ID从1开始
                     iteminfo.ItemID = currentID;
                     //Debug.Log(iteminfo.name);
+
                     //自动配置名称为物品名
-                    if (string.IsNullOrEmpty(iteminfo.ItemName))
-                    {
-                        iteminfo.ItemName = iteminfo.name;
-                    }
+                    iteminfo.ItemName = iteminfo.name;
+
                     currentID++;
                     nameToID.Add(iteminfo.ItemName, iteminfo.ItemID);
                     itemInfos.Add(iteminfo.ItemID, iteminfo);
@@ -50,5 +50,8 @@ namespace ns.BagSystem
         {
             return itemInfos.TryGetValue(nameToID.GetByKey(itemName), out var itemInfo) ? itemInfo : null;
         }
+
+
+
     }
 }

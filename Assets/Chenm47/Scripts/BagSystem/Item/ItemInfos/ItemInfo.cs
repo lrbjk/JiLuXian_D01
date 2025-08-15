@@ -23,6 +23,7 @@ namespace ns.ItemInfos
     public abstract class ItemInfo : ScriptableObject
     {
         public Sprite ItemIcon;
+        [HideInInspector]
         public string ItemName;
         public string ItemDescription;
         [HideInInspector]
