@@ -19,8 +19,8 @@ namespace AI.FSM
             base.EnterState(fSMBase);
             PlayerFSMBase playerFSMBase = fSMBase as PlayerFSMBase;
             //此时由动画控制y速度，并记录当前其他轴速度
-            Vector3 v = playerFSMBase.playerAction.GetVelocity();
-            playerFSMBase.playerMotor3D.BeforeApplySpeed = v;
+            //Vector3 v = playerFSMBase.playerAction.GetVelocity();
+            //playerFSMBase.playerMotor3D.BeforeApplySpeed = v;
             playerFSMBase.playerMotor3D.ApplyAnimaMotionY = true;
 
             //playerFSMBase.playerAction.Jump();

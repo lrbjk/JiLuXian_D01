@@ -1,3 +1,4 @@
+using Common.Helper;
 using ns.Movtion;
 using ns.Value;
 using System;
@@ -86,6 +87,9 @@ namespace ns.Character
         protected virtual void Start()
         {
             MovtionManager = GetComponent<CharacterMovtionManager>();
+            LockedTF = transform.Find("LockTF");
+            BackStabedStandingTF = transform.FindChildByName("BackStabStandingPoint");
+            ForwardStabedStandingTF = transform.FindChildByName("ForwardStabStandingPoint");
         }
 
         /// <summary>当前血量 </summary>

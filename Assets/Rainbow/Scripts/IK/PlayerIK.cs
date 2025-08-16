@@ -19,7 +19,7 @@ public class PlayerIK : MonoBehaviour
     //
     int layerMask = 1 << 10;
     //CharacterController controller;
-    UnityEngine.AI.NavMeshAgent agent;
+    //UnityEngine.AI.NavMeshAgent agent;
     private Rigidbody rb;
     float LeftFootY, RightFootY;
     private float colliderHeight, controllerBoundsBottom;
@@ -33,7 +33,7 @@ public class PlayerIK : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         //controller = GetComponentInParent<CharacterController>();
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        //agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         rb = GetComponentInParent<Rigidbody>();
         capsuleCollider = GetComponentInParent<CapsuleCollider>();
         //hit all layers but the players layer
@@ -41,8 +41,8 @@ public class PlayerIK : MonoBehaviour
         //colliderHeight = controller.height;
         colliderHeight = capsuleCollider.height;
         //controllerBoundsBottom = controller.bounds.extents.y;
-        agent.height = colliderHeight;
-        agent.radius = capsuleCollider.radius;
+        //agent.height = colliderHeight;
+        //agent.radius = capsuleCollider.radius;
     }
 
     void FixedUpdate()
@@ -153,7 +153,7 @@ public class PlayerIK : MonoBehaviour
         //{
         //    legDistance = (1 / (planeSpeed(ref agent) + 0.8f));
         //}
-        legDistance = (1 / (planeSpeed(ref agent) + 0.8f));
+        legDistance = (1 / (planeSpeed(ref rb) + 0.8f));
     }
 
 

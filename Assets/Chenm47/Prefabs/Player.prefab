@@ -104,8 +104,8 @@ Transform:
   m_Children:
   - {fileID: 6011888763536399422}
   - {fileID: 1208128918206792209}
-  - {fileID: 5051788638741219992}
   - {fileID: 8015490522288290780}
+  - {fileID: 7049827577342471650}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &784200120924899241
@@ -217,7 +217,7 @@ MonoBehaviour:
   LockedRollMovtionID: 12
   BackStepMovtionID: 1
   JumpMovtionID: 9
-  FallEndMovtionID: 0
+  GunParryMovtionID: 13
   IsDownStair: 0
   LastAttackType: 6
   FallTimer: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
     value: 15
   - propertyType: 3
     value: 15
-  TransitionValue: 0
+  TransitionValue: 50
   CurrentCriticalStateType: 1
 --- !u!114 &2674699626631838181
 MonoBehaviour:
@@ -279,7 +279,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMotor3D: {fileID: 0}
-  cameraHandler: {fileID: 0}
   detectionRadius: 1
   backAngleThreshold: 60
   enemyLayer:
@@ -327,6 +326,8 @@ MonoBehaviour:
   playerInfo: {fileID: 0}
   playerMotor3D: {fileID: 0}
   playerIK: {fileID: 0}
+  BulletPrefab: {fileID: 0}
+  BulletCreatPos: {fileID: 0}
 --- !u!114 &7441882175394183481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LeftWeapon:
-    WInfo: {fileID: 11400000, guid: 32d609216b7880d4cb628cefd4cb9bef, type: 2}
+    WInfo: {fileID: 11400000, guid: 8e59813e7c8e3744eab6ef975a8a3e25, type: 2}
   RightWeapon:
     WInfo: {fileID: 11400000, guid: 32d609216b7880d4cb628cefd4cb9bef, type: 2}
 --- !u!114 &134249835580483584
@@ -371,6 +372,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cfc90ffcbb6f9964db5a7bbdb018b9b7, type: 2}
   - {fileID: 11400000, guid: a9238e8cf7e60514082bc21cce357e83, type: 2}
   - {fileID: 11400000, guid: 5432f37c85d4ecc4bb151af67956c7e3, type: 2}
+  - {fileID: 11400000, guid: d511d2375683deb4a8fa1f22bb0383bd, type: 2}
 --- !u!114 &8104255935956435282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +410,10 @@ MonoBehaviour:
     currentCount: 3
   - itemInfo: {fileID: 11400000, guid: 8e59813e7c8e3744eab6ef975a8a3e25, type: 2}
     currentCount: 1
+  - itemInfo: {fileID: 11400000, guid: 4eda088613b6d534888d3f34a3dd22e4, type: 2}
+    currentCount: 2
+  - itemInfo: {fileID: 11400000, guid: e255286b02a625942922e3b782958453, type: 2}
+    currentCount: 3
 --- !u!1 &4796875328957448726
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,37 +509,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8015490522288290780}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7615127708887460316
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5051788638741219992}
-  m_Layer: 9
-  m_Name: GroundRayPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5051788638741219992
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7615127708887460316}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.15}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7168513904653805008}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8439122538835118105
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +539,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8015490522288290780}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8779075713676268975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7049827577342471650}
+  m_Layer: 9
+  m_Name: BulletCreatePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7049827577342471650
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8779075713676268975}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.027, y: 1.33, z: 0.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7168513904653805008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6117081844392573909
 PrefabInstance:
@@ -775,10 +781,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7220521789116910953}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ea2916736168f45479b110b080aaad2d,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8107506498114419133}
     - targetCorrespondingSourceObject: {fileID: -7953038085206444922, guid: ea2916736168f45479b110b080aaad2d,
         type: 3}
       insertIndex: -1
@@ -881,7 +883,7 @@ MonoBehaviour:
   stepDownDepth: 0.5
   stepSmooth: 0.1
   stepDownVelocity: 4
-  UpPlaneMaxDixtance: 0.2
+  UpPlaneMaxDixtance: 0.25
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 1025
@@ -941,28 +943,6 @@ MonoBehaviour:
   footOffset: 0.12
   smooth: 10
   deltaAmplifier: 1
---- !u!195 &8107506498114419133
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6351575581998417540}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.15
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1.56
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 2
 --- !u!4 &7301957463668306563 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5642449413856786090, guid: ea2916736168f45479b110b080aaad2d,

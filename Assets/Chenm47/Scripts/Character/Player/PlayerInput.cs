@@ -50,9 +50,7 @@ namespace ns.Character.Player
         public bool RollUp { get; protected set; }
         /// <summary>翻滚键是否为长按</summary>
         public bool RollHoldTrigger { get; protected set; }
-        /// <summary>
-        /// 攻击输入
-        /// </summary>
+        //攻击输入
         public bool IsLeftAttackTrigger { get; protected set; }
         public bool IsLightAttackTrigger { get; protected set; }
         public bool IsHeavyAttackTrigger { get; protected set; }
@@ -258,8 +256,8 @@ namespace ns.Character.Player
         /// <returns></returns>
         protected virtual bool LightAttackInputL()
         {
-            //return Input.GetKeyDown(KeyCode.J);
-            return Input.GetMouseButtonDown(0);
+            return Input.GetKeyDown(KeyCode.J);
+            //return Input.GetMouseButtonDown(0);
         }
         /// <summary>
         /// 重击L输入
@@ -267,13 +265,13 @@ namespace ns.Character.Player
         /// <returns></returns>
         protected virtual bool HeavyAttackInputL()
         {
-            //return Input.GetKeyDown(KeyCode.U);
-            return Input.GetMouseButtonDown(1);
+            return Input.GetKeyDown(KeyCode.U);
+            //return Input.GetMouseButtonDown(1);
         }
 
         protected virtual bool SkillAttackInputL()
         {
-            return Input.GetKeyDown(KeyCode.M);
+            return Input.GetKeyDown(KeyCode.T);
         }
 
         /// <summary>
@@ -282,7 +280,8 @@ namespace ns.Character.Player
         /// <returns></returns>
         protected virtual bool LightAttackInputR()
         {
-            return Input.GetKeyDown(KeyCode.K);
+            //return Input.GetKeyDown(KeyCode.K);
+            return Input.GetMouseButtonDown(0);
         }
         /// <summary>
         /// 重击R输入
@@ -290,7 +289,8 @@ namespace ns.Character.Player
         /// <returns></returns>
         protected virtual bool HeavyAttackInputR()
         {
-            return Input.GetKeyDown(KeyCode.I);
+            //return Input.GetKeyDown(KeyCode.I);
+            return Input.GetMouseButtonDown(1);
         }
 
         protected virtual bool SkillAttackInputR()

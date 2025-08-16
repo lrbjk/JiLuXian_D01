@@ -48,7 +48,7 @@ namespace ns.Character.Player
         public int LockedRollMovtionID;
         public int BackStepMovtionID;
         public int JumpMovtionID;
-        public int FallEndMovtionID;
+        public int GunParryMovtionID;
 
         /*为状态机以及动画事件提供*/
         [HideInInspector]

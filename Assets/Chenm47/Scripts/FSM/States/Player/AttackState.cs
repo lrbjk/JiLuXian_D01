@@ -9,7 +9,7 @@ using UnityEngine;
 namespace AI.FSM
 {
     /// <summary>
-    /// 描述：
+    /// 描述：常规攻击状态
     /// </summary>
     public class AttackState : MovtionState
     {

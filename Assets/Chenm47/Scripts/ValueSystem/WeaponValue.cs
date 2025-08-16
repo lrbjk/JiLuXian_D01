@@ -56,7 +56,10 @@ namespace ns.Value
         {
             map = new Dictionary<WeaponPropertyLV, float>();
             map.Add(WeaponPropertyLV.A, 1.1f);
-            map.Add(WeaponPropertyLV.B, 0.9f);
+            map.Add(WeaponPropertyLV.B, 0.95f);
+            map.Add(WeaponPropertyLV.C, 0.93f);
+            map.Add(WeaponPropertyLV.D, 0.92f);
+            map.Add(WeaponPropertyLV.E, 0.9f);
         }
 
         public float GetWeaponPropertyLVFactor(WeaponPropertyLV weaponPropertyLV)

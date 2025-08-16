@@ -14,7 +14,7 @@ namespace AI.FSM
         BackStep,
         Attack,
         ComboAttack,
-        MovtionState,
+        GunParry,
         Fall,
         FallEnd,
         Jump,

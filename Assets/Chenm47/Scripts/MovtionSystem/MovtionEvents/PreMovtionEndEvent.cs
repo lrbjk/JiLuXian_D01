@@ -1,3 +1,4 @@
+using AI.FSM.Framework;
 using Common;
 
 namespace ns.Movtion
@@ -7,10 +8,16 @@ namespace ns.Movtion
     /// </summary>
     public class PreMovtionEndEvent : MovtionEventBase
     {
+        FSMBase fSMBase;
+
+        private void Awake()
+        {
+            fSMBase = GetComponentInParent<FSMBase>(true);
+        }
         public void PreMovtionEndFired()
         {
             print("前摇结束帧事件触发");
-            eventBehaviour.GetEventHandler(MovtionEventType.PreMovtionEnd)?.Invoke(this, new AnimationEventArgs());
+            eventBehaviour.GetEventHandler(MovtionEventType.PreMovtionEnd)?.Invoke(this, new AnimationEventArgs(fSMBase));
         }
     }
 }

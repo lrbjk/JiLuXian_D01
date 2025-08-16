@@ -16,8 +16,8 @@ namespace ns.Character.Player
         private Rigidbody rb;
 
         private PlayerInfo playerInfo;
-        [SerializeField]
-        CameraHandler cameraHandler;
+
+        private CameraHandler cameraHandler;
 
         protected override void Init()
         {
@@ -25,6 +25,7 @@ namespace ns.Character.Player
             playerInfo = GetComponent<PlayerInfo>();
             rb = GetComponent<Rigidbody>();
             playerMotor3D = GetComponentInChildren<PlayerMotor3D>();
+            cameraHandler = Object.FindObjectOfType<CameraHandler>();
         }
 
 

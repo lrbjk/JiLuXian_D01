@@ -1,6 +1,7 @@
 using AI.FSM;
 using AI.FSM.Framework;
 using Cinemachine.Utility;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 namespace ns.Character.Player
@@ -87,7 +88,7 @@ namespace ns.Character.Player
             }
         }
 
-
+        private Queue<Vector3> speedCache = new Queue<Vector3>(3);
         private void FixedUpdate()
         {
             //if (IsDebug)
@@ -95,6 +96,8 @@ namespace ns.Character.Player
             //    Debug.Log(Time.frameCount + "Fixed" + targetRotation.eulerAngles);
             //}
             //Debug.Log(Time.time + "FIXED");
+            //缓存三帧的速度作为beforespeed
+
             rb.MoveRotation(targetRotation);
         }
 
@@ -105,19 +108,19 @@ namespace ns.Character.Player
             Gizmos.color = Color.yellow;
             Vector3 dir = transform.forward;
 
-            //Gizmos.DrawLine(transform.position + Vector3.up * startUpOffest, transform.position + Vector3.up * startUpOffest + transform.forward * forwardCheckDistance);// 低位射线
-            //Gizmos.DrawLine(transform.position + Vector3.up * stepHeight,
-            //   transform.position + Vector3.up * stepHeight + transform.forward * forwardCheckDistance);// 高位射线
+            Gizmos.DrawLine(transform.position + Vector3.up * startUpOffest, transform.position + Vector3.up * startUpOffest + transform.forward * forwardCheckDistance);// 低位射线
+            Gizmos.DrawLine(transform.position + Vector3.up * stepHeight,
+               transform.position + Vector3.up * stepHeight + transform.forward * forwardCheckDistance);// 高位射线
 
-            //Gizmos.color = Color.gray;
-            //Gizmos.DrawLine(transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance,//下台阶检测
-            //    transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance +
-            //    Vector3.down * stepDownDepth);
+            Gizmos.color = Color.gray;
+            Gizmos.DrawLine(transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance,//下台阶检测
+                transform.position - Vector3.up * startDownOffest + transform.forward * forwardCheckDistance +
+                Vector3.down * stepDownDepth);
 
-            //Gizmos.color = Color.red;
-            //Gizmos.DrawLine(transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance,
-            //    transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance +
-            //    Vector3.down * UpPlaneMaxDixtance);//前方台阶上表面射线
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance,
+                transform.position + Vector3.up * (stepHeight + 0.01f) + transform.forward * forwardCheckDistance +
+                Vector3.down * UpPlaneMaxDixtance);//前方台阶上表面射线
 
         }
 
@@ -323,7 +326,10 @@ namespace ns.Character.Player
             {
                 //其他轴速度保持
                 //Debug.Log("rb:" + rb.velocity.ToString() + "animator" + animator.velocity);
-                Vector3 v = new Vector3(BeforeApplySpeed.x, animator.velocity.y, BeforeApplySpeed.z);
+                //朝向应该是当前角色朝向
+                Vector3 dir = transform.forward;
+                dir = BeforeApplySpeed.magnitude * dir;
+                Vector3 v = new Vector3(dir.x, animator.velocity.y, dir.z);
                 rb.velocity = v;
             }
             if (ApplyAnimaMotionXZ)

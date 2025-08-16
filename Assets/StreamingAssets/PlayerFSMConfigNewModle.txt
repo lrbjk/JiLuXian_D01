@@ -5,6 +5,7 @@ RollInput>Roll
 BackStepInput>BackStep
 BackStab>BackStab
 ForwardStab>ForwardStab
+GunParryInput>GunParry
 AttackInput>Attack
 JumpInput>Jump
 DntOnGround>DirectFall
@@ -28,6 +29,7 @@ RollInput>Roll
 BackStepInput>BackStep
 BackStab>BackStab
 ForwardStab>ForwardStab
+GunParryInput>GunParry
 AttackInput>Attack
 JumpInput>Jump
 DntOnGround>DirectFall
@@ -40,6 +42,9 @@ InteractingDown>Default
 ComboAtk>ComboAttack
 ComboAtkDown>Default
 BackStepBreak>BackStep
+[GunParry]
+InteractingDownMovement>Move
+InteractingDown>Default
 [Jump]
 IsOnJumpTop>Fall
 [Fall]

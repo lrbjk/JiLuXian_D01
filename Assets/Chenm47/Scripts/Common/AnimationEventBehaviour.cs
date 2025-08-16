@@ -10,9 +10,9 @@ namespace Common
     public class AnimationEventArgs : EventArgs
     {
         public FSMBase fSMBase { get; set; }
-        public AnimationEventArgs()
+        public AnimationEventArgs(FSMBase fSMBase)
         {
-
+            this.fSMBase = fSMBase;
         }
     }
 

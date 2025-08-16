@@ -17,20 +17,21 @@ MonoBehaviour:
   ItemDescription: "\u63A2\u7D22\u5C0F\u961F\u6210\u5458\u7684\u57FA\u672C\u88C5\u5907\u4E4B\u4E00\u3002\u80FD\u53D1\u5C04\u51FAEMP\u5B50\u5F39\u3002
     EMP\u7684\u7535\u78C1\u8109\u51B2\u80FD\u5BF9\u7070\u571F\u4EA7\u751F\u76F4\u63A5\u7684\u5F71\u54CD\uFF0C\u56E0\u6B64\u662F\u5BF9\u4ED8\u6742\u8D28\u7684\u6709\u5229\u624B\u6BB5\u4E4B\u4E00\u3002
     \u5F53\u4EBA\u7C7B\u53D1\u73B0\u4E86EMP\u80FD\u5BF9\u6297\u6742\u8D28\u65F6\uFF0C\u4FBF\u53D1\u73B0\u4E86\u8FD9\u573A\u6218\u4E89\u83B7\u80DC\u7684\u5E0C\u671B\u3002"
-  ItemID: 0
+  ItemID: 13
   iType: 8
   MaxCount: 1
   _isInitialized: 1
-  ModlePrefab: {fileID: 0}
+  ModlePrefab: {fileID: 986163900176472707, guid: 0f242b212c5602448810607857874a81,
+    type: 3}
   wType: 1
   LightAtkIDL: 0
   HeavyAtkIDL: 0
-  SkillAtkIDL: 0
+  SkillAtkIDL: 13
   LightAtkIDR: 0
   HeavyAtkIDR: 0
   SkillAtkIDR: 0
   WCPOriginalProperties: []
-  WeaponValue: {fileID: 0}
+  WeaponValue: {fileID: 11400000, guid: 54d68e6515a96e74896874630d1332b0, type: 2}
   ModleGO: {fileID: 0}
   CurrentLV: 0
   WCPCurrentProperties: []

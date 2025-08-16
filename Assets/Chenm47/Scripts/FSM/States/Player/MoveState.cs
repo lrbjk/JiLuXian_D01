@@ -12,6 +12,7 @@ namespace AI.FSM
     {
         private float movement;
         private bool isMovementLocked;
+        private bool isChangeToRun = false;
 
         public override void Init()
         {
@@ -33,7 +34,7 @@ namespace AI.FSM
             else
             {//锁定视角情况
                 PlayerFSMBase.Instance.animationHandler.SetFloatDamp("Vertical", PlayerFSMBase.Instance.playerInput.VerticalMove, 0.001f, 0.1f, Time.deltaTime);
-                PlayerFSMBase.Instance.animationHandler.SetFloatDamp("Horizontal", PlayerFSMBase.Instance.playerInput.HorizontalMove,0.001f, 0.1f, Time.deltaTime);
+                PlayerFSMBase.Instance.animationHandler.SetFloatDamp("Horizontal", PlayerFSMBase.Instance.playerInput.HorizontalMove, 0.001f, 0.1f, Time.deltaTime);
                 //playerFSM.animator.Play("LockedMovement");
                 PlayerFSMBase.Instance.animationHandler.PlayTargetAnimation("LockedMovement", false, 0.1f);
                 isMovementLocked = true;
@@ -49,7 +50,7 @@ namespace AI.FSM
             //人物移动控制
             MovementHandle(playerFSM);
 
-            //移动动画参数设置
+
 
             if (playerFSM.playerInput.LockView)
             {
@@ -68,7 +69,27 @@ namespace AI.FSM
                 }
             }
 
-            if (playerFSM.playerInput.LockViewTrigger)//如果是锁定状态，八位移动
+            if (PlayerFSMBase.Instance.playerInput.RollHoldTrigger)
+            {
+                if (playerFSM.playerInput.LockViewTrigger && isMovementLocked)
+                {
+                    Debug.Log("锁定中切换正常移动");
+                    PlayerFSMBase.Instance.animationHandler.PlayTargetAnimation("Movement", false, 0.1f);
+                    isMovementLocked = false;
+                }
+            }
+            else
+            {
+                if (playerFSM.playerInput.LockViewTrigger && !isMovementLocked)
+                {
+                    Debug.Log("锁定中切换锁定移动");
+                    PlayerFSMBase.Instance.animationHandler.PlayTargetAnimation("LockedMovement", false, 0.1f);
+                    isMovementLocked = true;
+                }
+            }
+
+            //移动动画参数设置
+            if (playerFSM.playerInput.LockViewTrigger && !PlayerFSMBase.Instance.playerInput.RollHoldTrigger)//如果是锁定状态，八位移动
             {
                 playerFSM.animator.SetFloat("Vertical", playerFSM.playerInput.VerticalMove, 0.01f, Time.deltaTime);
                 playerFSM.animator.SetFloat("Horizontal", playerFSM.playerInput.HorizontalMove, 0.01f, Time.deltaTime);
