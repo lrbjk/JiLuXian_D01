@@ -1,192 +1,252 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using ns.BagSystem;
+using Common.UI;
+using ns.ItemInfos;
 
-
-/// <summary>
-/// 管理背包的格子（仅存储预制体信息，不实例化）
-/// </summary>
 public class BagList : MonoBehaviour
 {
     [Header("配置")]
-    [SerializeField] private GameObject slotPrefab; // 拖入Slot预制体
-    [SerializeField] private int initialSlotCount = 50; // 初始格子数量
+    //[SerializeField] private GameObject slotPrefab; // 拖入Slot预制体
+    public Transform ItemParent;//显示的父物体Content
+    public GameObject BagGridPrefab; //背包格子预制体
 
+    [SerializeField] private int Sum = 50; // 初始格子数量
+
+    /// <summary>
+    /// 当前可装备数量
+    /// </summary>
+    public int CurrentItemNumber = 0;//当前显示的装备数量
+
+    /// <summary>
+    /// 背包物体的显示列表
+    /// </summary>
     [Header("运行时数据")]
-    public List<SlotBase> bagItems = new List<SlotBase>();
+    public List<Slot> BagItems = new List<Slot>(); //背包物体的显示列表
+    //public List<EquipmentSlot> equipmentData = new List<EquipmentSlot>(); //背包物体的数据和交互列表（也许不是很需要了）
 
     /// <summary>
     /// 背包分类的枚举，用于上方选项的通信
     /// </summary>
     public enum ItemCategory
-    { None, Consumable, Material, Currency, HeadEquipment , BodyEquipment , KernelEquipment , Spell ,Key ,  RightHandWeapon , LeftHandWeapon } 
+    { None, HeadEquipment, BodyEquipment, KernelEquipment, RightHandWeapon, LeftHandWeapon, Consumable, Material, Currency, Spell, Key }
     public ItemCategory currentCategory = ItemCategory.None;
 
-    public BagScroller bagScroller;
-    public void OnEnable()
+    //引用的外部变量
+    [SerializeField] private EquipmentUIFunc equipmentUIFunc;
+
+
+    public void CreatBagList()
     {
-        InitializeSlotPrefabReferences();
+
+        equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
+
+        //初始化获取选择插槽
+        //rightHandBagList = equipmentSelector.rightHandWeaponList;
+        //leftHandBagList = equipmentSelector.leftHandWeaponList;
+        //headBagList = equipmentSelector.headEquipmentList;
+        //bodyBagList = equipmentSelector.bodyEquipmentList;
+        //kernelBagList = equipmentSelector.kernelEquipmentList;
+        //consumerList = equipmentSelector.consumerEquipmentList;
+
+        for (int i = 0; i < Sum; i++)
+        {
+            GameObject newItem = Instantiate(BagGridPrefab, ItemParent);
+
+              Slot Component = newItem.GetComponent<Slot>();
+
+            BagItems.Add(Component);
+        }
+        Debug.Log($"已成功添加 {BagItems.Count} 个Slot信息到背包列表");
     }
 
-    //private void Start()
-    //{
-    //    InitializeSlotPrefabReferences();
-    //}
     /// <summary>
     /// 初始化Slot预制体引用到列表
     /// </summary>
-    public void InitializeSlotPrefabReferences()
+    public void UpdateBag()
     {
-        bagItems.Clear();
+        Debug.Log("武器背包刷新！");
 
-        if (slotPrefab == null)
+        //初始化武器背包
+        for (int i = 0; i < Sum; i++)
         {
-            Debug.LogError("未分配Slot预制体！", this);
-            return;
+            BagItems[i].description.text = null;
+            BagItems[i].Displayimage.sprite = BagItems[i].EmptyImage;
+            BagItems[i].HighLightImage.gameObject.SetActive(false);
         }
 
-        SlotBase prefabSlotComponent = slotPrefab.GetComponent<SlotBase>();
-        if (prefabSlotComponent == null)
-        {
-            Debug.LogError("指定的预制体不包含Slot组件！", slotPrefab);
-            return;
-        }
+        //更新背包物品信息
 
-        for (int i = 0; i < initialSlotCount; i++)
-        {
-            
-            // bagItems.Add(prefabSlotComponent);是错误的写法，相当于将一个预制体复制了49份，但是数据来源都是相同的
-            // 创建新的GameObject实例
-            GameObject slotObj = Instantiate(slotPrefab);
-            slotObj.SetActive(false); // 不激活显示
-
-            // 获取新实例上的组件
-            SlotBase newSlot = slotObj.GetComponent<SlotBase>();
-            bagItems.Add(newSlot);
-        }
-
-
-        //foreach (var slot in bagItems)
-        //{
-        //    slot.text_1.text = "";
-        //    slot.image_1.sprite = null;
-        //}
-
-
-        //将玩家物品信息添加到背包
-        if (currentCategory == ItemCategory.Consumable)
-        {
-            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Consumable, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
-            {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
-            }
-        }
-        else if (currentCategory == ItemCategory.Material)
-        {
-            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Material, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
-            {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
-            }
-            
-        }
-        else if (currentCategory == ItemCategory.Currency)
-        {
-            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Currency, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
-            {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
-            }
-         
-        }
-        else if (currentCategory == ItemCategory.HeadEquipment)
+        if (currentCategory == ItemCategory.HeadEquipment)
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.HeadEquipMent, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
+
+
+            //根据角色背包装备更新背包物品信息
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                //更新背包格子信息
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+
+                //获取物品唯一索引，后面会通过索引查找物品
+                BagItems[i].BagIndex = i;
             }
-            
+
+            //更新物品数量信息
+            CurrentItemNumber = itemLst.Count;
         }
+
+
         else if (currentCategory == ItemCategory.BodyEquipment)
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.BodyEquipment, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
+
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].BagIndex = i;
             }
-     
+            CurrentItemNumber = itemLst.Count;
         }
         else if (currentCategory == ItemCategory.KernelEquipment)
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.KernelEquipment, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
+
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].BagIndex = i;
             }
-         
-        }
-        else if (currentCategory == ItemCategory.Spell)
-        {
-            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Spell, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
-            {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
-            }
-           
-        }
-        else if (currentCategory == ItemCategory.Key)
-        {
-            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Key, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
-            {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
-            }
-           
+            CurrentItemNumber = itemLst.Count;
         }
         else if (currentCategory == ItemCategory.RightHandWeapon)
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.RightHandWeapon, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
+
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+
+                BagItems[i].BagIndex = i;
             }
-            
+            CurrentItemNumber = itemLst.Count;
+
         }
         else if (currentCategory == ItemCategory.LeftHandWeapon)
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.LeftHandWeapon, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
+
+
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+
+                BagItems[i].BagIndex = i;
             }
-           
+            CurrentItemNumber = itemLst.Count;
         }
-        else if(currentCategory == ItemCategory.None)
+        else if (currentCategory == ItemCategory.Consumable)
         {
+
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Consumable, out var itemLst);
-            for (int i = 0; i < itemLst.Count && i < bagItems.Count; i++)
+            Debug.Log(itemLst.Count);
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                bagItems[i].text_1.text = itemLst[i].itemInfo.name;
-                bagItems[i].image_1.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].BagIndex = i;
+            }
+
+        }
+        else if (currentCategory == ItemCategory.Material)
+        {
+
+            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Material, out var itemLst);
+            Debug.Log(itemLst.Count);
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
+            {
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].BagIndex = i;
+            }
+
+        }
+        else if (currentCategory == ItemCategory.Currency)
+        {
+
+            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Currency, out var itemLst);
+            Debug.Log(itemLst.Count);
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
+            {
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].BagIndex = i;
+            }
+
+        }
+        else if (currentCategory == ItemCategory.Spell)
+        {
+
+            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Spell, out var itemLst);
+            Debug.Log(itemLst.Count);
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
+            {
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].BagIndex = i;
+            }
+
+        }
+        else if (currentCategory == ItemCategory.Spell)
+        {
+
+            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Spell, out var itemLst);
+            Debug.Log(itemLst.Count);
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
+            {
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].BagIndex = i;
+            }
+
+        }
+        else if (currentCategory == ItemCategory.Key)
+        {
+
+            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Key, out var itemLst);
+            Debug.Log(itemLst.Count);
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
+            {
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].BagIndex = i;
             }
         }
+        else if (currentCategory == ItemCategory.None)
+        {
 
-        bagScroller.OnEnable();
+            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Consumable, out var itemLst);
+            Debug.Log(itemLst.Count);
+            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
+            {
+                BagItems[i].description.text = itemLst[i].itemInfo.name;
+                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].BagIndex = i;
+            }
 
-        Debug.Log($"已成功添加 {bagItems.Count} 个Slot信息到列表");
+        }
     }
+
+
+    //刷新装备背包列表
+    //equipBagScroller.UpdateEquipmentBagScrollList();
+
 
     //private Slot InstantiateSlotInfo(Slot source, int index)
     //{
@@ -203,14 +263,13 @@ public class BagList : MonoBehaviour
     /// <summary>
     /// 获取指定索引的Slot信息
     /// </summary>
-    public SlotBase GetSlotInfo(int index)
+    public Slot GetSlotInfo(int index)
     {
-        if (index >= 0 && index < bagItems.Count)
+        if (index >= 0 && index < BagItems.Count)
         {
-            return bagItems[index];
+            return BagItems[index];
         }
-
-        Debug.LogWarning($"请求的索引 {index} 超出范围 (0-{bagItems.Count - 1})");
+        Debug.LogWarning($"请求的索引 {index} 超出范围 (0-{BagItems.Count - 1})");
         return null;
     }
 }

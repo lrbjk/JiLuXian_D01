@@ -39,23 +39,6 @@ namespace Common.UI
 
            
         }
-
-        //private void Update()
-        //{
-        //    if (Input.GetKeyDown(cycleKey))
-        //    {
-        //        CycleImage();
-        //        lastKeyPressTime = Time.time;
-        //    }
-        //    else if (Input.GetKey(cycleKey) &&
-        //            Time.time > lastKeyPressTime + keyRepeatDelay &&
-        //            Time.time > lastKeyPressTime + keyRepeatRate)
-        //    {
-        //        CycleImage();
-        //        lastKeyPressTime = Time.time;
-        //    }
-        //}
-
         public void CycleImage()
         {
             if (equipmentImages.Count == 0) return;
@@ -76,6 +59,7 @@ namespace Common.UI
 
         public void UpdateImagerDisplay()
         {
+           
             DisplayImage.sprite = equipmentImages[currentIndex];
             DisplayImage.color = new Color(1, 1, 1, DisplayImage.sprite ? 1 : 0);//透明度为0-1之间的百分比
             if (NextImage != null && equipmentImages.Count > 1)

@@ -41,6 +41,7 @@ namespace Common.UI
          public EquipmentSelector equipmentSelector;
          public EquipmentBagUIList equipBagUIList;
          public EquipmentController equipmentController;
+         public BagList bagList;
         protected override void Start()
         {
             base.Start();
@@ -145,6 +146,11 @@ namespace Common.UI
             equipmentController = equipControl.GetComponent<EquipmentController>();
             Debug.Log("找到装备交互控制管理");
 
+            Transform bl = transform.FindChildByName("BagContent");
+            bagList = bl.GetComponent<BagList>();
+            bagList.CreatBagList();
+            bagList.UpdateBag();
+            Debug.Log("找到并创建背包格子！");
         }
     }
 

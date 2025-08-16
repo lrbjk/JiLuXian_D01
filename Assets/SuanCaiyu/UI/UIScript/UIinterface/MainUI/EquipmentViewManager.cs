@@ -47,7 +47,7 @@ public class EquipmentViewManager : MonoBehaviour
                 
             }
         }
-        //只有一把武器时索引固定为1
+        //只有一把武器时索引固定为0
         if(RightHnadCycler.equipmentImages.Count<2)
         {
             RightHnadCycler.currentIndex = 0;
@@ -58,7 +58,8 @@ public class EquipmentViewManager : MonoBehaviour
 
     public void UpdatLeftHandView()
     {
-        RightHnadCycler.equipmentImages.Clear();
+        Debug.Log("我是你爸爸");
+        LeftHnadCycler.equipmentImages.Clear();
         //左手武器
         for (int i = 0; i < 2; i++)
         {
@@ -67,9 +68,9 @@ public class EquipmentViewManager : MonoBehaviour
                 LeftHnadCycler.equipmentImages.Add(equipmentSelector.leftHandWeaponList[i].equipImage.sprite);              
             }
         }
-        if (RightHnadCycler.equipmentImages.Count < 2)
+        if (LeftHnadCycler.equipmentImages.Count < 2)
         {
-            RightHnadCycler.currentIndex = 0;
+            LeftHnadCycler.currentIndex = 0;
         }
         LeftHnadCycler.UpdateImagerDisplay();
     }

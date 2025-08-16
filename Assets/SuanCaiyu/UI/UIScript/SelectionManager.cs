@@ -84,7 +84,7 @@ public class SelectionManager : MonoBehaviour
             _ => ItemCategory.None
         };
 
-        bagList.InitializeSlotPrefabReferences();
+        bagList.UpdateBag();
     }
 
      public void moveRightOnEdge()
