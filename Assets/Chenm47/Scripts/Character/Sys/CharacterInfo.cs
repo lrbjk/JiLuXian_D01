@@ -83,6 +83,46 @@ namespace ns.Character
         }
 
         public CharacterMovtionManager MovtionManager;
+        /// <summary>当前血量 </summary>
+        public int HP;
+        [Tooltip("基础韧性上限")]
+        /// <summary>基础韧性上限 </summary>
+        public int BasePoiseCeling;
+        [Tooltip("当前韧性值")]
+        /// <summary>当前韧性值 </summary>
+        public int CurrentBasePoise;
+        /// <summary>累积受到的削韧值 </summary>
+        public int AccumulativePoiseDamage;
+        /// <summary>是否无敌 </summary>
+        public bool IsInvincible = false;
+
+        /// <summary>角色被他人锁定的Transform </summary>
+        public Transform LockedTF;
+        /// <summary>角色被他人背刺时他人站立的Transform </summary>
+        public Transform BackStabedStandingTF;
+        /// <summary>角色被他人正刺时他人站立的Transform </summary>
+        public Transform ForwardStabedStandingTF;
+        [HideInInspector]
+        /// <summary>角色锁定的他人Transform </summary>
+        public Transform LockedTargetTF;
+        /// <summary>角色背刺他人目标角色信息 </summary>
+        [HideInInspector]
+        public CharacterInfo BackStabedTarget;
+
+
+        //为动作状态机提供的成员
+        [Tooltip("是否处于前摇阶段")]
+        public bool IsInPreMovtionFlag = false;
+        [Tooltip("是否处于后摇阶段")]
+        public bool IsInMovtionRecoveryFlag = false;
+        [Tooltip("是否处于霸体阶段")]
+        public bool IsInArmorFlag = false;
+        public int CurrentMovtionID = 0;
+        public int ComboMovtionlID = 0;
+        public bool IsDamaged = false;
+        public int DamagedMovtionID = 0;
+        public bool IsDied = false;
+        public int DiedMovtionID = 0;
 
         protected virtual void Start()
         {
@@ -92,16 +132,6 @@ namespace ns.Character
             ForwardStabedStandingTF = transform.FindChildByName("ForwardStabStandingPoint");
         }
 
-        /// <summary>当前血量 </summary>
-        public int HP;
-        /// <summary>基础韧性上限 </summary>
-        public int BasePoiseCeling;
-        /// <summary>当前韧性值 </summary>
-        public int CurrentBasePoise;
-        /// <summary>累积受到的削韧值 </summary>
-        public int AccumulativePoiseDamage;
-        /// <summary>是否无敌 </summary>
-        public bool IsInvincible = false;
 
         /// <summary>
         /// 获取武器基础物理攻击力
@@ -163,6 +193,7 @@ namespace ns.Character
         {
             //是否无敌
             if (IsInvincible) return;
+            MovtionInfo atkMovtionInfo = damageContext.AttackerInfo.MovtionManager.GetMovtionInfo(damageContext.AttackerInfo.CurrentMovtionID);
             //计算伤害
             int damageValue = DamageCalculator.CalculateDamage(damageContext.AttackerInfo, this);
             Debug.Log("攻击方伤害" + damageValue);
@@ -171,9 +202,10 @@ namespace ns.Character
             //是否死亡
             if (HP <= 0)
             {
-                //死亡
+                //死亡状态
                 Debug.Log("死亡");
-                //死亡动画
+                IsDied = true;
+                DiedMovtionID = atkMovtionInfo.DeadMovtionID;
                 return;
             }
             //计算攻击方削韧值
@@ -217,36 +249,18 @@ namespace ns.Character
             if (poiseDamageValue >= movtionPoise)
             {
                 Debug.Log("直接削韧值>=动作韧性，打断");
-                //受击动画
+                //受击状态
+                IsDamaged = true;
+                //判断是哪面命中
+                //Vector3 toAttacker = damageContext.AttackerInfo.transform.position - transform.position;
+
+                float dotProduct = Vector3.Dot(damageContext.AttackerInfo.transform.forward, transform.forward);
+                if (dotProduct <= 0)//在前方
+                    DamagedMovtionID = atkMovtionInfo.FrontDamagedMovtionID;
+                else
+                    DamagedMovtionID = atkMovtionInfo.BackDamagedMovtionID;
                 return;
             }
         }
-
-        /// <summary>角色被他人锁定的Transform </summary>
-        public Transform LockedTF;
-        /// <summary>角色被他人背刺时他人站立的Transform </summary>
-        public Transform BackStabedStandingTF;
-        /// <summary>角色被他人正刺时他人站立的Transform </summary>
-        public Transform ForwardStabedStandingTF;
-        [HideInInspector]
-        /// <summary>角色锁定的他人Transform </summary>
-        public Transform LockedTargetTF;
-        /// <summary>角色背刺他人目标角色信息 </summary>
-        [HideInInspector]
-        public CharacterInfo BackStabedTarget;
-
-
-        //为动作状态机提供的成员
-        [Tooltip("是否处于前摇阶段")]
-        public bool IsInPreMovtionFlag = false;
-        [Tooltip("是否处于后摇阶段")]
-        public bool IsInMovtionRecoveryFlag = false;
-        [Tooltip("是否处于霸体阶段")]
-        public bool IsInArmorFlag = false;
-        public int CurrentMovtionID = 0;
-        public int ComboMovtionlID = 0;
-        public bool IsDamaged = false;
-        public bool IsDied = false;
-
     }
 }

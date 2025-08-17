@@ -19,7 +19,7 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
       rotation in copied configuration does not match rotation in animation file:\n\t'RootRotY'
-      : rotation error = 0.201665 deg\n\t'RootRotXZ' : rotation error = 8.209043
+      : rotation error = 0.201665 deg\n\t'RootRotXZ' : rotation error = 8.209044
       deg\n"
     animationImportErrors: 
     animationImportWarnings: 
@@ -47,7 +47,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 0

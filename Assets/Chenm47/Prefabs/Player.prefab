@@ -266,6 +266,7 @@ MonoBehaviour:
     value: 15
   TransitionValue: 50
   CurrentCriticalStateType: 1
+  BullteSpeed: 30
 --- !u!114 &2674699626631838181
 MonoBehaviour:
   m_ObjectHideFlags: 0

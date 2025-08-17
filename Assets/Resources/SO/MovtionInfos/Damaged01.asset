@@ -13,10 +13,16 @@ MonoBehaviour:
   m_Name: Damaged01
   m_EditorClassIdentifier: 
   MovtionID: 9
-  MovtionName: "\u53D7\u51FB1"
+  MovtionName: Damage01
   ComboMovtionID: 0
-  AnimationName: Damaged
-  MovtionAtkValue: 0
+  AnimationName: Damage01
+  ActionMultiplier: 0
+  ExecutionMultiplier: 0
+  MovtionPoise: 0
+  MovtionReducedPoise: 0
+  PreMovtionRotateSpeed: 0
+  PhysicalResistanceType: 0
   MovtionEvents: []
-  DamagedMovtionID: 0
+  FrontDamagedMovtionID: 0
+  BackDamagedMovtionID: 0
   DeadMovtionID: 0

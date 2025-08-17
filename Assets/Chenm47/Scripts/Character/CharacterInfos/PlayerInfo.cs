@@ -78,7 +78,7 @@ namespace ns.Character.Player
         public int TransitionValue;
         /// <summary>当前角色临界状态 </summary>
         public CriticalStateType CurrentCriticalStateType;
-
+        public float BullteSpeed = 10f;
 
         private CharacterEquipmentManager equipmentManager;
         protected override void Start()
@@ -128,6 +128,9 @@ namespace ns.Character.Player
 
         public override float GetBaseReducedPoise()
         {
+            //如果当前没有动作，直接为0
+            if (CurrentMovtionID == 0)
+                return 0f;
             //削韧值=武器削韧值*动作倍率
             MovtionInfo movtionInfo = MovtionManager.GetMovtionInfo(CurrentMovtionID);
             return equipmentManager.GetCurrentAtkWeapon().WInfo.WeaponValue.ReducedPoise * movtionInfo.ActionMultiplier;
@@ -136,6 +139,11 @@ namespace ns.Character.Player
         {
             //动作韧性 = 削韧值
             return DamageCalculator.CalculatePoiseDamage(this);
+        }
+
+        public override void TakeDamage(DamageContext damageContext)
+        {
+            base.TakeDamage(damageContext);
         }
 
     }

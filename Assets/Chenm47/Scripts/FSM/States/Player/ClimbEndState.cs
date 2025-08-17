@@ -22,13 +22,16 @@ namespace AI.FSM
             {
                 playerFSMBase = fSMBase as PlayerFSMBase;
             }
-            //判断左右手
-            fSMBase.animator.SetFloat("Horizontal", playerFSMBase.playerInfo.IsClimbLiftHandDown ? -1f : 1f);
-            //判断上下输入
-            fSMBase.animator.SetFloat("Vertical", playerFSMBase.playerInput.VerticalMove > 0 ? 1f : -1f);
+
+            if (fSMBase.animator.GetFloat("Vertical") != -2f)//下落状态退出已经设置
+            {
+                //判断左右手
+                fSMBase.animator.SetFloat("Horizontal", playerFSMBase.playerInfo.IsClimbLiftHandDown ? -1f : 1f);
+                //判断上下输入
+                fSMBase.animator.SetFloat("Vertical", playerFSMBase.playerInput.VerticalMove > 0 ? 1f : -1f);
+            }
             deltaY = playerFSMBase.transform.position.y;
             fSMBase.animationHandler.PlayTargetAnimation("ClimbEnd", true, 0.4f);
-
         }
 
         public override void ExitState(FSMBase fSMBase)
