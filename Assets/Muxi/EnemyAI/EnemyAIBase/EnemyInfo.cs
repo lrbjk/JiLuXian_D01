@@ -94,7 +94,7 @@ namespace EnemyAIBase
         public override void TakeDamage(DamageContext damageContext)
         {
             //Debug.LogWarning("敌人受击开始");
-            //base.TakeDamage(damageContext);
+            base.TakeDamage(damageContext);
         }
         ///// <summary>
         ///// 重写TakeDamage方法，添加敌人特有的受击逻辑

@@ -99,7 +99,7 @@ namespace ns.Character.Player
             //设置转换值上下限
             var lst = GetTransitionCriticalPoint();
             mainUIFunc.SetCurrentEmotion(lst[0].value, lst[1].value, lst[2].value);
-            UpdateTransitionValue(Mathf.FloorToInt(GetTransitionCeil() * 0.5f) - TransitionValue);
+            //UpdateTransitionValue(Mathf.FloorToInt(GetTransitionCeil() * 0.5f) - TransitionValue);//UI 内部已默认初始化为50%
         }
 
         public override int GetDEF()

@@ -25,13 +25,13 @@ namespace ns.PlayerTest
 
         private void OnGUI()
         {
-            if (GUILayout.Button("设置血量"))
+            if (GUILayout.Button("增加转换值"))
             {
-                mainUIFunc.SetPlayerHp(30);
+                mainUIFunc.IncreaseEmotion(30);
             }
-            if (GUILayout.Button("扣血"))
+            if (GUILayout.Button("减小转换值"))
             {
-                mainUIFunc.DecreasePlayerHp(10);
+                mainUIFunc.DecreaseEmotion(10);
             }
         }
 
