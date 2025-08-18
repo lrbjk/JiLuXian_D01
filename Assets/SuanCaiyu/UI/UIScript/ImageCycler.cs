@@ -10,7 +10,7 @@ namespace Common.UI
     {
         [Header("UI References")]
         [SerializeField] public Image DisplayImage;
-        [SerializeField] private Image NextImage;
+        [SerializeField] public Image NextImage;
         //[SerializeField] private Button cycleButton; // 仅用于显示用途
 
         [Header("Weapon Images")]
@@ -35,10 +35,9 @@ namespace Common.UI
             if (equipmentImages.Count > 0)
             {
                 UpdateImagerDisplay();
-            }
-
-           
+            }     
         }
+
         public void CycleImage()
         {
             if (equipmentImages.Count == 0) return;

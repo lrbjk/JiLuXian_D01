@@ -17,10 +17,10 @@ namespace Common.UI
         private StatuValueControl bossControl;
         private FadeUI bossFadeUI;
         private Emotionalbar emotionalbar;
-        private ImageCycler rightWeapon;
-        private ImageCycler leftWeapon;
-        private ImageCycler upWeapon;
-        private ImageCycler downWeapon;
+        public ImageCycler rightWeapon;
+        public ImageCycler leftWeapon;
+        public ImageCycler upWeapon;
+        public ImageCycler downWeapon;
         private MoneyText moneyText;
 
         //与装备界面通信
@@ -345,10 +345,10 @@ namespace Common.UI
         public void SwitchDownWeapon()
         {
             downWeapon.CycleImage();
-            if(downWeapon.equipmentImages.Count != 0)
-            {
-                equipmentUIFunc.equipmentController.ConsumerSpriteList[equipmentUIFunc.equipmentController.currentConsumerSelectorIdx].sprite = downWeapon.DisplayImage.sprite;
-            }
+            //if(downWeapon.equipmentImages.Count != 0)
+            //{
+            //    equipmentUIFunc.equipmentController.ConsumerSpriteList[equipmentUIFunc.equipmentController.currentConsumerSelectorIdx].sprite = downWeapon.DisplayImage.sprite;
+            //}
            
         }
         #endregion

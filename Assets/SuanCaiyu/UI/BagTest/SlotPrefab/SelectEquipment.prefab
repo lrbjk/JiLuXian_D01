@@ -238,12 +238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4de4118052c164c90d69357f1acdfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  emptyImage: {fileID: 21300000, guid: f6ca7a814782fc24d8ecd6d9c66dd99c, type: 3}
   equipImage: {fileID: 2579227518680684273}
   nameText: {fileID: 0}
   highLightImage: {fileID: 1408704444050076349}
   equipDescriptionText: {fileID: 0}
   isEquiped: 0
   EquipIndex: 0
+  equipmentUIFunc: {fileID: 0}
+  equipmentBagUIList: {fileID: 0}
 --- !u!1 &772320001167629755
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,7 +387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6fd11cbb1d8f7fe4eae93bbfba1c2bda, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6ca7a814782fc24d8ecd6d9c66dd99c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
