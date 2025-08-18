@@ -25,9 +25,15 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _OUTLINE_PASS
+  - _OUTLINE_PASS_ON
   - _SCREEN_SAPCE_RIM
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _MAINMAPS_ON
+  - _OPTION_ON
+  - _OUTLINE_PASS
+  - _SHADOWSETTING_ON
+  - _SH_ON
+  - _SPECULARSETTING_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 1
@@ -75,6 +81,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCapMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCapTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -156,24 +166,38 @@ Material:
     - _Glossiness: 1
     - _GlossyReflections: 0
     - _HightlightShape: 0
+    - _MainMaps: 1
+    - _MainMaps_Out: 1
+    - _MatCap: 0
+    - _MatCapAlphaBrust: 1
     - _MatCapAlphaBrust1: 1
     - _MatCapBlendMode1: 0
+    - _MatCapColorBrust: 1
     - _MatCapColorBrust1: 1
+    - _MatCapDepth: 0.5
     - _MatCapDepth1: 0.5
+    - _MatCapRefract: 0
     - _MatCapRefract1: 0
     - _MatCap_ON: 0
+    - _MatCap_Out: 0
     - _MetalIntensity: 1
     - _Metallic: 0
     - _ModelSize: 1
     - _NoseLineHoriDisp: 1
     - _NoseLineKDnDisp: 1
+    - _OUTLINE_PASS: 1
+    - _OUTLINE_PASS_Out: 1
     - _OcclusionStrength: 1
+    - _Option: 1
+    - _Option_Out: 1
     - _Outline: 1
     - _OutlineWidth: 1
     - _OutlineZOffset: 0.01
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
+    - _SH: 1
+    - _SH_Out: 1
     - _ScreenSpaceRim: 1
     - _ScreenSpaceRimBrightness: 1
     - _ScreenSpaceRimFadeout: 0.5
@@ -183,12 +207,16 @@ Material:
     - _ScreenSpaceShadowFadeout: 0.2
     - _ScreenSpaceShadowThreshold: 0.015
     - _ScreenSpaceShadowWidth: 0.2
+    - _ShadowSetting: 1
+    - _ShadowSetting_Out: 1
     - _ShapeSoftness: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularIntensity: 0.1
     - _SpecularRange: 1
+    - _SpecularSetting: 1
+    - _SpecularSetting_Out: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _StencilComp: 0
@@ -198,13 +226,16 @@ Material:
     - _StencilZPassOp: 0
     - _Surface: 0
     - _ToonSpecular: 0.01
+    - _UV7: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _MatCapParam: {r: 0, g: 0, b: 0, a: 0}
     - _MatCapParam1: {r: 5, g: 5, b: 0, a: 0}
+    - _MatCapTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatCapTintColor1: {r: 1, g: 1, b: 1, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _PostFrontTint: {r: 1, g: 1, b: 1, a: 1}
