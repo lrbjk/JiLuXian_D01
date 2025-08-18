@@ -266,13 +266,17 @@ namespace Common.UI
     /// <param name="value"></param>
     public void SetValue(float value)
     {
+        maxValue = value;
+            
         RectTransform rectTransform = backGround.GetComponent<RectTransform>();
         RectTransform rectTransform_1 = statusValueBack.GetComponent<RectTransform>();
         RectTransform rectTransform_2 = statusValueimage.GetComponent<RectTransform>();
 
         rectTransform.sizeDelta = new Vector2(value + 10f , rectTransform.sizeDelta.y);
-        rectTransform_1.sizeDelta = new Vector2(value, rectTransform.sizeDelta.y);
-        rectTransform_2.sizeDelta = new Vector2(value, rectTransform.sizeDelta.y);
+        rectTransform_1.sizeDelta = new Vector2(value, rectTransform_1.sizeDelta.y);
+        rectTransform_2.sizeDelta = new Vector2(value, rectTransform_2.sizeDelta.y);
+
+        targetWidth = maxValue;
     }
 
     /// <summary>

@@ -17,10 +17,11 @@ namespace Common.UI
         private StatuValueControl bossControl;
         private FadeUI bossFadeUI;
         private Emotionalbar emotionalbar;
-        private ImageCycler rightWeapon;
-        private ImageCycler leftWeapon;
-        private ImageCycler upWeapon;
-        private ImageCycler downWeapon;
+        public ImageCycler rightWeapon;
+        public ImageCycler leftWeapon;
+        public ImageCycler upWeapon;
+        public ImageCycler downWeapon;
+        public Image KernelImage;
         private MoneyText moneyText;
 
         //与装备界面通信
@@ -77,6 +78,10 @@ namespace Common.UI
             Transform mt = transform.FindChildByName("Currency");
             moneyText = mt.GetComponent<MoneyText>();
             Debug.Log("找到货币！");
+
+            Transform ki = transform.FindChildByName("KernelImage");
+            KernelImage = ki.GetComponent<Image>();
+            Debug.Log("找到核心显示！");
 
             Transform equipManager = transform.FindChildByName("EquipmentSlot");
             equipmentViewManager = equipManager.GetComponent<EquipmentViewManager>();
@@ -345,10 +350,10 @@ namespace Common.UI
         public void SwitchDownWeapon()
         {
             downWeapon.CycleImage();
-            if(downWeapon.equipmentImages.Count != 0)
-            {
-                equipmentUIFunc.equipmentController.ConsumerSpriteList[equipmentUIFunc.equipmentController.currentConsumerSelectorIdx].sprite = downWeapon.DisplayImage.sprite;
-            }
+            //if(downWeapon.equipmentImages.Count != 0)
+            //{
+            //    equipmentUIFunc.equipmentController.ConsumerSpriteList[equipmentUIFunc.equipmentController.currentConsumerSelectorIdx].sprite = downWeapon.DisplayImage.sprite;
+            //}
            
         }
         #endregion

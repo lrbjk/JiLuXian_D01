@@ -8,6 +8,7 @@ namespace Common.UI
 {
     public class EuipmentItem : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
+        public Sprite emptyImage;
         public Image equipImage;
         public Text nameText;
         public Image highLightImage;
@@ -28,6 +29,8 @@ namespace Common.UI
             equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
 
             equipmentBagUIList = equipmentUIFunc.equipBagUIList;
+
+            EquipIndex = -1;
         }
 
         /// <summary>
