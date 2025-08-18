@@ -1,5 +1,6 @@
 using Common.Helper;
 using Common.UI;
+using ns.Character.Player;
 using ns.Movtion;
 using ns.Value;
 using System;
@@ -89,6 +90,8 @@ namespace ns.Character
         [Tooltip("基础韧性上限")]
         /// <summary>基础韧性上限 </summary>
         public int BasePoiseCeling;
+        [Tooltip("最大基础韧性上限")]
+        public int MaxPoiseCeling;
         [Tooltip("当前韧性值")]
         /// <summary>当前韧性值 </summary>
         public int CurrentBasePoise;
@@ -97,6 +100,57 @@ namespace ns.Character
         public int AccumulativePoiseDamage;
         /// <summary>是否无敌 </summary>
         public bool IsInvincible = false;
+
+        [Header("转换值相关")]
+        [SerializeField]
+        private int transitionValue;
+        [SerializeField]
+        private CriticalStateType currentCriticalStateType;
+        /// <summary>切换临界状态前事件 </summary>
+        public event Action<CriticalStateType> BeforeChangeCriticalState;           //回调参数均为切换后的状态
+        /// <summary>切换临界状态后事件 </summary>
+        public event Action<CriticalStateType> AfterChangeCriticalState;
+        /// <summary>转换值 </summary>
+        public int TransitionValue { get => transitionValue; }
+        /// <summary>当前角色临界状态 </summary>
+        public CriticalStateType CurrentCriticalStateType { get => currentCriticalStateType; protected set => currentCriticalStateType = value; }
+        public void UpdateTransitionValue(int delta)
+        {
+            FlushTransitionUI(delta);
+            transitionValue += delta;
+            int ceil = GetTransitionCeil();
+            transitionValue = Math.Clamp(transitionValue, 0, ceil);
+            //临界阶段处理
+            List<CriticalStateValuePairs> switchCriticalPoint = GetTransitionCriticalPoint();
+            CriticalStateType? changeToType = null;
+            for (int i = 0; i < switchCriticalPoint.Count; i++)
+            {
+                CriticalStateValuePairs pair = switchCriticalPoint[i];
+                if (TransitionValue < pair.value)
+                {
+                    changeToType = pair.type;
+                    break;
+                }
+            }
+            if (changeToType.Value != CurrentCriticalStateType)
+            {
+                BeforeChangeCriticalState?.Invoke(changeToType.Value);
+                CurrentCriticalStateType = changeToType.Value;
+                //切换状态、触发事件
+                AfterChangeCriticalState?.Invoke(CurrentCriticalStateType);
+            }
+        }
+        public int GetTransitionCeil()
+        {
+            return GetTransitionCriticalPoint()[^1].value;
+        }
+        public virtual List<CriticalStateValuePairs> GetTransitionCriticalPoint()
+        {
+            return new List<CriticalStateValuePairs>(3) { new CriticalStateValuePairs() { type=CriticalStateType.空虚,value=30},
+            new CriticalStateValuePairs(){ type=CriticalStateType.稳定,value=70 },
+            new CriticalStateValuePairs(){type=CriticalStateType.充盈,value=100} };
+        }
+        protected virtual void FlushTransitionUI(int delta) { }
 
         /// <summary>角色被他人锁定的Transform </summary>
         public Transform LockedTF;
@@ -119,12 +173,12 @@ namespace ns.Character
         public bool IsInMovtionRecoveryFlag = false;
         [Tooltip("是否处于霸体阶段")]
         public bool IsInArmorFlag = false;
+        [Tooltip("是否处于虚弱状态")]
+        public bool IsInWeadFlag = false;
         public int CurrentMovtionID = 0;
         public int ComboMovtionlID = 0;
         public bool IsDamaged = false;
-        //public int DamagedMovtionID = 0;
         public bool IsDied = false;
-        //public int DiedMovtionID = 0;
 
         protected virtual void Start()
         {
@@ -195,6 +249,8 @@ namespace ns.Character
         {
             //是否无敌
             if (IsInvincible) return;
+            //攻击成功回调
+            damageContext.AttackSucceed?.Invoke(this);
             MovtionInfo atkMovtionInfo = damageContext.AttackerInfo.MovtionManager.GetMovtionInfo(damageContext.AttackerInfo.CurrentMovtionID);
             //计算伤害
             int damageValue = DamageCalculator.CalculateDamage(damageContext.AttackerInfo, this);
@@ -203,6 +259,8 @@ namespace ns.Character
             FlushHPUI(damageValue);
             //血量扣除
             HP -= damageValue;
+            //转换值处理
+            DamagedTransitionHandle();
             //是否死亡
             if (HP <= 0)
             {
@@ -217,14 +275,16 @@ namespace ns.Character
             Debug.Log("攻击方削韧" + poiseDamageValue);
             //基础韧性扣除
             CurrentBasePoise -= poiseDamageValue;
-            //是否虚弱
-            if (CurrentBasePoise <= 0)
+            //是否虚弱判定
+            if (!IsInWeadFlag && CurrentBasePoise <= 0)
             {
                 BasePoiseCeling =
                     Mathf.FloorToInt(BasePoiseCeling * GlobalConstants.FrailtyPoiseAmplificationFactor);//重置基础韧性上限
                 Debug.Log("虚弱状态");
+                IsInWeadFlag = true;
                 //虚弱动画
-                //一段时间后恢复基础韧性CurrentBasePoise
+                //何时恢复基础韧性CurrentBasePoise取决于敌人逻辑
+                Invoke(nameof(RecoverCurrentBasePoise), 1f);                //目前暂时直接1秒后恢复
                 return;
             }
 
@@ -271,7 +331,18 @@ namespace ns.Character
                 CurrentMovtionID = atkMovtionInfo.BackDamagedMovtionID;
             return;
         }
-
+        private void RecoverCurrentBasePoise()
+        {
+            Debug.Log("恢复韧性值");
+            if (BasePoiseCeling < MaxPoiseCeling)
+                BasePoiseCeling = CurrentBasePoise = Mathf.CeilToInt(BasePoiseCeling * 1.1f);
+            else
+                BasePoiseCeling = CurrentBasePoise = MaxPoiseCeling;
+        }
+        /// <summary>
+        /// 受击转换值处理
+        /// </summary>
+        protected virtual void DamagedTransitionHandle() { }
         protected abstract void FlushHPUI(int damageValue);
     }
 }

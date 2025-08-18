@@ -1,3 +1,4 @@
+using Common.Helper;
 using Common.UI;
 using ns.Movtion;
 using ns.Value;
@@ -10,6 +11,12 @@ namespace ns.Character.Player
 {
     [Serializable]
     public class CriticalStateValuePairs
+    {
+        public CriticalStateType type;
+        public int value;
+    }
+    [Serializable]
+    public class CriticalStateValuePairsFloat
     {
         public CriticalStateType type;
         public float value;
@@ -75,10 +82,7 @@ namespace ns.Character.Player
         [Header("角色异常抗性表")]
         /// <summary>角色异常抗性表 </summary>
         public List<CharacterAbnormalResistanceProperty> AbnormalResistanceProperties;
-        /// <summary>转换值 </summary>
-        public int TransitionValue;
-        /// <summary>当前角色临界状态 </summary>
-        public CriticalStateType CurrentCriticalStateType;
+
         public float BullteSpeed = 10f;
 
         private CharacterEquipmentManager equipmentManager;
@@ -91,6 +95,11 @@ namespace ns.Character.Player
             //设置UI最大血量
             Debug.Log("HP" + HP);
             mainUIFunc.SetPlayerHp(HP);
+            //设置转换值
+            //设置转换值上下限
+            var lst = GetTransitionCriticalPoint();
+            mainUIFunc.SetCurrentEmotion(lst[0].value, lst[1].value, lst[2].value);
+            UpdateTransitionValue(Mathf.FloorToInt(GetTransitionCeil() * 0.5f) - TransitionValue);
         }
 
         public override int GetDEF()
@@ -147,15 +156,41 @@ namespace ns.Character.Player
             return DamageCalculator.CalculatePoiseDamage(this);
         }
 
+        public override List<CriticalStateValuePairs> GetTransitionCriticalPoint()
+        {
+            return equipmentManager.GetKernelInfo().SwitchCriticalPoint;
+        }
+        protected override void FlushTransitionUI(int delta)
+        {
+            base.FlushTransitionUI(delta);
+            int maxTV = GetTransitionCeil();
+            int amount = ValueHelper.SmoothDelta2Amount(TransitionValue, delta, 0, maxTV);
+            if (delta < 0)
+            {
+                mainUIFunc.DecreaseEmotion(amount);
+            }
+            else
+            {
+                mainUIFunc.IncreaseEmotion(amount);
+            }
+        }
+
         public override void TakeDamage(DamageContext damageContext)
         {
             base.TakeDamage(damageContext);
         }
-
+        protected override void DamagedTransitionHandle()
+        {
+            base.DamagedTransitionHandle();
+            //受击转换值减少、目前从简处理-5%
+            int delta = -Mathf.CeilToInt(GetTransitionCeil() * 0.05f);
+            UpdateTransitionValue(delta);
+        }
         protected override void FlushHPUI(int damageValue)
         {
-            Debug.Log("UI扣除" + Math.Min(HP, damageValue));
+            Debug.LogWarning("UI扣除" + Math.Min(HP, damageValue));
             mainUIFunc.DecreasePlayerHp(Math.Min(HP, damageValue));
         }
+
     }
 }
