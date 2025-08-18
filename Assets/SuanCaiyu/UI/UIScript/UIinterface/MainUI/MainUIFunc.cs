@@ -21,6 +21,7 @@ namespace Common.UI
         public ImageCycler leftWeapon;
         public ImageCycler upWeapon;
         public ImageCycler downWeapon;
+        public Image KernelImage;
         private MoneyText moneyText;
 
         //与装备界面通信
@@ -77,6 +78,10 @@ namespace Common.UI
             Transform mt = transform.FindChildByName("Currency");
             moneyText = mt.GetComponent<MoneyText>();
             Debug.Log("找到货币！");
+
+            Transform ki = transform.FindChildByName("KernelImage");
+            KernelImage = ki.GetComponent<Image>();
+            Debug.Log("找到核心显示！");
 
             Transform equipManager = transform.FindChildByName("EquipmentSlot");
             equipmentViewManager = equipManager.GetComponent<EquipmentViewManager>();

@@ -240,6 +240,8 @@ namespace Common.UI
 
                     equipmentUIFunc.KernelImg.sprite = equipmentSelector.kernelEquipmentList[0].equipImage.sprite;
 
+                    mainUIFunc.KernelImage.sprite = equipmentSelector.kernelEquipmentList[0].equipImage.sprite;
+
                     Debug.Log("装备成功！");
                     return;
                 }
@@ -503,6 +505,7 @@ namespace Common.UI
                     bagUIList.UpdateEquipmentBag();
 
                     equipmentUIFunc.KernelImg.sprite = EmptyImage;
+                    mainUIFunc.KernelImage.sprite = EmptyImage;
 
                     Debug.Log("取消装备成功！");
                     return;
