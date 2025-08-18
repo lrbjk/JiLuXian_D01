@@ -71,7 +71,9 @@ ClimbMoveComboInput>ClimbMove
 InteractingDown>ClimbIdle
 [ClimbQuickDown]
 ClimbEndInput>ClimbEnd
-ClimbQuickDownCancel>ClimbIdle
+ClimbQuickDownCancel>ClimbQuickDownSwitch
+[ClimbQuickDownSwitch]
+InteractingDown>ClimbIdle
 [ClimbEnd]
 InteractingDown>Default
 [Damaged]

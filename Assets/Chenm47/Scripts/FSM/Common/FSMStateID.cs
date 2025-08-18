@@ -27,6 +27,7 @@ namespace AI.FSM
         ClimbIdle,
         ClimbMove,
         ClimbQuickDown,
+        ClimbQuickDownSwitch,
         ClimbEnd,
         // Ghoul specific states
         GhoulIdle,
