@@ -20,11 +20,6 @@ namespace AI.FSM
             PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = true;
         }
 
-        protected override MovtionInfo InitMovtionInfo(FSMBase fSMBase)
-        {
-            return fSMBase.movtionManager.GetMovtionInfo(fSMBase.characterInfo.DamagedMovtionID);
-        }
-
         public override void ExitState(FSMBase fSMBase)
         {
             base.ExitState(fSMBase);

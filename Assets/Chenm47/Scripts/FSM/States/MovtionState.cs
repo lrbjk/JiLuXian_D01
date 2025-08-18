@@ -22,9 +22,12 @@ namespace AI.FSM
         protected MovtionInfo movtionInfo;
 
         /// <summary>
-        /// 需要继续初始化动作信息
+        /// 需要继续初始化动作信息，默认使用CurrentMovtionID
         /// </summary>
-        protected abstract MovtionInfo InitMovtionInfo(FSMBase fSMBase);
+        protected virtual MovtionInfo InitMovtionInfo(FSMBase fSMBase)
+        {
+            return fSMBase.movtionManager.GetMovtionInfo(fSMBase.characterInfo.CurrentMovtionID);
+        }
 
         public override void EnterState(FSMBase fSMBase)
         {

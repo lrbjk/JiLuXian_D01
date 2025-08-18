@@ -91,64 +91,74 @@ namespace EnemyAIBase
             return BaseAttackPower;
         }
 
-        /// <summary>
-        /// 重写TakeDamage方法，添加敌人特有的受击逻辑
-        /// </summary>
-        /// <param name="damageContext"></param>
         public override void TakeDamage(DamageContext damageContext)
         {
-            Debug.Log($"=== EnemyInfo.TakeDamage 开始 ===");
-            Debug.Log($"受击前状态 - HP: {HP}, IsDamaged: {IsDamaged}, IsInvincible: {IsInvincible}, IsInArmorFlag: {IsInArmorFlag}");
+            //Debug.LogWarning("敌人受击开始");
+            base.TakeDamage(damageContext);
+        }
+        ///// <summary>
+        ///// 重写TakeDamage方法，添加敌人特有的受击逻辑
+        ///// </summary>
+        ///// <param name="damageContext"></param>
+        //public override void TakeDamage(DamageContext damageContext)
+        //{
+        //    Debug.Log($"=== EnemyInfo.TakeDamage 开始 ===");
+        //    Debug.Log($"受击前状态 - HP: {HP}, IsDamaged: {IsDamaged}, IsInvincible: {IsInvincible}, IsInArmorFlag: {IsInArmorFlag}");
 
-            // 检查是否能够受击
-            if (IsInvincible)
-            {
-                Debug.Log("敌人处于无敌状态，忽略伤害");
-                return;
-            }
+        //    // 检查是否能够受击
+        //    if (IsInvincible)
+        //    {
+        //        Debug.Log("敌人处于无敌状态，忽略伤害");
+        //        return;
+        //    }
 
-            if (IsDied)
-            {
-                Debug.Log("敌人已死亡，忽略伤害");
-                return;
-            }
+        //    if (IsDied)
+        //    {
+        //        Debug.Log("敌人已死亡，忽略伤害");
+        //        return;
+        //    }
 
          
-            int damageValue = DamageCalculator.CalculateDamage(damageContext.AttackerInfo, this);
-            Debug.Log($"攻击方伤害: {damageValue}");
+        //    int damageValue = DamageCalculator.CalculateDamage(damageContext.AttackerInfo, this);
+        //    Debug.Log($"攻击方伤害: {damageValue}");
 
-            // 血量扣除
-            HP -= damageValue;
-            if (HP < 0) HP = 0; // 确保血量不为负数
+        //    // 血量扣除
+        //    HP -= damageValue;
+        //    if (HP < 0) HP = 0; // 确保血量不为负数
 
-            Debug.Log($"受击后状态 - HP: {HP}");
+        //    Debug.Log($"受击后状态 - HP: {HP}");
 
-            // 判断是否死亡
-            if (HP <= 0 && !IsDied)
-            {
-                // 设置死亡动作ID
-                CurrentMovtionID = DeathMovtionID;
-                // 标记死亡状态
-                IsDied = true;
+        //    // 判断是否死亡
+        //    if (HP <= 0 && !IsDied)
+        //    {
+        //        // 设置死亡动作ID
+        //        CurrentMovtionID = DeathMovtionID;
+        //        // 标记死亡状态
+        //        IsDied = true;
 
-                Debug.Log($"敌人死亡: HP={HP}, 切换到死亡动作ID={DeathMovtionID}");
-            }
-            else if (HP > 0)
-            {
-                // 设置受击动作ID
-                CurrentMovtionID = HitReactionMovtionID;
-                // 标记受击状态，触发状态机转换
-                IsDamaged = true;
+        //        Debug.Log($"敌人死亡: HP={HP}, 切换到死亡动作ID={DeathMovtionID}");
+        //    }
+        //    else if (HP > 0)
+        //    {
+        //        // 设置受击动作ID
+        //        CurrentMovtionID = HitReactionMovtionID;
+        //        // 标记受击状态，触发状态机转换
+        //        IsDamaged = true;
 
-                Debug.Log($"敌人受击: HP={HP}, 切换到受击动作ID={HitReactionMovtionID}");
-            }
+        //        Debug.Log($"敌人受击: HP={HP}, 切换到受击动作ID={HitReactionMovtionID}");
+        //    }
 
-            Debug.Log($"=== EnemyInfo.TakeDamage 结束 ===");
-        }
+        //    Debug.Log($"=== EnemyInfo.TakeDamage 结束 ===");
+        //}
 
         public override float GetWeaponSpecialResistanceAtk(ResistanceType resistanceType)
         {
             return 0f;
+        }
+
+        protected override void FlushHPUI(int damageValue)
+        {
+            //throw new System.NotImplementedException();
         }
     }
 }

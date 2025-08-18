@@ -47,5 +47,10 @@ namespace ns.Character
         {
             throw new System.NotImplementedException();
         }
+
+        protected override void FlushHPUI(int damageValue)
+        {
+
+        }
     }
 }

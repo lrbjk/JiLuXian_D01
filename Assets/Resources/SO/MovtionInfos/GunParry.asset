@@ -27,6 +27,6 @@ MonoBehaviour:
     AnimationFrame: 10
   - EventType: 3
     AnimationFrame: 20
-  FrontDamagedMovtionID: 0
-  BackDamagedMovtionID: 0
-  DeadMovtionID: 0
+  FrontDamagedMovtionID: 1002
+  BackDamagedMovtionID: 1002
+  DeadMovtionID: 1003

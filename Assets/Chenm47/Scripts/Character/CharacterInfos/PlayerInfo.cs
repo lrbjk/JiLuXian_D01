@@ -1,3 +1,4 @@
+using Common.UI;
 using ns.Movtion;
 using ns.Value;
 using ns.Weapons;
@@ -81,10 +82,15 @@ namespace ns.Character.Player
         public float BullteSpeed = 10f;
 
         private CharacterEquipmentManager equipmentManager;
+        private MainUIFunc mainUIFunc;
         protected override void Start()
         {
             base.Start();
             equipmentManager = GetComponent<CharacterEquipmentManager>();
+            mainUIFunc = UIManager.Instance.GetUILayerManager("MainUI") as MainUIFunc;
+            //设置UI最大血量
+            Debug.Log("HP" + HP);
+            mainUIFunc.SetPlayerHp(HP);
         }
 
         public override int GetDEF()
@@ -146,5 +152,10 @@ namespace ns.Character.Player
             base.TakeDamage(damageContext);
         }
 
+        protected override void FlushHPUI(int damageValue)
+        {
+            Debug.Log("UI扣除" + Math.Min(HP, damageValue));
+            mainUIFunc.DecreasePlayerHp(Math.Min(HP, damageValue));
+        }
     }
 }

@@ -22,10 +22,5 @@ namespace AI.FSM
             fSMBase.characterInfo.IsDied = false;
             Debug.Log("Die");
         }
-
-        protected override MovtionInfo InitMovtionInfo(FSMBase fSMBase)
-        {
-            return fSMBase.movtionManager.GetMovtionInfo(fSMBase.characterInfo.DiedMovtionID);
-        }
     }
 }

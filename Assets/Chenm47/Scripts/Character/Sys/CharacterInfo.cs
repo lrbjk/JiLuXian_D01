@@ -1,4 +1,5 @@
 using Common.Helper;
+using Common.UI;
 using ns.Movtion;
 using ns.Value;
 using System;
@@ -91,6 +92,7 @@ namespace ns.Character
         [Tooltip("当前韧性值")]
         /// <summary>当前韧性值 </summary>
         public int CurrentBasePoise;
+        [Tooltip("霸体期间累积受到的削韧值")]
         /// <summary>累积受到的削韧值 </summary>
         public int AccumulativePoiseDamage;
         /// <summary>是否无敌 </summary>
@@ -120,9 +122,9 @@ namespace ns.Character
         public int CurrentMovtionID = 0;
         public int ComboMovtionlID = 0;
         public bool IsDamaged = false;
-        public int DamagedMovtionID = 0;
+        //public int DamagedMovtionID = 0;
         public bool IsDied = false;
-        public int DiedMovtionID = 0;
+        //public int DiedMovtionID = 0;
 
         protected virtual void Start()
         {
@@ -197,6 +199,8 @@ namespace ns.Character
             //计算伤害
             int damageValue = DamageCalculator.CalculateDamage(damageContext.AttackerInfo, this);
             Debug.Log("攻击方伤害" + damageValue);
+            //血量UI 刷新
+            FlushHPUI(damageValue);
             //血量扣除
             HP -= damageValue;
             //是否死亡
@@ -205,7 +209,7 @@ namespace ns.Character
                 //死亡状态
                 Debug.Log("死亡");
                 IsDied = true;
-                DiedMovtionID = atkMovtionInfo.DeadMovtionID;
+                CurrentMovtionID = atkMovtionInfo.DeadMovtionID;
                 return;
             }
             //计算攻击方削韧值
@@ -238,6 +242,7 @@ namespace ns.Character
                     AccumulativePoiseDamage = 0;//重置累积
                     Debug.Log("累积削韧值>=动作韧性，打断");
                     //受击动画
+                    DamagedStateHandle(damageContext, atkMovtionInfo);
                 }
                 return;
             }
@@ -250,17 +255,23 @@ namespace ns.Character
             {
                 Debug.Log("直接削韧值>=动作韧性，打断");
                 //受击状态
-                IsDamaged = true;
-                //判断是哪面命中
-                //Vector3 toAttacker = damageContext.AttackerInfo.transform.position - transform.position;
-
-                float dotProduct = Vector3.Dot(damageContext.AttackerInfo.transform.forward, transform.forward);
-                if (dotProduct <= 0)//在前方
-                    DamagedMovtionID = atkMovtionInfo.FrontDamagedMovtionID;
-                else
-                    DamagedMovtionID = atkMovtionInfo.BackDamagedMovtionID;
+                DamagedStateHandle(damageContext, atkMovtionInfo);
                 return;
             }
         }
+
+        private void DamagedStateHandle(DamageContext damageContext, MovtionInfo atkMovtionInfo)
+        {
+            IsDamaged = true;
+            //判断是哪面命中
+            float dotProduct = Vector3.Dot(damageContext.AttackerInfo.transform.forward, transform.forward);
+            if (dotProduct <= 0)//在前方
+                CurrentMovtionID = atkMovtionInfo.FrontDamagedMovtionID;
+            else
+                CurrentMovtionID = atkMovtionInfo.BackDamagedMovtionID;
+            return;
+        }
+
+        protected abstract void FlushHPUI(int damageValue);
     }
 }

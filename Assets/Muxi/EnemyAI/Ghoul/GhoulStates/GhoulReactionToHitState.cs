@@ -35,34 +35,30 @@ namespace AI.FSM
             Debug.Log("Ghoul进入受击反应状态");
         }
 
-        protected override MovtionInfo InitMovtionInfo(FSMBase fSMBase)
-        {
-            // 获取受击动作信息
-            return fSMBase.movtionManager.GetMovtionInfo(fSMBase.characterInfo.CurrentMovtionID);
-        }
-
         // 动作事件处理方法（修复方法签名）
-        protected virtual void OnPreMovtionEnd(object sender, Common.AnimationEventArgs args)
+        protected override void OnPreMovtionEnd(object sender, Common.AnimationEventArgs args)
         {
+            base.OnPreMovtionEnd(sender, args);
             Debug.Log("Ghoul受击前摇结束");
-            fSMBase.characterInfo.IsInPreMovtionFlag = false;
         }
 
-        protected virtual void OnMovtionStart(object sender, Common.AnimationEventArgs args)
+        protected override void OnMovtionStart(object sender, Common.AnimationEventArgs args)
         {
+            base.OnMovtionStart(sender, args);
             Debug.Log("Ghoul受击动作开始");
         }
 
-        protected virtual void OnMovtionEnd(object sender, Common.AnimationEventArgs args)
+        protected override void OnMovtionEnd(object sender, Common.AnimationEventArgs args)
         {
+            base.OnMovtionEnd(sender, args);
             Debug.Log("Ghoul受击动作结束");
             reactionFinished = true;
         }
 
-        protected virtual void OnMovtionRecovery(object sender, Common.AnimationEventArgs args)
+        protected override void OnMovtionRecovery(object sender, Common.AnimationEventArgs args)
         {
+            base.OnMovtionRecovery(sender, args);
             Debug.Log("Ghoul受击后摇开始");
-            fSMBase.characterInfo.IsInMovtionRecoveryFlag = true;
         }
 
         public override void ActionState(FSMBase fSMBase)
@@ -70,7 +66,7 @@ namespace AI.FSM
             base.ActionState(fSMBase);
 
             UpdateAnimatorParameters();
-            
+
             HandleHitReaction(fSMBase);
         }
 
@@ -94,13 +90,13 @@ namespace AI.FSM
                     fsmBase.animator.SetFloat("MoveY", 0f);
                     fsmBase.animator.SetFloat("Speed", 0f);
                 }
-                
+
             }
 
             // 受击时设置玩家为目标 待实现
-           
+
         }
-        
+
 
         private void UpdateAnimatorParameters()
         {
