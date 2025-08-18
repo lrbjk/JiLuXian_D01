@@ -28,15 +28,15 @@ namespace Common.UI
         private EquipmentUIFunc equipmentUIFunc;
         //public Emotionalbar emotionalbar;
 
-        protected override void Start()
+        protected override void Awake()
         {
-            base.Start();
+            base.Awake();
             Transform hp = transform.Find("FirstUI/StatusBar/HP");
-             hpControl = hp.GetComponent<StatuValueControl>();
+            hpControl = hp.GetComponent<StatuValueControl>();
             Debug.Log("’“µΩHPøÿ÷∆£°");
 
             Transform mp = transform.Find("FirstUI/StatusBar/MP");
-             mpControl = mp.GetComponent<StatuValueControl>();
+            mpControl = mp.GetComponent<StatuValueControl>();
             Debug.Log("’“µΩMPøÿ÷∆£°");
 
             Transform hb = transform.Find("FirstUI/StatusBar/HPBottle");
@@ -60,8 +60,8 @@ namespace Common.UI
             leftWeapon = lm.GetComponent<ImageCycler>();
             if (lm != null) { Debug.Log("’“◊Û ÷Œ‰∆˜£°"); }
             else { Debug.Log("Œ¥’“◊Û ÷Œ‰∆˜£°"); }
-            
-                Transform rw = transform.Find("FirstUI/EquipmentSlot/RightWeapon");
+
+            Transform rw = transform.Find("FirstUI/EquipmentSlot/RightWeapon");
             rightWeapon = rw.GetComponent<ImageCycler>();
             Debug.Log("’“µΩ”“ ÷Œ‰∆˜£°");
 
