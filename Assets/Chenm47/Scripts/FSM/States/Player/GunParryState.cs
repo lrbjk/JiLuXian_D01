@@ -46,7 +46,7 @@ namespace AI.FSM
             {
                 dir = PlayerFSMBase.Instance.playerInfo.LockedTargetTF.position - PlayerFSMBase.Instance.BulletCreatPos.position;
             }
-            go.GetComponent<PlayerBullet>().Init(dir, 10f, PlayerFSMBase.Instance.playerInfo);
+            go.GetComponent<PlayerBullet>().Init(dir, PlayerFSMBase.Instance.playerInfo.BullteSpeed, PlayerFSMBase.Instance.playerInfo);
         }
 
         //public override void ExitState(FSMBase fSMBase)

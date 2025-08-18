@@ -1,11 +1,7 @@
 using ns.Value;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-/*
 
-*/
 namespace ns.Character.Player
 {
     /// <summary>
@@ -15,6 +11,7 @@ namespace ns.Character.Player
     {
         private float speed;
         private CharacterInfo attackerInfo;
+        private Rigidbody rb;
         public void Init(Vector3 dir, float speed, CharacterInfo attackerInfo)
         {
             transform.rotation = Quaternion.LookRotation(dir);
@@ -23,14 +20,21 @@ namespace ns.Character.Player
             this.gameObject.SetActive(true);
         }
 
-        private void Update()
+        private void Start()
+        {
+            rb = GetComponent<Rigidbody>();
+        }
+
+        private void FixedUpdate()
         {
             //以一定速度向前方飞去....
-            transform.Translate(transform.forward * speed * Time.deltaTime, Space.World);
+            //transform.Translate(transform.forward * speed * Time.fixedDeltaTime, Space.World);
+            rb.MovePosition(transform.position + transform.forward * speed * Time.fixedDeltaTime);
         }
 
         private void OnTriggerEnter(Collider other)
         {
+            Debug.Log(other.gameObject.layer);
             //判断敌人造成伤害、或进入虚弱状态(暂未实现)
             if (other.CompareTag("Enemy"))
             {
@@ -43,7 +47,7 @@ namespace ns.Character.Player
                 //销毁
                 Destroy(this.gameObject);
             }
-            else if (other.gameObject.layer == LayerMask.GetMask("Default"))
+            else if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
             {
                 //销毁
                 Destroy(this.gameObject);

@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc40a8649f0b0d7429d87eb923de70ff, type: 3}
-  m_Name: Died01
+  m_Name: Damaged02
   m_EditorClassIdentifier: 
-  MovtionID: 14
-  MovtionName: Die01
+  MovtionID: 10
+  MovtionName: Damage02
   ComboMovtionID: 0
-  AnimationName: Die01
+  AnimationName: Damage01
   ActionMultiplier: 0
   ExecutionMultiplier: 0
   MovtionPoise: 0

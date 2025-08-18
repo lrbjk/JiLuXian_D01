@@ -65,7 +65,13 @@ InteractingDown>ClimbIdle
 ClimbEndInput>ClimbEnd
 ClimbMoveInput>ClimbMove
 [ClimbMove]
+ClimbEndInput>ClimbEnd
+ClimbQuickDownInput>ClimbQuickDown
+ClimbMoveComboInput>ClimbMove
 InteractingDown>ClimbIdle
+[ClimbQuickDown]
+ClimbEndInput>ClimbEnd
+ClimbQuickDownCancel>ClimbIdle
 [ClimbEnd]
 InteractingDown>Default
 [Damaged]

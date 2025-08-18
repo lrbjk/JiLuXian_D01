@@ -33,6 +33,9 @@ namespace AI.FSM
 
         ClimbStartInput,
         ClimbMoveInput,
+        ClimbMoveComboInput,
+        ClimbQuickDownInput,
+        ClimbQuickDownCancel,
         ClimbEndInput,
 
         //Break

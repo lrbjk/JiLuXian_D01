@@ -16,11 +16,19 @@ namespace AI.FSM
         {
             base.EnterState(fSMBase);
             fSMBase.characterInfo.IsDamaged = false;
+            //启用RootMovtion
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = true;
         }
 
         protected override MovtionInfo InitMovtionInfo(FSMBase fSMBase)
         {
-            return fSMBase.movtionManager.GetMovtionInfo(fSMBase.characterInfo.CurrentMovtionID);
+            return fSMBase.movtionManager.GetMovtionInfo(fSMBase.characterInfo.DamagedMovtionID);
+        }
+
+        public override void ExitState(FSMBase fSMBase)
+        {
+            base.ExitState(fSMBase);
+            PlayerFSMBase.Instance.playerMotor3D.ApplyAnimaMotionAll = false;
         }
     }
 }

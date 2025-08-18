@@ -31,9 +31,9 @@ namespace AI.FSM
             //判断上下输入
             fSMBase.animator.SetFloat("Vertical", playerFSMBase.playerInput.VerticalMove > 0 ? 1f : -1f);
 
-            fSMBase.animationHandler.PlayTargetAnimation("ClimpMove", true, 0.2f);
+            fSMBase.animationHandler.PlayTargetAnimation("ClimpMove", true, 0.1f);
             //此时长按，加快动画播放
-            if (playerFSMBase.playerInput.RollHold)
+            if (playerFSMBase.playerInput.RollHold && playerFSMBase.playerInput.RawVerticalMove > 0)
                 fSMBase.animator.speed = 1.5f;
             else
                 fSMBase.animator.speed = 1f;

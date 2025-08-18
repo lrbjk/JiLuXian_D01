@@ -1,3 +1,4 @@
+using AI.FSM.Framework;
 using ns.Movtion;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -92,6 +93,16 @@ namespace ns.Character
                 anim.SetFloat(name, targetValue);
             else
                 anim.SetFloat(name, targetValue, dampTime, deltaTime);
+        }
+
+        public virtual bool IsCurrentAnimationEnd()
+        {
+            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.normalizedTime >= 1.0f && !anim.IsInTransition(0))
+            {
+                return true;
+            }
+            return false;
         }
 
         private static void AddAnimationEvent(AnimationClip clip, float frameCount, string functionName)

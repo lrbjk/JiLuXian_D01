@@ -46,6 +46,11 @@ namespace ns.Character.Player
         public LayerMask ObstacleLayer;
 
         private Vector3 footPos;
+        //缓存速度
+        private const int BUFFER_SIZE = 3;
+        private readonly Queue<Vector3> velocityQueue = new Queue<Vector3>(BUFFER_SIZE);
+        private Vector3 previousPosition;
+
 
         private void Awake()
         {
@@ -60,6 +65,7 @@ namespace ns.Character.Player
         private void Start()
         {
             animator = GetComponent<Animator>();
+            previousPosition = transform.position;
         }
 
         private void Update()
@@ -97,8 +103,37 @@ namespace ns.Character.Player
             //}
             //Debug.Log(Time.time + "FIXED");
             //缓存三帧的速度作为beforespeed
+            // 计算当前帧速度
+            Vector3 currentVelocity = (transform.position - previousPosition) / Time.fixedDeltaTime;
+            previousPosition = transform.position;
+            // 更新速度缓存
+            UpdateVelocityBuffer(currentVelocity);
 
             rb.MoveRotation(targetRotation);
+        }
+        private void UpdateVelocityBuffer(Vector3 newVelocity)
+        {
+            // 添加新速度
+            velocityQueue.Enqueue(newVelocity);
+
+            // 保持队列不超过3帧
+            if (velocityQueue.Count > BUFFER_SIZE)
+            {
+                velocityQueue.Dequeue();
+            }
+        }
+
+        // 获取三帧平均速度
+        public Vector3 GetSmoothedVelocity()
+        {
+            if (velocityQueue.Count == 0) return Vector3.zero;
+
+            Vector3 sum = Vector3.zero;
+            foreach (Vector3 vel in velocityQueue)
+            {
+                sum += vel;
+            }
+            return sum / velocityQueue.Count;
         }
 
         private void OnDrawGizmos()
