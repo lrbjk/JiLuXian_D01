@@ -583,7 +583,7 @@ namespace Common.UI
                 if (equipmentUIFunc != null && Displayimage != null && description != null)
                 {
                     equipmentUIFunc.EquipDescriptionImage.sprite = Displayimage.sprite;
-                    equipmentUIFunc.EquipDescriptionText.text = description.text;
+                    //equipmentUIFunc.EquipDescriptionText.text = description.text;
 
                     Debug.Log(" Û±ÍΩ¯»Î≤Â≤€");
                 }

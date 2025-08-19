@@ -1,3 +1,4 @@
+using Common.UI;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class SelectionManager : MonoBehaviour
 
     //与背包连接接口
     [SerializeField] private BagList bagList;
+    [SerializeField] private EquipmentUIFunc equipmentUIFunc;
 
     //冷却时间
     public float minInterval = 0.5f;
@@ -47,6 +49,8 @@ public class SelectionManager : MonoBehaviour
                 selectedObjects.Add(child.GetComponent<SelectableImage>());
             }
         }
+
+        equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
     }
     
     public void SelectImage(SelectableImage newSelection)
@@ -85,6 +89,9 @@ public class SelectionManager : MonoBehaviour
         };
 
         bagList.UpdateBag();
+
+        //更新描述面板模板
+        equipmentUIFunc.normalDescription.UpdateNormalDescription();
     }
 
      public void moveRightOnEdge()
