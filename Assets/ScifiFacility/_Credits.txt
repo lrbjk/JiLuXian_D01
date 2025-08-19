@@ -1,0 +1,17 @@
+The SciFi Facility makes use of some external packages.
+
+Spline Mesh by Benoit Dumas released under MIT license.
+https://github.com/benoit-dumas/SplineMesh
+https://assetstore.unity.com/publishers/33230
+
+VRTK by thestonefox released under MIT license.
+https://github.com/thestonefox/VRTK
+https://assetstore.unity.com/packages/tools/vrtk-virtual-reality-toolkit-vr-toolkit-64131
+
+Sound files from freesound.org
+
+198107__julius-galla__sirene-alarm-loop released under Attribution license.
+https://freesound.org/people/julius_galla/sounds/198107/
+
+264061__paul368__sfx-door-open released under Creative Commons 0
+https://freesound.org/people/Paul368/sounds/264061/

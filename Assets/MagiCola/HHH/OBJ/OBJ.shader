@@ -2,22 +2,53 @@ Shader "Custom/MGCA/OBJ"
 {
     Properties
     {
+        [Foldout(1,1,1,1)]
+        _2COLORCHANNEL("双色材质_Foldout",Float) = 1
+        _BaseNormal("Base Normal", 2D) = "white" {}
+        _DirtRoughness("Dirt Roughness", 2D) = "white" {}
+        _DetailNormal("Detail Normal", 2D) = "white" {}
+        _DetailMask("Detail Mask", 2D) = "white" {}
+        _BaseColor("Base Color", Color) = (0.6544118,0.6544118,0.6544118,0)
+        _BaseColorOverlay("Base Color Overlay", Color) = (0.6544118,0.6544118,0.6544118,0)
+        _BaseDirtColor("Base Dirt Color", Color) = (0,0,0,0)
+        _DetailColor("Detail Color", Color) = (0,0,0,0)
+        _BaseNormalStrength("Base Normal Strength", Range( 0 , 1)) = 0
+        _BaseSmoothness("Base Smoothness", Range( 0 , 1)) = 0.5
+        _BaseDirtStrength("Base Dirt Strength", Range( 0.001 , 3)) = 0
+        _BaseMetallic("Base Metallic", Range( 0 , 1)) = 0
+        _DetailEdgeWear("Detail Edge Wear", Range( 0 , 1)) = 0
+        _DetailEdgeSmoothness("Detail Edge Smoothness", Range( 0 , 1)) = 0
+        _DetailDirtStrength("Detail Dirt Strength", Range( 0 , 1)) = 0
+        [Foldout_Out]
+        _2COLORCHANNEL_out("离开测试_Foldout",Float) = 1
+
         //主贴图
         [Space(10)]
         [Foldout]
         _MainMaps("贴图_Foldout",Float) = 1
         _Color("主颜色",Color) = (1,1,1,1)
         [NoScaleOffset]_MainTex("Albedo",2D) = "white"{}
-        [NoScaleOffset]_Normal("Normal",2D) = "bump"{}
+        [NoScaleOffset]_BumpMap("Normal",2D) = "bump"{}
         _BumpScale("法线缩放",Float) = 1
-        [NoScaleOffset]_Metal("Metal",2D) = "black"{}
+        [NoScaleOffset]_MetallicGlossMap("Metal",2D) = "black"{}
         _MetalIntensity("Metallic",Range(0.1,20)) = 1
+
         [NoScaleOffset]_Roughness("_Roughness",2D) = "white"{}
         _Glossiness("_RoughnessIntensity",Range(0.1,20)) = 1
         [NoScaleOffset]_SpecularMask("SpecularMask",2D) = "white"{}
-        [NoScaleOffset]_Emission("Emission",2D)="black"{}
+        [NoScaleOffset]_EmissionMap("Emission",2D)="black"{}
         _EmissionIntensity("EmissionIntensity",Range(0.1,20)) = 1
         _AO("AO",2D) = "white"{}
+
+        //Factory Shader
+
+
+        [Foldout(2,2,1,1)]
+        _Height("使用高度图_Foldout",Float) = 1
+        _HeightMap("高度图",2D) = "black"{}
+        _HeightIntensity("深度",Range(0.005,0.08)) = 0.005
+        [Foldout_Out(2)]
+        _Height_out("离开高度图_Foldout",Float) = 1
         [Foldout_Out]
         _MainMaps_Out("贴图离开_Foldout",Float) = 1
 
@@ -86,7 +117,7 @@ Shader "Custom/MGCA/OBJ"
         [Space(10)]
         [Foldout]
         _SH("环境光_Foldout",Float) = 1
-        _AmbientColorIntensity("AmbientColorIntensity",Range(0,1)) = 0.1
+        _AmbientColorIntensity("AmbientColorIntensity",Range(0,1)) = 0.5
         [Foldout_Out]
         _SH_Out("离开环境光_Foldout",Float) = 1
 
@@ -94,7 +125,8 @@ Shader "Custom/MGCA/OBJ"
         [Space(10)]
         [Foldout]
         _Option("其他设置_Foldout",Float) = 1
-        _AlphaClip("AlphaClip",Float) = 0.5
+        [Toggle(_AlphaClip_ON)] _AlphaClip("__clip", Float) = 0.0
+        _Cutoff("AlphaClip",Float) = 0.5
         [Enum(Off,0,On,1)]_ZWrite("ZWrite",Float) = 1
         [Enum(UnityEngine.Rendering.CullMode)]_Cull("Cull",int) = 2
         [Enum(UnityEngine.Rendering.BlendMode)]_BlendSrc("SrcAlpha混合原因子",int) = 1
@@ -119,14 +151,18 @@ Shader "Custom/MGCA/OBJ"
         }
 
         HLSLINCLUDE
+        #pragma multi_compile_instancing
         #pragma shader_feature_local _SCREEN_SPACE_SHADOW
         #pragma shader_feature_local _MATCAP_ON
+        #pragma shader_feature_local _2COLORCHANNEL_ON
+        #pragma shader_feature_local _AlphaClip_ON
         #pragma shader_feature_local _SCREEN_SAPCE_RIM
         #pragma shader_feature_local _SRP_DEFAULT_PASS
-        #pragma shader_feature_local _Lazer_ON
+        #pragma shader_feature_local _HEIGHT_ON
         #pragma multi_compile _ _MAIN_LIGHT_SHADOWS
         #pragma multi_compile _ _MAIN_LIGHT_SHADOWS_CASCADE
         #pragma multi_compile _ _MAIN_LIGHT_CALCULATE_SHADOWS
+
 
         // 多光源和阴影
         #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
@@ -145,54 +181,75 @@ Shader "Custom/MGCA/OBJ"
         #include "./OBJ_Dependce.hlsl"
 
         CBUFFER_START(UnityPerMaterial)
-            float4 _MainTex_ST;
-            float4 _Color;
-            float4 _ShadowColor;
-            float3 _OutlineColor;
-            float _BumpScale;
-            float _AlbedoSmoothness;
-            float _AlphaClip;
-            float _ZWrite;
-            float _Cull;
-            float _ScreenSpaceRimWidth;
-            float _OutlineWidth;
-            float _OutlineZOffset;
-            float _NoseLineKDnDisp;
-            float _NoseLineHoriDisp;
-            float _EmissionIntensity;
+            half4 _MainTex_ST;
+            half4 _Color;
+            half4 _ShadowColor;
+            half3 _OutlineColor;
+            half _BumpScale;
+            half _AlbedoSmoothness;
+            half _Cutoff;
+            half _ZWrite;
+            half _Cull;
+            half _ScreenSpaceRimWidth;
+            half _OutlineWidth;
+            half _OutlineZOffset;
+            half _NoseLineKDnDisp;
+            half _NoseLineHoriDisp;
+            half _EmissionIntensity;
+            half _HeightIntensity;
 
-            float4 _PostShadowFadeTint;
-            float4 _PostShadowTint;
-            float4 _PostShallowFadeTint;
-            float4 _PostShallowTint;
-            float4 _PostSSSTint;
-            float4 _PostFrontTint;
-            float3 _HeadCenter;
-            float3 _HeadForward;
-            float3 _HeadRight;
-            float3 _MatCapTintColor;
-            float _MatCapColorBrust;
-            float _MatCapAlphaBrust;
-            float _MatCapRefract;
-            float _MatCapDepth;
+            half4 _PostShadowFadeTint;
+            half4 _PostShadowTint;
+            half4 _PostShallowFadeTint;
+            half4 _PostShallowTint;
+            half4 _PostSSSTint;
+            half4 _PostFrontTint;
+            half3 _HeadCenter;
+            half3 _HeadForward;
+            half3 _HeadRight;
+            half3 _MatCapTintColor;
+            half _MatCapColorBrust;
+            half _MatCapAlphaBrust;
+            half _MatCapRefract;
+            half _MatCapDepth;
             int _MatCapBlendMode1;
-            float4 _MatCapParam;
+            half4 _MatCapParam;
 
             //pbr
-            float _MetalIntensity;
-            float _SpecularRange;
-            float _Glossiness;
-            float _ToonSpecular;
-            float _ModelSize;
-            float _SpecularIntensity;
-            float3 _SpecularColor;
+            half _MetalIntensity;
+            half _SpecularRange;
+            half _Glossiness;
+            half _ToonSpecular;
+            half _ModelSize;
+            half _SpecularIntensity;
+            half3 _SpecularColor;
 
             //SH
-            float _AmbientColorIntensity;
+            half _AmbientColorIntensity;
 
             //蒙版测试
             int _StencilRef;
+
+
+            //内测
+            half4 _BaseDirtColor;
+            half4 _DirtRoughness_ST;
+            half _BaseDirtStrength;
+            half4 _BaseColor;
+            half4 _BaseColorOverlay;
+            half4 _DetailColor;
+            half4 _DetailMask_ST;
+            half _DetailDirtStrength;
+            half _DetailEdgeWear;
+            half4 _DetailNormal_ST;
+            half4 _BaseNormal_ST;
+            half _BaseNormalStrength;
+            half _BaseMetallic;
+            half _BaseSmoothness;
+            half _DetailEdgeSmoothness;
         CBUFFER_END
+        
+        
 
         Texture2D _MainTex;
         sampler sampler_MainTex;
@@ -202,19 +259,19 @@ Shader "Custom/MGCA/OBJ"
         sampler sampler_OtherDataTex1;
         Texture2D _OtherDataTex2;
         sampler sampler_OtherDataTex2;
-        Texture2D _Normal;
-        sampler sampler_Normal;
-        Texture2D _SDFTex;
-        sampler sampler_SDFTex;
+        Texture2D _BumpMap;
+        sampler sampler_BumpMap;
+        Texture2D _HeightMap;
+        sampler sampler_HeightMap;
         Texture2D _MatCapTex;
         sampler sampler_MatCapTex;
-        Texture2D _Emission;
-        sampler sampler_Emission;
+        Texture2D _EmissionMap;
+        sampler sampler_EmissionMap;
         Texture2D _AO;
         sampler sampler_AO;
 
-        Texture2D _Metal;
-        sampler sampler_Metal;
+        Texture2D _MetallicGlossMap;
+        sampler sampler_MetallicGlossMap;
         Texture2D _Roughness;
         sampler sampler_Roughness;
         Texture2D _SpecularMask;
@@ -222,26 +279,36 @@ Shader "Custom/MGCA/OBJ"
         Texture2D _matcapMask;
         sampler sampler_matcapMask;
 
+        //内测
+        Texture2D _DirtRoughness;
+        sampler sampler_DirtRoughness;
+        Texture2D _DetailMask;
+        sampler sampler_DetailMask;
+        Texture2D _DetailNormal;
+        sampler sampler_DetailNormal;
+        Texture2D _BaseNormal;
+        sampler sampler_BaseNormal;
 
-        float3 TriShadow(float baseAttenuation, float shadowAttenuation)
+
+        half3 TriShadow(half baseAttenuation, half shadowAttenuation)
         {
             //级联阴影
-            float albedoSmoothness = max(1e-5, _AlbedoSmoothness);
-            float albedoShadowFade = 1.0; //较深阴影
-            float albedoShadow = 1.0; //较浅阴影
-            float albedoShallowFade = 1.0; //中间过渡部分较深阴影
-            float albedoShallow = 1.0; //中间过渡部分较浅阴影
-            float albedoSSS = 1.0; //中间过渡部分较浅阴影向上偏移出的次表面部分
-            float albedoFront = 1.0; //最亮区域，接近没有衰减的部分
-            float albedoForward = 1.0; //最强反射部分
+            half albedoSmoothness = max(1e-5, _AlbedoSmoothness);
+            half albedoShadowFade = 1.0; //较深阴影
+            half albedoShadow = 1.0; //较浅阴影
+            half albedoShallowFade = 1.0; //中间过渡部分较深阴影
+            half albedoShallow = 1.0; //中间过渡部分较浅阴影
+            half albedoSSS = 1.0; //中间过渡部分较浅阴影向上偏移出的次表面部分
+            half albedoFront = 1.0; //最亮区域，接近没有衰减的部分
+            half albedoForward = 1.0; //最强反射部分
             {
-                float Attenuation = baseAttenuation * 1.5; //-1.5~1.5
+                half Attenuation = baseAttenuation * 1.5; //-1.5~1.5
                 //光滑系数调整
-                float s0 = albedoSmoothness * 1.5; //0~1.5
+                half s0 = albedoSmoothness * 1.5; //0~1.5
                 //锐利系数(粗糙度？）
-                float s1 = 1.0 - s0; //-0.5~1
+                half s1 = 1.0 - s0; //-0.5~1
                 //将阴影明暗分成六个部分，每0.5一段，1.5~-1
-                float aRamp[6] = {
+                half aRamp[6] = {
                     (Attenuation + 1.5) / s1 + 0.0, //aRamp[0]，最深
                     (Attenuation + 0.5) / s0 + 0.5, //aRamp[1],较深
                     (Attenuation + 0.0) / s1 + 0.5, //aRamp[2],中深
@@ -260,7 +327,7 @@ Shader "Custom/MGCA/OBJ"
 
 
             //叠加屏幕空间阴影
-            float sRamp[2] = {
+            half sRamp[2] = {
                 2 * shadowAttenuation,
                 2 * shadowAttenuation - 1
             };
@@ -273,14 +340,14 @@ Shader "Custom/MGCA/OBJ"
             albedoForward *= saturate(sRamp[1]);
 
 
-            float3 SSSColor = 1.0; //中间过渡部分较浅阴影向上偏移出的次表面部分
-            float3 FrontColor = 1.0; //最亮区域，接近没有衰减的部分
-            float3 ForwardColor = 1.0; //最强反射部分
-            float3 shadowColor = float3(0, 0, 0);
-            float3 shadowFadeColor = float3(0, 0, 0);
-            float3 ShallowFadeColor = 1.0; //中间过渡部分较深阴影
-            float3 ShallowColor = 1.0; //中间过渡部分较浅阴影
-            // float zFade = saturate(positionCS.w * 0.43725);
+            half3 SSSColor = 1.0; //中间过渡部分较浅阴影向上偏移出的次表面部分
+            half3 FrontColor = 1.0; //最亮区域，接近没有衰减的部分
+            half3 ForwardColor = 1.0; //最强反射部分
+            half3 shadowColor = half3(0, 0, 0);
+            half3 shadowFadeColor = half3(0, 0, 0);
+            half3 ShallowFadeColor = 1.0; //中间过渡部分较深阴影
+            half3 ShallowColor = 1.0; //中间过渡部分较浅阴影
+            // half zFade = saturate(positionCS.w * 0.43725);
             shadowColor = _ShadowColor;
             // shadowColor = lerp(normalizeColorByAverageColor(shadowColor), shadowColor, zFade);
             shadowFadeColor = shadowColor * _PostShadowFadeTint;
@@ -292,7 +359,7 @@ Shader "Custom/MGCA/OBJ"
             ForwardColor = 1.0;
 
 
-            float3 albedo = (albedoForward * ForwardColor + albedoFront * FrontColor + albedoSSS * SSSColor); //亮面颜色
+            half3 albedo = (albedoForward * ForwardColor + albedoFront * FrontColor + albedoSSS * SSSColor); //亮面颜色
             albedo += (albedoShadowFade * shadowFadeColor + albedoShadow * shadowColor + (albedoShallowFade) *
                 ShallowFadeColor + albedoShallow * ShallowColor); //暗面颜色
 
@@ -303,30 +370,35 @@ Shader "Custom/MGCA/OBJ"
 
         struct UniversalAttributes
         {
-            float4 positionOS : POSITION;
-            float3 normalOS : NORMAL;
-            float4 tangentOS : TANGENT;
-            float2 uv : TEXCOORD0;
-            float2 staticLightmapUV : TEXCOORD1;
-            float2 dynamicLightmapUV : TEXCOORD2;
+            half4 positionOS : POSITION;
+            half3 normalOS : NORMAL;
+            half4 tangentOS : TANGENT;
+            half2 uv : TEXCOORD0;
+            half2 texcoord1 : TEXCOORD1;
+            half4 texcoord3 : TEXCOORD3;
+            half2 staticLightmapUV : TEXCOORD4;
+            half2 dynamicLightmapUV : TEXCOORD5;
+            UNITY_VERTEX_INPUT_INSTANCE_ID
         };
 
         struct UniversalVaryings
         {
-            float4 positionCS : SV_POSITION;
-            float4 positionWSAndFogFactor : TEXCOORD0;
-            float3 normalWS : TEXCOORD1;
-            float4 tangentWS : TEXCOORD2;
-            float3 viewDirWS : TEXCOORD3;
-            float2 texcoord : TEXCOORD4;
+            half4 positionCS : SV_POSITION;
+            half4 positionWSAndFogFactor : TEXCOORD0;
+            half3 normalWS : TEXCOORD1;
+            half4 tangentWS : TEXCOORD2;
+            half3 viewDirWS : TEXCOORD3;
+            half2 texcoord : TEXCOORD4;
+            half4 texcoord7 : TEXCOORD5;
 
             #if defined(REQUIRES_VERTEX_SHADOW_COORD_INTERPOLATOR)
-            float4 shadowCoord              : TEXCOORD6;
+            half4 shadowCoord              : TEXCOORD6;
             #endif
             DECLARE_LIGHTMAP_OR_SH(staticLightmapUV, vertexSH, 7);
             #ifdef DYNAMICLIGHTMAP_ON
-            float2  dynamicLightmapUV : TEXCOORD8; // Dynamic lightmap UVs
+            half2  dynamicLightmapUV : TEXCOORD8; // Dynamic lightmap UVs
             #endif
+            UNITY_VERTEX_INPUT_INSTANCE_ID
         };
 
 
@@ -334,21 +406,23 @@ Shader "Custom/MGCA/OBJ"
         UniversalVaryings MainVS(UniversalAttributes input)
         {
             UniversalVaryings output = (UniversalVaryings)0;
+            UNITY_SETUP_INSTANCE_ID(input);
+            UNITY_TRANSFER_INSTANCE_ID(input, output);
             //获取世界空间下法线和位置等信息
             VertexPositionInputs positionInputs = GetVertexPositionInputs(input.positionOS.xyz);
             VertexNormalInputs normalInputs = GetVertexNormalInputs(input.normalOS, input.tangentOS);
 
             output.positionCS = positionInputs.positionCS;
-            output.positionWSAndFogFactor = float4(positionInputs.positionWS,
-                                   ComputeFogFactor(positionInputs.positionCS.z));
+            output.positionWSAndFogFactor = half4(positionInputs.positionWS,
+                                                  ComputeFogFactor(positionInputs.positionCS.z));
             output.normalWS = normalInputs.normalWS;
 
             output.tangentWS.xyz = normalInputs.tangentWS;
             output.tangentWS.w = input.tangentOS.w * GetOddNegativeScale();
             output.viewDirWS = unity_OrthoParams.w == 0
-                 ? GetCameraPositionWS() - positionInputs.
-                 positionWS
-                 : GetWorldToViewMatrix()[2].xyz;
+             ? GetCameraPositionWS() - positionInputs.
+             positionWS
+             : GetWorldToViewMatrix()[2].xyz;
 
             output.texcoord = TRANSFORM_TEX(input.uv, _MainTex);
 
@@ -363,41 +437,76 @@ Shader "Custom/MGCA/OBJ"
                 output.shadowCoord = GetShadowCoord(positionInputs);
             #endif
 
+            output.texcoord7.xy = input.texcoord3.xy;
+            output.texcoord7.zw = input.uv.xy;
+
             return output;
         }
 
         // 片元着色器函数
-        float4 MainPS(UniversalVaryings input, bool isFrontFace : SV_IsFrontFace):SV_TARGET
+        half4 MainPS(UniversalVaryings input, bool isFrontFace : SV_IsFrontFace):SV_TARGET
         {
-            float3 normalWS = normalize(input.normalWS);
-            float3 positionWS = input.positionWSAndFogFactor.xyz;
-            float3 viewDirWS = normalize(input.viewDirWS);
-            float4 shadowCoord = TransformWorldToShadowCoord(positionWS);
-            float2 normalizedScreenSpaceUV = input.positionCS.xy * rcp(GetScaledScreenParams().xy);
+            UNITY_SETUP_INSTANCE_ID(input)
+            #if defined(_HEIGHT_ON)
+            //beforeNormalize
+            half3 unnormalizedNormalWS = input.normalWS;
+            const half renormFactor = 1.0 / length(unnormalizedNormalWS);
+
+            half crossSign = (input.tangentWS.w > 0.0 ? 1.0 : -1.0);
+            half3 bitang = crossSign * cross(input.normalWS.xyz, input.tangentWS.xyz);
+
+            half3 WorldSpaceNormal = renormFactor * input.normalWS.xyz;
+            // we want a unit length Normal Vector node in shader graph
+
+            // to preserve mikktspace compliance we use same scale renormFactor as was used on the normal.
+            // This is explained in section 2.2 in "surface gradient based bump mapping framework"
+            half3 WorldSpaceTangent = renormFactor * input.tangentWS.xyz;
+            half3 WorldSpaceBiTangent = renormFactor * bitang;
+
+            half3x3 tangentSpaceTransform = half3x3(WorldSpaceTangent, WorldSpaceBiTangent, WorldSpaceNormal);
+            half3 viewDirTS = mul(tangentSpaceTransform, input.viewDirWS);
+
+            half h = SAMPLE_TEXTURE2D(_HeightMap, sampler_HeightMap, input.texcoord).g;
+            h = h * _HeightIntensity - _HeightIntensity / 2.0;
+            half3 v = normalize(viewDirTS);
+            v.z += 0.42;
+            half2 Offset = h * (v.xy / v.z);
+            input.texcoord += Offset;
+            #endif
+
+
+            half3 normalWS = normalize(input.normalWS);
+            half3 positionWS = input.positionWSAndFogFactor.xyz;
+            half3 viewDirWS = normalize(input.viewDirWS);
+            viewDirWS = GetCameraPositionWS() - positionWS;
+            viewDirWS = normalize(viewDirWS);
+            
+            half4 shadowCoord = TransformWorldToShadowCoord(positionWS);
+            half2 normalizedScreenSpaceUV = input.positionCS.xy * rcp(GetScaledScreenParams().xy);
             TransformNormalizedScreenUV(normalizedScreenSpaceUV);
 
             Light mainLight = GetMainLight(shadowCoord);
-            float3 lightColor = mainLight.color;
-            float3 lightDirectionWS = normalize(mainLight.direction);
+            half3 lightColor = mainLight.color;
+            half3 lightDirectionWS = normalize(mainLight.direction);
 
             //MainTex 
-            float4 var_MainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.texcoord);
+            half4 var_MainTex = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, input.texcoord);
 
             var_MainTex *= _Color;
-            float3 baseCol = var_MainTex.rgb * _Color.xyz;
-            float baseAlpha = 1.0;
-            baseAlpha = var_MainTex.a;
+            half3 baseCol = var_MainTex.rgb * _Color.xyz;
+            half baseAlpha = 1.0;
+            baseAlpha = var_MainTex.a * _Color.a;
 
-            float ao = SAMPLE_TEXTURE2D(_AO, sampler_AO, input.texcoord).r;
-            float3 emission = SAMPLE_TEXTURE2D(_Emission, sampler_Emission, input.texcoord) * _EmissionIntensity;
+            half ao = SAMPLE_TEXTURE2D(_AO, sampler_AO, input.texcoord).r;
+            half3 emission = SAMPLE_TEXTURE2D(_EmissionMap, sampler_EmissionMap, input.texcoord) * _EmissionIntensity;
 
-            float matcapMask = 0;
-            float metallic = 0;
-            float specularMask = 0;
-            float smoothness = 0.58;
+            half matcapMask = 0;
+            half metallic = 0;
+            half specularMask = 0;
+            half smoothness = 0.58;
 
             matcapMask = SAMPLE_TEXTURE2D(_matcapMask, sampler_matcapMask, input.texcoord);
-            metallic = SAMPLE_TEXTURE2D(_Metal, sampler_Metal, input.texcoord).b;
+            metallic = SAMPLE_TEXTURE2D(_MetallicGlossMap, sampler_MetallicGlossMap, input.texcoord).b;
             metallic = pow(metallic, _MetalIntensity);
             // metallic = 1;
             smoothness =
@@ -405,38 +514,75 @@ Shader "Custom/MGCA/OBJ"
             // smoothness = 0;
             specularMask = SAMPLE_TEXTURE2D(_SpecularMask, sampler_SpecularMask, input.texcoord);
             //TBN
-            float sign = input.tangentWS.w;
-            float3 tangentWS = normalize(input.tangentWS.xyz);
-            float3 bitangentWS = sign * normalize(cross(normalWS, tangentWS));
-            float3 pixelNormalWS = normalWS;
-            float4 var_Normal = SAMPLE_TEXTURE2D(_Normal, sampler_Normal, input.texcoord);
+            half sign = input.tangentWS.w;
+            half3 tangentWS = normalize(input.tangentWS.xyz);
+            half3 bitangentWS = sign * (cross(normalWS, tangentWS));
+            half3 pixelNormalWS = normalWS;
+            half4 var_Normal = SAMPLE_TEXTURE2D(_BumpMap, sampler_BumpMap, input.texcoord);
             var_Normal = var_Normal * 2.0 - 1.0;
-            float diffuseBais = 0;
+            half diffuseBais = 0;
             diffuseBais = specularMask * 2.0;
-            float3 pixelNormalTS = float3(var_Normal.xy, 0.0);
+            half3 pixelNormalTS = half3(var_Normal.xy, 0.0);
             pixelNormalTS *= _BumpScale;
             pixelNormalTS.z = sqrt(1.0 - min(0.0, dot(pixelNormalTS.xy, pixelNormalTS.xy)));
-            pixelNormalWS = TransformTangentToWorld(pixelNormalTS, float3x3(tangentWS, bitangentWS, normalWS));
+            pixelNormalWS = TransformTangentToWorld(pixelNormalTS, half3x3(tangentWS, bitangentWS, normalWS));
             pixelNormalWS = normalize(pixelNormalWS);
             normalWS *= isFrontFace ? 1.0 : -1.0;
             pixelNormalWS *= isFrontFace ? 1.0 : -1.0;
 
             pixelNormalWS = normalWS;
+            //Shadow  
+            half3 albedo = 0;
+            half shadowAttenuation = 1;
+
+            //------------------------------------------------------------------------------------
+
+            #if _2COLORCHANNEL_ON
+            half2 Test_uv  = input.texcoord;
+            half4 Test_DirtRoughness = SAMPLE_TEXTURE2D(_DirtRoughness,sampler_DirtRoughness,input.texcoord7.xy * _DirtRoughness_ST.xy + _DirtRoughness_ST.zw);
+            half Test_DirtStrength =  clamp( pow( Test_DirtRoughness.g , _BaseDirtStrength ) , 0.0 , 1.0 );
+            half4 Test_DirtColor =  lerp( _BaseDirtColor , half4( 1,1,1,0 ) , Test_DirtStrength);
+            half4 Test_BaseColor =  lerp( _BaseColor , _BaseColorOverlay , Test_DirtRoughness.r);
+            half4 Test_Detail = SAMPLE_TEXTURE2D(_DetailMask,sampler_DetailMask,input.texcoord7.zw  * _DetailMask_ST.xy + _DetailMask_ST.zw);
+            half4 Test_DetailColor = lerp(Test_BaseColor,_DetailColor,ceil(((1.0 - Test_Detail.b) - 0.95)));
+            half Test_DetailCeil = ceil( ( Test_Detail.b + -0.8 ) );
+            Test_DetailColor = lerp( Test_DetailColor , half4( half3(1,0.95,0.9) , 0.0 ) , Test_DetailCeil);
+            half Test_DetailAddIntensity = clamp( ( ( Test_Detail.r + -0.55 ) * 2.0 ) , 0.0 , 1.0 );
+            half4 Test_FinalDetail = lerp(Test_DetailColor, clamp( ( Test_DetailAddIntensity + Test_DetailColor ) , half4( 0,0,0,0 ) , half4( 1,1,1,0 ) ),_DetailEdgeWear);
+
+            
+            half3 Test_DetailedNormal = UnpackNormalScale(SAMPLE_TEXTURE2D(_DetailNormal,sampler_DetailNormal,input.texcoord7.zw * _DetailNormal_ST.xy + _DetailNormal_ST.zw),1.0f);
+            half3 Test_NormalMap = lerp(half3(0,0,1),UnpackNormalScale(SAMPLE_TEXTURE2D(_BaseNormal,sampler_BaseNormal,input.texcoord7.xy * _BaseNormal_ST.xy + _BaseNormal_ST.zw),1.0f),_BaseNormalStrength);
+
+            half Test_Detailedge1 = lerp(0.0,Test_DetailAddIntensity,_DetailEdgeWear);
+            half Test_Detailedge2 = clamp(Test_Detailedge1 + Test_DetailCeil,0.0,1.0);
+            half Test_Metallic = clamp( ( Test_Detailedge2 + _BaseMetallic ) , 0.0 , 1.0 );
+
+            half Test_Smoothness = lerp( ( ( max( Test_DetailAddIntensity , Test_DirtRoughness.a ) * Test_DirtColor ) * _BaseSmoothness ) , _DetailEdgeSmoothness , Test_Detailedge2);
+
+            half3 Test_Albedo = Test_DirtColor * Test_FinalDetail;
+            half3 Test_Normal = BlendNormal(Test_DetailedNormal,Test_NormalMap);
+            
+
+            baseCol.xyz = Test_Albedo;
+            pixelNormalWS = normalize(TransformTangentToWorld(Test_Normal, half3x3(tangentWS, bitangentWS, normalWS)));
+            smoothness = Test_Smoothness;
+            metallic = Test_Metallic;
+            #endif
+            //---------------------------------------------------------------------------------------------------------
+
 
             half3 reflectVector = reflect(-viewDirWS, pixelNormalWS);
-            half NoV = saturate(dot(normalWS, viewDirWS));
+            half NoV = saturate(dot(pixelNormalWS, viewDirWS));
             half fresnelTerm = Pow4(1.0 - NoV);
 
-            //Shadow  
-            float3 albedo = 0;
-            float shadowAttenuation = 1;
 
             // //CreateAmbientOcclusionFactor
             half indirectAmbientOcclusion;
             half directAmbientOcclusion;
             #if defined(_SCREEN_SPACE_OCCLUSION) && !defined(_SURFACE_TYPE_TRANSPARENT)
-            float2 uv = UnityStereoTransformScreenSpaceTex(normalizedScreenSpaceUV);
-            float ssao = SampleAmbientOcclusion(normalizedScreenSpaceUV);
+            half2 uv = UnityStereoTransformScreenSpaceTex(normalizedScreenSpaceUV);
+            half ssao = SampleAmbientOcclusion(normalizedScreenSpaceUV);
             indirectAmbientOcclusion = ssao;
             directAmbientOcclusion = lerp(half(1.0), ssao, _AmbientOcclusionParam.w);
             #else
@@ -447,79 +593,77 @@ Shader "Custom/MGCA/OBJ"
 
 
             // albedo = (albedo * 0.5 + 0.5) * baseCol;
-            // return float4(albedo, 1);
-            //---------------------------------------------------------------------------------------------------------
+            // return half4(albedo, 1);
 
             //MatCap
-            float3 MatCapColor = baseCol;
+            half3 MatCapColor = baseCol;
             #if _MATCAP_ON
             {
-                float mask = matcapMask;
-                float3 normalVS = TransformObjectToWorldNormal(pixelNormalWS);
-                float2 matcapUV = normalVS.xy * 0.5 + 0.5;
-                float refract = _MatCapRefract;
+                half mask = matcapMask;
+                half3 normalVS = TransformObjectToWorldNormal(pixelNormalWS);
+                half2 matcapUV = normalVS.xy * 0.5 + 0.5;
+                half refract = _MatCapRefract;
                 if (refract > 0.5)
                 {
-                    float4 param = _MatCapParam;
-                    float depth = _MatCapDepth;
+                    half4 param = _MatCapParam;
+                    half depth = _MatCapDepth;
                     matcapUV = matcapUV * depth + param.xy * input.texcoord + param.zw;
                     MatCapColor = SAMPLE_TEXTURE2D(_MatCapTex, sampler_MatCapTex, matcapUV).rgb;
-                    float3 tintColor = _MatCapTintColor;
-                    float alphaBrust = _MatCapAlphaBrust;
-                    float colorBrust = _MatCapColorBrust;
+                    half3 tintColor = _MatCapTintColor;
+                    half alphaBrust = _MatCapAlphaBrust;
+                    half colorBrust = _MatCapColorBrust;
                     int blendMode = _MatCapBlendMode1;
                     if (blendMode == 0)
                     {
-                        float alpha = saturate(alphaBrust * mask);
-                        float3 blendColor = tintColor * MatCapColor * colorBrust;
+                        half alpha = saturate(alphaBrust * mask);
+                        half3 blendColor = tintColor * MatCapColor * colorBrust;
                         MatCapColor = lerp(baseCol, blendColor, alpha);
                     }
                     else if (blendMode == 1)
                     {
-                        float alpha = saturate(alphaBrust * mask);
-                        float3 blendColor = tintColor * MatCapColor * colorBrust;
+                        half alpha = saturate(alphaBrust * mask);
+                        half3 blendColor = tintColor * MatCapColor * colorBrust;
                         MatCapColor = baseCol + blendColor * alpha;
                     }
                     else if (blendMode == 2)
                     {
-                        float alpha = saturate(alphaBrust * mask);
-                        float3 blendColor = saturate(
+                        half alpha = saturate(alphaBrust * mask);
+                        half3 blendColor = saturate(
                             (MatCapColor * tintColor - 0.5) * colorBrust + MatCapColor * tintColor);
                         blendColor = lerp(0.5, blendColor, alpha);
                         MatCapColor = lerp(blendColor * baseCol * 2, 1 - 2 * (1 - baseCol) * (1 - blendColor),
-                                                                       baseCol >= 0.5);
+          baseCol >= 0.5);
                     }
                 }
             }
             #endif
-            // return float4(MatCapColor,1);
+            // return half4(MatCapColor,1);
             //-------------------------------------------------------------------------------------------------------
 
-            float3 gammaColor = MatCapColor;
+            half3 gammaColor = MatCapColor;
             {
-                float pixelNdotL = dot(pixelNormalWS, lightDirectionWS);
-                float NdotL = dot(normalWS, lightDirectionWS);
-                float occlusion = saturate(1 - 3 * (NdotL - pixelNdotL)) * 2;
+                half pixelNdotL = dot(pixelNormalWS, lightDirectionWS);
+                half NdotL = dot(normalWS, lightDirectionWS);
+                half occlusion = saturate(1 - 3 * (NdotL - pixelNdotL)) * 2;
                 occlusion *= sqrt(occlusion);
                 occlusion = min(1, occlusion);
 
-                float attenuation = lerp((pixelNdotL * 0.5 + 0.5) * occlusion, saturate(pixelNdotL), 0.5);
-                float3 matCapColorClamped = ClampColorMax(MatCapColor);
-                float luminance = Luminance(MatCapColor);
-                float gamma = lerp(luminance * 0.2875 + 1.4375, 1, attenuation);
-                float3 matCapColorGamma = pow(max(1e-5, matCapColorClamped), gamma);
-                float3 matCapGammaHalf = lerp(MatCapColor, matCapColorGamma, 0.5);
+                half attenuation = lerp((pixelNdotL * 0.5 + 0.5) * occlusion, saturate(pixelNdotL), 0.5);
+                half3 matCapColorClamped = ClampColorMax(MatCapColor);
+                half luminance = Luminance(MatCapColor);
+                half gamma = lerp(luminance * 0.2875 + 1.4375, 1, attenuation);
+                half3 matCapColorGamma = pow(max(1e-5, matCapColorClamped), gamma);
+                half3 matCapGammaHalf = lerp(MatCapColor, matCapColorGamma, 0.5);
                 gammaColor = lerp(matCapGammaHalf, matCapColorGamma, saturate(NdotL));
-
-                // return float4(gammaColor, 1);
             }
+            // return float4(albedo,1);
             //--------------------------------------------------------------------------------------------
             //PBR
             BRDFData brdfData;
             InitializeBRDFData(baseCol, metallic, 0, smoothness, baseAlpha, brdfData);
 
 
-            float3 F0 = (float3)0.04; //设定的非金属F0
+            half3 F0 = (half3)0.04; //设定的非金属F0
             F0 = lerp(F0, baseCol, metallic);
 
             //LightMap
@@ -543,8 +687,8 @@ Shader "Custom/MGCA/OBJ"
             #endif
 
 
-            // return float4(pbrSpecularColor,1);
-            float3 specularColor = 0;
+            // return half4(pbrSpecularColor,1);
+            half3 specularColor = 0;
             // Additional Highlight
 
             #if defined(_ADDITIONAL_LIGHTS)
@@ -554,9 +698,9 @@ Shader "Custom/MGCA/OBJ"
             uint pixelLightCount = GetAdditionalLightsCount();
                 LIGHT_LOOP_BEGIN(pixelLightCount)
                 Light light = GetAdditionalLight(lightIndex, positionWS, shadowMask);
-                float AdditionalShadow = saturate(dot(pixelNormalWS, light.direction)) ;
+                half AdditionalShadow = saturate(dot(pixelNormalWS, light.direction));
                 // albedo += light.color * light.distanceAttenuation * shadowAttenuation;
-                float3 UnityLight = light.color * light.shadowAttenuation * light
+                half3 UnityLight = light.color * light.shadowAttenuation * light
                     .distanceAttenuation;
                 albedo += TriShadow(AdditionalShadow, shadowAttenuation) * UnityLight;
                 specularColor += CalculatePBRSpecular(viewDirWS, light.direction, pixelNormalWS, smoothness, F0) * light
@@ -574,26 +718,25 @@ Shader "Custom/MGCA/OBJ"
             bakedGI = min(bakedGI, realtimeShadow);
 
 
-            half mainShadow = dot(pixelNormalWS, mainLight.direction) ;
-            float3 mainLightColor = (mainLight.color) * mainLight.shadowAttenuation * mainLight.
+            half mainShadow = dot(pixelNormalWS, mainLight.direction);
+            half3 mainLightColor = (mainLight.color) * mainLight.shadowAttenuation * mainLight.
                 distanceAttenuation;
             albedo += TriShadow(mainShadow, shadowAttenuation) * mainLightColor;
 
             specularColor += CalculatePBRSpecular(viewDirWS, mainLight.direction, pixelNormalWS, smoothness, F0) *
                 mainLight.shadowAttenuation * mainLight.color;
 
-            float3 halfDir = normalize(viewDirWS + lightDirectionWS);
-            float VoH = dot(viewDirWS, halfDir);
-            float3 fTerm = Fresnel_Schlick(VoH, F0);
-            float3 Ks = fTerm;
-            float3 Kd = (1 - Ks) * (1 - metallic);
-            float3 diffuseColor = Kd * ao;
+            half3 halfDir = normalize(viewDirWS + lightDirectionWS);
+            half VoH = dot(viewDirWS, halfDir);
+            half3 fTerm = Fresnel_Schlick(VoH, F0);
+            half3 Ks = fTerm;
+            half3 Kd = (1 - Ks) * (1 - metallic);
+            half3 diffuseColor = Kd * ao;
 
-            float3 finalColor = 0;
+            half3 finalColor = 0;
             finalColor += (diffuseColor + specularColor) * albedo * gammaColor;
             finalColor += emission;
-
-            // return float4(specularColor,1);
+            
 
             //Unity Lit
 
@@ -608,14 +751,18 @@ Shader "Custom/MGCA/OBJ"
                 color = half3(1, 1, 1); // "Base white" for AO debug lighting mode
             }
 
-            float3 giColor = color * indirectAmbientOcclusion;
+            half3 giColor = color * indirectAmbientOcclusion;
 
 
             finalColor += giColor * _AmbientColorIntensity;
             finalColor = MixFog(finalColor, input.positionWSAndFogFactor.w);
 
+            #ifdef _AlphaClip_ON
+            clip(baseAlpha - _Cutoff);
+            #endif
 
-            return float4(finalColor, 1);
+
+            return half4(finalColor, baseAlpha);
         }
         ENDHLSL
 
@@ -661,6 +808,7 @@ Shader "Custom/MGCA/OBJ"
             #pragma multi_compile _ DYNAMICLIGHTMAP_ON
             #pragma multi_compile_fog
             #pragma multi_compile_fragment _ DEBUG_DISPLAY
+            #pragma multi_compile_instancing
 
 
             #pragma vertex MainVS
@@ -669,84 +817,86 @@ Shader "Custom/MGCA/OBJ"
         }
 
 
-        Pass
-        {
-            Name"Outline Pass"
-            Tags
-            {
-                "LightMode"="UniversalForwardOnly"
-            }
-            Cull Front
-            HLSLPROGRAM
-            #pragma shader_feature_local _OUTLINE_PASS_ON
-            #pragma shader_feature_local _SMOOTHNORMAL_UV7
-            #pragma vertex vert
-            #pragma fragment frag
-
-            struct Attributes
-            {
-                float4 positionOS : POSITION;
-                float3 normalOS : NORMAL;
-                float4 tangentOS : TANGENT;
-                float2 texcoord0 : TEXCOORD0;
-                float2 texcoord1 : TEXCOORD1;
-                float4 uv7 : TEXCOORD7;
-            };
-
-            struct Varyings
-            {
-                float4 positionCS : SV_POSITION;
-                float FogFactor : TEXCOORD0;
-                float2 uv : TEXCOORD1;
-            };
-
-            Varyings vert(Attributes IN)
-            {
-                #if !_OUTLINE_PASS_ON
-                return (Varyings)0;
-                #endif
-                VertexPositionInputs positionInputs = GetVertexPositionInputs(IN.positionOS.xyz);
-                VertexNormalInputs NormalInputs = GetVertexNormalInputs(IN.normalOS, IN.tangentOS);
-
-                float outlineWidth = _OutlineWidth;
-                outlineWidth *= GetOutlineCameraFovAndDistanceFixMultiplier(positionInputs.positionVS.z);
-
-                //法线外扩
-                float3 positionWS = positionInputs.positionWS.xyz;
-                float3 normal = NormalInputs.normalWS;
-                #if _SMOOTHNORMAL_UV7
-                float3x3 tbn = float3x3(NormalInputs.tangentWS,NormalInputs.bitangentWS,NormalInputs.normalWS);
-                normal = mul(IN.uv7.rgb, tbn);
-                #endif
-
-                positionWS += normal * outlineWidth;
-
-                Varyings OUT = (Varyings)0;
-                OUT.positionCS = NiloGetNewClipPosWithZOffset(TransformWorldToHClip(positionWS), _OutlineZOffset);
-                OUT.FogFactor = ComputeFogFactor(positionInputs.positionCS.z);
-                OUT.uv = IN.texcoord0;
-                return OUT;
-            }
-
-            float4 frag(Varyings IN) : SV_Target
-            {
-                #if !_OUTLINE_PASS_ON
-                clip(-1);
-                #endif
-
-                float3 outlineColor = 0;
-                outlineColor = _OutlineColor.rgb;
-                float4 color = float4(outlineColor, 1);
-                color.rgb = MixFog(color.rgb, IN.FogFactor);
-                return color;
-            }
-            ENDHLSL
-        }
-        UsePass "Universal Render Pipeline/Lit/DEPTHONLY"
-        UsePass "Universal Render Pipeline/Lit/DEPTHNORMALS"
-        UsePass "Universal Render Pipeline/Lit/ShadowCaster"
-        UsePass "Universal Render Pipeline/Lit/GBUFFER"
-        UsePass "Universal Render Pipeline/Lit/META"
+//        Pass
+//        {
+//            Name"Outline Pass"
+//            Tags
+//            {
+//                "LightMode"="SRPDefaultUnlit"
+//            }
+//            Cull Front
+//            HLSLPROGRAM
+//            #pragma shader_feature_local _OUTLINE_PASS_ON
+//            #pragma shader_feature_local _SMOOTHNORMAL_UV7
+//            #pragma vertex vert
+//            #pragma fragment frag
+//        
+//            struct Attributes
+//            {
+//                half4 positionOS : POSITION;
+//                half3 normalOS : NORMAL;
+//                half4 tangentOS : TANGENT;
+//                half2 texcoord0 : TEXCOORD0;
+//                half2 texcoord1 : TEXCOORD1;
+//                half4 uv7 : TEXCOORD7;
+//            };
+//        
+//            struct Varyings
+//            {
+//                half4 positionCS : SV_POSITION;
+//                half FogFactor : TEXCOORD0;
+//                half2 uv : TEXCOORD1;
+//            };
+//        
+//            Varyings vert(Attributes IN)
+//            {
+//                #if !_OUTLINE_PASS_ON
+//                return (Varyings)0;
+//                #endif
+//                VertexPositionInputs positionInputs = GetVertexPositionInputs(IN.positionOS.xyz);
+//                VertexNormalInputs NormalInputs = GetVertexNormalInputs(IN.normalOS, IN.tangentOS);
+//        
+//                half outlineWidth = _OutlineWidth;
+//                outlineWidth *= GetOutlineCameraFovAndDistanceFixMultiplier(positionInputs.positionVS.z);
+//        
+//                //法线外扩
+//                half3 positionWS = positionInputs.positionWS.xyz;
+//                half3 normal = NormalInputs.normalWS;
+//                #if _SMOOTHNORMAL_UV7
+//                half3x3 tbn = half3x3(NormalInputs.tangentWS,NormalInputs.bitangentWS,NormalInputs.normalWS);
+//                normal = mul(IN.uv7.rgb, tbn);
+//                #endif
+//        
+//                positionWS += normal * outlineWidth;
+//        
+//                Varyings OUT = (Varyings)0;
+//                OUT.positionCS = NiloGetNewClipPosWithZOffset(TransformWorldToHClip(positionWS), _OutlineZOffset);
+//                OUT.FogFactor = ComputeFogFactor(positionInputs.positionCS.z);
+//                OUT.uv = IN.texcoord0;
+//                return OUT;
+//            }
+//        
+//            half4 frag(Varyings IN) : SV_Target
+//            {
+//                #if !_OUTLINE_PASS_ON
+//                clip(-1);
+//                #endif
+//        
+//                half3 outlineColor = 0;
+//                outlineColor = _OutlineColor.rgb;
+//                half alpha = SAMPLE_TEXTURE2D(_MainTex,sampler_MainTex,IN.uv).a * _Color.a;
+//                half4 color = half4(outlineColor, alpha);
+//                clip(alpha - _Cutoff);
+//                color.rgb = MixFog(color.rgb, IN.FogFactor);
+//                return color;
+//            }
+//            ENDHLSL
+//        }
+//        UsePass "Universal Render Pipeline/Lit/DEPTHONLY"
+//        UsePass "Universal Render Pipeline/Lit/DEPTHNORMALS"
+//        UsePass "Universal Render Pipeline/Lit/ShadowCaster"
+//        UsePass "Universal Render Pipeline/Lit/GBUFFER"
+//        UsePass "Universal Render Pipeline/Lit/META"
     }
     CustomEditor "Scarecrow.SimpleShaderGUI"
 }

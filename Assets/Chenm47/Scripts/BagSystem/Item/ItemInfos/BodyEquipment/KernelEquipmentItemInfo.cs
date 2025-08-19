@@ -1,12 +1,8 @@
 using ns.Character.Player;
-using ns.ItemInfos;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/*
 
-*/
 namespace ns.ItemInfos
 {
     [CreateAssetMenu(menuName = "Item/Equipment/Kernel")]
@@ -15,7 +11,7 @@ namespace ns.ItemInfos
         [Header("临界点切换值")]
         public List<CriticalStateValuePairs> SwitchCriticalPoint;
         [Header("临界状态系数")]
-        public List<CriticalStateValuePairs> criticalStateEffectCoefficientPairs;
+        public List<CriticalStateValuePairsFloat> criticalStateEffectCoefficientPairs;
 
         public float GetCriticalStateEffectCoefficient(CriticalStateType t)
         {

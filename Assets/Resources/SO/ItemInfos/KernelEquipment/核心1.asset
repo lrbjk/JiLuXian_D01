@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemIcon: {fileID: 21300000, guid: a855f4ba6619d54479a6224ade07fa03, type: 3}
   ItemName: "\u6838\u5FC31"
   ItemDescription: 
-  ItemID: 10
+  ItemID: 12
   iType: 5
   MaxCount: 1
   _isInitialized: 1
@@ -28,9 +28,9 @@ MonoBehaviour:
   - type: 0
     value: 100
   criticalStateEffectCoefficientPairs:
-  - type: 0
-    value: 1.1
-  - type: 1
-    value: 1
   - type: 2
     value: 0.9
+  - type: 1
+    value: 1
+  - type: 0
+    value: 1.1

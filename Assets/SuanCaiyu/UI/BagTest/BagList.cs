@@ -42,13 +42,7 @@ public class BagList : MonoBehaviour
 
         equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
 
-        //初始化获取选择插槽
-        //rightHandBagList = equipmentSelector.rightHandWeaponList;
-        //leftHandBagList = equipmentSelector.leftHandWeaponList;
-        //headBagList = equipmentSelector.headEquipmentList;
-        //bodyBagList = equipmentSelector.bodyEquipmentList;
-        //kernelBagList = equipmentSelector.kernelEquipmentList;
-        //consumerList = equipmentSelector.consumerEquipmentList;
+
 
         for (int i = 0; i < Sum; i++)
         {
@@ -71,7 +65,12 @@ public class BagList : MonoBehaviour
         //初始化武器背包
         for (int i = 0; i < Sum; i++)
         {
-            BagItems[i].description.text = null;
+            BagItems[i].nametext = null;
+            BagItems[i].descriptiontext = null;
+            BagItems[i].effectText = null;
+            BagItems[i].maxStorage = 0;
+            BagItems[i].maxHold = 0;
+
             BagItems[i].Displayimage.sprite = BagItems[i].EmptyImage;
             BagItems[i].HighLightImage.gameObject.SetActive(false);
         }
@@ -86,9 +85,13 @@ public class BagList : MonoBehaviour
             //根据角色背包装备更新背包物品信息
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
+                HeadEquipmentItemInfo items = itemLst[i].itemInfo as HeadEquipmentItemInfo;
                 //更新背包格子信息
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
 
                 //获取物品唯一索引，后面会通过索引查找物品
                 BagItems[i].BagIndex = i;
@@ -105,8 +108,12 @@ public class BagList : MonoBehaviour
 
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                BodyEquipmentItemInfo items = itemLst[i].itemInfo as BodyEquipmentItemInfo;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
                 BagItems[i].BagIndex = i;
             }
             CurrentItemNumber = itemLst.Count;
@@ -117,8 +124,12 @@ public class BagList : MonoBehaviour
 
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                KernelEquipmentItemInfo items = itemLst[i].itemInfo as KernelEquipmentItemInfo;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
                 BagItems[i].BagIndex = i;
             }
             CurrentItemNumber = itemLst.Count;
@@ -129,8 +140,12 @@ public class BagList : MonoBehaviour
 
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                RightHandWeaponItemInfo items = itemLst[i].itemInfo as RightHandWeaponItemInfo;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
 
                 BagItems[i].BagIndex = i;
             }
@@ -144,8 +159,12 @@ public class BagList : MonoBehaviour
 
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                LeftHandWeaponItemInfo items = itemLst[i].itemInfo as LeftHandWeaponItemInfo;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
 
                 BagItems[i].BagIndex = i;
             }
@@ -158,8 +177,14 @@ public class BagList : MonoBehaviour
             Debug.Log(itemLst.Count);
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                ConsumableItemInfo items = itemLst[i].itemInfo as ConsumableItemInfo;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].maxHold = items.QuickMaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
+                BagItems[i].CType = items.cType.ToString();
                 BagItems[i].BagIndex = i;
             }
 
@@ -171,8 +196,12 @@ public class BagList : MonoBehaviour
             Debug.Log(itemLst.Count);
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                MaterialItemInfos items = itemLst[i].itemInfo as MaterialItemInfos;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
                 BagItems[i].BagIndex = i;
             }
 
@@ -184,8 +213,13 @@ public class BagList : MonoBehaviour
             Debug.Log(itemLst.Count);
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                CurrencyItemInfo items = itemLst[i].itemInfo as CurrencyItemInfo;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].maxHold = items.QuickMaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
                 BagItems[i].BagIndex = i;
             }
 
@@ -197,21 +231,12 @@ public class BagList : MonoBehaviour
             Debug.Log(itemLst.Count);
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
-                BagItems[i].BagIndex = i;
-            }
-
-        }
-        else if (currentCategory == ItemCategory.Spell)
-        {
-
-            InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.Spell, out var itemLst);
-            Debug.Log(itemLst.Count);
-            for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
-            {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                SpellInfo items = itemLst[i].itemInfo as SpellInfo;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
                 BagItems[i].BagIndex = i;
             }
 
@@ -223,8 +248,12 @@ public class BagList : MonoBehaviour
             Debug.Log(itemLst.Count);
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                KeyItemInfo items = itemLst[i].itemInfo as KeyItemInfo;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
                 BagItems[i].BagIndex = i;
             }
         }
@@ -235,8 +264,14 @@ public class BagList : MonoBehaviour
             Debug.Log(itemLst.Count);
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
-                BagItems[i].description.text = itemLst[i].itemInfo.name;
-                BagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
+                ConsumableItemInfo items = itemLst[i].itemInfo as ConsumableItemInfo;
+                BagItems[i].nametext = items.ItemName;
+                BagItems[i].descriptiontext = items.ItemDescription;
+                BagItems[i].effectText = items.ItemEffectDescription;
+                BagItems[i].maxStorage = items.MaxCount;
+                BagItems[i].maxHold = items.QuickMaxCount;
+                BagItems[i].Displayimage.sprite = items.ItemIcon;
+                BagItems[i].CType = items.cType.ToString();
                 BagItems[i].BagIndex = i;
             }
 

@@ -9,8 +9,8 @@ namespace Common.UI
 {
     public class EquipmentUIFunc : UILayerManager
     {
-        public Text DescriptionText;
-        public Text EquipDescriptionText;
+        public NormalDescription normalDescription;
+        public EquipDescription  equipDescription;
 
 
         public Image DescriptionImage;
@@ -46,12 +46,12 @@ namespace Common.UI
         {
             base.Start();
 
-            Transform dt = transform.FindChildByName("DescriptionText");
-            DescriptionText = dt.GetComponent<Text>();
+            Transform dt = transform.FindChildByName("DescriptionLayer");
+            normalDescription = dt.GetComponent<NormalDescription>();
             Debug.Log("找到描述文字");
 
-            Transform et = transform.FindChildByName("EquipDescriptionText");
-            EquipDescriptionText = et.GetComponent<Text>();
+            Transform et = transform.FindChildByName("EquipDescriptionLayer");
+            equipDescription = et.GetComponent<EquipDescription>();
             Debug.Log("找到装备描述文字");
 
             Transform di = transform.FindChildByName("DescriptionImage");
@@ -151,6 +151,8 @@ namespace Common.UI
             bagList.CreatBagList();
             bagList.UpdateBag();
             Debug.Log("找到并创建背包格子！");
+
+            normalDescription.UpdateNormalDescription();
         }
     }
 

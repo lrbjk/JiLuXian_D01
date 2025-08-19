@@ -2,6 +2,7 @@
 
 Shader "Effects/Blood" {
 Properties {
+	_BloodColor("BloodColor",Color) = (1,0,0,1)
 	_TintColor ("Tint Color", Color) = (0.5,0.5,0.5,0.5)
 	_MainTex ("Particle Texture", 2D) = "white" {}
 	_InvFade ("Soft Particles Factor", Range(0.01,3.0)) = 1.0
@@ -24,6 +25,7 @@ Category {
 
 			sampler2D _MainTex;
 			fixed4 _TintColor;
+			fixed3 _BloodColor;
 			
 			struct appdata_t {
 				float4 vertex : POSITION;
@@ -67,7 +69,7 @@ Category {
 				i.color.a *= fade;
 				#endif
 
-				fixed4 res = 4 * i.color * _TintColor * tex2D(_MainTex, i.texcoord);
+				fixed4 res = 4 * i.color * _TintColor *  half4(_BloodColor,tex2D(_MainTex, i.texcoord).a);
 				res.a /=1.5;
 				return fixed4(saturate((1 - res.aaa) + res.rgb*res.aaa), 1);
 			}

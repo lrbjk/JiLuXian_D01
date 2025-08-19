@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class EquipmentViewManager : MonoBehaviour
 {
-    [SerializeField] private ImageCycler RightHnadCycler;
-    [SerializeField] private ImageCycler LeftHnadCycler;
-    [SerializeField] private ImageCycler SpellCycler;
-    [SerializeField] private ImageCycler PropCycler;
+    public ImageCycler RightHnadCycler;
+    public ImageCycler LeftHnadCycler;
+    public ImageCycler SpellCycler;
+    public ImageCycler PropCycler;
 
     [SerializeField] private EquipmentSelector equipmentSelector;
     private  EquipmentUIFunc equipmentUIFunc;
@@ -52,13 +52,22 @@ public class EquipmentViewManager : MonoBehaviour
         {
             RightHnadCycler.currentIndex = 0;
         }
-        RightHnadCycler.UpdateImagerDisplay();
+
+         if(RightHnadCycler.equipmentImages.Count <= 0)
+         {
+            Debug.Log("装备栏没有武器！");
+            return;
+         }
+        else
+        {
+            RightHnadCycler.UpdateImagerDisplay();
+        }
 
     }
 
     public void UpdatLeftHandView()
     {
-        Debug.Log("我是你爸爸");
+        //Debug.Log("我是你爸爸");
         LeftHnadCycler.equipmentImages.Clear();
         //左手武器
         for (int i = 0; i < 2; i++)

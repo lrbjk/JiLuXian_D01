@@ -12,8 +12,14 @@ namespace Common.UI
     {
         //基本文字信息
         [Header("基本文字信息")]
-        public Text nametext;
-        public Text description;
+        public string nametext;
+        public string descriptiontext;
+        public string effectText;
+
+        public int maxStorage;
+        public int maxHold;
+
+        public string CType;
 
 
         //图片信息
@@ -37,27 +43,66 @@ namespace Common.UI
         //是否装备，注意切换出去的时候会被刷新掉
         // public bool isVeiwed = false;//是否显示
         // 不再需要存储BagList引用，通过父对象获取
-        private EquipmentBagUIList bagUIList;
-        private EquipmentSelector equipmentSelector;
+        NormalDescription description;
+        private BagList bagList;
+        //private EquipmentSelector equipmentSelector;
 
         private void Start()
         {
             equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
-            //mainUIFunc = UIManager.Instance.GetUILayerManager("MainUI") as MainUIFunc;
-            bagUIList = equipmentUIFunc.equipBagUIList;
-            equipmentSelector = equipmentUIFunc.equipmentSelector;
+            //mainUIFunc = UIManager.Instance.GetUILayerManager("MainUI") as MainUIFunc;            
+            bagList = equipmentUIFunc.bagList;
+            description = equipmentUIFunc.normalDescription;
+            //equipmentSelector = equipmentUIFunc.equipmentSelector;
             //equipmentController = equipmentUIFunc.equipmentController;
         }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            if (equipmentUIFunc != null && Displayimage != null && description != null)
+            if (equipmentUIFunc != null && Displayimage != null && descriptiontext != null)
             {
+                description.NameText.text = nametext;
+
                 equipmentUIFunc.DescriptionImage.sprite =Displayimage.sprite;
-                equipmentUIFunc.DescriptionText.text = description.text;
 
                 HighLightImage.gameObject.SetActive(true);
-                Debug.Log("鼠标进入插槽");
+
+                if (bagList.currentCategory == BagList.ItemCategory.Consumable)
+                {
+                    description.NumberText_1.text = maxHold.ToString();
+                    description.NumberText_2.text = maxStorage.ToString();
+                    description.EffectText.text = effectText;
+                    description.NumberText_3.text = CType.ToString();
+                    description.DescriptionText.text = descriptiontext;
+                }
+                else if (bagList.currentCategory == BagList.ItemCategory.None)
+                {
+                    description.NumberText_1.text = maxHold.ToString();
+                    description.NumberText_2.text = maxStorage.ToString();
+                    description.NumberText_3.text = CType.ToString();
+                    description.EffectText.text = effectText;
+                    description.DescriptionText.text = descriptiontext;
+
+                }
+                else if(bagList.currentCategory == BagList.ItemCategory.Material || bagList.currentCategory == BagList.ItemCategory.Currency ||
+                    bagList.currentCategory == BagList.ItemCategory.Key)
+                {
+                    description.NumberText_1.text = "-";
+                    description.NumberText_2.text = maxStorage.ToString();
+                    description.EffectText.text = effectText;
+                    description.DescriptionText.text = descriptiontext;
+                }
+                else if(bagList.currentCategory == BagList.ItemCategory.Spell)
+                {
+
+                }
+                else if(bagList.currentCategory == BagList.ItemCategory.RightHandWeapon || bagList.currentCategory == BagList.ItemCategory.LeftHandWeapon)
+                {
+
+                }
+
+
+                    Debug.Log("鼠标进入插槽");
             }
         }
 

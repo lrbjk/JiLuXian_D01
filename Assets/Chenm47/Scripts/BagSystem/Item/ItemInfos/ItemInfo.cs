@@ -26,6 +26,7 @@ namespace ns.ItemInfos
         [HideInInspector]
         public string ItemName;
         public string ItemDescription;
+        public string ItemEffectDescription;
         [HideInInspector]
         public int ItemID;
         public ItemType iType;

@@ -1,0 +1,179 @@
+fileFormatVersion: 2
+guid: 9876eb59fcdba5f4d8601f587d2291ae
+timeCreated: 1518574713
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Cube.289
+    100004: Plane.412
+    100006: Plane.413
+    100008: Plane.414
+    100010: Plane.417
+    100012: Plane.418
+    100014: Plane.419
+    100016: Plane.420
+    100018: Plane.421
+    100020: Plane.422
+    100022: Cube.292
+    100024: Plane.429
+    100026: Plane.430
+    100028: Plane.431
+    100030: Cube.293
+    400000: //RootNode
+    400002: Cube.289
+    400004: Plane.412
+    400006: Plane.413
+    400008: Plane.414
+    400010: Plane.417
+    400012: Plane.418
+    400014: Plane.419
+    400016: Plane.420
+    400018: Plane.421
+    400020: Plane.422
+    400022: Cube.292
+    400024: Plane.429
+    400026: Plane.430
+    400028: Plane.431
+    400030: Cube.293
+    2300000: //RootNode
+    2300002: Cube.289
+    2300004: Plane.412
+    2300006: Plane.413
+    2300008: Plane.414
+    2300010: Plane.417
+    2300012: Plane.418
+    2300014: Plane.419
+    2300016: Plane.420
+    2300018: Plane.421
+    2300020: Plane.422
+    2300022: Cube.292
+    2300024: Plane.429
+    2300026: Plane.430
+    2300028: Plane.431
+    2300030: Cube.293
+    3300000: //RootNode
+    3300002: Cube.289
+    3300004: Plane.412
+    3300006: Plane.413
+    3300008: Plane.414
+    3300010: Plane.417
+    3300012: Plane.418
+    3300014: Plane.419
+    3300016: Plane.420
+    3300018: Plane.421
+    3300020: Plane.422
+    3300022: Cube.292
+    3300024: Plane.429
+    3300026: Plane.430
+    3300028: Plane.431
+    3300030: Cube.293
+    4300000: Plane.412
+    4300002: Plane.413
+    4300004: Cube.289
+    4300006: Plane.414
+    4300008: Plane.419
+    4300010: Plane.418
+    4300012: Plane.417
+    4300014: Plane.422
+    4300016: Plane.421
+    4300018: Plane.420
+    4300020: Cube.292
+    4300022: Plane.431
+    4300024: Plane.430
+    4300026: Plane.429
+    4300028: Cube.293
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 11749d9a53dc94751a5a409e26e5053d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: __Stripes
+    second: {fileID: 2100000, guid: e6d1c0220683842519feff12021b239d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: __TrimsDetails
+    second: {fileID: 2100000, guid: c739b23251e904172a34afc6fa419d6b, type: 2}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 30
+    normalImportMode: 1
+    tangentImportMode: 3
+    normalCalculationMode: 2
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

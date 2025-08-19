@@ -3715,9 +3715,12 @@ MonoBehaviour:
   MovtionManager: {fileID: 0}
   HP: 0
   BasePoiseCeling: 0
+  MaxPoiseCeling: 0
   CurrentBasePoise: 0
   AccumulativePoiseDamage: 0
   IsInvincible: 0
+  transitionValue: 0
+  currentCriticalStateType: 0
   LockedTF: {fileID: 1399735852}
   BackStabedStandingTF: {fileID: 0}
   ForwardStabedStandingTF: {fileID: 0}
@@ -3726,6 +3729,7 @@ MonoBehaviour:
   IsInPreMovtionFlag: 0
   IsInMovtionRecoveryFlag: 0
   IsInArmorFlag: 0
+  IsInWeadFlag: 0
   CurrentMovtionID: 0
   ComboMovtionlID: 0
   IsDamaged: 0
@@ -4306,9 +4310,12 @@ MonoBehaviour:
   MovtionManager: {fileID: 0}
   HP: 100
   BasePoiseCeling: 10
+  MaxPoiseCeling: 0
   CurrentBasePoise: 10
   AccumulativePoiseDamage: 0
   IsInvincible: 0
+  transitionValue: 0
+  currentCriticalStateType: 0
   LockedTF: {fileID: 1040069087}
   BackStabedStandingTF: {fileID: 186891660}
   ForwardStabedStandingTF: {fileID: 1452435681}
@@ -4317,6 +4324,7 @@ MonoBehaviour:
   IsInPreMovtionFlag: 0
   IsInMovtionRecoveryFlag: 0
   IsInArmorFlag: 0
+  IsInWeadFlag: 0
   CurrentMovtionID: 0
   ComboMovtionlID: 0
   IsDamaged: 0
@@ -4622,9 +4630,12 @@ MonoBehaviour:
   MovtionManager: {fileID: 0}
   HP: 0
   BasePoiseCeling: 0
+  MaxPoiseCeling: 0
   CurrentBasePoise: 0
   AccumulativePoiseDamage: 0
   IsInvincible: 0
+  transitionValue: 0
+  currentCriticalStateType: 0
   LockedTF: {fileID: 2129949467}
   BackStabedStandingTF: {fileID: 0}
   ForwardStabedStandingTF: {fileID: 0}
@@ -4633,6 +4644,7 @@ MonoBehaviour:
   IsInPreMovtionFlag: 0
   IsInMovtionRecoveryFlag: 0
   IsInArmorFlag: 0
+  IsInWeadFlag: 0
   CurrentMovtionID: 0
   ComboMovtionlID: 0
   IsDamaged: 0
@@ -5003,7 +5015,12 @@ PrefabInstance:
     - target: {fileID: 7096222505030879268, guid: ac61d0f848f58ed4e80163d6028e6c40,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.0012882211
+      value: -0.00000480642
+      objectReference: {fileID: 0}
+    - target: {fileID: 8276575068368974784, guid: ac61d0f848f58ed4e80163d6028e6c40,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8555694464760205903, guid: ac61d0f848f58ed4e80163d6028e6c40,
         type: 3}
