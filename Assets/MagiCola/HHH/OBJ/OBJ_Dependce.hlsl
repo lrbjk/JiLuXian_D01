@@ -52,7 +52,7 @@ float3 CalculatePBRSpecular(float3 viewDirWS, float3 lightDir, float3 normal, fl
     float3 fTerm = Fresnel_Schlick(VoH, F0);
     float gTerm = GeometryFunc_SchlickGGX(NoV, NoL, 1 - smoothness);
     float3 directBRDFSpecFactor = dTerm * fTerm * gTerm / max((4.0 * NoV * NoL), 0.01);
-    return dTerm;
+    return directBRDFSpecFactor;
 }
 
 float averageColor(float3 color)
@@ -105,8 +105,7 @@ half3 LightingPhysicallyChanged(BRDFData brdfData,
         brdf += brdfData.specular * DirectBRDFSpecular(brdfData, normalWS, lightDirectionWS, viewDirectionWS);
     }
     #endif // _SPECULARHIGHLIGHTS_OFF
-
-    return radiance;
+    
     return brdf * radiance;
 }
 
