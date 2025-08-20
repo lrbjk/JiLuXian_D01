@@ -173,6 +173,8 @@ namespace ns.Character.Player
             float tempDistance = float.PositiveInfinity;
             foreach (var collider in colliders)
             {
+                if (!collider.CompareTag("Enemy"))
+                    continue;
                 Transform targetLockedTF = collider.GetComponent<CharacterInfo>().LockedTF;
                 var enemyPos = targetLockedTF.position;
                 Vector3 dir = enemyPos - playerInfo.LockedTF.position;
@@ -204,6 +206,8 @@ namespace ns.Character.Player
 
             foreach (var collider in colliders)
             {
+                if (!collider.CompareTag("Enemy"))
+                    continue;
                 var currentColliderTF = collider.GetComponent<CharacterInfo>().LockedTF;
 
                 if (currentColliderTF == playerInfo.LockedTargetTF)
