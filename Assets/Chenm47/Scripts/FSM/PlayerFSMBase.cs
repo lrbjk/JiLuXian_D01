@@ -1,6 +1,7 @@
 using AI.FSM.Framework;
 using Common;
 using ns.Camera;
+using ns.Character;
 using ns.Character.Player;
 using UnityEngine;
 
@@ -32,6 +33,8 @@ namespace AI.FSM
         public GameObject BulletPrefab;
         [HideInInspector]
         public Transform BulletCreatPos;
+        [HideInInspector]
+        public PlayerEquipmentManager playerEquipmentManager;
         #endregion
 
         public static PlayerFSMBase Instance { get; private set; }
@@ -44,7 +47,7 @@ namespace AI.FSM
         protected override void Start()
         {
             //获取组件
-            //playerInput = GetComponent<PlayerInput>();
+            playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
             playerAction = GetComponent<PlayerAction>();
             cameraHandler = FindAnyObjectByType<CameraHandler>();
             playerMotor3D = GetComponentInChildren<PlayerMotor3D>();

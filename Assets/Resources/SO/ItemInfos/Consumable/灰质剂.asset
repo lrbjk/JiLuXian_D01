@@ -24,3 +24,5 @@ MonoBehaviour:
   _isInitialized: 1
   QuickMaxCount: 3
   cType: 2
+  ItemEffects:
+  - {fileID: 11400000, guid: cfd217dbabd069349849951d27f505fc, type: 2}

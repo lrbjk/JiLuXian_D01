@@ -23,12 +23,16 @@ namespace AI.FSM
         Died,
         Damaged,
         DirectFall,
+
         ClimbStart,
         ClimbIdle,
         ClimbMove,
         ClimbQuickDown,
         ClimbQuickDownSwitch,
         ClimbEnd,
+
+        TakeMedicine,
+
         // Ghoul specific states
         GhoulIdle,
         GhoulWalking,

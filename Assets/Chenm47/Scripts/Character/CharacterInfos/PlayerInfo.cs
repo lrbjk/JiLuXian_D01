@@ -46,6 +46,7 @@ namespace ns.Character.Player
         public float RollSpeed = 10;
         public float BackStepSpeed = 6;
         public float JumpSpeed = 18;
+        public float BullteSpeed = 10f;
 
         [Header("最大锁定距离")]
         public float MaxLockDistance = 2f;
@@ -57,6 +58,7 @@ namespace ns.Character.Player
         public int BackStepMovtionID;
         public int JumpMovtionID;
         public int GunParryMovtionID;
+        public int TakeMedicineMovtionID = 16;
 
         /*为状态机以及动画事件提供*/
         [HideInInspector]
@@ -82,8 +84,8 @@ namespace ns.Character.Player
         [Header("角色异常抗性表")]
         /// <summary>角色异常抗性表 </summary>
         public List<CharacterAbnormalResistanceProperty> AbnormalResistanceProperties;
-
-        public float BullteSpeed = 10f;
+        [Tooltip("翻滚需要的转换值")]
+        public int RollTransition = 10;
 
         private CharacterEquipmentManager equipmentManager;
         private MainUIFunc mainUIFunc;
@@ -94,6 +96,7 @@ namespace ns.Character.Player
             mainUIFunc = UIManager.Instance.GetUILayerManager("MainUI") as MainUIFunc;
             //设置UI最大血量
             Debug.Log("HP" + HP);
+            ChangeMaxHP(HP - MaxHP);
             mainUIFunc.SetPlayerHp(HP);
             //设置转换值
             //设置转换值上下限
@@ -164,14 +167,14 @@ namespace ns.Character.Player
         {
             base.FlushTransitionUI(delta);
             int maxTV = GetTransitionCeil();
-            int amount = ValueHelper.SmoothDelta2Amount(TransitionValue, delta, 0, maxTV);
+            delta = ValueHelper.SmoothDeltaByFloor(TransitionValue, delta, 0, maxTV);
             if (delta < 0)
             {
-                mainUIFunc.DecreaseEmotion(amount);
+                mainUIFunc.DecreaseEmotion(-delta);
             }
             else
             {
-                mainUIFunc.IncreaseEmotion(amount);
+                mainUIFunc.IncreaseEmotion(delta);
             }
         }
 
@@ -186,11 +189,28 @@ namespace ns.Character.Player
             int delta = -Mathf.CeilToInt(GetTransitionCeil() * 0.05f);
             UpdateTransitionValue(delta);
         }
-        protected override void FlushHPUI(int damageValue)
+        protected override void FlushHPUI(int deltaHP)
         {
-            Debug.LogWarning("UI扣除" + Math.Min(HP, damageValue));
-            mainUIFunc.DecreasePlayerHp(Math.Min(HP, damageValue));
+            if (deltaHP == 0) return;
+            Debug.LogWarning("UI刷新血量" + deltaHP);
+            if (deltaHP > 0)
+            {
+                mainUIFunc.IncreasePlayerHp(deltaHP);
+            }
+            else if (deltaHP < 0)
+            {
+                mainUIFunc.DecreasePlayerHp(-deltaHP);
+            }
         }
 
+        protected override void FlushMaxHPUI(int deltaMaxHP)
+        {
+            if (deltaMaxHP == 0) { return; }
+            Debug.LogWarning("UI刷新最大血量" + deltaMaxHP);
+            if (deltaMaxHP > 0)
+                mainUIFunc.IncreasePlayerMaxHp(deltaMaxHP);
+            else if (deltaMaxHP < 0)
+                mainUIFunc.DcreasePlyaerMaxHp(-deltaMaxHP);
+        }
     }
 }

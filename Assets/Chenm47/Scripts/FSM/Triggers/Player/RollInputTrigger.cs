@@ -24,7 +24,8 @@ namespace AI.FSM
             return input.RollUp &&
                 input.Movement > 0 &&
                 //(!input.LockViewTrigger) &&//没有处于视角锁定
-                (!input.RollHoldTrigger);//短按
+                (!input.RollHoldTrigger) &&//短按
+                fSMBase.characterInfo.TransitionValue >= PlayerFSMBase.Instance.playerInfo.RollTransition;//转换值足够
         }
     }
 }

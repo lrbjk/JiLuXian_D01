@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -80,6 +81,8 @@ namespace ns.Character.Player
         /// 切换锁定目标输入，正数为右目标，负数为左目标
         /// </summary>
         public float SwitchLockedTarget { get; protected set; }
+        /// <summary>使用道具输入</summary>
+        public bool UseItem { get; protected set; }
 
         #region 按键配置
         [Tooltip("按下移动键的时间，超过这个时间就会被视为长按")]
@@ -100,6 +103,7 @@ namespace ns.Character.Player
             RollInput();
             Jump = JumpInput();
             Interacting = InteractingInput();
+            UseItem = UseItemInput();
             AttackInput();
 
 
@@ -107,11 +111,17 @@ namespace ns.Character.Player
             SwitchLockedTargetInput();
 
         }
+
+
         //常用输入
         /// <summary>
         /// 移动输入
         /// </summary>
         /// <returns></returns>
+        private bool UseItemInput()
+        {
+            return Input.GetKeyDown(KeyCode.R);
+        }
         private void MovementInput()
         {
             HorizontalMove = HorizontalMoveAixInput();

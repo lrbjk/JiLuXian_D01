@@ -33,6 +33,10 @@ namespace AI.FSM
         public override void EnterState(FSMBase fSMBase)
         {
             base.EnterState(fSMBase);
+
+            //转换值减少
+            playerInfo.UpdateTransitionValue(-playerInfo.RollTransition);
+
             playerFSMBase = fSMBase as PlayerFSMBase;
             float moveX = playerFSMBase.playerInput.HorizontalMove;
             float moveY = playerFSMBase.playerInput.VerticalMove;

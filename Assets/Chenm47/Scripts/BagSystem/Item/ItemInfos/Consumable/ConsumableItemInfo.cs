@@ -1,3 +1,4 @@
+using ns.BuffSystem;
 using UnityEngine;
 
 namespace ns.ItemInfos
@@ -14,6 +15,9 @@ namespace ns.ItemInfos
     {
         public int QuickMaxCount;
         public ConsumableType cType;
+
+        public ItemEffect[] ItemEffects;
+
         protected override void InitializeDefaults()
         {
             base.InitializeDefaults();

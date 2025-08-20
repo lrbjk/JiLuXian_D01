@@ -30,6 +30,7 @@ namespace AI.FSM
         IsOnJumpTop,
         DntOnGround,
         BackStepBreak,
+        TakeMedicineInput,
 
         ClimbStartInput,
         ClimbMoveInput,

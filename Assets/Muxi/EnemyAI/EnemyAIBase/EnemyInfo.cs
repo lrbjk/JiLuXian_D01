@@ -160,5 +160,10 @@ namespace EnemyAIBase
         {
             //throw new System.NotImplementedException();
         }
+
+        protected override void FlushMaxHPUI(int deltaMaxHP)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

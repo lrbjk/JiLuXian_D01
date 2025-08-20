@@ -85,8 +85,34 @@ namespace ns.Character
         }
 
         public CharacterMovtionManager MovtionManager;
+        [SerializeField]
+        private int hP;
         /// <summary>当前血量 </summary>
-        public int HP;
+        public int HP { get => hP; private set => hP = value; }
+        [SerializeField]
+        private int maxHP;
+        /// <summary>当前血量上限 </summary>
+        public int MaxHP { get => maxHP; private set => maxHP = value; }
+        public void ChangeHP(int deltaHP)
+        {
+            deltaHP = ValueHelper.SmoothDeltaByFloor(hP, deltaHP, 0, MaxHP);
+            hP += deltaHP;
+            FlushHPUI(deltaHP);
+        }
+
+        public void ChangeMaxHP(int deltaMaxHP)
+        {
+            deltaMaxHP = ValueHelper.SmoothDeltaByFloor(maxHP, deltaMaxHP, 0, int.MaxValue);
+            maxHP += deltaMaxHP;
+            FlushMaxHPUI(deltaMaxHP);
+        }
+
+        /// <summary>
+        /// 刷新HPUI，deltaHP已经是合法
+        /// </summary>
+        /// <param name="deltaHP"></param>
+        protected abstract void FlushHPUI(int deltaHP);
+        protected abstract void FlushMaxHPUI(int deltaMaxHP);
         [Tooltip("基础韧性上限")]
         /// <summary>基础韧性上限 </summary>
         public int BasePoiseCeling;
@@ -114,6 +140,8 @@ namespace ns.Character
         public int TransitionValue { get => transitionValue; }
         /// <summary>当前角色临界状态 </summary>
         public CriticalStateType CurrentCriticalStateType { get => currentCriticalStateType; protected set => currentCriticalStateType = value; }
+
+
         public void UpdateTransitionValue(int delta)
         {
             FlushTransitionUI(delta);
@@ -255,14 +283,12 @@ namespace ns.Character
             //计算伤害
             int damageValue = DamageCalculator.CalculateDamage(damageContext.AttackerInfo, this);
             Debug.Log("攻击方伤害" + damageValue);
-            //血量UI 刷新
-            FlushHPUI(damageValue);
             //血量扣除
-            HP -= damageValue;
+            ChangeHP(-damageValue);
             //转换值处理
             DamagedTransitionHandle();
             //是否死亡
-            if (HP <= 0)
+            if (hP <= 0)
             {
                 //死亡状态
                 Debug.Log("死亡");
@@ -343,6 +369,5 @@ namespace ns.Character
         /// 受击转换值处理
         /// </summary>
         protected virtual void DamagedTransitionHandle() { }
-        protected abstract void FlushHPUI(int damageValue);
     }
 }

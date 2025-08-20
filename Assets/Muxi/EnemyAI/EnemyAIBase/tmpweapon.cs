@@ -32,7 +32,7 @@ namespace ns.ItemInfos.Weapons
             {
                 //玩家受击
                 print("Weapon collided with player:" + other.name);
-                playerAction.Damaged(10, 9, 10);
+                //playerAction.Damaged(10, 9, 10);
                 //调用玩家受击接口
                 IDamage d = other.GetComponent<IDamage>();
                 d.TakeDamage(new DamageContext(ownerInfo));

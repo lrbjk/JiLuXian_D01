@@ -10,11 +10,19 @@ namespace Common.Helper
     /// </summary>
     public static class ValueHelper
     {
-        public static int SmoothDelta2Amount(int currentValue, int delta, int floor, int ceil)
+        /// <summary>
+        /// 考虑当前量与上下限后的改变量
+        /// </summary>
+        /// <param name="currentValue"></param>
+        /// <param name="delta"></param>
+        /// <param name="floor"></param>
+        /// <param name="ceil"></param>
+        /// <returns></returns>
+        public static int SmoothDeltaByFloor(int currentValue, int delta, int floor, int ceil)
         {
             if (delta < 0)
             {
-                delta = currentValue + delta < floor ? currentValue : -delta;
+                delta = currentValue + delta < floor ? -currentValue : delta;
             }
             else
             {
@@ -22,11 +30,11 @@ namespace Common.Helper
             }
             return delta;
         }
-        public static float SmoothDelta2Amount(float currentValue, float delta, float floor, float ceil)
+        public static float SmoothDeltaByFloor(float currentValue, float delta, float floor, float ceil)
         {
             if (delta < 0)
             {
-                delta = currentValue + delta < floor ? currentValue : -delta;
+                delta = currentValue + delta < floor ? -currentValue : delta;
             }
             else
             {

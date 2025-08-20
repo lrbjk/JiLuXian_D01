@@ -1,4 +1,6 @@
 using AI.FSM;
+using ns.BagSystem;
+using ns.BagSystem.Freamwork;
 using ns.ItemInfos;
 using ns.Weapons;
 using System.Collections.Generic;
@@ -18,15 +20,22 @@ namespace ns.Character.Player
         [Tooltip("核心信息")]
         [SerializeField]
         private KernelEquipmentItemInfo currentKernelInfo;
+        [Tooltip("当前选中物品")]
+        [SerializeField]
+        private Item currentItem;
+
         private CharacterInfo characterInfo;
         protected override void Start()
         {
             base.Start();
             playerInventory = GetComponent<PlayerInventory>();
             characterInfo = GetComponent<CharacterInfo>();
+
             //测试用
             playerInventory.LoadWeaponOnSlot(playerInventory.LeftWeapon.WInfo, characterInfo, true);
             playerInventory.LoadWeaponOnSlot(playerInventory.RightWeapon.WInfo, characterInfo, false);
+            InventoryManager.Instance.GetItemLst(ItemType.Consumable, out var lst);
+            currentItem = lst[0];//第一个消耗品
         }
 
         /// <summary>
@@ -70,6 +79,11 @@ namespace ns.Character.Player
         public override KernelEquipmentItemInfo GetKernelInfo()
         {
             return currentKernelInfo;
+        }
+
+        public Item GetCurrentItem()
+        {
+            return currentItem;
         }
     }
 }

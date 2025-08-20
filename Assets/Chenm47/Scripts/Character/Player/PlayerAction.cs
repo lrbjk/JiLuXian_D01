@@ -1,4 +1,5 @@
 using ns.Camera;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace ns.Character.Player
             playerInfo = GetComponent<PlayerInfo>();
             rb = GetComponent<Rigidbody>();
             playerMotor3D = GetComponentInChildren<PlayerMotor3D>();
-            cameraHandler = Object.FindObjectOfType<CameraHandler>();
+            cameraHandler = UnityEngine.Object.FindObjectOfType<CameraHandler>();
         }
 
 
@@ -136,26 +137,26 @@ namespace ns.Character.Player
             }
             else return false;
         }
-
+        [Obsolete("使用characterinfo中的takeDamage即可")]
         public void Damaged(int atkValue, int damagedMovtionID, int diedMovtionID)
         {
-            //无敌?
-            //伤害计算
-            playerInfo.HP -= atkValue;//
-            if (playerInfo.HP < 0)            //受击、死亡？
-            {
-                playerInfo.HP = 0;
-                //死亡动作?
-                playerInfo.CurrentMovtionID = diedMovtionID;
-                playerInfo.IsDied = true;
-            }
-            else
-            {
-                //受击动作？
-                playerInfo.CurrentMovtionID = damagedMovtionID;
-                //标记Trigger以便切换状态
-                playerInfo.IsDamaged = true;
-            }
+            ////无敌?
+            ////伤害计算
+            //playerInfo.HP -= atkValue;//
+            //if (playerInfo.hp < 0)            //受击、死亡？
+            //{
+            //    playerInfo.HP = 0;
+            //    //死亡动作?
+            //    playerInfo.CurrentMovtionID = diedMovtionID;
+            //    playerInfo.IsDied = true;
+            //}
+            //else
+            //{
+            //    //受击动作？
+            //    playerInfo.CurrentMovtionID = damagedMovtionID;
+            //    //标记Trigger以便切换状态
+            //    playerInfo.IsDamaged = true;
+            //}
         }
 
         //玩家特有

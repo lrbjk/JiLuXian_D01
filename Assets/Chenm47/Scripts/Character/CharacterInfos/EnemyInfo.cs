@@ -52,5 +52,10 @@ namespace ns.Character
         {
 
         }
+
+        protected override void FlushMaxHPUI(int deltaMaxHP)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
