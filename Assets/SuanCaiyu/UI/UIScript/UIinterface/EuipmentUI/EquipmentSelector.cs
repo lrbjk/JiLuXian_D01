@@ -1,15 +1,13 @@
 using Common.UI;
+using ns.BagSystem.Freamwork;
 using ns.ItemInfos;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EquipmentSelector : MonoBehaviour
 {
-    // ×°±¸Êý¾Ý£¨¿ÉÒÔÔÚInspectorÖÐ¸³Öµ£©
-    //public EuipmentItem selectedEquipment;
-    //public EquipmentBagUIList equipmentBagUIList;
-    // UIÒýÓÃ£¨ÍÏ×§¸³Öµ£©
-    public Transform rightHandItemParent;  // ÓÒÊÖ×°±¸ÏîÉú³É¸¸ÎïÌå
+  
+    public Transform rightHandItemParent;  // ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¸ï¿½ï¿½ï¿½ï¿½ï¿½
     public Transform leftHandItemParent;
     public Transform headEquipmentItemParent;
     public Transform bodyEquipmentItemParent;
@@ -17,16 +15,26 @@ public class EquipmentSelector : MonoBehaviour
     public Transform consumerItemParent;
 
 
-    public GameObject equipmentItemPrefab;  // EuipmentItemÔ¤ÖÆÌå
+    public GameObject equipmentItemPrefab;  // EuipmentItemÔ¤ï¿½ï¿½ï¿½ï¿½
 
     public List<EuipmentItem> rightHandWeaponList = new List<EuipmentItem>();
     public List<EuipmentItem> leftHandWeaponList = new List<EuipmentItem>();
     public List<EuipmentItem> headEquipmentList = new List<EuipmentItem>();
     public List<EuipmentItem> bodyEquipmentList = new List<EuipmentItem>();
     public List<EuipmentItem> kernelEquipmentList = new List<EuipmentItem>();
-    public List<EuipmentItem> consumerEquipmentList = new List<EuipmentItem>();//8¸ö×°±¸²ÛÓÃÒ»¸öÁÐ±í
+    public List<EuipmentItem> consumerEquipmentList = new List<EuipmentItem>();//8ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ð±ï¿½
 
-    // ³õÊ¼»¯×°±¸ÁÐ±í
+
+    [Header("å­˜å‚¨çš„itemåˆ—è¡¨")]
+    public List<Item> rightHandItems = new List<Item>();
+    public List<Item> leftHandItems = new List<Item>();
+    public List<Item> headEquipItems = new List<Item>();
+    public List<Item> bodyEquipItems = new List<Item>();
+    public List<Item> kernelEquipItems = new List<Item>();
+    public List<Item> consumEquipItems = new List<Item>();
+
+
+    // ï¿½ï¿½Ê¼ï¿½ï¿½×°ï¿½ï¿½ï¿½Ð±ï¿½
     public void UpdateEquipmentSelectList()
     {
         SpawnRightHandItem();
@@ -39,22 +47,22 @@ public class EquipmentSelector : MonoBehaviour
 
 
     /// <summary>
-    /// ÊµÀý»¯ÓÒÊÖÎäÆ÷µÄÑ¡ÔñÏî
+    /// Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private void SpawnRightHandItem()
     {
         if (  equipmentItemPrefab == null || rightHandItemParent == null)
         {
-            Debug.LogWarning("È±ÉÙ±ØÒªµÄÒýÓÃ£¡");
+            Debug.LogWarning("È±ï¿½Ù±ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½");
             return;
         }
 
         for(int i = 0;i < 2; i ++ )
         {
-           // ´´½¨ÐÂ×°±¸ÏîÊµÀý
+           // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
            GameObject newItem = Instantiate(equipmentItemPrefab, rightHandItemParent);
              
-          // »ñÈ¡EuipmentItem×é¼þ²¢ÉèÖÃÊý¾Ý
+          // ï¿½ï¿½È¡EuipmentItemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
           EuipmentItem itemComponent = newItem.GetComponent<EuipmentItem>();
             //if (itemComponent != null)
             //{
@@ -64,7 +72,7 @@ public class EquipmentSelector : MonoBehaviour
             //}
             //else
             //{
-            //  Debug.LogError("Ô¤ÖÆÌåÉÏÈ±ÉÙEuipmentItem×é¼þ£¡");
+            //  Debug.LogError("Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±ï¿½ï¿½EuipmentItemï¿½ï¿½ï¿½ï¿½ï¿½");
             // }
             rightHandWeaponList.Add(itemComponent);
             rightHandItemParent.gameObject.SetActive(false);
@@ -74,22 +82,22 @@ public class EquipmentSelector : MonoBehaviour
     }
 
     /// <summary>
-    /// ÊµÀý»¯×óÊÖÎäÆ÷µÄÑ¡ÔñÏî
+    /// Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private void SpawnLeftHandItem()
     {
         if (equipmentItemPrefab == null || leftHandItemParent == null)
         {
-            Debug.LogWarning("È±ÉÙ±ØÒªµÄÒýÓÃ£¡");
+            Debug.LogWarning("È±ï¿½Ù±ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½");
             return;
         }
 
         for (int i = 0; i < 2; i++)
         {
-            // ´´½¨ÐÂ×°±¸ÏîÊµÀý
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
             GameObject newItem = Instantiate(equipmentItemPrefab, leftHandItemParent);
 
-            // »ñÈ¡EuipmentItem×é¼þ²¢ÉèÖÃÊý¾Ý
+            // ï¿½ï¿½È¡EuipmentItemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             EuipmentItem itemComponent = newItem.GetComponent<EuipmentItem>();
             //if (itemComponent != null)
             //{
@@ -99,7 +107,7 @@ public class EquipmentSelector : MonoBehaviour
             //}
             //else
             //{
-            //  Debug.LogError("Ô¤ÖÆÌåÉÏÈ±ÉÙEuipmentItem×é¼þ£¡");
+            //  Debug.LogError("Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È±ï¿½ï¿½EuipmentItemï¿½ï¿½ï¿½ï¿½ï¿½");
             // }
 
             leftHandWeaponList.Add(itemComponent);
@@ -109,20 +117,20 @@ public class EquipmentSelector : MonoBehaviour
     }
 
     /// <summary>
-    /// ÊµÀý»¯Í·²¿×°±¸Ñ¡ÔñÏî
+    /// Êµï¿½ï¿½ï¿½ï¿½Í·ï¿½ï¿½×°ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private void SpawnHeadEquipmentItem()
     {
         if (equipmentItemPrefab == null || headEquipmentItemParent == null)
         {
-            Debug.LogWarning("È±ÉÙ±ØÒªµÄÒýÓÃ£¡");
+            Debug.LogWarning("È±ï¿½Ù±ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½");
             return;
         }
 
-            // ´´½¨ÐÂ×°±¸ÏîÊµÀý
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
             GameObject newItem = Instantiate(equipmentItemPrefab, headEquipmentItemParent);
             
-        // »ñÈ¡EuipmentItem×é¼þ²¢ÉèÖÃÊý¾Ý
+        // ï¿½ï¿½È¡EuipmentItemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             EuipmentItem itemComponent = newItem.GetComponent<EuipmentItem>();
 
             headEquipmentList.Add(itemComponent);
@@ -131,20 +139,20 @@ public class EquipmentSelector : MonoBehaviour
     }
 
     /// <summary>
-    /// ÊµÀý»¯ÉíÌå×°±¸Ñ¡ÔñÏî
+    /// Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private void SpawnBodyEquipmentItem()
     {
         if (equipmentItemPrefab == null || bodyEquipmentItemParent == null)
         {
-            Debug.LogWarning("È±ÉÙ±ØÒªµÄÒýÓÃ£¡");
+            Debug.LogWarning("È±ï¿½Ù±ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½");
             return;
         }
 
-            // ´´½¨ÐÂ×°±¸ÏîÊµÀý
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
             GameObject newItem = Instantiate(equipmentItemPrefab, bodyEquipmentItemParent);
            
-            // »ñÈ¡EuipmentItem×é¼þ²¢ÉèÖÃÊý¾Ý
+            // ï¿½ï¿½È¡EuipmentItemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             EuipmentItem itemComponent = newItem.GetComponent<EuipmentItem>();
 
             bodyEquipmentList.Add(itemComponent);
@@ -153,20 +161,20 @@ public class EquipmentSelector : MonoBehaviour
     }
 
     /// <summary>
-    /// ÊµÀý»¯ºËÐÄÑ¡ÔñÏî
+    /// Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private void SpawnKernelEquipmentItem()
     {
         if (equipmentItemPrefab == null || kernelItemParent == null)
         {
-            Debug.LogWarning("È±ÉÙ±ØÒªµÄÒýÓÃ£¡");
+            Debug.LogWarning("È±ï¿½Ù±ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½");
             return;
         }
-            // ´´½¨ÐÂ×°±¸ÏîÊµÀý
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
             GameObject newItem = Instantiate(equipmentItemPrefab, kernelItemParent);
 
            
-           // »ñÈ¡EuipmentItem×é¼þ²¢ÉèÖÃÊý¾Ý
+           // ï¿½ï¿½È¡EuipmentItemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             EuipmentItem itemComponent = newItem.GetComponent<EuipmentItem>();
 
             kernelEquipmentList.Add(itemComponent);
@@ -176,23 +184,23 @@ public class EquipmentSelector : MonoBehaviour
     }
 
     /// <summary>
-    /// ÊµÀý»¯ÏûºÄÆ·²å²Û
+    /// Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½
     /// </summary>
     private void SpawnConsumerEquipmentItem()
     {
         if (equipmentItemPrefab == null || kernelItemParent == null)
         {
-            Debug.LogWarning("È±ÉÙ±ØÒªµÄÒýÓÃ£¡");
+            Debug.LogWarning("È±ï¿½Ù±ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½Ã£ï¿½");
             return;
         }
 
         for (int i = 0; i < 8; i++)
         {
-            // ´´½¨ÐÂ×°±¸ÏîÊµÀý
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
             GameObject newItem = Instantiate(equipmentItemPrefab, consumerItemParent);
 
 
-            // »ñÈ¡EuipmentItem×é¼þ²¢ÉèÖÃÊý¾Ý
+            // ï¿½ï¿½È¡EuipmentItemï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             EuipmentItem itemComponent = newItem.GetComponent<EuipmentItem>();
 
             consumerEquipmentList.Add(itemComponent);

@@ -14,7 +14,7 @@ public class EquipmentViewManager : MonoBehaviour
     [SerializeField] private EquipmentSelector equipmentSelector;
     private  EquipmentUIFunc equipmentUIFunc;
 
-    //左右手武器切换时对应的装备界面显示也要切换
+    private EquipmentBagUIList equipmentBagUIList;
 
     [SerializeField] private Image RightHandimage;
     [SerializeField] private Image LeftHandimage;
@@ -32,22 +32,21 @@ public class EquipmentViewManager : MonoBehaviour
         PropCycler.equipmentImages.Clear();
     }
 
-    /// <summary>
-    /// 更新右手装备栏UI显示
-    /// </summary>
+  
     public void UpdatRightHandView()
     {
+        //鏇存柊涓荤晫闈㈣澶囨樉绀哄拰item鍒楄〃
         RightHnadCycler.equipmentImages.Clear();
-        //右手武器
+        equipmentSelector.rightHandItems.Clear();
         for (int i = 0; i < 2; i++)
         {
             if (equipmentSelector.rightHandWeaponList[i].isEquiped)
             {
                 RightHnadCycler.equipmentImages.Add(equipmentSelector.rightHandWeaponList[i].equipImage.sprite);
-                
+                equipmentSelector.rightHandItems.Add(equipmentSelector.rightHandWeaponList[i].EquipItem);
             }
         }
-        //只有一把武器时索引固定为0
+
         if(RightHnadCycler.equipmentImages.Count<2)
         {
             RightHnadCycler.currentIndex = 0;
@@ -55,7 +54,6 @@ public class EquipmentViewManager : MonoBehaviour
 
          if(RightHnadCycler.equipmentImages.Count <= 0)
          {
-            Debug.Log("装备栏没有武器！");
             return;
          }
         else
@@ -67,35 +65,47 @@ public class EquipmentViewManager : MonoBehaviour
 
     public void UpdatLeftHandView()
     {
-        //Debug.Log("我是你爸爸");
+
         LeftHnadCycler.equipmentImages.Clear();
-        //左手武器
+        equipmentSelector.leftHandItems.Clear();
+
         for (int i = 0; i < 2; i++)
         {
             if (equipmentSelector.leftHandWeaponList[i].isEquiped)
             {
-                LeftHnadCycler.equipmentImages.Add(equipmentSelector.leftHandWeaponList[i].equipImage.sprite);              
+                LeftHnadCycler.equipmentImages.Add(equipmentSelector.leftHandWeaponList[i].equipImage.sprite);
+                equipmentSelector.leftHandItems.Add(equipmentSelector.leftHandWeaponList[i].EquipItem);
             }
         }
         if (LeftHnadCycler.equipmentImages.Count < 2)
         {
             LeftHnadCycler.currentIndex = 0;
         }
-        LeftHnadCycler.UpdateImagerDisplay();
+        if (LeftHnadCycler.equipmentImages.Count <= 0)
+        {
+            return;
+        }
+        else
+        {
+            LeftHnadCycler.UpdateImagerDisplay();
+         }
+        
     }
 
     public void UpdateConsumerView()
     {
         PropCycler.equipmentImages.Clear();
+        equipmentSelector.consumEquipItems.Clear();
 
-        for(int i = 0; i <8; i++)
+        for (int i = 0; i < 8; i++)
         {
             if (equipmentSelector.consumerEquipmentList[i].isEquiped)
             {
                 PropCycler.equipmentImages.Add(equipmentSelector.consumerEquipmentList[i].equipImage.sprite);
+                equipmentSelector.consumEquipItems.Add(equipmentSelector.consumerEquipmentList[i].EquipItem);
             }
         }
-        //下标越界
+        //锟铰憋拷越锟斤拷
         if(PropCycler.currentIndex >= PropCycler.equipmentImages.Count)
         {
             PropCycler.currentIndex = 0;

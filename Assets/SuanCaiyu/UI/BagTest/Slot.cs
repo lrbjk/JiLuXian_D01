@@ -1,4 +1,5 @@
 using Common.UI;
+using ns.BagSystem.Freamwork;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -7,11 +8,11 @@ using UnityEngine.UI;
 
 namespace Common.UI
 {
-    // ±³°ü²å²Û½Å±¾
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û½Å±ï¿½
     public class Slot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        //»ù±¾ÎÄ×ÖĞÅÏ¢
-        [Header("»ù±¾ÎÄ×ÖĞÅÏ¢")]
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+        [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢")]
         public string nametext;
         public string descriptiontext;
         public string effectText;
@@ -19,30 +20,35 @@ namespace Common.UI
         public int maxStorage;
         public int maxHold;
 
+        public int currentCount;
+
         public string CType;
 
+        //å­˜å‚¨ç›®å‰çš„item
+        public Item item;
 
-        //Í¼Æ¬ĞÅÏ¢
-        [Header("Í¼Æ¬ĞÅÏ¢")]
+
+        //Í¼Æ¬ï¿½ï¿½Ï¢
+        [Header("Í¼Æ¬ï¿½ï¿½Ï¢")]
         public Sprite EmptyImage;
         public Image Displayimage;
         public Image HighLightImage;
         //public Image SelectedImage;
 
-        //×´Ì¬ĞÅÏ¢
-        [Header("Í¼Æ¬ĞÅÏ¢")]
-        public int BagIndex; //µ±Ç°Ë÷Òı
-        //public bool ableToEquip = false;//¸ñ×ÓÓĞÎïÆ·¿ÉÒÔ×°±¸
-        //public bool isSelected = false;//µ±Ç°ÎïÆ·ÊÇ·ñ¿ÉÒÔ±»×°±¸
+        //×´Ì¬ï¿½ï¿½Ï¢
+        [Header("Í¼Æ¬ï¿½ï¿½Ï¢")]
+        public int BagIndex; //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+        //public bool ableToEquip = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
+        //public bool isSelected = false;//ï¿½ï¿½Ç°ï¿½ï¿½Æ·ï¿½Ç·ï¿½ï¿½ï¿½Ô±ï¿½×°ï¿½ï¿½
 
         [SerializeField] private EquipmentUIFunc equipmentUIFunc;
         //[SerializeField] private MainUIFunc mainUIFunc;
         //[SerializeField] private EquipmentController equipmentController;
 
 
-        //ÊÇ·ñ×°±¸£¬×¢ÒâÇĞ»»³öÈ¥µÄÊ±ºò»á±»Ë¢ĞÂµô
-        // public bool isVeiwed = false;//ÊÇ·ñÏÔÊ¾
-        // ²»ÔÙĞèÒª´æ´¢BagListÒıÓÃ£¬Í¨¹ı¸¸¶ÔÏó»ñÈ¡
+        //ï¿½Ç·ï¿½×°ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½Ğ»ï¿½ï¿½ï¿½È¥ï¿½ï¿½Ê±ï¿½ï¿½á±»Ë¢ï¿½Âµï¿½
+        // public bool isVeiwed = false;//ï¿½Ç·ï¿½ï¿½ï¿½Ê¾
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½æ´¢BagListï¿½ï¿½ï¿½Ã£ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡
         NormalDescription description;
         private BagList bagList;
         //private EquipmentSelector equipmentSelector;
@@ -102,15 +108,15 @@ namespace Common.UI
                 }
 
 
-                    Debug.Log("Êó±ê½øÈë²å²Û");
+                    Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             }
         }
 
         public void OnPointerExit(PointerEventData eventData)
         {
             HighLightImage.gameObject.SetActive(false);
-            Debug.Log("Êó±êÀë¿ª²å²Û");
-            // ÕâÀïÌí¼ÓÀë¿ªÊ±µÄÂß¼­
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½");
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¿ªÊ±ï¿½ï¿½ï¿½ß¼ï¿½
         }
     }
 

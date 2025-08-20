@@ -1,4 +1,5 @@
 using Common.UI;
+using ns.BagSystem.Freamwork;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -8,36 +9,36 @@ using UnityEngine.UI;
 
 namespace Common.UI
 {
-    // ±³°ü²å²Û½Å±¾
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Û½Å±ï¿½
     public class  EquipmentSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler ,IPointerClickHandler
     {
-        //»ù±¾ÎÄ×ÖĞÅÏ¢
-        [Header("»ù±¾ÎÄ×ÖĞÅÏ¢")]
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+        [Header("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢")]
         public Text nametext;
         public Text description;
 
-
-        //Í¼Æ¬ĞÅÏ¢
-        [Header("Í¼Æ¬ĞÅÏ¢")]
+        [Header("Í¼Æ¬ï¿½ï¿½Ï¢")]
         public Sprite EmptyImage;
         public Image Displayimage;
         public Image HighLightImage;
         public Image SelectedImage;
 
-        //×´Ì¬ĞÅÏ¢
-        [Header("Í¼Æ¬ĞÅÏ¢")]
-        public int BagIndex; //µ±Ç°Ë÷Òı
-        public bool ableToEquip = false;//¸ñ×ÓÓĞÎïÆ·¿ÉÒÔ×°±¸
-        public bool isSelected = false;//µ±Ç°ÎïÆ·ÊÇ·ñ¿ÉÒÔ±»×°±¸
+        ///å½“å‰æ•°é‡
+        public int currentCount;
+
+        [Header("Í¼Æ¬ï¿½ï¿½Ï¢")]
+        public int BagIndex; //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½
+        public bool ableToEquip = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
+        public bool isSelected = false;//ï¿½ï¿½Ç°ï¿½ï¿½Æ·ï¿½Ç·ï¿½ï¿½ï¿½Ô±ï¿½×°ï¿½ï¿½
 
         [SerializeField] private EquipmentUIFunc equipmentUIFunc;
         [SerializeField] private MainUIFunc mainUIFunc;
         [SerializeField] private EquipmentController equipmentController;
 
-
-        //ÊÇ·ñ×°±¸£¬×¢ÒâÇĞ»»³öÈ¥µÄÊ±ºò»á±»Ë¢ĞÂµô
-        // public bool isVeiwed = false;//ÊÇ·ñÏÔÊ¾
-        // ²»ÔÙĞèÒª´æ´¢BagListÒıÓÃ£¬Í¨¹ı¸¸¶ÔÏó»ñÈ¡
+        /// <summary>
+        /// å½“å‰å¯¹åº”çš„Itemå­—æ®µ
+        /// </summary>
+        public Item currentItem;
         private EquipmentBagUIList bagUIList;
         private EquipmentSelector equipmentSelector;
 
@@ -53,35 +54,36 @@ namespace Common.UI
 
         void EquipSelected()
         {
-            //Ñ¡ÖĞ×°±¸ÓÒÊÖÎäÆ÷
+            //Ñ¡ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.RightHandWeapon)
             {
 
                 for (int i = 0; i < 2; i++)
                 {
-                    //ÅĞ¶Ï£º×°±¸²ÛÃ»ÓĞ±»Õ¼ÓÃÇÒµ±Ç°ÎäÆ÷¿ÉÒÔ±»×°±¸
-                    if (equipmentSelector.rightHandWeaponList[i].isEquiped == false && !isSelected)//µ±Ç°±»Ñ¡ÎäÆ÷Ã»ÓĞ±»×°±¸
+                    //ï¿½Ğ¶Ï£ï¿½×°ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ±ï¿½Õ¼ï¿½ï¿½ï¿½Òµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½×°ï¿½ï¿½
+                    if (equipmentSelector.rightHandWeaponList[i].isEquiped == false && !isSelected)//ï¿½ï¿½Ç°ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ±ï¿½×°ï¿½ï¿½
                     {
-                        // Í¼Æ¬»ñÈ¡
+                        // Í¼Æ¬ï¿½ï¿½È¡
                         equipmentSelector.rightHandWeaponList[i].equipImage.sprite = Displayimage.sprite;
-                        //ĞÅÏ¢»ñÈ¡£¨ºóÃæ¼Ó£© 
+                        //ï¿½ï¿½Ï¢ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ 
 
-                        //µ±Ç°²å²Û±»Õ¼ÓÃ
+                        //ï¿½ï¿½Ç°ï¿½ï¿½Û±ï¿½Õ¼ï¿½ï¿½
                         equipmentSelector.rightHandWeaponList[i].isEquiped = true;
 
-                        //²å²Û¸ßÁÁ×´Ì¬ÏûÊ§£¬ÎäÆ÷ÒÑ¾­¸ü»»
+                        //ï¿½ï¿½Û¸ï¿½ï¿½ï¿½×´Ì¬ï¿½ï¿½Ê§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
                         equipmentSelector.rightHandWeaponList[i].highLightImage.gameObject.SetActive(false);
 
-                        //µ±Ç°ÎäÆ÷ÒÑ±»×°±¸
+                        //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½×°ï¿½ï¿½
                         isSelected = true;
 
-                        //×°±¸²Û»ñÈ¡µ±Ç°×°±¸±³°üË÷Òı
                         equipmentSelector.rightHandWeaponList[i].EquipIndex = BagIndex;
 
-                        //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+
+                        //å°†Itemä¿¡æ¯ä¼ é€’åˆ°è£…å¤‡é€‰æ‹©åˆ—è¡¨é‡Œ
+                        equipmentSelector.rightHandWeaponList[i].EquipItem = currentItem;
+
                         bagUIList.UpdateEquipmentBag();
 
-                        //¸üĞÂÖ÷½çÃæÏÔÊ¾
                         mainUIFunc.equipmentViewManager.UpdatRightHandView();
 
                         if (mainUIFunc.rightWeapon.equipmentImages.Count != 0)
@@ -89,22 +91,20 @@ namespace Common.UI
                             equipmentUIFunc.RightHandImage.sprite = mainUIFunc.rightWeapon.DisplayImage.sprite;
                         }
 
-                        Debug.Log("×°±¸³É¹¦£¡");
+                        Debug.Log("×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                         return;
                     }
                     else if (isSelected)
                     {
-                        Debug.Log("µ±Ç°ÓÒÊÖÎäÆ÷ÒÑ±»×°±¸");
+                        Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½×°ï¿½ï¿½");
                     }
                     else
                     {
-                        Debug.Log("ÒÑ±»µ½×°±¸ÉÏÏŞ");
+                        Debug.Log("ï¿½Ñ±ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     }
                 }
             }
 
-
-            //Ñ¡ÖĞ×°±¸×óÊÖÎäÆ÷
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.LeftHandWeapon)
             {
 
@@ -122,7 +122,9 @@ namespace Common.UI
 
                         equipmentSelector.leftHandWeaponList[i].EquipIndex = BagIndex;
 
-                        //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                        //Itemä¿¡æ¯åˆ—è¡¨æ›´æ–°
+                        equipmentSelector.leftHandWeaponList[i].EquipItem = currentItem;
+
                         bagUIList.UpdateEquipmentBag();
 
                         mainUIFunc.equipmentViewManager.UpdatLeftHandView();
@@ -134,23 +136,23 @@ namespace Common.UI
                         }
 
 
-                        Debug.Log("×°±¸³É¹¦£¡");
+                        Debug.Log("×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                         return;
                     }
                     else if (isSelected)
                     {
-                        Debug.Log("µ±Ç°×óÊÖÎäÆ÷ÒÑ±»×°±¸");
+                        Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½×°ï¿½ï¿½");
                     }
                     else
                     {
-                        Debug.Log("ÒÑ´ïµ½×°±¸ÉÏÏŞ");
+                        Debug.Log("ï¿½Ñ´ïµ½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     }
                 }
 
 
             }
 
-            ///Ñ¡ÖĞ×°±¸Í·²¿×°±¸
+            ///Ñ¡ï¿½ï¿½×°ï¿½ï¿½Í·ï¿½ï¿½×°ï¿½ï¿½
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.HeadEquipment)
             {
 
@@ -165,27 +167,30 @@ namespace Common.UI
                         isSelected = true;
 
                         equipmentSelector.headEquipmentList[0].EquipIndex = BagIndex;
+                        
+                        //Itemä¿¡æ¯åˆ—è¡¨æ›´æ–°
+                        equipmentSelector.headEquipItems.Add(currentItem);
 
-                    //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
-                        bagUIList.UpdateEquipmentBag();
+                    //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
+                    bagUIList.UpdateEquipmentBag();
 
                         equipmentUIFunc.HeadImage.sprite = equipmentSelector.headEquipmentList[0].equipImage.sprite;
 
-                        Debug.Log("×°±¸³É¹¦£¡");
+                        Debug.Log("×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                         return;
                     }
                     else if (isSelected)
                     {
-                        Debug.Log("µ±Ç°Í·¿øÒÑ±»×°±¸");
+                        Debug.Log("ï¿½ï¿½Ç°Í·ï¿½ï¿½ï¿½Ñ±ï¿½×°ï¿½ï¿½");
                     }
                     else
                     {
-                        Debug.Log("ÒÑ´ïµ½×°±¸ÉÏÏŞ");
+                        Debug.Log("ï¿½Ñ´ïµ½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     }
              }
 
 
-            ///Ñ¡ÖĞ×°±¸ÉíÌå×°±¸
+            ///Ñ¡ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.BodyEquipment)
             {
 
@@ -201,25 +206,28 @@ namespace Common.UI
 
                     equipmentSelector.bodyEquipmentList[0].EquipIndex = BagIndex;
 
-                    //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                    //Itemä¿¡æ¯åˆ—è¡¨æ›´æ–°
+                     equipmentSelector.bodyEquipItems.Add(currentItem);
+
+                    //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
                     bagUIList.UpdateEquipmentBag();
 
                     equipmentUIFunc.BodyImage.sprite = equipmentSelector.bodyEquipmentList[0].equipImage.sprite;
 
-                    Debug.Log("×°±¸³É¹¦£¡");
+                    Debug.Log("×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                     return;
                 }
                 else if (isSelected)
                 {
-                    Debug.Log("µ±Ç°·ş×°ÒÑ±»×°±¸");
+                    Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½×°ï¿½Ñ±ï¿½×°ï¿½ï¿½");
                 }
                 else
                 {
-                    Debug.Log("ÒÑ´ïµ½×°±¸ÉÏÏŞ");
+                    Debug.Log("ï¿½Ñ´ïµ½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 }
             }
 
-            ///Ñ¡ÖĞ×°±¸ºËĞÄ×°±¸
+            ///Ñ¡ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.KernelEquipment)
             {
 
@@ -235,27 +243,30 @@ namespace Common.UI
 
                     equipmentSelector.kernelEquipmentList[0].EquipIndex = BagIndex;
 
-                    //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                    //Itemä¿¡æ¯åˆ—è¡¨æ›´æ–°
+                    equipmentSelector.kernelEquipItems.Add(currentItem);
+
+                    //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
                     bagUIList.UpdateEquipmentBag();
 
                     equipmentUIFunc.KernelImg.sprite = equipmentSelector.kernelEquipmentList[0].equipImage.sprite;
 
                     mainUIFunc.KernelImage.sprite = equipmentSelector.kernelEquipmentList[0].equipImage.sprite;
 
-                    Debug.Log("×°±¸³É¹¦£¡");
+                    Debug.Log("×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                     return;
                 }
                 else if (isSelected)
                 {
-                    Debug.Log("µ±Ç°ºËĞÄÒÑ±»×°±¸");
+                    Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½×°ï¿½ï¿½");
                 }
                 else
                 {
-                    Debug.Log("ÒÑ´ïµ½×°±¸ÉÏÏŞ");
+                    Debug.Log("ï¿½Ñ´ïµ½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 }
             }
 
-            //Ñ¡ÖĞ×°±¸ÏûºÄÆ·
+            //Ñ¡ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.Consumer)
             {
                 int index =  equipmentController.currentConsumerSelectorIdx;
@@ -272,23 +283,25 @@ namespace Common.UI
 
                     equipmentSelector.consumerEquipmentList[index].EquipIndex = BagIndex;
 
-                    //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                    equipmentSelector.consumerEquipmentList[index].EquipItem = currentItem;
+
+                    //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
                     bagUIList.UpdateEquipmentBag();
 
                     mainUIFunc.equipmentViewManager.UpdateConsumerView();
 
                     equipmentController.ConsumerSpriteList[index].sprite = Displayimage.sprite;
 
-                    Debug.Log("×°±¸³É¹¦£¡");
+                    Debug.Log("×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                     return;
                 }
                 else if (isSelected)
                 {
-                    Debug.Log("µ±Ç°µÀ¾ßÒÑ±»×°±¸");
+                    Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ñ±ï¿½×°ï¿½ï¿½");
                 }
                 else
                 {
-                    Debug.Log("ÒÑ´ïµ½×°±¸ÉÏÏŞ");
+                    Debug.Log("ï¿½Ñ´ïµ½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 }
 
             }
@@ -298,33 +311,37 @@ namespace Common.UI
 
         void UnEquipSelected()
         {
-            //Ñ¡ÖĞĞ¶ÏÂÓÒÊÖÎäÆ÷
+            //Ñ¡ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.RightHandWeapon)
             {
 
                 for (int i = 0; i < 2; i++)
                 {
-                    //ÅĞ¶Ï£ºµ±Ç°ÎäÆ÷¶ÔÓ¦Ë÷ÒıÊÇ·ñÔÚ×°±¸²å²ÛÖĞ
+                    //ï¿½Ğ¶Ï£ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     if (equipmentSelector.rightHandWeaponList[i].EquipIndex == BagIndex && equipmentSelector.rightHandWeaponList[i].isEquiped && isSelected)
                     {
 
-                        // Í¼Æ¬»ñÈ¡
+                        // Í¼Æ¬ï¿½ï¿½È¡
                         equipmentSelector.rightHandWeaponList[i].equipImage.sprite = equipmentSelector.rightHandWeaponList[i].emptyImage;
-                        //ĞÅÏ¢»ñÈ¡£¨ºóÃæ¼Ó£© 
+                        //ï¿½ï¿½Ï¢ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ 
 
-                        //µ±Ç°²å²Û±»ÖÃ¿Õ
+                        //ï¿½ï¿½Ç°ï¿½ï¿½Û±ï¿½ï¿½Ã¿ï¿½
                         equipmentSelector.rightHandWeaponList[i].isEquiped = false;
 
-                        //µ±Ç°ÎäÆ÷È¡Ïû×°±¸
+                        //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½×°ï¿½ï¿½
                         isSelected = false;
 
-                        //×°±¸²Ûµ±Ç°×°±¸±³°üË÷Òı³õÊ¼»¯
+                        //×°ï¿½ï¿½ï¿½Ûµï¿½Ç°×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
                         equipmentSelector.rightHandWeaponList[i].EquipIndex = -1;
 
-                        //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                        //ä»itemåˆ—è¡¨ç§»é™¤æ­¤é¡¹å¯¹åº”çš„Item
+                        //Debug.Log("ä»itemåˆ—è¡¨ç§»é™¤æ­¤é¡¹å¯¹åº”çš„Item");
+                        //equipmentSelector.rightHandItems.Remove(currentItem);
+
+                        //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
                         bagUIList.UpdateEquipmentBag();
 
-                        //¸üĞÂÖ÷½çÃæÏÔÊ¾
+                        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
                         mainUIFunc.equipmentViewManager.UpdatRightHandView();
 
                         if (mainUIFunc.rightWeapon.equipmentImages.Count != 0)
@@ -337,47 +354,47 @@ namespace Common.UI
                             mainUIFunc.rightWeapon.DisplayImage.sprite = EmptyImage;
                         }
 
-                        Debug.Log("È¡Ïû×°±¸³É¹¦£¡");
+                        Debug.Log("È¡ï¿½ï¿½×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                         return;
                     }
                     else if (!isSelected)
                     {
-                        Debug.Log("µ±Ç°ÓÒÊÖÎäÆ÷Î´±»×°±¸");
+                        Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½×°ï¿½ï¿½");
                     }
                     else
                     {
-                        Debug.Log("×°±¸²ÛÖĞÃ»ÓĞ´ËÎäÆ÷£¡");
+                        Debug.Log("×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     }
                 }
             }
 
 
-            //Ñ¡ÖĞĞ¶ÏÂ×óÊÖÎäÆ÷
+            //Ñ¡ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.LeftHandWeapon)
             {
 
                 for (int i = 0; i < 2; i++)
                 {
-                    //ÅĞ¶Ï£ºµ±Ç°ÎäÆ÷¶ÔÓ¦Ë÷ÒıÊÇ·ñÔÚ×°±¸²å²ÛÖĞ
+                    //ï¿½Ğ¶Ï£ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     if (equipmentSelector.leftHandWeaponList[i].EquipIndex == BagIndex && equipmentSelector.leftHandWeaponList[i].isEquiped && isSelected)
                     {
 
-                        // Í¼Æ¬»ñÈ¡
+                        // Í¼Æ¬ï¿½ï¿½È¡
                         equipmentSelector.leftHandWeaponList[i].equipImage.sprite = equipmentSelector.leftHandWeaponList[i].emptyImage;
 
-                        //µ±Ç°²å²Û±»ÖÃ¿Õ
+                        //ï¿½ï¿½Ç°ï¿½ï¿½Û±ï¿½ï¿½Ã¿ï¿½
                         equipmentSelector.leftHandWeaponList[i].isEquiped = false;
 
-                        //µ±Ç°ÎäÆ÷È¡Ïû×°±¸
+                        //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½×°ï¿½ï¿½
                         isSelected = false;
 
-                        //×°±¸²Ûµ±Ç°×°±¸±³°üË÷Òı³õÊ¼»¯
+                        //×°ï¿½ï¿½ï¿½Ûµï¿½Ç°×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
                         equipmentSelector.leftHandWeaponList[i].EquipIndex = -1;
 
-                        //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                        //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
                         bagUIList.UpdateEquipmentBag();
 
-                        //¸üĞÂÖ÷½çÃæÏÔÊ¾
+                        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
                         mainUIFunc.equipmentViewManager.UpdatLeftHandView();
 
                         if (mainUIFunc.leftWeapon.equipmentImages.Count != 0)
@@ -390,142 +407,151 @@ namespace Common.UI
                             mainUIFunc.leftWeapon.DisplayImage.sprite = EmptyImage;
                         }
 
-                        Debug.Log("È¡Ïû×°±¸³É¹¦£¡");
+                        Debug.Log("È¡ï¿½ï¿½×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                         return;
                     }
                     else if (!isSelected)
                     {
-                        Debug.Log("µ±Ç°×óÊÖÎäÆ÷Î´±»×°±¸");
+                        Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½×°ï¿½ï¿½");
                     }
                     else
                     {
-                        Debug.Log("×°±¸²ÛÖĞÃ»ÓĞ´ËÎäÆ÷£¡");
+                        Debug.Log("×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                     }
                 }
             }
 
 
-            //Ñ¡ÖĞĞ¶ÏÂÍ·²¿×°±¸
+            //Ñ¡ï¿½ï¿½Ğ¶ï¿½ï¿½Í·ï¿½ï¿½×°ï¿½ï¿½
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.HeadEquipment)
             {
 
-                //ÅĞ¶Ï£ºµ±Ç°ÎäÆ÷¶ÔÓ¦Ë÷ÒıÊÇ·ñÔÚ×°±¸²å²ÛÖĞ
+                //ï¿½Ğ¶Ï£ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (equipmentSelector.headEquipmentList[0].EquipIndex == BagIndex && equipmentSelector.headEquipmentList[0].isEquiped && isSelected)
                 {
 
-                    // Í¼Æ¬»ñÈ¡
+                    // Í¼Æ¬ï¿½ï¿½È¡
                     equipmentSelector.headEquipmentList[0].equipImage.sprite = equipmentSelector.headEquipmentList[0].emptyImage;
 
-                    //µ±Ç°²å²Û±»ÖÃ¿Õ
+                    //ï¿½ï¿½Ç°ï¿½ï¿½Û±ï¿½ï¿½Ã¿ï¿½
                     equipmentSelector.headEquipmentList[0].isEquiped = false;
 
-                    //µ±Ç°ÎäÆ÷È¡Ïû×°±¸
+                    //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½×°ï¿½ï¿½
                     isSelected = false;
 
-                    //×°±¸²Ûµ±Ç°×°±¸±³°üË÷Òı³õÊ¼»¯
+                    //×°ï¿½ï¿½ï¿½Ûµï¿½Ç°×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
                     equipmentSelector.headEquipmentList[0].EquipIndex = -1;
 
-                    //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                    equipmentSelector.headEquipItems.Remove(currentItem);
+                    {
+                        
+                    }
+
+                    //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
                     bagUIList.UpdateEquipmentBag();
 
                     equipmentUIFunc.HeadImage.sprite = EmptyImage;
 
-                    Debug.Log("È¡Ïû×°±¸³É¹¦£¡");
+                    Debug.Log("È¡ï¿½ï¿½×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                     return;
                 }
                 else if (!isSelected)
                 {
-                    Debug.Log("µ±Ç°Í·¿øÎ´±»×°±¸");
+                    Debug.Log("ï¿½ï¿½Ç°Í·ï¿½ï¿½Î´ï¿½ï¿½×°ï¿½ï¿½");
                 }
                 else
                 {
-                    Debug.Log("×°±¸²ÛÖĞÃ»ÓĞ´ËÍ·¿ø£¡");
+                    Debug.Log("×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ´ï¿½Í·ï¿½ï¿½ï¿½ï¿½");
                 }
             }
 
-            //Ñ¡ÖĞĞ¶ÏÂÉíÌå×°±¸
+            //Ñ¡ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.BodyEquipment)
             {
 
-                //ÅĞ¶Ï£ºµ±Ç°ÎäÆ÷¶ÔÓ¦Ë÷ÒıÊÇ·ñÔÚ×°±¸²å²ÛÖĞ
+                //ï¿½Ğ¶Ï£ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (equipmentSelector.bodyEquipmentList[0].EquipIndex == BagIndex && equipmentSelector.bodyEquipmentList[0].isEquiped && isSelected)
                 {
 
-                    // Í¼Æ¬»ñÈ¡
+                    // Í¼Æ¬ï¿½ï¿½È¡
                     equipmentSelector.bodyEquipmentList[0].equipImage.sprite = equipmentSelector.bodyEquipmentList[0].emptyImage;
 
-                    //µ±Ç°²å²Û±»ÖÃ¿Õ
+                    //ï¿½ï¿½Ç°ï¿½ï¿½Û±ï¿½ï¿½Ã¿ï¿½
                     equipmentSelector.bodyEquipmentList[0].isEquiped = false;
 
-                    //µ±Ç°ÎäÆ÷È¡Ïû×°±¸
+                    //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½×°ï¿½ï¿½
                     isSelected = false;
 
-                    //×°±¸²Ûµ±Ç°×°±¸±³°üË÷Òı³õÊ¼»¯
+                    //×°ï¿½ï¿½ï¿½Ûµï¿½Ç°×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
                     equipmentSelector.bodyEquipmentList[0].EquipIndex = -1;
 
-                    //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                    equipmentSelector.bodyEquipItems.Remove(currentItem);
+
+                    //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
                     bagUIList.UpdateEquipmentBag();
 
                     equipmentUIFunc.BodyImage.sprite = EmptyImage;
 
-                    Debug.Log("È¡Ïû×°±¸³É¹¦£¡");
+                    Debug.Log("È¡ï¿½ï¿½×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                     return;
                 }
                 else if (!isSelected)
                 {
-                    Debug.Log("µ±Ç°·ş×°Î´±»×°±¸");
+                    Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½×°Î´ï¿½ï¿½×°ï¿½ï¿½");
                 }
                 else
                 {
-                    Debug.Log("×°±¸²ÛÖĞÃ»ÓĞ´Ë·ş×°£¡");
+                    Debug.Log("×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ´Ë·ï¿½×°ï¿½ï¿½");
                 }
             }
 
-            //Ñ¡ÖĞĞ¶ÏÂºËĞÄ×°±¸
+            //Ñ¡ï¿½ï¿½Ğ¶ï¿½Âºï¿½ï¿½ï¿½×°ï¿½ï¿½
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.KernelEquipment)
             {
 
-                //ÅĞ¶Ï£ºµ±Ç°ÎäÆ÷¶ÔÓ¦Ë÷ÒıÊÇ·ñÔÚ×°±¸²å²ÛÖĞ
+                //ï¿½Ğ¶Ï£ï¿½ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (equipmentSelector.kernelEquipmentList[0].EquipIndex == BagIndex && equipmentSelector.kernelEquipmentList[0].isEquiped && isSelected)
                 {
 
-                    // Í¼Æ¬»ñÈ¡
+                    // Í¼Æ¬ï¿½ï¿½È¡
                     equipmentSelector.kernelEquipmentList[0].equipImage.sprite = equipmentSelector.kernelEquipmentList[0].emptyImage;
 
-                    //µ±Ç°²å²Û±»ÖÃ¿Õ
+                    //ï¿½ï¿½Ç°ï¿½ï¿½Û±ï¿½ï¿½Ã¿ï¿½
                     equipmentSelector.kernelEquipmentList[0].isEquiped = false;
 
-                    //µ±Ç°ÎäÆ÷È¡Ïû×°±¸
+                    //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½×°ï¿½ï¿½
                     isSelected = false;
 
-                    //×°±¸²Ûµ±Ç°×°±¸±³°üË÷Òı³õÊ¼»¯
+                    //×°ï¿½ï¿½ï¿½Ûµï¿½Ç°×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½
                     equipmentSelector.kernelEquipmentList[0].EquipIndex = -1;
 
-                    //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                    equipmentSelector.kernelEquipItems.Remove(currentItem);
+
+                    //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
                     bagUIList.UpdateEquipmentBag();
 
                     equipmentUIFunc.KernelImg.sprite = EmptyImage;
                     mainUIFunc.KernelImage.sprite = EmptyImage;
 
-                    Debug.Log("È¡Ïû×°±¸³É¹¦£¡");
+                    Debug.Log("È¡ï¿½ï¿½×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                     return;
                 }
                 else if (!isSelected)
                 {
-                    Debug.Log("µ±Ç°ºËĞÄÎ´±»×°±¸");
+                    Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½×°ï¿½ï¿½");
                 }
                 else
                 {
-                    Debug.Log("×°±¸²ÛÖĞÃ»ÓĞ´ËºËĞÄ£¡");
+                    Debug.Log("×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ´Ëºï¿½ï¿½Ä£ï¿½");
                 }
             }
 
-            //È¡Ïû×°±¸ÏûºÄÆ·
+            //È¡ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
             if (bagUIList.currentEquipCategory == EquipmentBagUIList.EquipItemCategory.Consumer)
             {
                 int index = equipmentController.currentConsumerSelectorIdx;
 
-                //Ö»ÓĞµ±Ç°×°±¸²ÛÖĞµÄÎïÆ·²Å¿ÉÒÔ±»Ğ¶ÏÂ
+                //Ö»ï¿½Ğµï¿½Ç°×°ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½Æ·ï¿½Å¿ï¿½ï¿½Ô±ï¿½Ğ¶ï¿½ï¿½
                 if (equipmentSelector.consumerEquipmentList[index].isEquiped == true && isSelected && (equipmentSelector.consumerEquipmentList[index].EquipIndex == BagIndex))
                 {
                     equipmentSelector.consumerEquipmentList[index].equipImage.sprite = EmptyImage;
@@ -536,7 +562,7 @@ namespace Common.UI
 
                     equipmentSelector.consumerEquipmentList[index].EquipIndex = -1;
 
-                    //¸üĞÂ×°±¸Í¼±ê£¬Ë¢ĞÂ±³°ü
+                    //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Í¼ï¿½ê£¬Ë¢ï¿½Â±ï¿½ï¿½ï¿½
                     bagUIList.UpdateEquipmentBag();
 
                     mainUIFunc.equipmentViewManager.UpdateConsumerView();
@@ -554,20 +580,20 @@ namespace Common.UI
                         mainUIFunc.downWeapon.NextImage.sprite = EmptyImage;
                     }
 
-                    Debug.Log("È¡Ïû×°±¸³É¹¦£¡");
+                    Debug.Log("È¡ï¿½ï¿½×°ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½");
                     return;
                 }
                 else if (!isSelected)
                 {
-                    Debug.Log("µ±Ç°µÀ¾ßÃ»ÓĞ±»×°±¸");
+                    Debug.Log("ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ğ±ï¿½×°ï¿½ï¿½");
                 }
                 else if(equipmentSelector.consumerEquipmentList[index].EquipIndex != BagIndex && isSelected )
                 {
-                    Debug.Log("Ñ¡ÖĞµÄ²»ÊÇ¸Ã×°±¸²ÛÖĞµÄµÀ¾ß");
+                    Debug.Log("Ñ¡ï¿½ĞµÄ²ï¿½ï¿½Ç¸ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ĞµÄµï¿½ï¿½ï¿½");
                 }
                 else
                 {
-                    Debug.Log("ÒÑ´ïµ½×°±¸ÉÏÏŞ");
+                    Debug.Log("ï¿½Ñ´ïµ½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 }
             }
         }
@@ -585,7 +611,7 @@ namespace Common.UI
                     equipmentUIFunc.EquipDescriptionImage.sprite = Displayimage.sprite;
                     //equipmentUIFunc.EquipDescriptionText.text = description.text;
 
-                    Debug.Log("Êó±ê½øÈë²å²Û");
+                    Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
                 }
                 HighLightImage.gameObject.SetActive(true);
             }
@@ -597,8 +623,8 @@ namespace Common.UI
             if (ableToEquip)
             {
                 HighLightImage.gameObject.SetActive(false);
-                Debug.Log("Êó±êÀë¿ª²å²Û");
-                // ÕâÀïÌí¼ÓÀë¿ªÊ±µÄÂß¼­
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ë¿ªï¿½ï¿½ï¿½");
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¿ªÊ±ï¿½ï¿½ï¿½ß¼ï¿½
             }
         }
 
@@ -610,8 +636,8 @@ namespace Common.UI
                 {
                     EquipSelected();
                 }
-                Debug.Log("×ó¼üµã»÷");
-                // ×ó¼üµã»÷Âß¼­
+                Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+                // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
             }
             else if (eventData.button == PointerEventData.InputButton.Right)
             {
@@ -619,13 +645,13 @@ namespace Common.UI
                 {
                     UnEquipSelected();
                 }
-                Debug.Log("ÓÒ¼üµã»÷");
-                // ÓÒ¼üµã»÷Âß¼­
+                Debug.Log("ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½");
+                // ï¿½Ò¼ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
             }
             else if (eventData.button == PointerEventData.InputButton.Middle)
             {
-                Debug.Log("ÖĞ¼üµã»÷");
-                // ÖĞ¼üµã»÷Âß¼­
+                Debug.Log("ï¿½Ğ¼ï¿½ï¿½ï¿½ï¿½");
+                // ï¿½Ğ¼ï¿½ï¿½ï¿½ï¿½ï¿½ß¼ï¿½
             }
         }
     }

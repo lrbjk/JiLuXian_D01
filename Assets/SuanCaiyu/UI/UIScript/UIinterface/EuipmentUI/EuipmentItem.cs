@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ns.BagSystem.Freamwork;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -14,13 +15,15 @@ namespace Common.UI
         public Image highLightImage;
         public Text equipDescriptionText;
 
-        //ÊÇ·ñÒÑ±»×°±¸
+        //ï¿½Ç·ï¿½ï¿½Ñ±ï¿½×°ï¿½ï¿½
         public bool isEquiped = false;
 
         /// <summary>
-        /// µ±Ç°×°±¸ÔÚ±³°üµÄË÷Òý
+        /// ï¿½ï¿½Ç°×°ï¿½ï¿½ï¿½Ú±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         public int EquipIndex;
+
+        public Item EquipItem;
 
         [SerializeField] private EquipmentUIFunc equipmentUIFunc;
         [SerializeField] private EquipmentBagUIList equipmentBagUIList;
@@ -34,22 +37,22 @@ namespace Common.UI
         }
 
         /// <summary>
-        /// µã»÷ÇÐ»»
+        /// ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
         /// </summary>
         public void ClickToSwitch()
         {
             if(isEquiped)
             {
-                //Ñ¡ÖÐ¸ßÁÁ
+                //Ñ¡ï¿½Ð¸ï¿½ï¿½ï¿½
                 highLightImage.gameObject.SetActive(true);    
                 
-                //²å²ÛÕ¼ÓÃ×´Ì¬È¡Ïû
+                //ï¿½ï¿½ï¿½Õ¼ï¿½ï¿½×´Ì¬È¡ï¿½ï¿½
                 isEquiped=false;
 
-                //Êý¾ÝÁÐ±íÖÐ±»Ñ¡ÖÐÏîµÄÑ¡ÖÐ×´Ì¬È¡Ïû,Ð¶ÏÂÎäÆ÷µÄÐ§¹û
+                //ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½Ð±ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½×´Ì¬È¡ï¿½ï¿½,Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
                 equipmentBagUIList.equipBagItems[EquipIndex].isSelected = false;
 
-                Debug.Log("Ñ¡ÖÐ¸ü»»ÎäÆ÷£¡");
+                Debug.Log("Ñ¡ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
             }
         }
 

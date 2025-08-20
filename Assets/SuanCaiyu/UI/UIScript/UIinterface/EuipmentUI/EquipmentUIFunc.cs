@@ -1,4 +1,5 @@
 using Common.Helper;
+using ns.BagSystem.Freamwork;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,7 +11,7 @@ namespace Common.UI
     public class EquipmentUIFunc : UILayerManager
     {
         public NormalDescription normalDescription;
-        public EquipDescription  equipDescription;
+        public EquipDescription equipDescription;
 
 
         public Image DescriptionImage;
@@ -31,129 +32,238 @@ namespace Common.UI
         public Image Consumer_8Img;
 
 
-        [Header("Ñ¡ÏîÃæ°å¿ØÖÆ")]
-         public GameObject righthandSelector;
-         public GameObject lefthandSelector;
-         public GameObject headSelector;
-         public GameObject bodySelector;
-         public GameObject kernelSelector;
+        [Header("Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
+        public GameObject righthandSelector;
+        public GameObject lefthandSelector;
+        public GameObject headSelector;
+        public GameObject bodySelector;
+        public GameObject kernelSelector;
 
-         public EquipmentSelector equipmentSelector;
-         public EquipmentBagUIList equipBagUIList;
-         public EquipmentController equipmentController;
-         public BagList bagList;
+        public EquipmentSelector equipmentSelector;
+        public EquipmentBagUIList equipBagUIList;
+        public EquipmentController equipmentController;
+        public BagList bagList;
+
+        private MainUIFunc mainUIFunc;
         protected override void Start()
         {
             base.Start();
 
+            mainUIFunc = UIManager.Instance.GetUILayerManager("MainUI") as MainUIFunc;
+
             Transform dt = transform.FindChildByName("DescriptionLayer");
             normalDescription = dt.GetComponent<NormalDescription>();
-            Debug.Log("ÕÒµ½ÃèÊöÎÄ×Ö");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
             Transform et = transform.FindChildByName("EquipDescriptionLayer");
             equipDescription = et.GetComponent<EquipDescription>();
-            Debug.Log("ÕÒµ½×°±¸ÃèÊöÎÄ×Ö");
+            Debug.Log("ï¿½Òµï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
 
             Transform di = transform.FindChildByName("DescriptionImage");
             DescriptionImage = di.GetComponent<Image>();
-            Debug.Log("ÕÒµ½ÃèÊöÍ¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬");
 
             Transform ei = transform.FindChildByName("EquipDescriptionImage");
             EquipDescriptionImage = ei.GetComponent<Image>();
-            Debug.Log("ÕÒµ½×°±¸ÃèÊöÍ¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬");
 
             Transform rightImg = transform.FindChildByName("RightHandEquipImg ");
             RightHandImage = rightImg.GetComponent<Image>();
-            Debug.Log("ÕÒµ½ÓÒÊÖ×°±¸Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Õ¹Ê¾Í¼Æ¬");
 
             Transform leftImg = transform.FindChildByName("LeftHandEquipImg");
             LeftHandImage = leftImg.GetComponent<Image>();
-            Debug.Log("ÕÒµ½×óÊÖ×°±¸Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Õ¹Ê¾Í¼Æ¬");
 
             Transform headImg = transform.FindChildByName("HeadEquipImg");
             HeadImage = headImg.GetComponent<Image>();
-            Debug.Log("ÕÒµ½Í·²¿×°±¸Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½Í·ï¿½ï¿½×°ï¿½ï¿½Õ¹Ê¾Í¼Æ¬");
 
             Transform bodyImg = transform.FindChildByName("BodyEquipImg ");
             BodyImage = bodyImg.GetComponent<Image>();
-            Debug.Log("ÕÒµ½ÉíÌå×°±¸Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Õ¹Ê¾Í¼Æ¬");
 
             Transform krenel = transform.FindChildByName("KernelEquipImg");
             KernelImg = krenel.GetComponent<Image>();
-            Debug.Log("ÕÒµ½ºËĞÄ×°±¸Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Õ¹Ê¾Í¼Æ¬");
 
             Transform consumer_1 = transform.FindChildByName("Consumer_1");
             Consumer_1Img = consumer_1.GetComponent<Image>();
-            Debug.Log("ÕÒµ½µÀ¾ß1Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½1Õ¹Ê¾Í¼Æ¬");
 
             Transform consumer_2 = transform.FindChildByName("Consumer_2");
             Consumer_2Img = consumer_2.GetComponent<Image>();
-            Debug.Log("ÕÒµ½µÀ¾ß2Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½2Õ¹Ê¾Í¼Æ¬");
 
             Transform consumer_3 = transform.FindChildByName("Consumer_3");
             Consumer_3Img = consumer_3.GetComponent<Image>();
-            Debug.Log("ÕÒµ½µÀ¾ß3Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½3Õ¹Ê¾Í¼Æ¬");
 
             Transform consumer_4 = transform.FindChildByName("Consumer_4");
             Consumer_4Img = consumer_4.GetComponent<Image>();
-            Debug.Log("ÕÒµ½µÀ¾ß4Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½4Õ¹Ê¾Í¼Æ¬");
 
             Transform consumer_5 = transform.FindChildByName("Consumer_5");
             Consumer_5Img = consumer_5.GetComponent<Image>();
-            Debug.Log("ÕÒµ½µÀ¾ß5Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½5Õ¹Ê¾Í¼Æ¬");
 
             Transform consumer_6 = transform.FindChildByName("Consumer_6");
             Consumer_6Img = consumer_6.GetComponent<Image>();
-            Debug.Log("ÕÒµ½µÀ¾ß6Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½6Õ¹Ê¾Í¼Æ¬");
 
             Transform consumer_7 = transform.FindChildByName("Consumer_7");
             Consumer_7Img = consumer_7.GetComponent<Image>();
-            Debug.Log("ÕÒµ½µÀ¾ß7Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½7Õ¹Ê¾Í¼Æ¬");
 
             Transform consumer_8 = transform.FindChildByName("Consumer_8");
             Consumer_8Img = consumer_8.GetComponent<Image>();
-            Debug.Log("ÕÒµ½µÀ¾ß8Õ¹Ê¾Í¼Æ¬");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½8Õ¹Ê¾Í¼Æ¬");
 
             Transform eqb = transform.FindChildByName("EquipmenBagContent");
             equipBagUIList = eqb.GetComponent<EquipmentBagUIList>();
-            Debug.Log("ÕÒµ½×°±¸±³°üÁĞ±í");
+            Debug.Log("ï¿½Òµï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ±ï¿½");
 
             Transform rightSelector = transform.FindChildByName("RightHandSelector");
             righthandSelector = rightSelector.gameObject;
-            Debug.Log("ÕÒµ½ÓÒÊÖÎäÆ÷Ñ¡Ïî²Û");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½");
 
             Transform leftSelector = transform.FindChildByName("LeftHandSelector");
             lefthandSelector = leftSelector.gameObject;
-            Debug.Log("ÕÒµ½×óÊÖÎäÆ÷Ñ¡Ïî²Û");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½");
 
             Transform hS = transform.FindChildByName("HeadSelector");
             headSelector = hS.gameObject;
-            Debug.Log("ÕÒµ½Í·²¿×°±¸Ñ¡Ïî²Û");
+            Debug.Log("ï¿½Òµï¿½Í·ï¿½ï¿½×°ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½");
 
             Transform bS = transform.FindChildByName("BodySelector");
             bodySelector = bS.gameObject;
-            Debug.Log("ÕÒµ½ÉíÌå×°±¸Ñ¡Ïî²Û");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½");
 
             Transform kernleSelect = transform.FindChildByName("KernelSelector");
             kernelSelector = kernleSelect.gameObject;
-            Debug.Log("ÕÒµ½ºËĞÄ×°±¸Ñ¡Ïî²Û");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½");
 
             Transform equipSelect = transform.FindChildByName("EquipmentSelector");
             equipmentSelector = equipSelect.GetComponent<EquipmentSelector>();
-            Debug.Log("ÕÒµ½×°±¸Ñ¡Ôñ¹ÜÀí");
+            Debug.Log("ï¿½Òµï¿½×°ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½");
 
             Transform equipControl = transform.FindChildByName("EquipmentBar");
             equipmentController = equipControl.GetComponent<EquipmentController>();
-            Debug.Log("ÕÒµ½×°±¸½»»¥¿ØÖÆ¹ÜÀí");
+            Debug.Log("ï¿½Òµï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¹ï¿½ï¿½ï¿½");
 
             Transform bl = transform.FindChildByName("BagContent");
             bagList = bl.GetComponent<BagList>();
             bagList.CreatBagList();
             bagList.UpdateBag();
-            Debug.Log("ÕÒµ½²¢´´½¨±³°ü¸ñ×Ó£¡");
+            Debug.Log("ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½");
 
             normalDescription.UpdateNormalDescription();
         }
+
+        #region å¤–éƒ¨æ–¹æ³•
+
+        /// <summary>
+        /// è·å–å³æ‰‹æ­¦å™¨è£…å¤‡åˆ—è¡¨
+        /// </summary>
+        /// <returns></returns>
+        public List<Item> GetRightHandItem()
+        {
+            return equipmentSelector.rightHandItems;
+        }
+
+        /// <summary>
+        /// è·å–å³æ‰‹æ­¦å™¨å½“å‰çš„ç´¢å¼•
+        /// </summary>
+        /// <returns></returns>
+        public int RightHandCurrentIndex()
+        {
+            return mainUIFunc.equipmentViewManager.RightHnadCycler.currentIndex;
+        }
+
+        /// <summary>
+        /// è·å–å·¦æ‰‹æ­¦å™¨çš„è£…å¤‡åˆ—è¡¨
+        /// </summary>
+        /// <returns></returns>
+        public List<Item> GetLeftHandItem()
+        {
+            return equipmentSelector.leftHandItems;
+        }
+
+
+        /// <summary>
+        /// è·å–å·¦æ‰‹æ­¦å™¨å½“å‰çš„ç´¢å¼•
+        /// </summary>
+        /// <returns></returns>
+        public int LeftHandCurrentIndex()
+        {
+            return mainUIFunc.equipmentViewManager.LeftHnadCycler.currentIndex;
+        }
+
+
+        /// <summary>
+        /// è·å–æ¶ˆè€—å“è£…å¤‡åˆ—è¡¨
+        /// </summary>
+        /// <returns></returns>
+        public List<Item> GetConsumableItem()
+        {
+            return equipmentSelector.consumEquipItems;
+        }
+
+        /// <summary>
+        /// è·å–å½“å‰æ¶ˆè€—å“çš„ç´¢å¼•
+        /// </summary>
+        /// <returns></returns>
+        public int ConsuableCurrentIndex()
+        {
+            return mainUIFunc.equipmentViewManager.PropCycler.currentIndex;
+        }
+
+        /// <summary>
+        /// è·å–å½“å‰çš„å¤´éƒ¨è£…å¤‡
+        /// </summary>
+        /// <returns></returns>
+        public Item GetHeadEquipItem()
+        {
+            return equipmentSelector.headEquipItems[0];
+        }
+
+
+        /// <summary>
+        /// è·å–å½“å‰çš„èº«ä½“è£…å¤‡
+        /// </summary>
+        /// <returns></returns>
+        public Item GetBodyEquipItem()
+        {
+            return equipmentSelector.bodyEquipItems[0];
+        }
+
+        /// <summary>
+        /// è·å–å½“å‰çš„æ ¸å¿ƒè£…å¤‡
+        /// </summary>
+        /// <returns></returns>
+        public Item GetKernelEquipItem()
+        {
+            return equipmentSelector.kernelEquipItems[0];
+        }
+
+        /// <summary>
+        /// æ›´æ–°è£…å¤‡èƒŒåŒ…
+        /// </summary>
+        public void UpdateEquipBag()
+        {
+            equipBagUIList.UpdateEquipmentBag();
+        }
+
+        /// <summary>
+        /// æ›´æ–°èƒŒåŒ…
+        /// </summary>
+        public void UpdateNormalBag()
+        {
+            bagList.UpdateBag();
+        }
+
+        #endregion
+
     }
 
 }

@@ -7,36 +7,40 @@ using ns.ItemInfos;
 
 public class BagList : MonoBehaviour
 {
-    [Header("ÅäÖÃ")]
-    //[SerializeField] private GameObject slotPrefab; // ÍÏÈëSlotÔ¤ÖÆÌå
-    public Transform ItemParent;//ÏÔÊ¾µÄ¸¸ÎïÌåContent
-    public GameObject BagGridPrefab; //±³°ü¸ñ×ÓÔ¤ÖÆÌå
+    [Header("ï¿½ï¿½ï¿½ï¿½")]
+    //[SerializeField] private GameObject slotPrefab; // ï¿½ï¿½ï¿½ï¿½SlotÔ¤ï¿½ï¿½ï¿½ï¿½
+    public Transform ItemParent;//ï¿½ï¿½Ê¾ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Content
+    public GameObject BagGridPrefab; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
 
-    [SerializeField] private int Sum = 50; // ³õÊ¼¸ñ×ÓÊýÁ¿
+    [SerializeField] private int Sum = 50; // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     /// <summary>
-    /// µ±Ç°¿É×°±¸ÊýÁ¿
+    /// ï¿½ï¿½Ç°ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
-    public int CurrentItemNumber = 0;//µ±Ç°ÏÔÊ¾µÄ×°±¸ÊýÁ¿
+    public int CurrentItemNumber = 0;//ï¿½ï¿½Ç°ï¿½ï¿½Ê¾ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     /// <summary>
-    /// ±³°üÎïÌåµÄÏÔÊ¾ÁÐ±í
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ð±ï¿½
     /// </summary>
-    [Header("ÔËÐÐÊ±Êý¾Ý")]
-    public List<Slot> BagItems = new List<Slot>(); //±³°üÎïÌåµÄÏÔÊ¾ÁÐ±í
-    //public List<EquipmentSlot> equipmentData = new List<EquipmentSlot>(); //±³°üÎïÌåµÄÊý¾ÝºÍ½»»¥ÁÐ±í£¨Ò²Ðí²»ÊÇºÜÐèÒªÁË£©
+    [Header("ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½")]
+    public List<Slot> BagItems = new List<Slot>(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ð±ï¿½
+    //public List<EquipmentSlot> equipmentData = new List<EquipmentSlot>(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÝºÍ½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Çºï¿½ï¿½ï¿½Òªï¿½Ë£ï¿½
 
     /// <summary>
-    /// ±³°ü·ÖÀàµÄÃ¶¾Ù£¬ÓÃÓÚÉÏ·½Ñ¡ÏîµÄÍ¨ÐÅ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½Ù£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ñ¡ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
     /// </summary>
     public enum ItemCategory
     { None, HeadEquipment, BodyEquipment, KernelEquipment, RightHandWeapon, LeftHandWeapon, Consumable, Material, Currency, Spell, Key }
     public ItemCategory currentCategory = ItemCategory.None;
 
-    //ÒýÓÃµÄÍâ²¿±äÁ¿
+    //ï¿½ï¿½ï¿½Ãµï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private EquipmentUIFunc equipmentUIFunc;
 
 
+    private void OnEnable()
+    {
+        UpdateBag();
+    }
     public void CreatBagList()
     {
 
@@ -48,21 +52,21 @@ public class BagList : MonoBehaviour
         {
             GameObject newItem = Instantiate(BagGridPrefab, ItemParent);
 
-              Slot Component = newItem.GetComponent<Slot>();
+            Slot Component = newItem.GetComponent<Slot>();
 
             BagItems.Add(Component);
         }
-        Debug.Log($"ÒÑ³É¹¦Ìí¼Ó {BagItems.Count} ¸öSlotÐÅÏ¢µ½±³°üÁÐ±í");
+        Debug.Log($"ï¿½Ñ³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ {BagItems.Count} ï¿½ï¿½Slotï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½");
     }
 
     /// <summary>
-    /// ³õÊ¼»¯SlotÔ¤ÖÆÌåÒýÓÃµ½ÁÐ±í
+    /// ï¿½ï¿½Ê¼ï¿½ï¿½SlotÔ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ð±ï¿½
     /// </summary>
     public void UpdateBag()
     {
-        Debug.Log("ÎäÆ÷±³°üË¢ÐÂ£¡");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½Â£ï¿½");
 
-        //³õÊ¼»¯ÎäÆ÷±³°ü
+        //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < Sum; i++)
         {
             BagItems[i].nametext = null;
@@ -75,29 +79,29 @@ public class BagList : MonoBehaviour
             BagItems[i].HighLightImage.gameObject.SetActive(false);
         }
 
-        //¸üÐÂ±³°üÎïÆ·ÐÅÏ¢
+        //ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢
 
         if (currentCategory == ItemCategory.HeadEquipment)
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.HeadEquipMent, out var itemLst);
 
 
-            //¸ù¾Ý½ÇÉ«±³°ü×°±¸¸üÐÂ±³°üÎïÆ·ÐÅÏ¢
+            //ï¿½ï¿½ï¿½Ý½ï¿½É«ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢
             for (int i = 0; i < itemLst.Count && i < BagItems.Count; i++)
             {
                 HeadEquipmentItemInfo items = itemLst[i].itemInfo as HeadEquipmentItemInfo;
-                //¸üÐÂ±³°ü¸ñ×ÓÐÅÏ¢
+                //ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
                 BagItems[i].nametext = items.ItemName;
                 BagItems[i].descriptiontext = items.ItemDescription;
                 BagItems[i].effectText = items.ItemEffectDescription;
                 BagItems[i].maxStorage = items.MaxCount;
                 BagItems[i].Displayimage.sprite = items.ItemIcon;
 
-                //»ñÈ¡ÎïÆ·Î¨Ò»Ë÷Òý£¬ºóÃæ»áÍ¨¹ýË÷Òý²éÕÒÎïÆ·
+                //ï¿½ï¿½È¡ï¿½ï¿½Æ·Î¨Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
                 BagItems[i].BagIndex = i;
             }
 
-            //¸üÐÂÎïÆ·ÊýÁ¿ÐÅÏ¢
+            //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
             CurrentItemNumber = itemLst.Count;
         }
 
@@ -279,24 +283,24 @@ public class BagList : MonoBehaviour
     }
 
 
-    //Ë¢ÐÂ×°±¸±³°üÁÐ±í
+    //Ë¢ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
     //equipBagScroller.UpdateEquipmentBagScrollList();
 
 
     //private Slot InstantiateSlotInfo(Slot source, int index)
     //{
-    //    // ´´½¨ÐÂµÄSlotÊµÀý£¨½öÊý¾Ý£¬²»ÊÇGameObject£©
+    //    // ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½SlotÊµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½GameObjectï¿½ï¿½
     //    Slot newSlot = new Slot();
 
-    //    // ÕâÀï¿ÉÒÔ¸´ÖÆÐèÒªµÄÊôÐÔ
-    //    // ÀýÈç£ºnewSlot.text = source.text;
-    //    // ×¢Òâ£ºÕâÐèÒªÐÞ¸ÄSlotÀàÊ¹Æä¿ÉÐòÁÐ»¯
+    //    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //    // ï¿½ï¿½ï¿½ç£ºnewSlot.text = source.text;
+    //    // ×¢ï¿½â£ºï¿½ï¿½ï¿½ï¿½Òªï¿½Þ¸ï¿½Slotï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
 
     //    return newSlot;
     //}
 
     /// <summary>
-    /// »ñÈ¡Ö¸¶¨Ë÷ÒýµÄSlotÐÅÏ¢
+    /// ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Slotï¿½ï¿½Ï¢
     /// </summary>
     public Slot GetSlotInfo(int index)
     {
@@ -304,7 +308,7 @@ public class BagList : MonoBehaviour
         {
             return BagItems[index];
         }
-        Debug.LogWarning($"ÇëÇóµÄË÷Òý {index} ³¬³ö·¶Î§ (0-{BagItems.Count - 1})");
+        Debug.LogWarning($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ {index} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§ (0-{BagItems.Count - 1})");
         return null;
     }
 }

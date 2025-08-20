@@ -7,36 +7,36 @@ using ns.ItemInfos;
 
 public class EquipmentBagUIList : MonoBehaviour
 {
-   [Header("ÅäÖÃ")]
-    //[SerializeField] private GameObject slotPrefab; // ÍÏÈëSlotÔ¤ÖÆÌå
-    public Transform EquipItemParent;//ÏÔÊ¾µÄ¸¸ÎïÌåContent
-    public GameObject equipmentBagGridPrefab; //±³°ü¸ñ×ÓÔ¤ÖÆÌå
+   [Header("ï¿½ï¿½ï¿½ï¿½")]
+    //[SerializeField] private GameObject slotPrefab; // ï¿½ï¿½ï¿½ï¿½SlotÔ¤ï¿½ï¿½ï¿½ï¿½
+    public Transform EquipItemParent;//ï¿½ï¿½Ê¾ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½Content
+    public GameObject equipmentBagGridPrefab; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
 
-    [SerializeField] private int Sum = 50; // ³õÊ¼¸ñ×ÓÊýÁ¿
+    [SerializeField] private int Sum = 50; // ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     /// <summary>
-    /// µ±Ç°¿É×°±¸ÊýÁ¿
+    /// ï¿½ï¿½Ç°ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
-    public int CurrentEquipmentNumber = 0;//µ±Ç°ÏÔÊ¾µÄ×°±¸ÊýÁ¿
+    public int CurrentEquipmentNumber = 0;//ï¿½ï¿½Ç°ï¿½ï¿½Ê¾ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
     /// <summary>
-    /// ±³°üÎïÌåµÄÏÔÊ¾ÁÐ±í
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ð±ï¿½
     /// </summary>
-    [Header("ÔËÐÐÊ±Êý¾Ý")]
-    public List<EquipmentSlot> equipBagItems = new List<EquipmentSlot>(); //±³°üÎïÌåµÄÏÔÊ¾ÁÐ±í
-    //public List<EquipmentSlot> equipmentData = new List<EquipmentSlot>(); //±³°üÎïÌåµÄÊý¾ÝºÍ½»»¥ÁÐ±í£¨Ò²Ðí²»ÊÇºÜÐèÒªÁË£©
+    [Header("ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½")]
+    public List<EquipmentSlot> equipBagItems = new List<EquipmentSlot>(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½Ð±ï¿½
+    //public List<EquipmentSlot> equipmentData = new List<EquipmentSlot>(); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÝºÍ½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½Ò²ï¿½ï¿½ï¿½ï¿½ï¿½Çºï¿½ï¿½ï¿½Òªï¿½Ë£ï¿½
 
     /// <summary>
-    /// ±³°ü·ÖÀàµÄÃ¶¾Ù£¬ÓÃÓÚÉÏ·½Ñ¡ÏîµÄÍ¨ÐÅ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¶ï¿½Ù£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½Ñ¡ï¿½ï¿½ï¿½Í¨ï¿½ï¿½
     /// </summary>
     public enum EquipItemCategory
     { None, HeadEquipment , BodyEquipment , KernelEquipment , RightHandWeapon , LeftHandWeapon , Consumer } 
     public EquipItemCategory currentEquipCategory = EquipItemCategory.None;
 
-    //ÒýÓÃµÄÍâ²¿±äÁ¿
+    //ï¿½ï¿½ï¿½Ãµï¿½ï¿½â²¿ï¿½ï¿½ï¿½ï¿½
     [SerializeField] private EquipmentUIFunc equipmentUIFunc;
 
-    private EquipmentSelector equipmentSelector;//Ñ¡Ôñ²å²Û
+    private EquipmentSelector equipmentSelector;//Ñ¡ï¿½ï¿½ï¿½ï¿½
 
     public List<EuipmentItem> rightHandBagList;
     public List<EuipmentItem> leftHandBagList;
@@ -46,13 +46,17 @@ public class EquipmentBagUIList : MonoBehaviour
     public List<EuipmentItem> consumerList;
 
 
+    private void OnEnable()
+    {
+        UpdateEquipmentBag();
+    }
     public void CreatEquipBagList()
     {
 
         equipmentUIFunc = UIManager.Instance.GetUILayerManager("EquipmentUI") as EquipmentUIFunc;
         equipmentSelector = equipmentUIFunc.equipmentSelector;
 
-        //³õÊ¼»¯»ñÈ¡Ñ¡Ôñ²å²Û
+        //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½È¡Ñ¡ï¿½ï¿½ï¿½ï¿½
         rightHandBagList = equipmentSelector.rightHandWeaponList;
         leftHandBagList = equipmentSelector.leftHandWeaponList;
         headBagList = equipmentSelector.headEquipmentList;
@@ -68,17 +72,17 @@ public class EquipmentBagUIList : MonoBehaviour
 
             equipBagItems.Add(EquipComponent);
         }
-        Debug.Log($"ÒÑ³É¹¦Ìí¼Ó {equipBagItems.Count} ¸öSlotÐÅÏ¢µ½±³°üÁÐ±í");
+        Debug.Log($"ï¿½Ñ³É¹ï¿½ï¿½ï¿½ï¿½ï¿½ {equipBagItems.Count} ï¿½ï¿½Slotï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½");
     }
 
     /// <summary>
-    /// ³õÊ¼»¯SlotÔ¤ÖÆÌåÒýÓÃµ½ÁÐ±í
+    /// ï¿½ï¿½Ê¼ï¿½ï¿½SlotÔ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ãµï¿½ï¿½Ð±ï¿½
     /// </summary>
     public void UpdateEquipmentBag()
     {
-        Debug.Log("ÎäÆ÷±³°üË¢ÐÂ£¡");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¢ï¿½Â£ï¿½");
 
-        //³õÊ¼»¯ÎäÆ÷±³°ü
+        //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < Sum; i++)
         {
             equipBagItems[i].description.text = null;
@@ -87,45 +91,51 @@ public class EquipmentBagUIList : MonoBehaviour
             equipBagItems[i].isSelected = false;
             equipBagItems[i].SelectedImage.gameObject.SetActive(false);
             equipBagItems[i].HighLightImage.gameObject.SetActive(false);
+            equipBagItems[i].currentItem = null;
         }
 
-        //¸üÐÂ±³°üÎïÆ·ÐÅÏ¢
+        //ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢
 
         if (currentEquipCategory == EquipItemCategory.HeadEquipment)
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.HeadEquipMent, out var itemLst);
 
-            //¸ù¾Ý²å²Û×°±¸¸üÐÂ×°±¸×´Ì¬
+            //ï¿½ï¿½ï¿½Ý²ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½×´Ì¬
             
             
                 if (headBagList[0].isEquiped)
                 {
-                    //»ñÈ¡×°±¸²å²ÛÖÐ×°±¸ÏîµÄË÷Òý
+                    //ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     int index = headBagList[0].EquipIndex;
                     equipBagItems[index].isSelected = true;
                 }
-            
 
-            //¸ù¾Ý½ÇÉ«±³°ü×°±¸¸üÐÂ±³°üÎïÆ·ÐÅÏ¢
+
+            //ï¿½ï¿½ï¿½Ý½ï¿½É«ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢
             for (int i = 0; i < itemLst.Count && i < equipBagItems.Count; i++)
             {
-                //¸üÐÂ±³°ü¸ñ×ÓÐÅÏ¢
+                //ï¿½ï¿½ï¿½Â±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
                 equipBagItems[i].description.text = itemLst[i].itemInfo.name;
                 equipBagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
-                //¸üÐÂ×°±¸½Ç±ê
+                //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½Ç±ï¿½
                 if (equipBagItems[i].isSelected)
                 {
                     equipBagItems[i].SelectedImage.gameObject.SetActive(true);
                 }
-                //¸Ã¸ñ×ÓÓÐÎïÆ·¿É×°±¸
+                //ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½×°ï¿½ï¿½
                 equipBagItems[i].ableToEquip = true;
 
-                //»ñÈ¡¿É×°±¸ÎïÆ·Î¨Ò»Ë÷Òý£¬ºóÃæ»áÍ¨¹ýË÷Òý²éÕÒÎïÆ·
+                //ï¿½ï¿½È¡ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Æ·Î¨Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
                 equipBagItems[i].BagIndex = i;
+
+                //å­˜å‚¨ç›®å‰Itemå­—æ®µ
+                equipBagItems[i].currentItem = itemLst[i];
+                //åŒæ­¥å½“å‰æ•°é‡
+                equipBagItems[i].currentCount = itemLst[i].CurrentCount;
             }
 
-            //¸üÏ¸µ±Ç°¿É×°±¸ÎïÆ·ÐÅÏ¢
-            CurrentEquipmentNumber = itemLst.Count;
+                //ï¿½ï¿½Ï¸ï¿½ï¿½Ç°ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢
+               CurrentEquipmentNumber = itemLst.Count;
         }
 
 
@@ -133,10 +143,10 @@ public class EquipmentBagUIList : MonoBehaviour
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.BodyEquipment, out var itemLst);
 
-            //¸ù¾Ý²å²Û×°±¸¸üÐÂ×°±¸×´Ì¬
+            //ï¿½ï¿½ï¿½Ý²ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½×´Ì¬
                 if (bodyBagList[0].isEquiped)
                 {
-                    //»ñÈ¡×°±¸²å²ÛÖÐ×°±¸ÏîµÄË÷Òý
+                    //ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     int index = bodyBagList[0].EquipIndex;
                     equipBagItems[index].isSelected = true;
                 }
@@ -144,13 +154,18 @@ public class EquipmentBagUIList : MonoBehaviour
             {
                 equipBagItems[i].description.text = itemLst[i].itemInfo.name;
                 equipBagItems[i].Displayimage.sprite = itemLst[i].itemInfo.ItemIcon;
-                //¸üÐÂ×°±¸½Ç±ê
+                //ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½Ç±ï¿½
                 if (equipBagItems[i].isSelected)
                 {
                     equipBagItems[i].SelectedImage.gameObject.SetActive(true);
                 }
                 equipBagItems[i].ableToEquip = true;
                 equipBagItems[i].BagIndex = i;
+
+                //å­˜å‚¨ç›®å‰Itemå­—æ®µ
+                equipBagItems[i].currentItem = itemLst[i];
+                //åŒæ­¥å½“å‰æ•°é‡
+                equipBagItems[i].currentCount = itemLst[i].CurrentCount;
             }
             CurrentEquipmentNumber = itemLst.Count;
         }
@@ -158,11 +173,11 @@ public class EquipmentBagUIList : MonoBehaviour
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.KernelEquipment, out var itemLst);
 
-            // ¸ù¾Ý²å²Û×°±¸¸üÐÂ×°±¸×´Ì¬
+            // ï¿½ï¿½ï¿½Ý²ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½×´Ì¬
 
                 if (kernelBagList[0].isEquiped)
                 {
-                    //»ñÈ¡×°±¸²å²ÛÖÐ×°±¸ÏîµÄË÷Òý
+                    //ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     int index = kernelBagList[0].EquipIndex;
                     equipBagItems[index].isSelected = true;
                 }
@@ -178,6 +193,11 @@ public class EquipmentBagUIList : MonoBehaviour
 
                 equipBagItems[i].ableToEquip = true;
                 equipBagItems[i].BagIndex = i;
+
+                //å­˜å‚¨ç›®å‰Itemå­—æ®µ
+                equipBagItems[i].currentItem = itemLst[i];
+                //åŒæ­¥å½“å‰æ•°é‡
+                equipBagItems[i].currentCount = itemLst[i].CurrentCount;
             }
             CurrentEquipmentNumber = itemLst.Count;
         }
@@ -185,12 +205,12 @@ public class EquipmentBagUIList : MonoBehaviour
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.RightHandWeapon, out var itemLst);
 
-            // ¸ù¾Ý²å²Û×°±¸¸üÐÂ×°±¸×´Ì¬
+            // ï¿½ï¿½ï¿½Ý²ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½×´Ì¬
             for (int i = 0; i < 2; i++)
             {
                 if (rightHandBagList[i].isEquiped)
                 {
-                    //»ñÈ¡×°±¸²å²ÛÖÐ×°±¸ÏîµÄË÷Òý
+                    //ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     int index = rightHandBagList[i].EquipIndex;
                     equipBagItems[index].isSelected = true;
                 }
@@ -208,6 +228,11 @@ public class EquipmentBagUIList : MonoBehaviour
 
                 equipBagItems[i].ableToEquip = true;
                 equipBagItems[i].BagIndex = i;
+
+                //å­˜å‚¨ç›®å‰Itemå­—æ®µ
+                equipBagItems[i].currentItem = itemLst[i];
+                //åŒæ­¥å½“å‰æ•°é‡
+                equipBagItems[i].currentCount = itemLst[i].CurrentCount;
             }
             CurrentEquipmentNumber = itemLst.Count;
 
@@ -216,12 +241,12 @@ public class EquipmentBagUIList : MonoBehaviour
         {
             InventoryManager.Instance.GetItemLst(ns.ItemInfos.ItemType.LeftHandWeapon, out var itemLst);
 
-            // ¸ù¾Ý²å²Û×°±¸¸üÐÂ×°±¸×´Ì¬
+            // ï¿½ï¿½ï¿½Ý²ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½×´Ì¬
             for (int i = 0; i < 2; i++)
             {
                 if (leftHandBagList[i].isEquiped)
                 {
-                    //»ñÈ¡×°±¸²å²ÛÖÐ×°±¸ÏîµÄË÷Òý
+                    //ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     int index = leftHandBagList[i].EquipIndex;
                     equipBagItems[index].isSelected = true;
                 }
@@ -239,17 +264,22 @@ public class EquipmentBagUIList : MonoBehaviour
 
                 equipBagItems[i].ableToEquip = true;
                 equipBagItems[i].BagIndex = i;
+
+                //å­˜å‚¨ç›®å‰Itemå­—æ®µ
+                equipBagItems[i].currentItem = itemLst[i];
+                //åŒæ­¥å½“å‰æ•°é‡
+                equipBagItems[i].currentCount = itemLst[i].CurrentCount;
             }
             CurrentEquipmentNumber = itemLst.Count;
         }
         else if (currentEquipCategory == EquipItemCategory.Consumer)
         {
-            // ¸ù¾Ý²å²Û×°±¸¸üÐÂ×°±¸×´Ì¬
+            // ï¿½ï¿½ï¿½Ý²ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½×´Ì¬
             for (int i = 0; i < 8; i++)
             {
                 if (consumerList[i].isEquiped)
                 {
-                    //»ñÈ¡×°±¸²å²ÛÖÐ×°±¸ÏîµÄË÷Òý
+                    //ï¿½ï¿½È¡×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     int index = consumerList[i].EquipIndex;
                     equipBagItems[index].isSelected = true;
                 }
@@ -269,30 +299,35 @@ public class EquipmentBagUIList : MonoBehaviour
 
                     equipBagItems[i].ableToEquip = true;
                     equipBagItems[i].BagIndex = i;
-                }
+
+                //å­˜å‚¨ç›®å‰Itemå­—æ®µ
+                equipBagItems[i].currentItem = itemLst[i];
+                //åŒæ­¥å½“å‰æ•°é‡
+                equipBagItems[i].currentCount = itemLst[i].CurrentCount;
+            }
             
         }
     }
 
 
-        //Ë¢ÐÂ×°±¸±³°üÁÐ±í
+        //Ë¢ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
         //equipBagScroller.UpdateEquipmentBagScrollList();
 
 
     //private Slot InstantiateSlotInfo(Slot source, int index)
     //{
-    //    // ´´½¨ÐÂµÄSlotÊµÀý£¨½öÊý¾Ý£¬²»ÊÇGameObject£©
+    //    // ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½SlotÊµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½ï¿½GameObjectï¿½ï¿½
     //    Slot newSlot = new Slot();
 
-    //    // ÕâÀï¿ÉÒÔ¸´ÖÆÐèÒªµÄÊôÐÔ
-    //    // ÀýÈç£ºnewSlot.text = source.text;
-    //    // ×¢Òâ£ºÕâÐèÒªÐÞ¸ÄSlotÀàÊ¹Æä¿ÉÐòÁÐ»¯
+    //    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    //    // ï¿½ï¿½ï¿½ç£ºnewSlot.text = source.text;
+    //    // ×¢ï¿½â£ºï¿½ï¿½ï¿½ï¿½Òªï¿½Þ¸ï¿½Slotï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
 
     //    return newSlot;
     //}
 
     /// <summary>
-    /// »ñÈ¡Ö¸¶¨Ë÷ÒýµÄSlotÐÅÏ¢
+    /// ï¿½ï¿½È¡Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Slotï¿½ï¿½Ï¢
     /// </summary>
     public EquipmentSlot GetSlotInfo(int index)
     {
@@ -300,7 +335,7 @@ public class EquipmentBagUIList : MonoBehaviour
         {
             return equipBagItems[index];
         }
-        Debug.LogWarning($"ÇëÇóµÄË÷Òý {index} ³¬³ö·¶Î§ (0-{equipBagItems.Count - 1})");
+        Debug.LogWarning($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ {index} ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§ (0-{equipBagItems.Count - 1})");
         return null;
     }
 }
