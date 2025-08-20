@@ -22,6 +22,7 @@ namespace ns.Weapons
             {
                 //处理与敌人的碰撞逻辑
                 Debug.Log("Weapon collided with enemy: " + other.name);
+                //Debug.LogError("敌人受伤");
                 //调用敌人受击接口
                 IDamage d = other.GetComponent<IDamage>();
                 var content = new DamageContext(attackerInfo);

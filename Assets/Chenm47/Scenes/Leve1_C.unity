@@ -3546,6 +3546,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8567982092142403664, guid: 55f7721b1fb074f408000c448f3f8974,
         type: 3}
+      propertyPath: hP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567982092142403664, guid: 55f7721b1fb074f408000c448f3f8974,
+        type: 3}
       propertyPath: CurrentBasePoise
       value: 100
       objectReference: {fileID: 0}
