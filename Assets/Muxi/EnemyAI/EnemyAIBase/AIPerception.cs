@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace EnemyAIBase
 {
-    [RequireComponent(typeof(SphereCollider))]
     public class AIPerception : MonoBehaviour
     {
         [Header("Vision Settings")] [SerializeField]
@@ -40,7 +39,7 @@ namespace EnemyAIBase
         public Action<Transform> OnPlayerLost;
         public Action<float> OnSuspicionChanged; // 只传递怀疑度
 
-        private SphereCollider detectionCollider;
+        [SerializeField] private SphereCollider detectionCollider;
         private float lastDetectionTime;
 
         public bool HasDetectedPlayer => isPlayerInView;
@@ -49,7 +48,17 @@ namespace EnemyAIBase
         private void Awake()
         {
 
-            detectionCollider = GetComponent<SphereCollider>();
+            if (detectionCollider == null)
+            {
+                detectionCollider = GetComponentInChildren<SphereCollider>();
+            }
+
+            if (detectionCollider == null)
+            {
+                Debug.LogError("No SphereCollider assigned or found in children for AIPerception on " + gameObject.name, this);
+                enabled = false;
+                return;
+            }
             detectionCollider.isTrigger = true;
             detectionCollider.radius = viewRadius;
             GetPlayerTransform();
