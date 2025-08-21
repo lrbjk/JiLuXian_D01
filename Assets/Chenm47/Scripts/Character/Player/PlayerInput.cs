@@ -91,6 +91,10 @@ namespace ns.Character.Player
         [Tooltip("翻滚按下的时间，超过这个时间就会被视为长按")]
         [SerializeField]
         float RollPressedTime = 0.5f;
+        [SerializeField]
+        float threshold = 50f;   // 阈值，可以调大避免误触
+        [SerializeField]
+        float cooldownTime = 0.3f;  // 冷却时间（秒）
         #endregion
         private void Update()
         {
@@ -357,13 +361,46 @@ namespace ns.Character.Player
             return Input.GetKeyDown(KeyCode.F);
         }
 
+        private float accumulatedX = 0f;
+        private float cooldownTimer = 0f;  // 冷却计时器
         /// <summary>
         /// 切换锁定目标输入
         /// </summary>
         /// <returns></returns>
         protected virtual float SwitchLockedKeyInput()
         {
-            return -Input.GetAxisRaw("Mouse ScrollWheel");
+            // 更新冷却计时器
+            if (cooldownTimer > 0f)
+            {
+                cooldownTimer -= Time.deltaTime;
+                return 0; // 冷却中，不检测输入
+            }
+            //检测鼠标左右移动一定距离
+            // 用 Axis 获取相对移动量（更适合这种输入感应）
+            float mouseX = Input.GetAxis("Mouse X");
+            if (mouseX == 0f)
+            {
+                accumulatedX = 0f;
+                return 0f;
+            }
+            // 累积
+            accumulatedX += mouseX;
+
+            // 检查是否超过阈值
+            if (accumulatedX >= threshold)
+            {
+                accumulatedX = 0f; // 重置
+                cooldownTimer = cooldownTime;   // 开始冷却
+                return 1f;
+            }
+            else if (accumulatedX <= -threshold)
+            {
+                accumulatedX = 0f; // 重置
+                cooldownTimer = cooldownTime;   // 开始冷却
+                return -1f;
+            }
+            //return -Input.GetAxisRaw("Mouse ScrollWheel");
+            return 0f;
         }
 
         private void SwitchLockedTargetInput()
@@ -371,7 +408,7 @@ namespace ns.Character.Player
             SwitchLockedTarget = SwitchLockedKeyInput();
             if (SwitchLockedTarget != 0 && LockViewTrigger)
             {
-                print("swlt" + SwitchLockedTarget);
+                //print("swlt" + SwitchLockedTarget);
                 //切换锁定目标
                 PlayerAction.Instance.SwitchLockTarget(SwitchLockedTarget);
             }

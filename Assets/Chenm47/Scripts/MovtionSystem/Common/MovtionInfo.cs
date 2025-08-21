@@ -1,3 +1,4 @@
+using ns.Camera.Shake;
 using ns.Character;
 using System;
 using UnityEngine;
@@ -65,5 +66,12 @@ namespace ns.Movtion
         public int BackDamagedMovtionID;
         [Tooltip("命中目标死亡动作")]
         public int DeadMovtionID;
+        [Header("效果")]
+        public bool EnableHitTargetShake;
+        [Tooltip("命中目标抖动")]
+        public ShakeRequest HitTargetShake;
+        public bool EnableMovtionShake;
+        [Tooltip("动作帧抖动")]
+        public ShakeRequest MovtionShake;
     }
 }

@@ -1,5 +1,6 @@
 using Common.Helper;
 using Common.UI;
+using ns.Camera.Shake;
 using ns.Character.Player;
 using ns.Movtion;
 using ns.Value;
@@ -287,6 +288,11 @@ namespace ns.Character
             ChangeHP(-damageValue);
             //转换值处理
             DamagedTransitionHandle();
+            //镜头摇晃效果
+            if (atkMovtionInfo.EnableHitTargetShake)
+            {
+                CameraShakeManager.Instance.RequestCustomShake(atkMovtionInfo.HitTargetShake);
+            }
             //是否死亡
             if (hP <= 0)
             {

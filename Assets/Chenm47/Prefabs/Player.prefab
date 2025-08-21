@@ -82,6 +82,8 @@ GameObject:
   - component: {fileID: 134249835580483584}
   - component: {fileID: 8104255935956435282}
   - component: {fileID: 548249005606271899}
+  - component: {fileID: 1345010483311629429}
+  - component: {fileID: 5970643132995093494}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -172,6 +174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MovementPressdTime: 0.5
   RollPressedTime: 0.5
+  threshold: 12
+  cooldownTime: 0.2
   JumpDelta: 0.1
 --- !u!114 &4066291595582182481
 MonoBehaviour:
@@ -187,11 +191,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterParamID: 0
   MovtionManager: {fileID: 134249835580483584}
-  HP: 100
-  BasePoiseCeling: 0
-  CurrentBasePoise: 0
+  hP: 50
+  maxHP: 0
+  BasePoiseCeling: 100
+  MaxPoiseCeling: 0
+  CurrentBasePoise: 100
   AccumulativePoiseDamage: 0
   IsInvincible: 0
+  transitionValue: 50
+  currentCriticalStateType: 0
   LockedTF: {fileID: 1208128918206792209}
   BackStabedStandingTF: {fileID: 1939217102287220020}
   ForwardStabedStandingTF: {fileID: 0}
@@ -200,6 +208,7 @@ MonoBehaviour:
   IsInPreMovtionFlag: 0
   IsInMovtionRecoveryFlag: 0
   IsInArmorFlag: 0
+  IsInWeadFlag: 0
   CurrentMovtionID: 0
   ComboMovtionlID: 0
   IsDamaged: 0
@@ -209,6 +218,7 @@ MonoBehaviour:
   RollSpeed: 10
   BackStepSpeed: 6
   JumpSpeed: 5
+  BullteSpeed: 30
   MaxLockDistance: 20
   EnemyLayer:
     serializedVersion: 2
@@ -218,6 +228,7 @@ MonoBehaviour:
   BackStepMovtionID: 1
   JumpMovtionID: 9
   GunParryMovtionID: 13
+  TakeMedicineMovtionID: 16
   IsDownStair: 0
   LastAttackType: 6
   FallTimer: 0
@@ -264,9 +275,7 @@ MonoBehaviour:
     value: 15
   - propertyType: 3
     value: 15
-  TransitionValue: 50
-  CurrentCriticalStateType: 1
-  BullteSpeed: 30
+  RollTransition: 10
 --- !u!114 &2674699626631838181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +338,7 @@ MonoBehaviour:
   playerIK: {fileID: 0}
   BulletPrefab: {fileID: 0}
   BulletCreatPos: {fileID: 0}
+  playerEquipmentManager: {fileID: 0}
 --- !u!114 &7441882175394183481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,15 +376,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1bb2ec32f6cc08442b4c1767083199d6, type: 2}
   - {fileID: 11400000, guid: e8004f64b159460448cc2aa641d8cbb1, type: 2}
   - {fileID: 11400000, guid: d30e82fdb4198ee42850ca40a415a85f, type: 2}
-  - {fileID: 11400000, guid: ac3d4abde3a612f45bc6f1557c287bf3, type: 2}
-  - {fileID: 11400000, guid: 214d197fcc921744590c518453662bd0, type: 2}
   - {fileID: 11400000, guid: e58b356778b7e8d4a99c648e34d84412, type: 2}
   - {fileID: 11400000, guid: 6ae174a38a9cfac4097e573a6c2b28bd, type: 2}
+  - {fileID: 11400000, guid: 33cb5c0458041d140a40e87cfaaba697, type: 2}
   - {fileID: 11400000, guid: cfc90ffcbb6f9964db5a7bbdb018b9b7, type: 2}
   - {fileID: 11400000, guid: a9238e8cf7e60514082bc21cce357e83, type: 2}
   - {fileID: 11400000, guid: 5432f37c85d4ecc4bb151af67956c7e3, type: 2}
   - {fileID: 11400000, guid: d511d2375683deb4a8fa1f22bb0383bd, type: 2}
-  - {fileID: 11400000, guid: 33cb5c0458041d140a40e87cfaaba697, type: 2}
+  - {fileID: 11400000, guid: 214d197fcc921744590c518453662bd0, type: 2}
+  - {fileID: 11400000, guid: 3621610779bc6844ca14579aa4291d64, type: 2}
+  - {fileID: 11400000, guid: ac3d4abde3a612f45bc6f1557c287bf3, type: 2}
+  - {fileID: 11400000, guid: c7ace3dc1fb264241b667c82c2caabc2, type: 2}
+  - {fileID: 11400000, guid: 9707f31957362ce49b12e4400c5552a5, type: 2}
 --- !u!114 &8104255935956435282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,6 +404,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4b62e184a70781a429f0e3fa402eabe7, type: 2}
   - {fileID: 11400000, guid: 46917d7475057d64ab821ad15622e678, type: 2}
   currentKernelInfo: {fileID: 11400000, guid: ac927a02ae1ca5245848af45eadf3fa7, type: 2}
+  currentItem:
+    itemInfo: {fileID: 0}
+    currentCount: 0
 --- !u!114 &548249005606271899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,6 +424,8 @@ MonoBehaviour:
     currentCount: 2
   - itemInfo: {fileID: 11400000, guid: 46917d7475057d64ab821ad15622e678, type: 2}
     currentCount: 1
+  - itemInfo: {fileID: 11400000, guid: 072b36b728e06df44bbdf46bc296fdcc, type: 2}
+    currentCount: 3
   - itemInfo: {fileID: 11400000, guid: 6e11ab8ceae8b4043bd5185b0618756f, type: 2}
     currentCount: 3
   - itemInfo: {fileID: 11400000, guid: 8e59813e7c8e3744eab6ef975a8a3e25, type: 2}
@@ -416,6 +434,30 @@ MonoBehaviour:
     currentCount: 2
   - itemInfo: {fileID: 11400000, guid: e255286b02a625942922e3b782958453, type: 2}
     currentCount: 3
+--- !u!114 &1345010483311629429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4698365638606686645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48213624b96fc442b54176a941084d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5970643132995093494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4698365638606686645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae1c561c9cb3eac42b68ba30d06a3891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4796875328957448726
 GameObject:
   m_ObjectHideFlags: 0

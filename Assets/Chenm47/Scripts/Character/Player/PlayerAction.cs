@@ -195,17 +195,18 @@ namespace ns.Character.Player
 
         public void SwitchLockTarget(float switchDir)
         {
-            var colliders =
-                Physics.OverlapSphere(playerInfo.LockedTargetTF.position, 10f, playerInfo.EnemyLayer);
-
+            Collider[] colliders = new Collider[16];
+            int count = Physics.OverlapSphereNonAlloc(playerInfo.LockedTargetTF.position, 10f, colliders, playerInfo.EnemyLayer);
+            if (count == 0) return;
             float tempClosestDistanceLeft = float.PositiveInfinity;
             float tempClosestDistanceRight = float.PositiveInfinity;
 
             Transform closestTransformLeft = playerInfo.LockedTargetTF;
             Transform closestTransformRight = playerInfo.LockedTargetTF;
 
-            foreach (var collider in colliders)
+            for (int i = 0; i < count; i++)
             {
+                Collider collider = colliders[i];
                 if (!collider.CompareTag("Enemy"))
                     continue;
                 var currentColliderTF = collider.GetComponent<CharacterInfo>().LockedTF;
@@ -239,7 +240,7 @@ namespace ns.Character.Player
             if (switchDir < 0)
             {
                 playerInfo.LockedTargetTF = closestTransformLeft;
-                print("切换锁定目标到左边: " + closestTransformLeft.parent.name);
+                //print("切换锁定目标到左边: " + closestTransformLeft.parent.name);
             }
             else
             {
