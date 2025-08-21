@@ -25,12 +25,14 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _OUTLINE_PASS_ON
+  - _2COLORCHANNEL_ON
+  - _HEIGHT_ON
   - _SCREEN_SAPCE_RIM
   m_InvalidKeywords:
   - _MAINMAPS_ON
   - _OPTION_ON
   - _OUTLINE_PASS
+  - _OUTLINE_PASS_ON
   - _SHADOWSETTING_ON
   - _SH_ON
   - _SPECULARSETTING_ON
@@ -52,6 +54,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BaseNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -64,7 +70,15 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DetailNormal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DirtRoughness:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -73,6 +87,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _HeightMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -142,10 +160,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _2COLORCHANNEL: 1
+    - _2COLORCHANNEL_out: 1
     - _AlbedoSmoothness: 0.232
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _AmbientColorIntensity: 0.1
+    - _BaseDirtStrength: 0
+    - _BaseMetallic: 0
+    - _BaseNormalStrength: 0
+    - _BaseSmoothness: 0.5
     - _Blend: 0
     - _BlendDst: 0
     - _BlendModePreserveSpecular: 1
@@ -157,6 +181,9 @@ Material:
     - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
+    - _DetailDirtStrength: 0
+    - _DetailEdgeSmoothness: 0
+    - _DetailEdgeWear: 0
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _DstBlendAlpha: 0
@@ -165,6 +192,9 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 1
     - _GlossyReflections: 0
+    - _Height: 1
+    - _HeightIntensity: 0.005
+    - _Height_out: 1
     - _HightlightShape: 0
     - _MainMaps: 1
     - _MainMaps_Out: 1
@@ -231,7 +261,10 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColorOverlay: {r: 0.6544117, g: 0.6544117, b: 0.6544117, a: 0}
+    - _BaseDirtColor: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _DetailColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _MatCapParam: {r: 0, g: 0, b: 0, a: 0}
     - _MatCapParam1: {r: 5, g: 5, b: 0, a: 0}
